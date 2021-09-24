@@ -615,17 +615,72 @@
 </section>
 <section class="informative">
     <h2>Representations</h2>
+    <p>
+        There are several ways in which Plaine & Easie code can be used in practice, depending
+        on use case. Typically they vary in the specific methods in which the components of clef,
+        key signature, time signature, and notation data are incorporated into the encoding.
+    </p>
     <section>
         <h3>MARC21</h3>
+        <p>
+            The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
+            record. The <code>031</code> MARC field is used to record incipits for bibliographic catalogues.
+        </p>
+        <p>
+            In a MARC record, the Plaine & Easie notation components are separated out into subfields. The specifics
+            of this encoding are given in the MARC documentation.
+        </p>
     </section>
     <section>
         <h3>Single-Line Text</h3>
+        <p>
+            Plaine & Easie code can be represented in a single, continuous line of text by using
+            the field delimiters for each notation component: <code>%</code> for clef,
+            <code>$</code> for key signature, and <code>@</code> for time signature. These components
+            are given at the beginning of the line, and separated by a space with the notation data.
+            An example is given below.
+        </p>
+        <aside class="example" title="Single-line Plaine & Easie code">
+            <pre>
+                %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
+            </pre>
+        </aside>
     </section>
     <section>
-        <h3>Multi-Line Text</h3>
+        <h3>Multi-Line Text with Field Delimiters</h3>
+        <p>
+            This format separates each component into individual lines, separated by a
+            newline character <code>\n</code>, and with the component name preceded by a <code>@</code> symbol.
+            There are five such fields: <code>@clef</code>, <code>@keysig</code>, <code>@timesig</code>,
+            <code>@key</code>, and <code>@data</code>.
+        </p>
+        <aside class="example" title="Multi-line text with field delimiters">
+            <pre>
+                @clef:G-2
+                @timesig:3/2
+                @keysig:bB
+                @data:=3/2--''A/2.F4G2A/AGG/1A/
+            </pre>
+        </aside>
     </section>
     <section>
         <h3>JavaScript Object Notation (JSON)</h3>
+        <p>
+            JavaScript Object Notation (JSON) is a key-value format that is easy to transmit and process
+            in web browsers. Some tools may support Plaine & Easie encoding using JSON. The same field names
+            as the multi-line format are used, but the preceding <code>@</code> is dropped. Fields are separated
+            by a comma.
+        </p>
+        <aside class="example" title="JavaScript Object Notation (JSON)">
+            <pre>
+                {
+                    "clef": "G-2",
+                    "timesig": "3/2",
+                    "keysig": "bB",
+                    "data": "=3/2--''A/2.F4G2A/AGG/1A/"
+                }
+            </pre>
+        </aside>
     </section>
 </section>
 <section id="conformance">
