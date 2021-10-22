@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Plaine & Easie Code v2</title>
+    <script
+            src="https://www.w3.org/Tools/respec/respec-w3c"
+            class="remove"
+            defer
+    ></script>
+    <script class="remove">
+        // All config options at https://respec.org/docs/
+        var respecConfig = {
+            specStatus: "unofficial",
+            editors: [{
+                name: "Massimo Gentili-Tedeschi"
+            }, {
+                name: "Andrew Hankinson",
+                company: "RISM Digital Center",
+                url: "https://rism.digital"
+            }, {
+                name: "Balázs Mikusi",
+                company: "RISM Editorial Center",
+                url: "https://rism.info"
+            }, {
+                name: "Laurent Pugin",
+                company: "RISM Digital Center",
+                url: "https://rism.digital"
+            }],
+            formerEditors: [],
+            github: "rism-digital/pae-code-spec",
+            shortName: "paec",
+        };
+    </script>
+</head>
+<body>
+<section id="abstract">
+    <p>
+        The Plaine & Easie Code is a library standard that enables entering music incipits in modern or mensural
+        notation.
+    </p>
+    <p>
+        This version of the code is maintained by the International Association of Music Libraries, Archives and
+        Documentation Centres (IAML) and the Répertoire International des Sources Musicales (RISM) for use as an
+        exchange format in the library environment. Observations or queries may be addressed to Massimo
+        Gentili-Tedeschi or Balázs Mikusi. A tutorial is available here.
+    </p>
+    <p>
+        Last update to the code: 28 June 2019
+    </p>
+    <p>
+        Also available in PDF format.
+    </p>
+    <p>
+        Adapted from the RISM guidelines. Corresponds to UNIMARC 036 and MARC21 031 fields.
+    </p>
+</section>
+
+<section id="sotd">
+</section>
+
+<section class="informative">
+    <h2>General Principles</h2>
+    <p>
+        Music incipits help identify works and facilitate the comparison of historical musical sources.
+    </p>
+    <p>
+        Which music incipits to enter depends on the kind of music. Best practice for instrumental music is to enter
+        incipits for the violin or the highest part. For vocal music, enter the highest voice plus the first violin or
+        the highest instrumental part.
+    </p>
+
+    <p>
+        The incipit should be neither too long nor too short, and make as much musical sense as possible. It should
+        contain at least 3 bars or 10 non-repeated notes.
+    </p>
+
+    <p>
+        The code should be written on a single line. When using MARC-format subfields, omit the special characters that
+        precede the encoded notes.
+    </p>
+</section>
+
+<section class="normative">
+    <h2>The Plaine & Easie Code</h2>
+    <section>
+        <h3>Clef</h3>
+        <aside class="note">UNIMARC field 036 $m; MARC21 field 031 $g</aside>
+        <p>
+            The clef code is preceded by <code>%</code> and is three characters long.
+        </p>
+        <p>
+            The first character specifies the clef shape.
+        </p>
+        <table class="simple">
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Clef</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>G</code></td>
+                <td><!-- image here --></td>
+            </tr>
+            <tr>
+                <td><code>C</code></td>
+                <td><!-- image here --></td>
+            </tr>
+            <tr>
+                <td><code>F</code></td>
+                <td><!-- image here --></td>
+            </tr>
+            <tr>
+                <td><code>g</code></td>
+                <td><!-- image here --></td>
+            </tr>
+
+            </tbody>
+        </table>
+        <p>
+            The second character is <code>-</code> to indicate modern notation or <code>+</code> to indicate mensural
+            notation.
+        </p>
+        <p>
+            The third character (numerals 1-5) indicates the position of the clef on the staff, starting from the bottom
+            line.
+        </p>
+        <p>
+            If the music is written for a transposing instrument, notate the incipit at sounding pitch.
+        </p>
+        <p>TODO: Convert Examples</p>
+    </section>
+    <section>
+        <h3>Key Signature</h3>
+        <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
+        <p>
+            Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
+            the <code>$</code> is omitted.
+        </p>
+        <p>
+            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
+            capital letters that indicate the altered notes.
+        </p>
+        <p>TODO: Convert Examples</p>
+    </section>
+    <section>
+        <h3>Time Signature</h3>
+        <aside class="note">UNIMARC field 036 $o; MARC21 field 031 $o</aside>
+        <p>
+            The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
+            incipit. If the incipit has no time signature, the <code>@</code> is omitted.
+        </p>
+        <p>
+            Fractional or numeric values are transcribed as fractions and mensuration signs are transcribed with a
+            lowercase letter, if necessary followed by <code>/</code> or <code>.</code>:
+        </p>
+        <p>TODO: Convert Examples</p>
+    </section>
+    <section>
+        <h3>Musical Notation</h3>
+        <aside class="note">
+            UNIMARC field 036 $p; MARC21 field 031 $p
+        </aside>
+        <section>
+            <h4>Octave Symbol</h4>
+            <p>
+                Apostrophes are used for the octaves c' and above, while commas are used for the octaves c, and below.
+            </p>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Note</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>'</code></td>
+                    <td>octave c4-b4</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>''</code></td>
+                    <td>octave c5-b5</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>'''</code></td>
+                    <td>octave c6-b6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>''''</code></td>
+                    <td>octave c7-b7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>,</code></td>
+                    <td>octave c3-b3</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>,,</code></td>
+                    <td>octave c2-b2</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>,,,</code></td>
+                    <td>octave c1-b1</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Rhythmic Values</h4>
+            <p>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>0</code></td>
+                    <td>longa</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>9</code></td>
+                    <td>breve</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>1</code></td>
+                    <td>whole note / semibreve</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>2</code></td>
+                    <td>half note / minim</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>4</code></td>
+                    <td>quarter note / crochet / semiminim</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>8</code></td>
+                    <td>eighth note / quaver / fusa</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>6</code></td>
+                    <td>16th note / semiquaver / semifusa</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>3</code></td>
+                    <td>32nd note / demisemiquaver</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>5</code></td>
+                    <td>64th note / hemidemisemiquaver</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>7</code></td>
+                    <td>128th note</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                Periods are used for dotted notes. Multiple periods can be added to a note.
+            </p>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>4.</code></td>
+                    <td>dotted quarter-note</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>8..</code></td>
+                    <td>double-dotted eighth-note</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>7.</code></td>
+                    <td>neumatic notation</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            </p>
+        </section>
+        <section>
+            <h4>Accidentals</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>x</code></td>
+                    <td>sharp</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>xx</code></td>
+                    <td>double sharp</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>b</code></td>
+                    <td>flat</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>bb</code></td>
+                    <td>double flat</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>n</code></td>
+                    <td>natural</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Note Names</h4>
+            <p>C, D, E, F, G, A, B</p>
+        </section>
+        <section>
+            <h4>Grace Notes</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>g</code></td>
+                    <td>acciaccatura (without rhythmic value, precedes the note name)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>q</code></td>
+                    <td>appoggiatura (with rhythmic value, precedes the note name)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>qq...r</code></td>
+                    <td>double appoggiatura, slide, or multiple appoggiatura (with rhythmic value)</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Rests</h4>
+            <p>Rests for single notes are indicated by <code>-</code> (a minus sign).</p>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>-</code></td>
+                    <td>single-note rest (preceded by rhythmic value like note names)</td>
+                </tr>
+                <tr>
+                    <td><code>=</code></td>
+                    <td>measure rest (followed by number of measures and a bar line)</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <p>TODO: Examples</p>
+        </section>
+        <section>
+            <h4>Bar (measure) Lines</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><code>/</code></td>
+                    <td>bar line</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>//</code></td>
+                    <td>double bar line</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>//:</code></td>
+                    <td>double bar line with repeat sign on the right</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>://</code></td>
+                    <td>double bar line with repeat sign on the left</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>://:</code></td>
+                    <td>double bar line with repeat sign on the left and on the right</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Other Symbols</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>t</code></td>
+                    <td>trill (immediately follows the note)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>+</code></td>
+                    <td>tie (immediately follows the note; only for notes of the same pitch, not for slurs)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>( )</code></td>
+                    <td>fermata (include only one note or rest; accidentals or octave symbols must be outside the
+                        parentheses. See also "Special rhythmic groupings" below.)
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h4>Beaming</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><code>{</code></td>
+                    <td>beginning of beaming</td>
+                </tr>
+                <tr>
+                    <td><code>}</code></td>
+                    <td>end of beaming</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                TODO: Convert example
+            </p>
+        </section>
+        <section>
+            <h4>Special Rhythmic Groupings</h4>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>(</code></td>
+                    <td>beginning of special group</td>
+                </tr>
+                <tr>
+                    <td><code>)</code></td>
+                    <td>end of special group</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                Before <code>(</code> you must indicate the total value of the group.
+            </p>
+            <p>
+                After <code>(</code> you must indicate the rhythmic value of the first note, even if it is equal to that
+                of the group.
+            </p>
+            <p>
+                Before <code>)</code> you must indicate the number of notes of the group, preceded by <code>;</code>.
+            </p>
+        </section>
+        <section>
+            <h4>Shortcuts</h4>
+            <section>
+                <h5>Repeated figures</h5>
+
+                ! beginning and end of passage
+                f repetition indication of the notes that appear within !...!
+
+                <p>
+                    The group will be repeated as many times as the <code>f</code> appears after the second
+                    <code>!</code>. Repetition is possible only within the same measure.
+                </p>
+
+                Example:
+                !{'8ABAG}!ff repeat twice
+            </section>
+            <section>
+                <h5>Repeated measures</h5>
+                <p>
+                    The symbol <code>i</code> repeats the last measure. It must always be included within bar lines.
+                </p>
+
+                Example:
+                '4ABAG/i/i/ repeat measure twice
+            </section>
+            <section>
+                <h5>Rhythmic sequence</h5>
+                <p>
+                    When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
+                    before the note names.
+                </p>
+
+                Example:
+                instead of {'8.A6B''8C}{8.D6E8F}
+                the code can be '8.68{AB''C}{DEF}
+                The rhythmic sequence ends when a new rhythmic value appears.
+            </section>
+        </section>
+        <section>
+            <h4>Change of Clef, Key Signature, Time Signature</h4>
+            <p>
+                Use <code>%</code> to change the clef, <code>$</code> to change the key, and <code>@</code> to change
+                the time signature. Follow this with the new indication (clef, key, or time), followed by a space.
+            </p>
+            <p>
+                The introductory characters are mandatory.
+            </p>
+            <p>TODO: Examples</p>
+        </section>
+        <section>
+            <h4>Abbreviations</h4>
+            <p>
+                Notation abbreviations, such as tremolo, slash, etc., must be written out in full using the actual
+                notation.
+            </p>
+        </section>
+        <section>
+            <h4>Chords</h4>
+            <p>
+                Enter chords from the highest to the lowest note, each one separated by <code>^</code>.
+            </p>
+        </section>
+    </section>
+    <section>
+        <h3>Coded Validity Note</h3>
+        <aside class="note">UNIMARC field 036 $r — MARC21 field 031 $s</aside>
+        <p>
+            A one-character coded validity note can be introduced by a <code>~</code> at the end of the code.
+        </p>
+        <p>
+            Accepted characters are:
+        <ul>
+            <li><code>?</code>: a mistake in the incipit has not been corrected</li>
+            <li><code>+</code>: a mistake in the incipit has been corrected</li>
+            <li><code>t</code>: incipit has been transcribed into modern notation</li>
+
+        </ul>
+        </p>
+        <p>
+            These characters may be explained in a note (UNIMARC 036 $q — MARC21 031 $q).
+        </p>
+    </section>
+</section>
+<section class="informative">
+    <h2>Representations</h2>
+    <section>
+        <h3>MARC21</h3>
+    </section>
+    <section>
+        <h3>Single-Line Text</h3>
+    </section>
+    <section>
+        <h3>Multi-Line Text</h3>
+    </section>
+    <section>
+        <h3>JavaScript Object Notation (JSON)</h3>
+    </section>
+</section>
+<section id="conformance">
+</section>
+</body>
+</html>
