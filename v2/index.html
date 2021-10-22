@@ -136,12 +136,20 @@
         <h3>Key Signature</h3>
         <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
         <p>
-            Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
-            the <code>$</code> is omitted.
+            This field must start with the <code>$</code> character; if there are no sharps or flats in the
+            key signature, this field should be omitted.
         </p>
         <p>
-            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
-            capital letters that indicate the altered notes.
+            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. This is followed by one or more
+            uppercase letters <code>A-G</code>, indicating the note-name of the accidental to be used.
+        </p>
+        <p>
+            The letters should occur in standard key signature order. Non-standard key signatures may omit
+            letters if they do not occur in the key signature.
+        </p>
+        <p>
+            One or more groups of accidentals in square brackets <code>[]</code> may be used to indicate one or more
+            accidentals supplied by the encoder. Consecutive groups of square brackets must not appear.
         </p>
         <p>TODO: Convert Examples</p>
     </section>
