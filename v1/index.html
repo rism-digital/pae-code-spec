@@ -8,11 +8,11 @@
             class="remove"
             defer
     ></script>
-<!--    <script-->
-<!--            src="https://www.w3.org/Tools/respec/respec-w3c"-->
-<!--            class="remove"-->
-<!--            defer-->
-<!--    ></script>-->
+    <!-- <script
+            src="https://www.w3.org/Tools/respec/respec-w3c"
+            class="remove"
+            defer
+    ></script> -->
     <script
             src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
             defer
@@ -20,7 +20,9 @@
     <script class="remove">
         // All config options at https://respec.org/docs/
         var respecConfig = {
-            specStatus: "unofficial",
+            thisVersion: "https://rism.digital/plaine-and-easie/v1/",
+            latestVersion: "https://rism.digital/plaine-and-easie/v1/",
+            specStatus: "base",
             editors: [{
                 name: "Andrew Hankinson",
                 company: "RISM Digital Center",
@@ -37,8 +39,13 @@
             formerEditors: [{
                 name: "Massimo Gentili-Tedeschi"
             }],
-            github: "rism-digital/pae-code-spec",
+            github: "https://github.com/rism-digital/pae-code-spec",
+            edDraftURI: null,
+            historyURI: null,
+            wg: "Plaine & Easie Specification Editors",
+            wgURI: "https://rism.digital/plaine-and-easie/",
             shortName: "paec",
+            maxTocLevel: 3
         };
     </script>
     <script type="application/javascript">
@@ -111,6 +118,13 @@
 </head>
 <body>
 <section id="abstract">
+    <p class="ednote" title="About this version">
+        This document serves as both a specification and as a source of examples, and is largely a verbatim copy
+        of the existing specification hosted by the International Association of Music Libraries. We are aware
+        of a number of areas where the examples could be more extensive, or the specification could be made more
+        precise. The hope is to address these in Version 2 of the Plaine & Easie specification, and to add supporting
+        materials to accompany it.
+    </p>
     <p>
         The Plaine & Easie Code is a library standard that enables entering music incipits in modern or mensural
         notation.
@@ -119,20 +133,19 @@
         This version of the code is maintained by the International Association of Music Libraries, Archives and
         Documentation Centres (IAML) and the Répertoire International des Sources Musicales (RISM) for use as an
         exchange format in the library environment. Observations or queries may be addressed to Massimo
-        Gentili-Tedeschi or Balázs Mikusi. A tutorial is available here.
+        Gentili-Tedeschi or Balázs Mikusi. A tutorial is available
+        <a href="https://www.youtube.com/watch?v=-HplUb_L1QY">here</a>.
     </p>
     <p>
         Last update to the code: 28 June 2019
     </p>
     <p>
-        Also available in PDF format.
+        Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
     </p>
     <p>
-        Adapted from the RISM guidelines. Corresponds to UNIMARC 036 and MARC21 031(link is external) fields.
+        Adapted from the RISM guidelines. Corresponds to UNIMARC 036 and
+        <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC21 031</a> fields.
     </p>
-</section>
-
-<section id="sotd">
 </section>
 
 <section class="informative">
@@ -145,12 +158,10 @@
         incipits for the violin or the highest part. For vocal music, enter the highest voice plus the first violin or
         the highest instrumental part.
     </p>
-
     <p>
         The incipit should be neither too long nor too short, and make as much musical sense as possible. It should
         contain at least 3 bars or 10 non-repeated notes.
     </p>
-
     <p>
         The code should be written on a single line. When using MARC-format subfields, omit the special characters that
         precede the encoded notes.
@@ -1456,10 +1467,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "%C-1$bBEA@c'2A-//$xFC 8B-4-2-/@3/2 1C2-//"
+                                    "data": "%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//"
                                 }
                             </script>
-                            <code>%C-1$bBEA@c'2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
+                            <code>%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
                         </td>
                         <td class="notation-result"></td>
                     </tr>
@@ -1554,20 +1565,21 @@
 <section class="informative">
     <h2>Representations</h2>
     <p>
-        There are several ways in which Plaine & Easie code can be represented in practice. The choice of
-        representation depends on the environment in which you are using Plaine & Easie code, and the support
-        of your software tools.
+        There are several ways in which Plaine & Easie code can be expressed. The choice of representation depends
+        on the environment in which you are using Plaine & Easie code, and the support of your software tools.
     </p>
     <section>
-        <h3>MARC21</h3>
+        <h3>MARC21 and UNIMARC</h3>
         <p>
             The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
-            record. The <code>031</code> MARC field is used to record incipits for bibliographic catalogues.
+            record or UNIMARC (UNIversal MARC). The <code>031</code> MARC field is used to record incipits for
+            bibliographic catalogues. For UNIMARC the <code>036</code> field is similarly used.
         </p>
         <p>
-            In a MARC record, the Plaine & Easie notation components are separated out into subfields. The specifics
-            of this encoding are given in the <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC
-            documentation</a> for the <code>031</code> field.
+            In MARC and UNIMARC records, the Plaine & Easie notation components are separated out into subfields.
+            The specifics of this encoding are given in the <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC
+            documentation</a>, or in the
+            <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
         </p>
     </section>
     <section>
@@ -1577,7 +1589,6 @@
             the field delimiters for each notation component: <code>%</code> for clef,
             <code>$</code> for key signature, and <code>@</code> for time signature. These components
             are given at the beginning of the line, and separated by a space with the notation data.
-            An example is given below.
         </p>
         <aside class="example" title="Single-line Plaine & Easie code">
             <pre>
