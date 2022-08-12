@@ -4,10 +4,15 @@
     <meta charset="utf-8"/>
     <title>Plaine & Easie Code v1</title>
     <script
-            src="https://www.w3.org/Tools/respec/respec-w3c"
+            src="../respec-w3c.js"
             class="remove"
             defer
     ></script>
+<!--    <script-->
+<!--            src="https://www.w3.org/Tools/respec/respec-w3c"-->
+<!--            class="remove"-->
+<!--            defer-->
+<!--    ></script>-->
     <script
             src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
             defer
@@ -97,6 +102,10 @@
             color: #c63501 !important;
             background: ghostwhite;
             padding: 2px 4px;
+        }
+
+        svg .issue, svg .note, svg .example, svg .advisement, svg .amendment, svg .correction, svg .addition {
+            all: revert !important;
         }
     </style>
 </head>
@@ -479,8 +488,8 @@
                     <thead>
                     <tr>
                         <th>Code</th>
+                        <th>Notation</th>
                         <th>Note</th>
-                        <th>Example</th>
                     </tr>
                     </thead>
                     <tbody>
