@@ -8,7 +8,10 @@
             class="remove"
             defer
     ></script>
-    <script src="http://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+    <script
+            src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
+            defer
+    ></script>
     <script class="remove">
         // All config options at https://respec.org/docs/
         var respecConfig = {
@@ -33,7 +36,7 @@
             shortName: "paec",
         };
     </script>
-    <script>
+    <script type="application/javascript">
         document.addEventListener("DOMContentLoaded", (event) => {
             Module.onRuntimeInitialized = async _ => {
                 let tk = new verovio.toolkit();
@@ -49,7 +52,7 @@
                     scale: 50,
                     adjustPageHeight: true,
                     adjustPageWidth: true,
-                    // svgHtml5: true,
+                    svgHtml5: true,
                     // svgFormatRaw: true,
                     svgRemoveXlink: true,
                     // svgViewBox: true,
@@ -87,6 +90,15 @@
             }
         });
     </script>
+    <style>
+        /* custom styles for inline code to make it stand out */
+        p code
+        {
+            color: #c63501 !important;
+            background: ghostwhite;
+            padding: 2px 4px;
+        }
+    </style>
 </head>
 <body>
 <section id="abstract">
@@ -433,7 +445,7 @@
                     </td>
                     <td>'Perfect' time</td>
                 </tr>
-                <tr>
+                <tr class="notation-example">
                     <td class="notation-code">
                         <script type="application/json">
                             {
@@ -446,7 +458,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td></td>
+                    <td><i>Not currently supported by Verovio</i></td>
                 </tr>
                 </tbody>
             </table>
@@ -629,7 +641,8 @@
                         </script>
                         <code>2</code>
                     </td>
-                    <td class="notation-result"></td>
+                    <td class="notation-result">
+                    </td>
                     <td>half note / minim</td>
                 </tr>
                 <tr class="notation-example ignore">
@@ -1273,13 +1286,13 @@
             <p>
                 The triplet is a special case; strictly speaking, it should be coded as follows:
             </p>
-            <pre>
+            <pre class="text">
                 8(6ABC;3) or 8({6ABC};3)
             </pre>
             <p>
                 Instead, the following shortcut is permitted:
             </p>
-            <pre>
+            <pre class="text">
                 (6ABC) or ({6ABC})
             </pre>
             <p>
@@ -1532,9 +1545,9 @@
 <section class="informative">
     <h2>Representations</h2>
     <p>
-        There are several ways in which Plaine & Easie code can be used in practice, depending
-        on use case. They vary in how the specific methods for denoting the clef,
-        key signature, time signature, and notation data are expressed.
+        There are several ways in which Plaine & Easie code can be represented in practice. The choice of
+        representation depends on the environment in which you are using Plaine & Easie code, and the support
+        of your software tools.
     </p>
     <section>
         <h3>MARC21</h3>
@@ -1566,8 +1579,8 @@
     <section>
         <h3>Multi-Line Text with Field Delimiters</h3>
         <p>
-            This format separates each component into individual lines, separated by a
-            newline character <code>\n</code>, and with the component name preceded by a <code>@</code> symbol.
+            This format puts each component on its own line, separated by a newline character <code>\n</code>, and
+            with the component field preceded by a <code>@</code> symbol and followed by a colon <code>:</code>.
             There are five such fields: <code>@clef</code>, <code>@keysig</code>, <code>@timesig</code>,
             <code>@key</code>, and <code>@data</code>.
         </p>
@@ -1583,10 +1596,9 @@
     <section>
         <h3>JavaScript Object Notation (JSON)</h3>
         <p>
-            JavaScript Object Notation (JSON) is a key-value format that is easy to transmit and process
-            in web browsers. Some tools may support Plaine & Easie encoding using JSON. The same field names
-            as the multi-line format are used, but the preceding <code>@</code> is dropped. Fields are separated
-            by a comma.
+            JavaScript Object Notation (JSON) is a key-value format that is easy to process  in web browsers. Some
+            tools may support Plaine & Easie encoding using JSON. The same field names as the multi-line format are
+            used, but the preceding <code>@</code> is dropped. Fields are separated by a comma.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
             <pre>
