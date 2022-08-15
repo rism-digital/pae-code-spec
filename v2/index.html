@@ -117,6 +117,7 @@
     CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 </p>
 <section id="abstract">
+    <div class="issue" data-number="30"></div>
     <p>
         The Plaine & Easie Code is a library standard that enables entering music incipits in modern or mensural
         notation.
@@ -129,9 +130,6 @@
         <a href="https://www.youtube.com/watch?v=-HplUb_L1QY">here</a>.
     </p>
     <p>
-        Last update to the code: 28 June 2019
-    </p>
-    <p>
         Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
     </p>
     <p>
@@ -139,7 +137,7 @@
         <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC21 031</a> fields.
     </p>
 </section>
-
+<section id="conformance"></section>
 <section class="informative">
     <h2>General Principles</h2>
     <p>
@@ -164,13 +162,14 @@
     <h2>The Plaine & Easie Code</h2>
     <section>
         <h3>Clef</h3>
-        <div class="issue" data-number="11"></div>
+        <div class="issue" data-number="32"></div>
         <aside class="note">
             UNIMARC field 036 $m; MARC21 field 031 $g
         </aside>
         <p>
             The clef code is preceded by <code>%</code> and is three characters long.
         </p>
+        <div class="issue" data-number="33"></div>
         <p>
             The first character specifies the clef shape.
         </p>
@@ -252,14 +251,23 @@
     <section>
         <h3>Key Signature</h3>
         <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
+
+        <div class="issue" data-number="35"></div>
+        <div class="issue" data-number="15"></div>
+        <div class="issue" data-number="16"></div>
         <p>
             Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
             the <code>$</code> is omitted.
         </p>
+
+        <div class="issue" data-number="36"></div>
+        <div class="issue" data-number="26"></div>
         <p>
             The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
             capital letters that indicate the altered notes.
         </p>
+
+        <div class="issue" data-number="17"></div>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
                 <thead>
@@ -305,10 +313,13 @@
     <section>
         <h3>Time Signature</h3>
         <aside class="note">UNIMARC field 036 $o; MARC21 field 031 $o</aside>
+        <div class="issue" data-number="35"></div>
         <p>
             The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
             incipit. If the incipit has no time signature, the <code>@</code> is omitted.
         </p>
+        <div class="issue" data-number="37"></div>
+        <div class="issue" data-number="35"></div>
         <p>
             Fractional or numeric values are transcribed as fractions and mensuration signs are transcribed with a
             lowercase letter, if necessary followed by <code>/</code> or <code>.</code>:
@@ -482,8 +493,10 @@
         <aside class="note">
             UNIMARC field 036 $p; MARC21 field 031 $p
         </aside>
+        <div class="issue" data-number="43"></div>
         <section>
             <h4>Octave Symbol</h4>
+            <div class="issue" data-number="40"></div>
             <p>
                 Apostrophes are used for the octaves c4 and above, while commas are used for the octaves c3 and below.
             </p>
@@ -595,6 +608,7 @@
         </section>
         <section>
             <h4>Rhythmic Values</h4>
+            <div class="issue" data-number="39"></div>
             <aside class="example" title="Encoding Rhythmic Values">
             <table class="simple" style="width: 100%">
                 <thead>
@@ -739,6 +753,8 @@
                 </tbody>
             </table>
             </aside>
+            <div class="issue" data-number="4"></div>
+            <div class="issue" data-number="27"></div>
             <p>
                 Periods are used for dotted notes. Multiple periods can be added to a note.
             </p>
@@ -797,6 +813,7 @@
         </section>
         <section>
             <h4>Accidentals</h4>
+            <div class="issue" data-number="42"></div>
             <aside class="example" title="Encoding Accidentals">
                 <table class="simple" style="width: 100%;">
                     <thead>
@@ -891,10 +908,12 @@
         </section>
         <section>
             <h4>Note Names</h4>
+            <div class="issue" data-number="14"></div>
             <p>C, D, E, F, G, A, B</p>
         </section>
         <section>
             <h4>Grace Notes</h4>
+            <div class="issue" data-number="22"></div>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -950,6 +969,7 @@
         </section>
         <section>
             <h4>Rests</h4>
+            <div class="issue" data-number="29"></div>
             <p>Rests for single notes are indicated by <code>-</code> (a minus sign).</p>
             <table class="simple">
                 <thead>
@@ -1039,6 +1059,7 @@
         </section>
         <section>
             <h4>Bar (measure) Lines</h4>
+            <div class="issue" data-number="44"></div>
             <aside class="example" title="Encoding Bar Lines">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1122,6 +1143,9 @@
         </section>
         <section>
             <h4>Other Symbols</h4>
+            <div class="issue" data-number="1"></div>
+            <div class="issue" data-number="3"></div>
+            <div class="issue" data-number="28"></div>
             <aside class="example" title="Encoding Other Symbols">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1179,6 +1203,7 @@
         </section>
         <section>
             <h4>Beaming</h4>
+            <div class="issue" data-number="45"></div>
             <table class="simple">
                 <thead>
                 <tr>
@@ -1227,6 +1252,7 @@
         </section>
         <section>
             <h4>Special Rhythmic Groupings</h4>
+
             <table class="simple">
                 <thead>
                 <tr>
@@ -1506,6 +1532,7 @@
         </section>
         <section>
             <h4>Chords</h4>
+            <div class="issue" data-number="2"></div>
             <p>
                 Enter chords from the highest to the lowest note, each one separated by <code>^</code>.
             </p>
@@ -1538,18 +1565,18 @@
     <section>
         <h3>Coded Validity Note</h3>
         <aside class="note">UNIMARC field 036 $r — MARC21 field 031 $s</aside>
+        <div class="issue" data-number="25"></div>
         <p>
             A one-character coded validity note can be introduced by a <code>~</code> at the end of the code.
         </p>
         <p>
             Accepted characters are:
+        </p>
         <ul>
             <li><code>?</code>: a mistake in the incipit has not been corrected</li>
             <li><code>+</code>: a mistake in the incipit has been corrected</li>
             <li><code>t</code>: incipit has been transcribed into modern notation</li>
-
         </ul>
-        </p>
         <p>
             These characters may be explained in a note (UNIMARC 036 $q — MARC21 031 $q).
         </p>
@@ -1562,6 +1589,7 @@
         on the environment in which you are using Plaine & Easie code, and the support of your software tools.
     </p>
     <section>
+        <div class="issue" data-number="34"></div>
         <h3>MARC21 and UNIMARC</h3>
         <p>
             The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
