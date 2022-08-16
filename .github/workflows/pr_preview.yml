@@ -1,4 +1,4 @@
-name: Test Suite Evaluation
+name: Deploy Pull Requests
 
 on:
   pull_request:
