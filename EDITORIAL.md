@@ -5,12 +5,12 @@ transparency, and preserve an audit trail for the historical development of the 
 
 The process is divided into three main activities:
 
-1. Reporting of an issue, or requesting a change, through the Issues section of this repository. Discussion may follow
+1. Reporting an issue, or requesting a change, through the Issues section of this repository. Discussion may follow
 to clarify the scope of a change, or to present alternate courses of action.
-2. A Pull Request against the text of the specification is opened to enact the change. The changes may go through
-several revisions, and the history of those revisions are captured in the Pull Request.
-3. Approval by the editors, and merging. At least two approvals by the editors, not including the author of the Pull Request,
-is required to merge a change. Once a change has been merged, it is part of the specification.
+2. A Pull Request against the text of the specification enacts the change. The changes may go through several revisions, 
+and the history of those revisions are captured in the Pull Request.
+3. Approval by the Editors and merging the Pull Request. At least two approvals by the Editors, not including the author 
+of the Pull Request, is required to merge a change. Once a change has been merged, it is part of the specification.
 
 Each of these steps serves to document the reason for the change and the person who requested it, the various iterations 
 and discussions the change has gone through, and then a record of the approving editors who accepted the change. 
@@ -26,15 +26,16 @@ motivation.
 
 ### Pull Requests and Revisions
 
-Once an issue has been described, a member of the Editorial Board can open a pull request to make the changes to the
-specification. We use [ReSpec](https://respec.org) as the tool for presenting the specifications, and changes to the
-specification are written in plain HTML. Each Pull Request should limit itself to solving one or, at most, two related
-issues. Editors other than the original author of the Pull Request can ask for further changes.
+Once an issue has been described, a member of the Editors, or a community member on invitation from the Editors, can 
+open a pull request to make the changes to the specification. We use [ReSpec](https://respec.org) as the tool for 
+presenting the specifications; see the section below on how ReSpec works. Each Pull Request should limit itself to 
+solving one or, at most, two related issues. Editors other than the original author of the Pull Request can ask for 
+further changes.
 
 ### Merging and Approval
 
 By convention, the original author of the pull request cannot approve their own change. Once a change has been approved
-by two other editors it may be merged by the approvers into the specification. 
+by two other editors it may be merged into the specification. Typically the last approving editor also does the merge. 
 
 Once merged, the change becomes part of the history of the specification. Since we use the git version control system,
 these changes are preserved and the history of the changes comes "for free" with the system. Anyone can go back through
@@ -47,20 +48,25 @@ every section of the underlying HTML, and will link back to the pull request tha
 
 Prior to Version 2, the Plaine & Easie Code specification was written primarily for an audience of encoders;
 that is, people who were responsible for creating Plaine & Easie encodings when cataloguing sources in RISM. As such,
-it was a combination of specification and encoding guidelines. In Version 2, these two purposes were separated into
-dedicated documents, and the specifications are now written to provide a comprehensive set of the rules of the encoding
-scheme.
+it was a combination of specification and encoding guidelines, and had a number of under-specified, vague, or conflicting
+rules. In Version 2, these two purposes were separated into dedicated documents, and the specifications are now written 
+to provide a comprehensive set of the rules of the encoding scheme, while the guidelines build on the specification to 
+provide further assistance with encoding scenarios.
 
-The specification strives to provide unambiguous language for people who want an authoritative reference for what is, 
-and what is not, allowed in Plaine & Easie. In addition to assisting encoders by knowing what they can include, it is 
-also meant to serve as a reference for software developers and data scientists, to know what sorts of data they can 
-expect when building tools that use Plaine & Easie code, and to understand what constitutes "valid" or "invalid" data.
+Changes to the Version 1 specification should only be made to fix language or resolve ambiguity without changing the core
+encoding scheme. Since this is the most widely adopted form of the specification, and is used outside of RISM, changes 
+to the scheme have knock-on effects for others.
+
+The Version 2 specification strives to provide unambiguous language for people who want an authoritative reference for 
+what is, and what is not, allowed in Plaine & Easie. In addition to assisting encoders by knowing what they can include, 
+it is also meant to serve as a reference for software developers and data scientists, to know what data they can expect 
+when building tools that use Plaine & Easie code, and to understand what constitutes "valid" or "invalid" data.
 
 When writing the specifications, it is important to keep in mind the concepts of "normative" and "non-normative". These
-terms refer to the style in which a particular section is written. In a normative section, the content should be
+terms refer to the style and content of the sections of the specification. In a normative section, the content should be
 written to set out the rules for a given component. To provide clarity, a restricted set of words drawn from 
 [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119.txt) set out the parameters, and provide an easy way to identify the 
-core rules of the code. 
+core rules of the code. These words are spelled in all-caps in the specification.
 
 These words include:
 
@@ -70,7 +76,8 @@ These words include:
 
 Non-normative sections, in contrast, are meant to provide additional context or to describe additional technologies
 without setting out a hard-and-fast set of rules for them. Non-normative notes may be included in normative sections,
-but normative content cannot be included in non-normative sections.
+but normative content cannot be included in non-normative sections. The RFC 2119 words should be avoided in non-normative
+sections (the words themselves may be included, but not styled in upper-case).
 
 By way of example, a specification for a peanut butter sandwich might go something like this:
 
@@ -78,11 +85,11 @@ By way of example, a specification for a peanut butter sandwich might go somethi
     across the surface of the bread. Peanut butter MAY be spread on both slices. After spreading, both slices MUST be
     pressed together, and the peanut butter MUST be between the slices.
 
-    Non-normative note: Peanut butter sandwiches are a staple in many five-year-olds' diet, but parents should be
-    aware that some children are very allergic to peanuts. Check with schools and day cares to see whether they allow
-    peanut butter sandwiches in their cafeteria.
+    Non-normative note: Both crunchy and smooth peanut butter can be used to make a peanut butter sandwich. Some
+    implementations of peanut butter sandwiches also include other ingredients, such as jam or bananas.
 
-Although a somewhat trivial example, we can easily tell from these rules that the requirements are:
+Although a somewhat trivial example, we can easily tell from these rules that the requirements for a peanut butter
+sandwich are:
 
  - Two slices of bread
  - Peanut butter
@@ -93,9 +100,26 @@ Optionally, the peanut butter should be evenly spread (recommended, but there's 
 blob in the middle), and optionally the peanut butter can be on both slices (it does not affect the nature of the 
 sandwich if it's on one or both slices).
 
-The non-normative note provides some additional context and flags a potential issue with handing out peanut butter
-sandwiches to children going to school. It does not affect the nature of a peanut butter sandwich, but provides an
-additional context on their use, particularly in the context of school children.
+The non-normative note provides some additional context about the sandwich. It answers questions that do not affect
+the core specification (both crunchy and smooth are peanut butters, so we didn't need to specify this but it may
+be a question that a reader might have).
+
+You will also notice that nothing is said about other forms of peanut butter sandwiches, like a single piece of
+bread folded over; In our scheme, this is an invalid form of sandwich because it does not meet the two-slice rule. 
+This is not to say that in the greater world this is invalid, but in our specific universe that we have constructed, it 
+is not a valid form of sandwich.
+
+To bring this back to Plaine & Easie, it is clear that we are not specifying how *all* music notation works, but we are
+only concerned with describing how it works within a limited context. So if we say that a clef MUST specify line numbers
+from 1-5, we are not saying that other forms of clefs on 6-line staves do not exist; we are simply saying that Plaine &
+Easie does not support it.
+
+### Style
+
+Spelling follows the US form of words (flavor, neighbor, digitize). Serial commas are used in lists. Dates, if necessary,
+are given in YYYY-MM-DD form. Measurements are given in metric.
+
+Do not, except under specific circumstances, change font face, size, color, or other style features.
 
 ### ReSpec and Markup
 
