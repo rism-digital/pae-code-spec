@@ -37,6 +37,13 @@ further changes.
 By convention, the original author of the pull request cannot approve their own change. Once a change has been approved
 by two other editors it may be merged into the specification. The last approving editor also does the merge. 
 
+There are two options open to editors for reviewing a pull request.
+
+ 1. Approve. The Pull Request is approved without any further changes needed.
+ 2. Request changes. The Pull Request should be modified to include changes as described.
+
+To find these options, choose the "Files changed" tab on a Pull Request, and select the "Review changes" button.
+
 Once merged, the change becomes part of the history of the specification. Since we use the git version control system,
 these changes are preserved and the history of the changes comes "for free" with the system. Anyone can go back through
 the history log of the changes and see when a change was made. 
