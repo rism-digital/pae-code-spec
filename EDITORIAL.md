@@ -35,7 +35,7 @@ further changes.
 ### Merging and Approval
 
 By convention, the original author of the pull request cannot approve their own change. Once a change has been approved
-by two other editors it may be merged into the specification. Typically the last approving editor also does the merge. 
+by two other editors it may be merged into the specification. The last approving editor also does the merge. 
 
 Once merged, the change becomes part of the history of the specification. Since we use the git version control system,
 these changes are preserved and the history of the changes comes "for free" with the system. Anyone can go back through
@@ -54,7 +54,7 @@ to provide a comprehensive set of the rules of the encoding scheme, while the gu
 provide further assistance with encoding scenarios.
 
 Changes to the Version 1 specification should only be made to fix language or resolve ambiguity without changing the core
-encoding scheme. Since this is the most widely adopted form of the specification, and is used outside of RISM, changes 
+encoding scheme. Since this is the most widely adopted form of the specification, and is used outside RISM, changes 
 to the scheme have knock-on effects for others.
 
 The Version 2 specification strives to provide unambiguous language for people who want an authoritative reference for 
@@ -101,7 +101,7 @@ blob in the middle), and optionally the peanut butter can be on both slices (it 
 sandwich if it's on one or both slices).
 
 The non-normative note provides some additional context about the sandwich. It answers questions that do not affect
-the core specification (both crunchy and smooth are peanut butters, so we didn't need to specify this but it may
+the core specification (both crunchy and smooth are peanut butters, so we didn't need to specify this, but it may
 be a question that a reader might have).
 
 You will also notice that nothing is said about other forms of peanut butter sandwiches, like a single piece of
@@ -123,7 +123,7 @@ Do not, except under specific circumstances, change font face, size, color, or o
 
 ### ReSpec and Markup
 
-The specification is written in plain HTML but it uses [ReSpec](https://respec.org), a tool developed by the W3C, 
+The specification is written in plain HTML, but it uses [ReSpec](https://respec.org), a tool developed by the W3C, 
 to enhance and augment the plain HTML with additional functionality. Some examples of the additional things that ReSpec 
 does is to add notes that a section is non-normative, creates a table-of-contents for the sections, adds nicely 
 formatted front matter to the top with editors and other administrative information, among other things. These features
@@ -183,7 +183,7 @@ passed to Verovio.
 Plaine & Easie document. This will be the format used by Verovio to render the example. It will not be shown to users.
  - The `<code>` tags within the `notation-code` element are what will be shown to the users. This means you can restrict
 the example being shown to just the elements you are trying to illustrate, while omitting any additional code needed to
-render, but unnecssary for the example.
+render, but unnecessary for the example.
  - The `notation-result` `td` must always be blank. The SVG output of the rendering will be placed in this cell.
 
 Any other `<td>` elements within the `<tr>` can be present, but will be ignored.
