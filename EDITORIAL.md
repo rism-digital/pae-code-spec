@@ -55,6 +55,9 @@ the history log of the changes and see when a change was made.
 When viewing a file, the "Blame" button at the top of the file will even annotate the whole code to show you who changed
 every section of the underlying HTML, and will link back to the pull request that initiated that change.
 
+Sometimes, if many changes have been introduced, a conflict may appear that will prevent merging. In this case it is
+up to the Pull Request author to clear the conflict and to ensure it can be safely merged.
+
 ## Editorial Guidelines
 
 Prior to Version 2, the Plaine & Easie Code specification was written primarily for an audience of encoders;
