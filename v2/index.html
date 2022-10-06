@@ -147,7 +147,7 @@
         <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC21 031</a> fields.
     </p>
 </section>
-<section id="conformance"></section>
+
 <section class="informative">
     <h2>General Principles</h2>
     <div class="issue" data-number="30"></div>
@@ -173,29 +173,31 @@
     <h2>The Plaine & Easie Code</h2>
     <section>
         <h3>Clef</h3>
-        <div class="issue" data-number="32"></div>
         <aside class="note">
             UNIMARC field 036 $m; MARC21 field 031 $g
         </aside>
         <p>
-            The clef code is preceded by <code>%</code> and is three characters long.
-        </p>
-        <div class="issue" data-number="33"></div>
-        <p>
-            The first character specifies the clef shape.
-        </p>
-
-        <p>
-            The second character is <code>-</code> to indicate modern notation or <code>+</code> to indicate mensural
-            notation.
+            The clef is a required field. Every encoding MUST include a clef.
         </p>
         <p>
-            The third character (numerals 1-5) indicates the position of the clef on the staff, starting from the bottom
-            line.
+            The clef code MUST be three characters long. The first character specifies the clef shape and MUST
+            be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
         </p>
         <p>
-            If the music is written for a transposing instrument, notate the incipit at sounding pitch.
+            The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
+            <code>+</code> to indicate mensural notation. Certain features in the musical notation are dependent
+            on this value.
         </p>
+        <p>
+            The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
+            for the clef starting from the bottom.
+        </p>
+        <aside class="note">
+            <p>
+                A value for the clef field is required to ensure the visual rendering of the notation can accurately
+                place the pitch values on the correct line or space within a staff.
+            </p>
+        </aside>
         <aside class="example" title="Encoding Clefs">
             <table class="simple" style="width: 100%;">
                 <thead>
@@ -254,7 +256,6 @@
                     </td>
                     <td class="notation-result"><!-- image here --></td>
                 </tr>
-
                 </tbody>
             </table>
         </aside>
@@ -1645,5 +1646,6 @@
         </aside>
     </section>
 </section>
+<section id="conformance"></section>
 </body>
 </html>
