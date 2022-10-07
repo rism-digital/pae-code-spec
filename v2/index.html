@@ -209,24 +209,29 @@
     </section>
     <section>
         <h3>Key Signature</h3>
-        <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
-
-        <div class="issue" data-number="35"></div>
-        <div class="issue" data-number="15"></div>
-        <div class="issue" data-number="16"></div>
+        <aside class="note">
+            UNIMARC field 036 $n; MARC21 field 031 $n
+        </aside>
         <p>
-            Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
-            the <code>$</code> is omitted.
+            Encodings SHOULD provide a key signature field. If no key signature is present, a value of <code>n</code>
+            is used to indicate a natural key signature. A missing key signature SHOULD be interpreted as a natural
+            signature.
         </p>
-
-        <div class="issue" data-number="36"></div>
-        <div class="issue" data-number="26"></div>
         <p>
-            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
-            capital letters that indicate the altered notes.
+            Key signatures MUST begin with a <code>x</code>, indicating a sharp key, <code>b</code>, indicating a
+            flat key, or <code>n</code>, indicating the natural key. Signatures starting with <code>x</code> or
+            <code>b</code> MUST be followed by pitch names corresponding to the altered notes present in the key
+            signature. These pitch names MUST be uppercase, and be one of <code>F, C, G, D, A, E, B</code>. The pitch
+            names SHOULD be written in standard key signature order (i.e., <code>F</code> to <code>B</code> for sharp
+            keys, <code>B</code> to <code>F</code> for flat keys). Signatures starting with <code>n</code> MUST NOT
+            contain any pitch names.
         </p>
-
-        <div class="issue" data-number="17"></div>
+        <p>
+            In cases where accidentals are missing in the original source, they MAY be marked as supplied by
+            surrounding the supplied pitches in square brackets, <code>[</code> and <code>]</code>. Consecutive
+            supplied accidentals MUST be grouped within a single set of brackets. Non-consecutive supplied accidentals
+            MAY be grouped within their own set of square brackets.
+        </p>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
                 <thead>
@@ -241,7 +246,21 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C-1",
+                                "clef": "G-2",
+                                "keysig": "n",
+                                "data": ""
+                            }
+                        </script>
+                        <code>n</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>Natural key signature (Nothing is shown)</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
                                 "keysig": "xFC",
                                 "data": ""
                             }
@@ -264,6 +283,34 @@
                     </td>
                     <td class="notation-result"></td>
                     <td>B, E, A flat [key is E-flat major or C minor]</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "xFC[GD]",
+                                "data": ""
+                            }
+                        </script>
+                        <code>xFC[GD]</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>F, C, G, and D sharp. The final G and D are marked as supplied.</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "xF[C]G[D]",
+                                "data": ""
+                            }
+                        </script>
+                        <code>xF[C]G[D]</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>F, C, G, and D sharp. The C and D are marked as supplied.</td>
                 </tr>
                 </tbody>
             </table>
