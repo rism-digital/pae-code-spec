@@ -90,8 +90,7 @@
         Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
     </p>
     <p>
-        Adapted from the RISM guidelines. Corresponds to UNIMARC 036 and
-        <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC21 031</a> fields.
+        Adapted from the RISM guidelines.
     </p>
 </section>
 
@@ -120,9 +119,7 @@
     <h2>The Plaine & Easie Code</h2>
     <section>
         <h3>Clef</h3>
-        <aside class="note">
-            UNIMARC field 036 $m; MARC21 field 031 $g
-        </aside>
+        <div class="issue" data-number="32"></div>
         <p>
             The clef is a required field. Every encoding MUST include a clef.
         </p>
@@ -209,8 +206,6 @@
     </section>
     <section>
         <h3>Key Signature</h3>
-        <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
-
         <div class="issue" data-number="35"></div>
         <div class="issue" data-number="15"></div>
         <div class="issue" data-number="16"></div>
@@ -271,7 +266,6 @@
     </section>
     <section>
         <h3>Time Signature</h3>
-        <aside class="note">UNIMARC field 036 $o; MARC21 field 031 $o</aside>
         <div class="issue" data-number="35"></div>
         <p>
             The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
@@ -449,9 +443,6 @@
     </section>
     <section>
         <h3>Musical Notation</h3>
-        <aside class="note">
-            UNIMARC field 036 $p; MARC21 field 031 $p
-        </aside>
         <div class="issue" data-number="43"></div>
         <section>
             <h4>Octave Symbol</h4>
@@ -1529,7 +1520,6 @@
         on the environment in which you are using Plaine & Easie code, and the support of your software tools.
     </p>
     <section>
-        <div class="issue" data-number="34"></div>
         <h3>MARC21 and UNIMARC</h3>
         <p>
             The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
@@ -1542,6 +1532,38 @@
             documentation</a>, or in the
             <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
         </p>
+        <table class="simple" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>MARC21</th>
+                    <th>UNIMARC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Clef</td>
+                    <td><code>$g</code></td>
+                    <td><code>$m</code></td>
+                </tr>
+                <tr>
+                    <td>Key Signature</td>
+                    <td><code>$n</code></td>
+                    <td><code>$n</code></td>
+                </tr>
+                <tr>
+                    <td>Time Signature</td>
+                    <td><code>$o</code></td>
+                    <td><code>$o</code></td>
+                </tr>
+                <tr>
+                    <td>Musical Notation</td>
+                    <td><code>$p</code></td>
+                    <td><code>$p</code></td>
+                </tr>
+            </tbody>
+            <caption>MARC21 and UNIMARC subfields for Plaine & Easie</caption>
+        </table>
     </section>
     <section>
         <h3>Single-Line Text</h3>
