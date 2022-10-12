@@ -54,60 +54,7 @@
             maxTocLevel: 3
         };
     </script>
-    <script type="application/javascript">
-        document.addEventListener("DOMContentLoaded", (event) => {
-            Module.onRuntimeInitialized = async _ => {
-                let tk = new verovio.toolkit();
-                tk.setOptions({
-                    footer: 'none',
-                    header: 'none',
-                    breaks: 'auto',
-                    pageMarginTop: 15,
-                    pageMarginBottom: 15,
-                    spacingSystem: 2,
-                    pageMarginLeft: 0,
-                    pageMarginRight: 0,
-                    scale: 50,
-                    adjustPageHeight: true,
-                    adjustPageWidth: true,
-                    svgHtml5: true,
-                    // svgFormatRaw: true,
-                    svgRemoveXlink: true,
-                    // svgViewBox: true,
-                    inputFrom: "pae"
-                });
-
-                let notationExamples = document.querySelectorAll("tr.notation-example");
-
-                if (notationExamples !== null)
-                {
-                    for (let row of notationExamples)
-                    {
-                        let verovioSvg = "";
-
-                        for (let column of row.children)
-                        {
-
-                            if (column && column.classList.contains("notation-code"))
-                            {
-                                let paeCode = column.querySelector("script").textContent;
-                                let loadSuccess = tk.loadData(JSON.stringify(JSON.parse(paeCode)));
-
-                                if (loadSuccess)
-                                {
-                                    verovioSvg = tk.renderToSVG();
-                                }
-                            }
-                            else if (column.classList.contains("notation-result"))
-                            {
-                                column.innerHTML = verovioSvg;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
     <style>
         /* custom styles for inline code to make it stand out */
         p code
@@ -143,29 +90,7 @@
         Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
     </p>
     <p>
-        Adapted from the RISM guidelines. Corresponds to UNIMARC 036 and
-        <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC21 031</a> fields.
-    </p>
-</section>
-<section id="conformance"></section>
-<section class="informative">
-    <h2>General Principles</h2>
-    <div class="issue" data-number="30"></div>
-    <p>
-        Music incipits help identify works and facilitate the comparison of historical musical sources.
-    </p>
-    <p>
-        Which music incipits to enter depends on the kind of music. Best practice for instrumental music is to enter
-        incipits for the violin or the highest part. For vocal music, enter the highest voice plus the first violin or
-        the highest instrumental part.
-    </p>
-    <p>
-        The incipit should be neither too long nor too short, and make as much musical sense as possible. It should
-        contain at least 3 bars or 10 non-repeated notes.
-    </p>
-    <p>
-        The code should be written on a single line. When using MARC-format subfields, omit the special characters that
-        precede the encoded notes.
+        Adapted from the RISM guidelines.
     </p>
 </section>
 
@@ -174,28 +99,28 @@
     <section>
         <h3>Clef</h3>
         <div class="issue" data-number="32"></div>
+        <p>
+            The clef is a required field. Every encoding MUST include a clef.
+        </p>
+        <p>
+            The clef code MUST be three characters long. The first character specifies the clef shape and MUST
+            be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
+        </p>
+        <p>
+            The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
+            <code>+</code> to indicate mensural notation. Certain features in the musical notation are dependent
+            on this value.
+        </p>
+        <p>
+            The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
+            for the clef starting from the bottom.
+        </p>
         <aside class="note">
-            UNIMARC field 036 $m; MARC21 field 031 $g
+            <p>
+                A value for the clef field is required to ensure the visual rendering of the notation can accurately
+                place the pitch values on the correct line or space within a staff.
+            </p>
         </aside>
-        <p>
-            The clef code is preceded by <code>%</code> and is three characters long.
-        </p>
-        <div class="issue" data-number="33"></div>
-        <p>
-            The first character specifies the clef shape.
-        </p>
-
-        <p>
-            The second character is <code>-</code> to indicate modern notation or <code>+</code> to indicate mensural
-            notation.
-        </p>
-        <p>
-            The third character (numerals 1-5) indicates the position of the clef on the staff, starting from the bottom
-            line.
-        </p>
-        <p>
-            If the music is written for a transposing instrument, notate the incipit at sounding pitch.
-        </p>
         <aside class="example" title="Encoding Clefs">
             <table class="simple" style="width: 100%;">
                 <thead>
@@ -254,15 +179,12 @@
                     </td>
                     <td class="notation-result"><!-- image here --></td>
                 </tr>
-
                 </tbody>
             </table>
         </aside>
     </section>
     <section>
         <h3>Key Signature</h3>
-        <aside class="note">UNIMARC field 036 $n; MARC21 field 031 $n</aside>
-
         <div class="issue" data-number="35"></div>
         <div class="issue" data-number="15"></div>
         <div class="issue" data-number="16"></div>
@@ -323,7 +245,6 @@
     </section>
     <section>
         <h3>Time Signature</h3>
-        <aside class="note">UNIMARC field 036 $o; MARC21 field 031 $o</aside>
         <div class="issue" data-number="35"></div>
         <p>
             The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
@@ -501,9 +422,6 @@
     </section>
     <section>
         <h3>Musical Notation</h3>
-        <aside class="note">
-            UNIMARC field 036 $p; MARC21 field 031 $p
-        </aside>
         <div class="issue" data-number="43"></div>
         <section>
             <h4>Octave Symbol</h4>
@@ -1581,7 +1499,6 @@
         on the environment in which you are using Plaine & Easie code, and the support of your software tools.
     </p>
     <section>
-        <div class="issue" data-number="34"></div>
         <h3>MARC21 and UNIMARC</h3>
         <p>
             The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
@@ -1594,6 +1511,38 @@
             documentation</a>, or in the
             <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
         </p>
+        <table class="simple" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>MARC21</th>
+                    <th>UNIMARC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Clef</td>
+                    <td><code>$g</code></td>
+                    <td><code>$m</code></td>
+                </tr>
+                <tr>
+                    <td>Key Signature</td>
+                    <td><code>$n</code></td>
+                    <td><code>$n</code></td>
+                </tr>
+                <tr>
+                    <td>Time Signature</td>
+                    <td><code>$o</code></td>
+                    <td><code>$o</code></td>
+                </tr>
+                <tr>
+                    <td>Musical Notation</td>
+                    <td><code>$p</code></td>
+                    <td><code>$p</code></td>
+                </tr>
+            </tbody>
+            <caption>MARC21 and UNIMARC subfields for Plaine & Easie</caption>
+        </table>
     </section>
     <section>
         <h3>Single-Line Text</h3>
@@ -1645,5 +1594,6 @@
         </aside>
     </section>
 </section>
+<section id="conformance"></section>
 </body>
 </html>

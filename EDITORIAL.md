@@ -130,7 +130,7 @@ Easie does not support it.
 
 ### Style
 
-Spelling follows the US form of words (flavor, neighbor, digitize). Serial commas are used in lists. Dates, if necessary,
+Spelling follows the US form of words (flavor, neighbor, digitize). Serial commas are used in lists. Titles of sections use headline case (Key Signature, not Key signature). Dates, if necessary,
 are given in YYYY-MM-DD form. Measurements are given in metric.
 
 Do not, except under specific circumstances, change font face, size, color, or other style features.
