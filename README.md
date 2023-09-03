@@ -29,7 +29,6 @@ The second version, "Version 2", represents work-in-progress for changes to the 
 largely based in the goal of making the Plaine & Easie Code more consistent, such that the large existing corpus of 
 incipits can be more easily used in notation search, data analysis, and data science.
 
-
 ### References
 
 Brook, B., et al. 1964. Notating music with ordinary typewriter characters (A Plaine and Easie code system for Musicke). 
