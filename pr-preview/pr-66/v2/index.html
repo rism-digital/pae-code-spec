@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Plaine & Easie Code</title>
+    <script
+            src="https://www.w3.org/Tools/respec/respec-w3c"
+            class="remove"
+            defer
+    ></script>
+    <script
+            src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
+            defer
+    ></script>
+    <script class="remove">
+        // All config options at https://respec.org/docs/
+        var respecConfig = {
+            thisVersion: "https://plaine-and-easie.info/v2/",
+            latestVersion: "https://plaine-and-easie.info/v1/",
+            specStatus: "unofficial",
+            editors: [{
+                name: "Andrew Hankinson",
+                company: "RISM Digital Center",
+                url: "https://rism.digital",
+                orcid: "0000-0003-2663-0003"
+            }, {
+                name: "Balázs Mikusi",
+                company: "RISM Editorial Center",
+                url: "https://rism.info",
+                orcid: "0000-0001-9662-4675"
+            }, {
+                name: "Laurent Pugin",
+                company: "RISM Digital Center",
+                url: "https://rism.digital",
+                orcid: "0000-0002-9525-4331"
+            }, {
+                name: "Jennifer Ward",
+                company: "RISM Editorial Center",
+                url: "https://rism.info",
+                orcid: "0000-0001-5740-3140"
+            }],
+            formerEditors: [{
+                name: "Massimo Gentili-Tedeschi"
+            }, {
+                name: "Klaus Keil"
+            }],
+            github: "https://github.com/rism-digital/pae-code-spec",
+            edDraftURI: null,
+            historyURI: null,
+            license: null,
+            wg: "Plaine & Easie Specification Editors",
+            wgURI: "https://rism.digital/plaine-and-easie/",
+            shortName: "paec",
+            maxTocLevel: 3
+        };
+    </script>
+    <script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
+    <style>
+        /* custom styles for inline code to make it stand out */
+        p code
+        {
+            color: #c63501 !important;
+            background: ghostwhite;
+            padding: 2px 4px;
+        }
+
+        svg .issue, svg .note, svg .example, svg .advisement, svg .amendment, svg .correction, svg .addition {
+            all: revert !important;
+        }
+    </style>
+</head>
+<body>
+<div class="issue" data-number="31"></div>
+<p class="copyright">
+    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+</p>
+<section id="abstract">
+    <p>
+        The Plaine & Easie Code is a library standard that enables entering music incipits in modern or mensural
+        notation.
+    </p>
+    <p>
+        This version of the code is maintained by the International Association of Music Libraries, Archives and
+        Documentation Centres (IAML) and the Répertoire International des Sources Musicales (RISM) for use as an
+        exchange format in the library environment. Observations or queries may be addressed to Massimo
+        Gentili-Tedeschi or Balázs Mikusi. A tutorial is available
+        <a href="https://www.youtube.com/watch?v=-HplUb_L1QY">here</a>.
+    </p>
+    <p>
+        Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
+    </p>
+    <p>
+        Adapted from the RISM guidelines.
+    </p>
+</section>
+
+<section class="normative">
+    <h2>The Plaine & Easie Code</h2>
+    <section>
+        <h3>Clef</h3>
+        <div class="issue" data-number="32"></div>
+        <p>
+            The clef is a required field. Every encoding MUST include a clef.
+        </p>
+        <p>
+            The clef code MUST be three characters long. The first character specifies the clef shape and MUST
+            be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
+        </p>
+        <p>
+            The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
+            <code>+</code> to indicate mensural notation. Certain features in the musical notation are dependent
+            on this value.
+        </p>
+        <p>
+            The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
+            for the clef starting from the bottom.
+        </p>
+        <aside class="note">
+            <p>
+                A value for the clef field is required to ensure the visual rendering of the notation can accurately
+                place the pitch values on the correct line or space within a staff.
+            </p>
+        </aside>
+        <aside class="example" title="Encoding Clefs">
+            <table class="simple" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Notation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": ""
+                            }
+                        </script>
+                        <code>G-2</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+2",
+                                "data": ""
+                            }
+                        </script>
+                        <code>C+2</code>
+                    </td>
+                    <td class="notation-result"><!-- image here --></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "F-4",
+                                "data": ""
+                            }
+                        </script>
+                        <code>F-4</code>
+                    </td>
+                    <td class="notation-result"><!-- image here --></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "g-2",
+                                "data": ""
+                            }
+                        </script>
+                        <code>g-2</code>
+                    </td>
+                    <td class="notation-result"><!-- image here --></td>
+                </tr>
+                </tbody>
+            </table>
+        </aside>
+    </section>
+    <section>
+        <h3>Key Signature</h3>
+        <div class="issue" data-number="35"></div>
+        <div class="issue" data-number="15"></div>
+        <div class="issue" data-number="16"></div>
+        <p>
+            Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
+            the <code>$</code> is omitted.
+        </p>
+
+        <div class="issue" data-number="36"></div>
+        <div class="issue" data-number="26"></div>
+        <p>
+            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
+            capital letters that indicate the altered notes.
+        </p>
+
+        <div class="issue" data-number="17"></div>
+        <aside class="example" title="Encoding Key Signatures">
+            <table class="simple" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Notation</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C-1",
+                                "keysig": "xFC",
+                                "data": ""
+                            }
+                        </script>
+                        <code>xFC</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>F and C sharp [key is D major or B minor]</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "bBEA",
+                                "data": ""
+                            }
+                        </script>
+                        <code>bBEA</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>B, E, A flat [key is E-flat major or C minor]</td>
+                </tr>
+                </tbody>
+            </table>
+        </aside>
+    </section>
+    <section>
+        <h3>Time Signature</h3>
+        <div class="issue" data-number="35"></div>
+        <p>
+            The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
+            incipit. If the incipit has no time signature, the <code>@</code> is omitted.
+        </p>
+        <div class="issue" data-number="37"></div>
+        <div class="issue" data-number="35"></div>
+        <p>
+            Fractional or numeric values are transcribed as fractions and mensuration signs are transcribed with a
+            lowercase letter, if necessary followed by <code>/</code> or <code>.</code>:
+        </p>
+        <aside class="example" title="Encoding Time Signatures">
+            <table class="simple" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Notation</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "2/4",
+                                "data": ""
+                            }
+                        </script>
+                        <code>2/4</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "12/16",
+                                "data": ""
+                            }
+                        </script>
+                        <code>12/16</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "3",
+                                "data": ""
+                            }
+                        </script>
+                        <code>3</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "c",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>common time</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "c3",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c3</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "c3/2",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c3/2</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "c/",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c/</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td><i>alla breve</i></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "o",
+                                "data": ""
+                            }
+                        </script>
+                        <code>o</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "o.",
+                                "data": ""
+                            }
+                        </script>
+                        <code>o.</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>'Perfect' time</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "3/4 4/4",
+                                "data": ""
+                            }
+                        </script>
+                        <code>3/4 4/4</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td><i>Not currently supported by Verovio</i></td>
+                </tr>
+                </tbody>
+            </table>
+        </aside>
+    </section>
+    <section>
+        <h3>Musical Notation</h3>
+        <div class="issue" data-number="43"></div>
+        <section>
+            <h4>Octave Symbol</h4>
+            <div class="issue" data-number="40"></div>
+            <p>
+                Apostrophes are used for the octaves c4 and above, while commas are used for the octaves c3 and below.
+            </p>
+            <aside class="example" title="Encoding Octaves">
+                <table class="simple" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'C'B"
+                                }
+                            </script>
+                            <code>'</code>
+                        </td>
+                        <td class="notation-result ignore"></td>
+                        <td>octave c4-b4</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "''C''B"
+                                }
+                            </script>
+                            <code>''</code>
+                        </td>
+                        <td class="notation-result ignore"></td>
+                        <td>octave c5-b5</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'''C'''B"
+                                }
+                            </script>
+                            <code>'''</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>octave c6-b6</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "''''C''''B"
+                                }
+                            </script>
+                            <code>''''</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>octave c7-b7</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "F-4",
+                                    "data": ",C,B"
+                                }
+                            </script>
+                            <code>,</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>octave c3-b3</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code ignore">
+                            <script type="application/json">
+                                {
+                                    "clef": "F-4",
+                                    "data": ",,C,,B"
+                                }
+                            </script>
+                            <code>,,</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>octave c2-b2</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code ignore">
+                            <script type="application/json">
+                                {
+                                    "clef": "F-4",
+                                    "data": ",,,C,,,B"
+                                }
+                            </script>
+                            <code>,,,</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>octave c1-b1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+
+        </section>
+        <section>
+            <h4>Rhythmic Values</h4>
+            <div class="issue" data-number="39"></div>
+            <aside class="example" title="Encoding Rhythmic Values">
+            <table class="simple" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Notation</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'0B"
+                            }
+                        </script>
+                        <code>0</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>longa</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'9B"
+                            }
+                        </script>
+                        <code>9</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>breve</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'1A"
+                            }
+                        </script>
+                        <code>1</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>whole note / semibreve</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'2A"
+                            }
+                        </script>
+                        <code>2</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>half note / minim</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'4A"
+                            }
+                        </script>
+                        <code>4</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>quarter note / crochet / semiminim</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'8A"
+                            }
+                        </script>
+                        <code>8</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>eighth note / quaver / fusa</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'6A"
+                            }
+                        </script>
+                        <code>6</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>16th note / semiquaver / semifusa</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'3A"
+                            }
+                        </script>
+                        <code>3</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>32nd note / demisemiquaver</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'5A"
+                            }
+                        </script>
+                        <code>5</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>64th note / hemidemisemiquaver</td>
+                </tr>
+                <tr class="notation-example ignore">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'7A"
+                            }
+                        </script>
+                        <code>7</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>128th note</td>
+                </tr>
+                </tbody>
+            </table>
+            </aside>
+            <div class="issue" data-number="4"></div>
+            <div class="issue" data-number="27"></div>
+            <p>
+                Periods are used for dotted notes. Multiple periods can be added to a note.
+            </p>
+            <aside class="example" title="Encoding dotted rhythmic values">
+            <table class="simple" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Notation</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'4.A"
+                            }
+                        </script>
+                        <code>4.</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>dotted quarter-note</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'8..A"
+                            }
+                        </script>
+                        <code>8..</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>double-dotted eighth-note</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "data": "'7.A"
+                            }
+                        </script>
+                        <code>7.</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>neumatic notation</td>
+                </tr>
+                </tbody>
+            </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Accidentals</h4>
+            <div class="issue" data-number="42"></div>
+            <aside class="example" title="Encoding Accidentals">
+                <table class="simple" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'xF"
+                                }
+                            </script>
+                            <code>x</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>sharp</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'xF"
+                                }
+                            </script>
+                            <code>x</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>sharp</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'xxF"
+                                }
+                            </script>
+                            <code>xx</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double sharp</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'bB"
+                                }
+                            </script>
+                            <code>b</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>flat</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'bbB"
+                                }
+                            </script>
+                            <code>bb</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double flat</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'nF"
+                                }
+                            </script>
+                            <code>n</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>natural</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Note Names</h4>
+            <div class="issue" data-number="14"></div>
+            <p>C, D, E, F, G, A, B</p>
+        </section>
+        <section>
+            <h4>Grace Notes</h4>
+            <div class="issue" data-number="22"></div>
+            <aside class="example" title="Encoding Grace Notes">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'2A''gC{''8D'8B}''4C"
+                                }
+                            </script>
+                            <code>g</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>acciaccatura (without rhythmic value, precedes the note name)</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'2A'gB{'8A'8G}'4A"
+                                }
+                            </script>
+                            <code>q</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>appoggiatura (with rhythmic value, precedes the note name)</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'2A''qq{'8B''8C}r{''8D'8B}''4C"
+                                }
+                            </script>
+                            <code>qq..r</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double appoggiatura, slide, or multiple appoggiatura (with rhythmic value)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Rests</h4>
+            <div class="issue" data-number="29"></div>
+            <p>Rests for single notes are indicated by <code>-</code> (a minus sign).</p>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>-</code></td>
+                    <td>single-note rest (preceded by rhythmic value like note names)</td>
+                </tr>
+                <tr>
+                    <td><code>=</code></td>
+                    <td>measure rest (followed by number of measures and a bar line)</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <aside class="example" title="Encoding Rests">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "8-"
+                                }
+                            </script>
+                            <code>8-</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>eighth-note rest</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2-"
+                                }
+                            </script>
+                            <code>2-</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>half-note rest</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "=/"
+                                }
+                            </script>
+                            <code>=</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>single measure rest</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "=35/"
+                                }
+                            </script>
+                            <code>=35</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>35 measures rest</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Bar (measure) Lines</h4>
+            <div class="issue" data-number="44"></div>
+            <aside class="example" title="Encoding Bar Lines">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "/"
+                                }
+                            </script>
+                            <code>/</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>bar line</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "//"
+                                }
+                            </script>
+                            <code>//</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double bar line</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "//:"
+                                }
+                            </script>
+
+                            <code>//:</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double bar line with repeat sign on the right</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "://"
+                                }
+                            </script>
+                            <code>://</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double bar line with repeat sign on the left</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "://:"
+                                }
+                            </script>
+                            <code>://:</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>double bar line with repeat sign on the left and on the right</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+
+        </section>
+        <section>
+            <h4>Other Symbols</h4>
+            <div class="issue" data-number="1"></div>
+            <div class="issue" data-number="3"></div>
+            <div class="issue" data-number="28"></div>
+            <aside class="example" title="Encoding Other Symbols">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "''4Ct"
+                                }
+                            </script>
+                            <code>t</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>trill (immediately follows the note)</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "''4C+''4C"
+                                }
+                            </script>
+                            <code>+</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>tie (immediately follows the note; only for notes of the same pitch, not for slurs)</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "(''4C)"
+                                }
+                            </script>
+                            <code>( )</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>fermata (include only one note or rest; accidentals or octave symbols must be outside the
+                            parentheses. See also "Special rhythmic groupings" below.)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Beaming</h4>
+            <div class="issue" data-number="45"></div>
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>{</code></td>
+                    <td>beginning of beaming</td>
+                </tr>
+                <tr>
+                    <td><code>}</code></td>
+                    <td>end of beaming</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <aside class="example" title="Encoding Beams">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "keysig": "bBEA",
+                                    "timesig": "4/4",
+                                    "data": "{''6E'B8G}{GA}-''C{'3B8..G}"
+                                }
+                            </script>
+                            <code>{''6E'B8G}{GA}-''C{'3B8..G}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Special Rhythmic Groupings</h4>
+
+            <table class="simple">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>(</code></td>
+                    <td>beginning of special group</td>
+                </tr>
+                <tr>
+                    <td><code>)</code></td>
+                    <td>end of special group</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                Before <code>(</code> you must indicate the total value of the group.
+            </p>
+            <p>
+                After <code>(</code> you must indicate the rhythmic value of the first note, even if it is equal to that
+                of the group.
+            </p>
+            <p>
+                Before <code>)</code> you must indicate the number of notes of the group, preceded by <code>;</code>.
+            </p>
+            <aside class="examples" title="Encoding Special Rhythmic Groupings">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "c",
+                                    "data": "4('6DEFGA;5)"
+                                }
+                            </script>
+                            <code>4('6DEFGA;5)</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Quintuplet, 5 16th notes, in the space of a quarter note</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "c",
+                                    "data": "8({'3DEFGA};5)"
+                                }
+                            </script>
+                            <code>8({'3DEFGA};5)</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Quintuplet, 5 32nd notes, in the space of an eighth note, with beamed notes</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+            <p>
+                The triplet is a special case; strictly speaking, it should be coded as follows:
+            </p>
+            <pre class="text">
+                8(6ABC;3) or 8({6ABC};3)
+            </pre>
+            <p>
+                Instead, the following shortcut is permitted:
+            </p>
+            <pre class="text">
+                (6ABC) or ({6ABC})
+            </pre>
+            <p>
+                The rhythmic value inside the parentheses is required.
+            </p>
+        </section>
+        <section>
+            <h4>Shortcuts</h4>
+            <section>
+                <h5>Repeated figures</h5>
+                <table class="simple">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>!</code></td>
+                        <td>beginning and end of passage</td>
+                    </tr>
+                    <tr>
+                        <td><code>f</code></td>
+                        <td>repetition indication of the notes that appear within !...!</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    The group will be repeated as many times as the <code>f</code> appears after the second
+                    <code>!</code>. Repetition is possible only within the same measure.
+                </p>
+                <aside class="example" title="Encoding Repeated Figures">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Note</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "!{'8ABAG}!ff"
+                                    }
+                                </script>
+                                <code>!{'8ABAG}!ff</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>repeat twice</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
+            <section>
+                <h5>Repeated measures</h5>
+                <p>
+                    The symbol <code>i</code> repeats the last measure. It must always be included within bar lines.
+                </p>
+                <aside class="example" title="Encoding Repeated Measures">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Note</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'4ABAG/i/i/"
+                                    }
+                                </script>
+                                <code>'4ABAG/i/i/</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>repeat measure twice</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
+            <section>
+                <h5>Rhythmic sequence</h5>
+                <p>
+                    When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
+                    before the note names.
+                </p>
+                <aside class="example" title="Encoding Rhythmic Sequences">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Note</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'8.68{AB''C}{DEF}"
+                                    }
+                                </script>
+                                <code>'8.68{AB''C}{DEF}</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>
+                                instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
+                                The rhythmic sequence ends when a new rhythmic value appears.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <h4>Change of Clef, Key Signature, Time Signature</h4>
+            <p>
+                Use <code>%</code> to change the clef, <code>$</code> to change the key, and <code>@</code> to change
+                the time signature. Follow this with the new indication (clef, key, or time), followed by a space.
+            </p>
+            <p>
+                The introductory characters are mandatory.
+            </p>
+            <aside class="example" title="Encoding Clef, Key Signature, and Time Signature Changes">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//"
+                                }
+                            </script>
+                            <code>%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
+                        </td>
+                        <td class="notation-result"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Abbreviations</h4>
+            <p>
+                Notation abbreviations, such as tremolo, slash, etc., must be written out in full using the actual
+                notation.
+            </p>
+            <aside class="example" title="Encoding Clef, Key Signature, and Time Signature Changes">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "{''8CCCC}"
+                                }
+                            </script>
+                            <code>{''8CCCC}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tremolo on C</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Chords</h4>
+            <div class="issue" data-number="2"></div>
+            <p>
+                Enter chords from the highest to the lowest note, each one separated by <code>^</code>.
+            </p>
+            <aside class="example" title="Encoding Chords">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "''2D^'A^xF"
+                                }
+                            </script>
+                            <code>''2D^'A^xF</code>
+                        </td>
+                        <td class="notation-result"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+    </section>
+</section>
+<section class="informative">
+    <h2>Representations</h2>
+    <p>
+        There are several ways in which Plaine & Easie code can be expressed. The choice of representation depends
+        on the environment in which you are using Plaine & Easie code, and the support of your software tools.
+    </p>
+    <section>
+        <h3>MARC21 and UNIMARC</h3>
+        <p>
+            The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
+            record or UNIMARC (UNIversal MARC). The <code>031</code> MARC field is used to record incipits for
+            bibliographic catalogues. For UNIMARC the <code>036</code> field is similarly used.
+        </p>
+        <p>
+            In MARC and UNIMARC records, the Plaine & Easie notation components are separated out into subfields.
+            The specifics of this encoding are given in the <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC
+            documentation</a>, or in the
+            <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
+        </p>
+        <table class="simple" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>MARC21</th>
+                    <th>UNIMARC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Clef</td>
+                    <td><code>$g</code></td>
+                    <td><code>$m</code></td>
+                </tr>
+                <tr>
+                    <td>Key Signature</td>
+                    <td><code>$n</code></td>
+                    <td><code>$n</code></td>
+                </tr>
+                <tr>
+                    <td>Time Signature</td>
+                    <td><code>$o</code></td>
+                    <td><code>$o</code></td>
+                </tr>
+                <tr>
+                    <td>Musical Notation</td>
+                    <td><code>$p</code></td>
+                    <td><code>$p</code></td>
+                </tr>
+            </tbody>
+            <caption>MARC21 and UNIMARC subfields for Plaine & Easie</caption>
+        </table>
+    </section>
+    <section>
+        <h3>Single-Line Text</h3>
+        <p>
+            Plaine & Easie code can be represented in a single, continuous line of text by using
+            the field delimiters for each notation component: <code>%</code> for clef,
+            <code>$</code> for key signature, and <code>@</code> for time signature. These components
+            are given at the beginning of the line, and separated by a space with the notation data.
+        </p>
+        <aside class="example" title="Single-line Plaine & Easie code">
+            <pre>
+                %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
+            </pre>
+        </aside>
+    </section>
+    <section>
+        <h3>Multi-Line Text with Field Delimiters</h3>
+        <p>
+            This format puts each component on its own line, separated by a newline character <code>\n</code>, and
+            with the component field preceded by a <code>@</code> symbol and followed by a colon <code>:</code>.
+            There are five such fields: <code>@clef</code>, <code>@keysig</code>, <code>@timesig</code>,
+            <code>@key</code>, and <code>@data</code>.
+        </p>
+        <aside class="example" title="Multi-line text with field delimiters">
+            <pre>
+                @clef:G-2
+                @timesig:3/2
+                @keysig:bB
+                @data:=3/2--''A/2.F4G2A/AGG/1A/
+            </pre>
+        </aside>
+    </section>
+    <section>
+        <h3>JavaScript Object Notation (JSON)</h3>
+        <p>
+            JavaScript Object Notation (JSON) is a key-value format that is easy to process  in web browsers. Some
+            tools may support Plaine & Easie encoding using JSON. The same field names as the multi-line format are
+            used, but the preceding <code>@</code> is dropped. Fields are separated by a comma.
+        </p>
+        <aside class="example" title="JavaScript Object Notation (JSON)">
+            <pre>
+                {
+                    "clef": "G-2",
+                    "timesig": "3/2",
+                    "keysig": "bB",
+                    "data": "=3/2--''A/2.F4G2A/AGG/1A/"
+                }
+            </pre>
+        </aside>
+    </section>
+</section>
+<section id="conformance"></section>
+</body>
+</html>
