@@ -90,7 +90,15 @@
         Adapted from the RISM guidelines.
     </p>
 </section>
-
+<section id="terminology">
+    <h2>Terminology</h2>
+    <dl>
+        <dt><dfn>Circle of fifths</dfn></dt>
+        <dd><!-- TODO --></dd>
+        <dt><dfn>Transcriber</dfn></dt>
+        <dd>The person or persons who transcribe the source into Plaine &amp; Easie.</dd>
+    </dl>
+</section>
 <section class="normative">
     <h2>The Plaine &amp; Easie Code</h2>
     <section>
@@ -182,21 +190,42 @@
     </section>
     <section>
         <h3>Key Signature</h3>
-        <div class="issue" data-number="35"></div>
         <div class="issue" data-number="15"></div>
         <div class="issue" data-number="16"></div>
-        <p>
-            Begin this field with the character <code>$</code>; if there are no sharps or flats in the key signature,
-            the <code>$</code> is omitted.
-        </p>
-
+        <div class="issue" data-number="17"></div>
+        <div class="issue" data-number="35"></div>
         <div class="issue" data-number="36"></div>
-        <div class="issue" data-number="26"></div>
         <p>
-            The symbol <code>x</code> indicates sharp keys and <code>b</code> flat keys. The symbol is followed by the
-            capital letters that indicate the altered notes.
+            An encoding MAY include a key signature.
         </p>
-
+        <p>
+            The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
+            followed by a list of <a href="#note-names">note names</a> that indicate the altered notes.
+        </p>
+        <p>
+            The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
+            accidentals in this list SHOULD be supplied by the <a>transcriber</a>. Note names MUST NOT be repeated.
+        </p>
+        <p>
+            A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
+            signature. This character MUST NOT be followed by any note names.
+        </p>
+        <p>
+            A key signature MAY contain note names within square brackets, <code>[]</code>, to indicate that the
+            note names are not in the original source and have been supplied by the <a>transcriber</a>. Consecutively
+            supplied note names MUST be within a single set of brackets. A key signature MAY contain more than one
+            set of non-consecutive bracket groups.
+        </p>
+        <aside class="note">
+            <p>
+                While the key signature is an optional field, the absence of a key signature in the
+                encoding can be ambiguous. It may be interpreted either as a completely natural key signature (i.e.,
+                C major) or it may indicate that a key signature was missing entirely from the original source.
+                The presence of the <code>n</code> character can be used to explicitly mark a key signature with no
+                sharps or flats. For sources where no key signature is needed, it is recommended to use
+                the <code>n</code> key signature to make this encoding explicit.
+            </p>
+        </aside>
         <div class="issue" data-number="17"></div>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
@@ -220,7 +249,7 @@
                         <code>xFC</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>F and C sharp [key is D major or B minor]</td>
+                    <td>F and C sharp (key is D major or B minor).</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -234,7 +263,49 @@
                         <code>bBEA</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>B, E, A flat [key is E-flat major or C minor]</td>
+                    <td>B, E, A flat (key is E-flat major or C minor).</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "bB[EA]",
+                                "data": ""
+                            }
+                        </script>
+                        <code>bB[EA]</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>The E and A flats in the key signature have been supplied by the transcriber.</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "n",
+                                "data": ""
+                            }
+                        </script>
+                        <code>n</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>The natural key signature with no accidentals.</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "keysig": "xF[C]G[D]",
+                                "data": ""
+                            }
+                        </script>
+                        <code>xF[C]G[D]</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>F, C, G, and D sharp. The C and D are marked as supplied by the transcriber.</td>
                 </tr>
                 </tbody>
             </table>
@@ -837,7 +908,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="note-names">
             <h4>Note Names</h4>
             <div class="issue" data-number="13"></div>
             <p>C, D, E, F, G, A, B</p>
@@ -1395,6 +1466,7 @@
             </section>
         </section>
         <section>
+            <div class="issue" data-number="26"></div>
             <h4>Change of Clef, Key Signature, Time Signature</h4>
             <p>
                 Use <code>%</code> to change the clef, <code>$</code> to change the key, and <code>@</code> to change
