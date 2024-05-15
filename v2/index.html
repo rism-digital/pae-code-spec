@@ -240,27 +240,25 @@
     </section>
     <section>
         <h3>Time Signature</h3>
-        <div class="issue" data-number="35"></div>
         <p>
-            A time signature or mensuration sign SHOULD be provided, as required by the repertoire and source. It MAY
-            be omitted if appropriate.
+            An encoding MAY include a time signature. There are two main categories of time signature forms,
+            <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural.
         </p>
         <p>
-            There are two main categories of time signature forms, "Common Western Music Notation" (CWMN) and
-            "Mensural". For CWMN time signatures expressed as one number above another, transcribe these numbers
-            separated by a <code>/</code> character. For "common" and "alla breve" key signatures, use <code>c</code>
-            and <code>c/</code>, respectively.
+            For <abbr title="Common Western Music Notation">CWMN</abbr> time signatures expressed as one number
+            above another, transcribe these numbers separated by a <code>/</code> character. For "common"
+            and "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
         </p>
         <p>
-            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
+            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
+            measures MAY be provided by transcribing both. These MUST be separated by a single space character.
+        </p>
+        <p>
+            For mensural signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
             imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
-            "major" prolation; no <code>.</code> indicates "minor" prolation. Numbers following these signs
+            "major" prolation; omitting <code>.</code> indicates "minor" prolation. Numbers following these signs
             indicate <em>Modus cum tempore</em> signs with a numeral. A <code>/</code> character may follow the
             <em>tempus</em> character to indicate diminution.
-        </p>
-        <p>
-            CWMN time signatures that indicate alternating measures MAY be provided by transcribing both. These MUST
-            be separated by a single space character.
         </p>
         <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
             <table class="simple" style="width: 100%">
