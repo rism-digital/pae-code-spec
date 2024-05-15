@@ -2,21 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Plaine & Easie Code</title>
-    <script
-            src="https://www.w3.org/Tools/respec/respec-w3c"
-            class="remove"
-            defer
-    ></script>
-    <script
-            src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
-            defer
-    ></script>
+    <meta name="color-scheme" content="light dark" />
+    <title>Plaine &amp; Easie Code</title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer>
+    <script src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+
     <script class="remove">
         // All config options at https://respec.org/docs/
         var respecConfig = {
-            thisVersion: "https://rism.digital/plaine-and-easie/v2/",
-            latestVersion: "https://rism.digital/plaine-and-easie/v1/",
+            thisVersion: "https://plaine-and-easie.info/v2/",
+            latestVersion: "https://plaine-and-easie.info/v1/",
             specStatus: "unofficial",
             editors: [{
                 name: "Andrew Hankinson",
@@ -48,13 +43,13 @@
             edDraftURI: null,
             historyURI: null,
             license: null,
-            wg: "Plaine & Easie Specification Editors",
+            wg: "Plaine &amp; Easie Specification Editors",
             wgURI: "https://rism.digital/plaine-and-easie/",
             shortName: "paec",
             maxTocLevel: 3
         };
     </script>
-    <script type="application/javascript" src="../static/js/verovio-rendering.js"></script>
+    <script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
     <style>
         /* custom styles for inline code to make it stand out */
         p code
@@ -76,7 +71,7 @@
 </p>
 <section id="abstract">
     <p>
-        The Plaine & Easie Code is a library standard that enables entering music incipits in modern or mensural
+        The Plaine &amp; Easie Code is a library standard that enables entering music incipits in modern or mensural
         notation.
     </p>
     <p>
@@ -95,12 +90,12 @@
 </section>
 
 <section class="normative">
-    <h2>The Plaine & Easie Code</h2>
+    <h2>The Plaine &amp; Easie Code</h2>
     <section>
         <h3>Clef</h3>
         <div class="issue" data-number="32"></div>
         <p>
-            The clef is a required field. Every encoding MUST include a clef.
+            Every encoding MUST include a clef.
         </p>
         <p>
             The clef code MUST be three characters long. The first character specifies the clef shape and MUST
@@ -108,8 +103,7 @@
         </p>
         <p>
             The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
-            <code>+</code> to indicate mensural notation. Certain features in the musical notation are dependent
-            on this value.
+            <code>+</code> to indicate mensural notation.
         </p>
         <p>
             The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
@@ -118,7 +112,8 @@
         <aside class="note">
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
-                place the pitch values on the correct line or space within a staff.
+                place the pitch values on the correct line or space within a staff. Certain features in the musical
+                notation are dependent on the second indicator.
             </p>
         </aside>
         <aside class="example" title="Encoding Clefs">
@@ -848,7 +843,7 @@
         </section>
         <section>
             <h4>Note Names</h4>
-            <div class="issue" data-number="14"></div>
+            <div class="issue" data-number="13"></div>
             <p>C, D, E, F, G, A, B</p>
         </section>
         <section>
@@ -1506,18 +1501,18 @@
 <section class="informative">
     <h2>Representations</h2>
     <p>
-        There are several ways in which Plaine & Easie code can be expressed. The choice of representation depends
-        on the environment in which you are using Plaine & Easie code, and the support of your software tools.
+        There are several ways in which Plaine &amp; Easie code can be expressed. The choice of representation depends
+        on the environment in which you are using Plaine &amp; Easie code, and the support of your software tools.
     </p>
     <section>
         <h3>MARC21 and UNIMARC</h3>
         <p>
-            The most common use of Plaine & Easie code is as part of a MARC (MAchine Readable Catalogue)
+            The most common use of Plaine &amp; Easie code is as part of a MARC (MAchine Readable Catalogue)
             record or UNIMARC (UNIversal MARC). The <code>031</code> MARC field is used to record incipits for
             bibliographic catalogues. For UNIMARC the <code>036</code> field is similarly used.
         </p>
         <p>
-            In MARC and UNIMARC records, the Plaine & Easie notation components are separated out into subfields.
+            In MARC and UNIMARC records, the Plaine &amp; Easie notation components are separated out into subfields.
             The specifics of this encoding are given in the <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC
             documentation</a>, or in the
             <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
@@ -1552,18 +1547,18 @@
                     <td><code>$p</code></td>
                 </tr>
             </tbody>
-            <caption>MARC21 and UNIMARC subfields for Plaine & Easie</caption>
+            <caption>MARC21 and UNIMARC subfields for Plaine &amp; Easie</caption>
         </table>
     </section>
     <section>
         <h3>Single-Line Text</h3>
         <p>
-            Plaine & Easie code can be represented in a single, continuous line of text by using
+            Plaine &amp; Easie code can be represented in a single, continuous line of text by using
             the field delimiters for each notation component: <code>%</code> for clef,
             <code>$</code> for key signature, and <code>@</code> for time signature. These components
             are given at the beginning of the line, and separated by a space with the notation data.
         </p>
-        <aside class="example" title="Single-line Plaine & Easie code">
+        <aside class="example" title="Single-line Plaine &amp; Easie code">
             <pre>
                 %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
             </pre>
@@ -1590,7 +1585,7 @@
         <h3>JavaScript Object Notation (JSON)</h3>
         <p>
             JavaScript Object Notation (JSON) is a key-value format that is easy to process  in web browsers. Some
-            tools may support Plaine & Easie encoding using JSON. The same field names as the multi-line format are
+            tools may support Plaine &amp; Easie encoding using JSON. The same field names as the multi-line format are
             used, but the preceding <code>@</code> is dropped. Fields are separated by a comma.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
