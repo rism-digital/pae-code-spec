@@ -242,18 +242,37 @@
     </section>
     <section>
         <h3>Time Signature</h3>
-        <div class="issue" data-number="35"></div>
         <p>
-            The time signature is preceded by <code>@</code> and indicates the time value or the mensuration sign of the
-            incipit. If the incipit has no time signature, the <code>@</code> is omitted.
+            An encoding MAY include a time signature. There are two main categories of time signature forms,
+            <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural. If a mensuration sign is
+            specified, the <a>clef</a> MUST specify a <code>+</code> separator to indicate the encoding is in mensural
+            notation.
         </p>
-        <div class="issue" data-number="37"></div>
-        <div class="issue" data-number="35"></div>
         <p>
-            Fractional or numeric values are transcribed as fractions and mensuration signs are transcribed with a
-            lowercase letter, if necessary followed by <code>/</code> or <code>.</code>:
+            Encodings MUST NOT mix CWMN and Mensural time signatures.
         </p>
-        <aside class="example" title="Encoding Time Signatures">
+        <p>
+            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
+            above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
+            be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. For "common" and
+            "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
+        </p>
+        <p>
+            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
+            measures MAY be indicated by transcribing both. These MUST be separated by a single space character.
+        </p>
+        <p>
+            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
+            imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
+            "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
+            follow the <em>tempus</em> character to indicate diminution.
+        </p>
+        <p>
+            A mensuration sign MAY include a numerical component as a proportion or augmentation,
+            indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
+            These numbers MAY be combined and separated by a <code>/</code>.
+        </p>
+        <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
             <table class="simple" style="width: 100%">
                 <thead>
                 <tr>
@@ -298,21 +317,6 @@
                         <script type="application/json">
                             {
                                 "clef": "G-2",
-                                "timesig": "3",
-                                "data": ""
-                            }
-                        </script>
-                        <code>3</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
                                 "timesig": "c",
                                 "data": ""
                             }
@@ -322,36 +326,6 @@
                     <td class="notation-result">
                     </td>
                     <td>common time</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "c3",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c3</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "c3/2",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c3/2</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td></td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -381,7 +355,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td></td>
+                    <td>Perfect <em>tempus</em>, minor prolation</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -396,7 +370,52 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>'Perfect' time</td>
+                    <td>Perfect <em>tempus</em>, major prolation</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "c3",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c3</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>Perfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "C+3",
+                                "timesig": "c2",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c2</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>Imerfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G+2",
+                                "timesig": "c/",
+                                "data": ""
+                            }
+                        </script>
+                        <code>c/</code>
+                    </td>
+                    <td class="notation-result">
+                    </td>
+                    <td>With <em>diminution</em></td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
