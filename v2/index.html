@@ -2,16 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light" />
     <title>Plaine &amp; Easie Code</title>
-    <script
-            src="https://www.w3.org/Tools/respec/respec-w3c"
-            class="remove"
-            defer
-    ></script>
-    <script
-            src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
-            defer
-    ></script>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+    <script src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+
     <script class="remove">
         // All config options at https://respec.org/docs/
         var respecConfig = {
@@ -48,8 +43,6 @@
             edDraftURI: null,
             historyURI: null,
             license: null,
-            wg: "Plaine &amp; Easie Specification Editors",
-            wgURI: "https://rism.digital/plaine-and-easie/",
             shortName: "paec",
             maxTocLevel: 3
         };
@@ -100,7 +93,7 @@
         <h3>Clef</h3>
         <div class="issue" data-number="32"></div>
         <p>
-            The clef is a required field. Every encoding MUST include a clef.
+            Every encoding MUST include a clef.
         </p>
         <p>
             The clef code MUST be three characters long. The first character specifies the clef shape and MUST
@@ -108,8 +101,7 @@
         </p>
         <p>
             The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
-            <code>+</code> to indicate mensural notation. Certain features in the musical notation are dependent
-            on this value.
+            <code>+</code> to indicate mensural notation.
         </p>
         <p>
             The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
@@ -118,7 +110,8 @@
         <aside class="note">
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
-                place the pitch values on the correct line or space within a staff.
+                place the pitch values on the correct line or space within a staff. Certain features in the musical
+                notation are dependent on the second indicator.
             </p>
         </aside>
         <aside class="example" title="Encoding Clefs">
