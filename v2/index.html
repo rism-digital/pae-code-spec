@@ -1494,13 +1494,13 @@
         </section>
     </section>
 </section>
-<section class="informative">
+<section>
     <h2>Representations</h2>
     <p>
         There are several ways in which Plaine &amp; Easie code can be expressed. The choice of representation depends
         on the environment in which you are using Plaine &amp; Easie code, and the support of your software tools.
     </p>
-    <section>
+    <section class="informative">
         <h3>MARC21 and UNIMARC</h3>
         <p>
             The most common use of Plaine &amp; Easie code is as part of a MARC (MAchine Readable Catalogue)
@@ -1549,10 +1549,12 @@
     <section>
         <h3>Single-Line Text</h3>
         <p>
-            Plaine &amp; Easie code can be represented in a single, continuous line of text by using
-            the field delimiters for each notation component: <code>%</code> for clef,
-            <code>$</code> for key signature, and <code>@</code> for time signature. These components
-            are given at the beginning of the line, and separated by a space with the notation data.
+            Plaine & Easie code can be represented in a single, continuous line of text. This line
+            MUST start with a declaration of the clef, key signature, and time signature, and they
+            MUST be in that order. Each of these components are preceded by a delimiter character: <code>%</code>
+            for clef, <code>$</code> for key signature, and <code>@</code> for time signature. There
+            MUST NOT be a space between the components. There MUST be a space between these declarations
+            and the notation.
         </p>
         <aside class="example" title="Single-line Plaine &amp; Easie code">
             <pre>
