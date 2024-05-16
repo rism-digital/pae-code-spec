@@ -423,6 +423,7 @@
         <section>
             <h4>Octave</h4>
             <div class="issue" data-number="40"></div>
+            <div class="issue" data-number="69"></div>
             <p>
                 Octaves are indicated using the apostrophe, <code>'</code> for octave C4 and above, and the comma,
                 <code>,</code>, for octaves C3 and below. These characters are repeated to indicate successively
@@ -432,6 +433,10 @@
             <p>
                 The octave indication MAY be omitted. If the octave is omitted, the last specified octave
                 indication is used.
+            </p>
+            <p>
+                An encoding MAY omit all octave indications. If no octave is supplied on any note, all notes are
+                assumed to be in octave C4.
             </p>
             <aside class="example" title="Encoding Octaves">
                 <table class="simple" style="width: 100%;">
@@ -474,19 +479,6 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'AB''CDC'BA"
-                                }
-                            </script>
-                            <code>AB''CDC'BA</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Omitted octave indications</td>
-                    </tr>
-                    <tr class="notation-example ignore">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
                                     "data": "''C'GC,GC,,G"
                                 }
                             </script>
@@ -494,6 +486,32 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Octaves using ' and ,</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'AB''CDC'BA"
+                                }
+                            </script>
+                            <code>AB''CDC'BA</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Using the last-specified octave indication.</td>
+                    </tr>
+                    <tr class="notation-example ignore">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "ABCD"
+                                }
+                            </script>
+                            <code>ABCD</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>No octave indication on any note (All notes in the 4th octave).</td>
                     </tr>
                     </tbody>
                 </table>
