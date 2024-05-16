@@ -242,23 +242,33 @@
         <h3>Time Signature</h3>
         <p>
             An encoding MAY include a time signature. There are two main categories of time signature forms,
-            <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural.
+            <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural. If a mensuration sign is
+            specified, the <a>clef</a> MUST specify a <code>+</code> separator to indicate the encoding is in mensural
+            notation.
         </p>
         <p>
-            For <abbr title="Common Western Music Notation">CWMN</abbr> time signatures expressed as one number
-            above another, transcribe these numbers separated by a <code>/</code> character. For "common"
-            and "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
+            Encodings MUST NOT mix CWMN and Mensural time signatures.
+        </p>
+        <p>
+            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
+            above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
+            be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. For "common" and
+            "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
-            measures MAY be provided by transcribing both. These MUST be separated by a single space character.
+            measures MAY be indicated by transcribing both. These MUST be separated by a single space character.
         </p>
         <p>
-            For mensural signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
+            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
             imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
-            "major" prolation; omitting <code>.</code> indicates "minor" prolation. Numbers following these signs
-            indicate <em>Modus cum tempore</em> signs with a numeral. A <code>/</code> character may follow the
-            <em>tempus</em> character to indicate diminution.
+            "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
+            follow the <em>tempus</em> character to indicate diminution.
+        </p>
+        <p>
+            A mensuration sign MAY include a numerical component as a proportion or augmentation,
+            indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
+            These numbers MAY be combined and separated by a <code>/</code>.
         </p>
         <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
             <table class="simple" style="width: 100%">
