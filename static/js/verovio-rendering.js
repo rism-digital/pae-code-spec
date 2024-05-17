@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    Module.onRuntimeInitialized = async _ => {
+    verovio.module.onRuntimeInitialized = async _ => {
         let tk = new verovio.toolkit();
         tk.setOptions({
             footer: 'none',
