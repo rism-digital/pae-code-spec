@@ -44,7 +44,7 @@
             historyURI: null,
             license: null,
             shortName: "paec",
-            maxTocLevel: 3
+            maxTocLevel: 4
         };
     </script>
     <script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
@@ -91,6 +91,7 @@
     </p>
 </section>
 <section id="terminology">
+    <div class="issue" data-number="69"></div>
     <h2>Terminology</h2>
     <dl>
         <dt><dfn>Circle of fifths</dfn></dt>
@@ -101,9 +102,10 @@
 </section>
 <section class="normative">
     <h2>The Plaine &amp; Easie Code</h2>
+    <div class="issue" data-number="57"></div>
     <section>
+        <div class="issue" data-number="72"></div>
         <h3>Clef</h3>
-        <div class="issue" data-number="32"></div>
         <p>
             Every encoding MUST include a clef.
         </p>
@@ -190,11 +192,7 @@
     </section>
     <section>
         <h3>Key Signature</h3>
-        <div class="issue" data-number="15"></div>
-        <div class="issue" data-number="16"></div>
-        <div class="issue" data-number="17"></div>
         <div class="issue" data-number="35"></div>
-        <div class="issue" data-number="36"></div>
         <p>
             An encoding MAY include a key signature.
         </p>
@@ -226,7 +224,6 @@
                 the <code>n</code> key signature to make this encoding explicit.
             </p>
         </aside>
-        <div class="issue" data-number="17"></div>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
                 <thead>
@@ -312,6 +309,10 @@
         </aside>
     </section>
     <section>
+        <div class="issue" data-number="64"></div>
+        <div class="issue" data-number="70"></div>
+        <div class="issue" data-number="71"></div>
+        <div class="issue" data-number="73"></div>
         <h3>Time Signature</h3>
         <p>
             An encoding MAY include a time signature. There are two main categories of time signature forms,
@@ -509,10 +510,11 @@
     </section>
     <section>
         <h3>Musical Notation</h3>
+        <div class="issue" data-number="24"></div>
         <div class="issue" data-number="43"></div>
+        <div class="issue" data-number="56"></div>
         <section>
             <h4>Octave</h4>
-            <div class="issue" data-number="40"></div>
             <div class="issue" data-number="69"></div>
             <p>
                 Octaves are indicated using the apostrophe, <code>'</code> for octave C4 and above, and the comma,
@@ -606,7 +608,6 @@
                     </tbody>
                 </table>
             </aside>
-
         </section>
         <section>
             <h4>Rhythmic Values</h4>
@@ -909,13 +910,15 @@
             </aside>
         </section>
         <section id="note-names">
-            <h4>Note Names</h4>
             <div class="issue" data-number="13"></div>
+            <div class="issue" data-number="74"></div>
+            <h4>Note Names</h4>
             <p>C, D, E, F, G, A, B</p>
         </section>
         <section>
             <h4>Grace Notes</h4>
             <div class="issue" data-number="22"></div>
+            <div class="issue" data-number="75"></div>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -972,6 +975,7 @@
         <section>
             <h4>Rests</h4>
             <div class="issue" data-number="29"></div>
+            <div class="issue" data-number="41"></div>
             <p>Rests for single notes are indicated by <code>-</code> (a minus sign).</p>
             <table class="simple">
                 <thead>
@@ -1467,6 +1471,7 @@
         </section>
         <section>
             <div class="issue" data-number="26"></div>
+            <div class="issue" data-number="35"></div>
             <h4>Change of Clef, Key Signature, Time Signature</h4>
             <p>
                 Use <code>%</code> to change the clef, <code>$</code> to change the key, and <code>@</code> to change
@@ -1536,6 +1541,8 @@
         <section>
             <h4>Chords</h4>
             <div class="issue" data-number="2"></div>
+            <div class="issue" data-number="60"></div>
+            <div class="issue" data-number="65"></div>
             <p>
                 Enter chords from the highest to the lowest note, each one separated by <code>^</code>.
             </p>
@@ -1572,6 +1579,7 @@
         There are several ways in which Plaine &amp; Easie code can be expressed. The choice of representation depends
         on the environment in which you are using Plaine &amp; Easie code, and the support of your software tools.
     </p>
+    <div class="issue" data-number="48"></div>
     <section class="informative">
         <h3>MARC21 and UNIMARC</h3>
         <p>
