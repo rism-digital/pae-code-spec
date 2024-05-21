@@ -524,16 +524,19 @@
         <div class="issue" data-number="56"></div>
         <section>
             <h4>Octaves</h4>
-            <div class="issue" data-number="69"></div>
             <p>
                 Octaves in Plaine &amp; Easie are enumerated according to [[ScientificPitch]]. The boundary note
                 between octaves is C.
             </p>
             <p>
-                Octaves are indicated using the apostrophe <code>'</code> for octave C4 and above, and the comma
+                Octaves MUST be indicated using the apostrophe <code>'</code> for octave C4 and above, and the comma
                 <code>,</code> for octaves C3 and below. These characters are repeated to indicate successively
                 higher or lower octaves: <code>''</code> indicates C5, <code>'''</code> indicates C6, <code>,,</code>
                 indicates C2, and so on.
+            </p>
+            <p>
+                The number of apostrophes MUST NOT exceed four, corresponding to C7. The number of commas MUST NOT
+                exceed three, corresponding to C1.
             </p>
             <p>
                 The octave indication for a given note MAY be omitted. If the octave is omitted, the last specified
