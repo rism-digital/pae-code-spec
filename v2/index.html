@@ -522,6 +522,42 @@
         <div class="issue" data-number="24"></div>
         <div class="issue" data-number="43"></div>
         <div class="issue" data-number="56"></div>
+        <section id="note-names">
+            <h4>Note Names</h4>
+            <p>
+                A note name MUST be provided to indicate the pitch class of the encoded note.
+            </p>
+            <p>
+                Note names MUST be one of the following characters: <code>C</code>, <code>D</code>, <code>E</code>,
+                <code>F</code>, <code>G</code>, <code>A</code>, <code>B</code>.
+            </p>
+            <aside class="example">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "CDEFGAB"
+                                }
+                            </script>
+                            <code>CDEFGAB</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Note names for a single octave.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
         <section>
             <h4>Octaves</h4>
             <p>
@@ -924,12 +960,6 @@
                     </tbody>
                 </table>
             </aside>
-        </section>
-        <section id="note-names">
-            <div class="issue" data-number="13"></div>
-            <div class="issue" data-number="74"></div>
-            <h4>Note Names</h4>
-            <p>C, D, E, F, G, A, B</p>
         </section>
         <section>
             <h4>Rests</h4>
