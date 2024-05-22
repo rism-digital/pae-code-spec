@@ -967,7 +967,9 @@
             <div class="issue" data-number="41"></div>
             <p>
                 Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
-                MUST be preceded by a <a>duration</a> value giving the musical duration of the rest.
+                MAY be preceded by a <a>duration</a> value giving the musical duration of the rest. If the duration
+                is omitted, the last specified duration is used. If no duration is supplied in the <a>encoding</a>
+                a default duration of <code>4</code> is assumed.
             </p>
             <p>
                 Measure rests MUST be indicated by an equal sign character <code>=</code>. This character MUST be
