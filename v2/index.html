@@ -160,6 +160,9 @@
         <dd><!-- TODO --></dd>
         <dt><dfn>Transcriber</dfn></dt>
         <dd>The person or persons who transcribe the source into Plaine &amp; Easie.</dd>
+        <dt><dfn>Logical Unit</dfn></dt>
+        <dd>A logical unit of notation data consists of one or more characters that represent a single musical notation
+        figure.</dd>
     </dl>
 </section>
 <section class="normative">
@@ -591,10 +594,51 @@
         <div class="issue" data-number="24"></div>
         <div class="issue" data-number="43"></div>
         <div class="issue" data-number="56"></div>
+        <section>
+            <h4>Structure</h4>
+            <p>
+                The Musical Notation section of an encoding is given as a single line of characters. These characters
+                represent the main body of the notation encoding. To represent complex notational figures, such as
+                notes, chords, beams, or tuplets, a group of characters can act as a single <a>logical unit</a>.
+            </p>
+            <p>
+                A musical note is the single most complex logical unit within the <abbr>PAEC</abbr>. It consists of
+                one or more characters representing a note on a musical staff. Many characters representing a note
+                are optional, but where one or more character for a note occurs, they MUST occur in the following
+                order:
+            </p>
+            <figure>
+                <ol>
+                    <li>(optional) The grace note character, or the grace note group characters;</li>
+                    <li>(optional) The octave character(s);</li>
+                    <li>(optional) The duration character, followed by a duration dot character;</li>
+                    <li>(optional) The accidental character;</li>
+                    <li>(optional) The opening fermata character;</li>
+                    <li>(<strong>required</strong>) The note name character;</li>
+                    <li>(optional) The closing fermata character;</li>
+                    <li>(optional) The trilled note character;</li>
+                    <li>(optional) The chord indicator character;</li>
+                    <li>(optional) The grace note group end character.</li>
+                </ol>
+                <figcaption>Order of characters within a note</figcaption>
+            </figure>
+            <p>
+                Logical units MAY be nested to represent complex notational features; for example, a beam will
+                contain two or more notes. All logical units of the same kind MUST be closed before a new one is
+                started (i.e., no nested groups of the same kind).
+            </p>
+            <p>
+                Many logical units use the same character(s) to represent the same feature. Notes and rests,
+                for example, both make use of the duration character(s).
+            </p>
+            <p>
+                Logical units MUST NOT be separated by a space character.
+            </p>
+        </section>
         <section id="note-names">
             <h4>Note Names</h4>
             <p>
-                A note name MUST be provided to indicate the pitch class of the encoded note.
+                A note name MUST be provided to indicate the pitch class of the note.
             </p>
             <p>
                 Note names MUST be one of the following characters:
