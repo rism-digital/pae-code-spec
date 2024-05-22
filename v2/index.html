@@ -221,6 +221,11 @@
             accidentals in this list SHOULD be supplied by the <a>transcriber</a>. Note names MUST NOT be repeated.
         </p>
         <p>
+            All notes given in the key signature MUST be interpreted as having their sounding pitch altered
+            accordingly. In cases where a note in a key signature is further altered by use of an <a>accidental</a>,
+            the <a>written pitch</a> indicated by the accidental will take precedence.
+        </p>
+        <p>
             A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
             signature. This character MUST NOT be followed by any note names.
         </p>
@@ -918,98 +923,115 @@
             </aside>
         </section>
         <section>
-            <h4>Accidentals</h4>
             <div class="issue" data-number="42"></div>
-            <aside class="example" title="Encoding Accidentals">
-                <table class="simple" style="width: 100%;">
+            <h4>Accidentals</h4>
+            <p>
+                An accidental MAY be used to alter the written and sounding pitch of a note. Accidentals MUST
+                be one of the values given in [[[#accidental-map]]].
+            </p>
+            <figure id="accidental-map">
+                <table class="data" style="width: 100%">
+                    <colgroup class="header"></colgroup>
+                    <colgroup span="2"></colgroup>
                     <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Notation</th>
-                        <th>Remarks</th>
-                    </tr>
+                        <tr>
+                            <th>Accidental</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'xF"
-                                }
-                            </script>
-                            <code>x</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>sharp</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'xF"
-                                }
-                            </script>
-                            <code>x</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>sharp</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'xxF"
-                                }
-                            </script>
-                            <code>xx</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>double sharp</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'bB"
-                                }
-                            </script>
-                            <code>b</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>flat</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'bbB"
-                                }
-                            </script>
-                            <code>bb</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>double flat</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "'nF"
-                                }
-                            </script>
-                            <code>n</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>natural</td>
-                    </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "xG"
+                                    }
+                                </script>
+                                <code>x</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>sharp</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "bB"
+                                    }
+                                </script>
+                                <code>b</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>flat</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "xxG"
+                                    }
+                                </script>
+                                <code>xx</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>double-sharp</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "bbB"
+                                    }
+                                </script>
+                                <code>bb</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>double-flat</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "nB"
+                                    }
+                                </script>
+                                <code>n</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>natural</td>
+                        </tr>
                     </tbody>
+
                 </table>
+                <figcaption>Accidental values</figcaption>
+            </figure>
+            <p>
+                The sounding pitch of a note MAY be altered by both a key signature or an accidental. In the case of
+                a note being altered by both, the alteration of the accidental MUST be interpreted as an alteration
+                of the pitch in the key signature.
+            </p>
+            <p>
+                A note altered by an accidental SHOULD NOT be altered subsequent times within the same bar. The
+                alteration to the sounding pitch of the note is continued on subsequent notes with the same name
+                until the next <a>bar line</a>.
+            </p>
+            <p>
+                Accidentals MUST be interpreted by their written value, and MUST NOT be interpreted by their values
+                relative to each other.
+            </p>
+            <aside class="note">
+                <p>
+                    That is, a previously sharpened note that is subsequently modified with a flat accidental
+                    will sound one whole tone lower than it did when sharpened. Likewise, a note that has a
+                    double-flat accidental applied which is subsequently altered by a sharp will sound three
+                    semitones higher than the double-flat.
+                </p>
             </aside>
         </section>
         <section>
