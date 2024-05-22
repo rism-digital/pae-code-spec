@@ -528,8 +528,12 @@
                 A note name MUST be provided to indicate the pitch class of the encoded note.
             </p>
             <p>
-                Note names MUST be one of the following characters: <code>C</code>, <code>D</code>, <code>E</code>,
-                <code>F</code>, <code>G</code>, <code>A</code>, <code>B</code>.
+                Note names MUST be one of the following characters:
+                <code>C</code>, <code>D</code>, <code>E</code>, <code>F</code>,
+                <code>G</code>, <code>A</code>, <code>B</code>.
+            </p>
+            <p>
+                All letters MUST be uppercase; lowercase letters MUST NOT be used.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -967,7 +971,9 @@
             <div class="issue" data-number="41"></div>
             <p>
                 Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
-                MUST be preceded by a <a>duration</a> value giving the musical duration of the rest.
+                MAY be preceded by a <a>duration</a> value giving the musical duration of the rest. If the duration
+                is omitted, the last specified duration is used. If no duration is supplied in the <a>encoding</a>
+                a default duration of <code>4</code> is assumed.
             </p>
             <p>
                 Measure rests MUST be indicated by an equal sign character <code>=</code>. This character MUST be
