@@ -965,27 +965,27 @@
             <h4>Rests</h4>
             <div class="issue" data-number="29"></div>
             <div class="issue" data-number="41"></div>
-            <p>Rests for single notes are indicated by <code>-</code> (a minus sign).</p>
-            <table class="simple">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><code>-</code></td>
-                    <td>single-note rest (preceded by rhythmic value like note names)</td>
-                </tr>
-                <tr>
-                    <td><code>=</code></td>
-                    <td>measure rest (followed by number of measures and a bar line)</td>
-                </tr>
-
-                </tbody>
-            </table>
-
+            <p>
+                Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
+                MUST be preceded by a <a>duration</a> value giving the musical duration of the rest.
+            </p>
+            <p>
+                Measure rests MUST be indicated by an equal sign character <code>=</code>. This character MUST be
+                followed by a non-negative integer indicating the number of measures for which this rest applies,
+                unless the measure rest only applies to a single measure. In this case, the number MAY be omitted.
+            </p>
+            <p>
+                Measure rests MUST be followed by a <a>bar line</a> character.
+            </p>
+            <p>
+                Measure rests MUST NOT be used with Mensural notation, due to the general absence of measures in
+                this notation.
+            </p>
+            <p>
+                Measure rests MAY indicate the number of measures that are being skipped in the
+                <a>original source</a> before the musical content being captured by the incipit, regardless of whether
+                these measures in the original source contain musical content.
+            </p>
             <aside class="example" title="Encoding Rests">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1007,7 +1007,7 @@
                             <code>8-</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>eighth-note rest</td>
+                        <td>Eighth-note rest</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -1020,7 +1020,7 @@
                             <code>2-</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>half-note rest</td>
+                        <td>Half-note rest</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -1030,10 +1030,10 @@
                                     "data": "=/"
                                 }
                             </script>
-                            <code>=</code>
+                            <code>=/</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>single measure rest</td>
+                        <td>Single measure rest</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -1043,7 +1043,7 @@
                                     "data": "=35/"
                                 }
                             </script>
-                            <code>=35</code>
+                            <code>=35/</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>35 measures rest</td>
