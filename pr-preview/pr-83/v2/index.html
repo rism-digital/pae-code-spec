@@ -52,6 +52,13 @@
                     href: "https://doi.org/10.1121/1.1916017",
                     publisher: "The Journal of the Acoustical Society of America, vol. 11, no. 1 (1939), 134–139.",
                     rawDate: "July 1939"
+                },
+                "MensuralReference": {
+                    authors: ["Dumitrescu, Ted"],
+                    title: "A Reference Sheet for Reading Mensural Notation",
+                    href: "https://www.cmme.org/misc/refsheet.pdf",
+                    publisher: "Computerized Mensural Music Editing",
+                    rawDate: "May 2004"
                 }
             }
         };
@@ -124,7 +131,7 @@
         </p>
         <p>
             The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
-            <code>+</code> to indicate mensural notation.
+            <code>+</code> to indicate mensural notation. (See: [[MensuralReference]])
         </p>
         <p>
             The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
@@ -324,13 +331,17 @@
         <div class="issue" data-number="73"></div>
         <h3>Time Signature</h3>
         <p>
-            An encoding MAY include a time signature. There are two main categories of time signature forms,
-            <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural. If a mensuration sign is
-            specified, the <a>clef</a> MUST specify a <code>+</code> separator to indicate the encoding is in mensural
-            notation.
+            An encoding MAY include a time signature.
         </p>
         <p>
-            Encodings MUST NOT mix CWMN and Mensural time signatures.
+            There are two main categories of time signature forms, <a>Common Western Music Notation</a>
+            (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
+            If a mensuration sign is specified, the <a>clef</a> MUST specify a <code>+</code> separator to
+            indicate the encoding is in mensural notation.
+        </p>
+        <p>
+            Encodings MUST NOT mix <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural
+            time signatures.
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
@@ -580,7 +591,7 @@
             </p>
             <p>
                 The octave indication for a given note MAY be omitted. If the octave is omitted, the last specified
-                octave indication is used.
+                octave indication is used for all following notes.
             </p>
             <p>
                 An <a>encoding</a> MAY omit all octave indications. If no octave is supplied on any note, all notes are
@@ -666,208 +677,244 @@
             </aside>
         </section>
         <section>
-            <h4>Rhythmic Values</h4>
             <div class="issue" data-number="39"></div>
-            <aside class="example" title="Encoding Rhythmic Values">
-            <table class="simple" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Notation</th>
-                    <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'0B"
-                            }
-                        </script>
-                        <code>0</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>longa</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'9B"
-                            }
-                        </script>
-                        <code>9</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>breve</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'1A"
-                            }
-                        </script>
-                        <code>1</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>whole note / semibreve</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'2A"
-                            }
-                        </script>
-                        <code>2</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>half note / minim</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'4A"
-                            }
-                        </script>
-                        <code>4</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>quarter note / crochet / semiminim</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'8A"
-                            }
-                        </script>
-                        <code>8</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>eighth note / quaver / fusa</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'6A"
-                            }
-                        </script>
-                        <code>6</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>16th note / semiquaver / semifusa</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'3A"
-                            }
-                        </script>
-                        <code>3</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>32nd note / demisemiquaver</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'5A"
-                            }
-                        </script>
-                        <code>5</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>64th note / hemidemisemiquaver</td>
-                </tr>
-                <tr class="notation-example ignore">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'7A"
-                            }
-                        </script>
-                        <code>7</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>128th note</td>
-                </tr>
-                </tbody>
-            </table>
-            </aside>
             <div class="issue" data-number="4"></div>
             <div class="issue" data-number="27"></div>
+            <h4>Durations</h4>
             <p>
-                Periods are used for dotted notes. Multiple periods can be added to a note.
+                Note durations MUST be represented by integer values in the range <code>0-9</code>. The corresponding
+                note value for each number is given in [[[#note-duration-map]]].
             </p>
-            <aside class="example" title="Encoding dotted rhythmic values">
-            <table class="simple" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Notation</th>
-                    <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'4.A"
-                            }
-                        </script>
-                        <code>4.</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>dotted quarter-note</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'8..A"
-                            }
-                        </script>
-                        <code>8..</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>double-dotted eighth-note</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": "'7.A"
-                            }
-                        </script>
-                        <code>7.</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>neumatic notation</td>
-                </tr>
-                </tbody>
-            </table>
+            <p>
+                Duration values MUST be interpreted differently if the encoding is in
+                <abbr title="Common Western Music Notation">CWMN</abbr> or Mensural notation. Mensural notation
+                MUST NOT use durations of <code>3</code>, <code>5</code>, or <code>7</code>.
+            </p>
+            <figure id="note-duration-map">
+                <table class="data" style="width: 100%">
+                    <colgroup class="header"></colgroup>
+                    <colgroup span="3"></colgroup>
+                    <thead>
+                    <tr>
+                        <th>Duration</th>
+                        <th>Notation</th>
+                        <th>CWMN</th>
+                        <th>Mensural</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "0G"
+                                }
+                            </script>
+                            <code>0</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td colspan="2" style="text-align: center;">Longa</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "9G"
+                                }
+                            </script>
+                            <code>9</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td colspan="2" style="text-align: center">Breve</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "1G"
+                                }
+                            </script>
+                            <code>1</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Whole note</td>
+                        <td>Semibreve</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2G"
+                                }
+                            </script>
+                            <code>2</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Half note</td>
+                        <td>Minim</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "4G"
+                                }
+                            </script>
+                            <code>4</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Quarter note / crochet</td>
+                        <td>Semiminim</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "8G"
+                                }
+                            </script>
+                            <code>8</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Eighth note / quaver</td>
+                        <td>Fusa</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "6G"
+                                }
+                            </script>
+                            <code>6</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>16<sup>th</sup> note / semiquaver</td>
+                        <td>Semifusa</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "3G"
+                                }
+                            </script>
+                            <code>3</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>32<sup>nd</sup> note / demisemiquaver</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "5G"
+                                }
+                            </script>
+                            <code>5</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>64<sup>th</sup> note / hemidemisemiquaver</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "7G"
+                                }
+                            </script>
+                            <code>7</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>128<sup>th</sup> note</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <figcaption>Note duration value mapping, ordered from longest to shortest note value.</figcaption>
+            </figure>
+            <p>
+                The duration value for a given note MAY be omitted. If the duration is omitted, the last specified
+                duration is used for all following notes.
+            </p>
+            <p>
+                An <a>encoding</a> MAY omit all duration indications. If no duration is supplied on any note, all
+                notes are assumed to have a duration value of <code>4</code> (quarter note / crochet / semiminim).
+            </p>
+            <p>
+                For <abbr>CWMN</abbr> the period character <code>.</code> MAY be used to indicate a dot of augmentation,
+                extending the duration of the note by half again the indicated duration value. This character MUST be
+                appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
+                the duration is extended by half again.
+            </p>
+            <p>
+                For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
+                alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
+            </p>
+            <aside class="example" title="Encoding rhythmic values">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'4.A"
+                                }
+                            </script>
+                            <code>4.A</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>dotted quarter-note</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'8..A"
+                                }
+                            </script>
+                            <code>8..A</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Double-dotted eighth note</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G+2",
+                                    "timesig": "o",
+                                    "data": "9A1.A1A9A"
+                                }
+                            </script>
+                            <code>9A1.A1A9A</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Mensural dot of division</td>
+                    </tr>
+                    </tbody>
+                </table>
             </aside>
         </section>
         <section>
