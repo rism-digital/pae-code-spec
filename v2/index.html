@@ -971,17 +971,17 @@
                 until the next <a>bar line</a>.
             </p>
             <p>
-                A flat accidental MUST NOT be used to lower the sounding pitch of a sharpened note by one semitone.
-                Likewise, a sharp accidental MUST NOT be used to raise the sounding pitch by one semitone. In both
-                of these cases a natural accidental MUST be used, even if this differs from the content of the
-                <a>original source</a>.
+                Accidentals MUST be interpreted by their written value, and MUST NOT be interpreted by their values
+                relative to each other.
             </p>
-            <p>
-                When an <a>original source</a> does not contain a written accidental, but one is deemed necessary
-                (for example, because of harmonic context or content that is not part of the incipit) the encoder MUST
-                supply the written accidental to ensure the melodic sequence accurately reflects the intended sequence
-                of intervals.
-            </p>
+            <aside class="note">
+                <p>
+                    That is, a previously sharpened note that is subsequently modified with a flat accidental
+                    will sound one whole tone lower than it did when sharpened. Likewise, a note that has a
+                    double-flat accidental applied which is subsequently altered by a sharp will sound three
+                    semitones higher than the double-flat.
+                </p>
+            </aside>
         </section>
         <section>
             <h4>Rests</h4>
