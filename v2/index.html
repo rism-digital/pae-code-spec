@@ -1291,34 +1291,27 @@
             </aside>
         </section>
         <section>
+            <div class="issue" data-number="86"></div>
             <h4>Tuplets</h4>
-            <table class="simple">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><code>(</code></td>
-                    <td>beginning of special group</td>
-                </tr>
-                <tr>
-                    <td><code>)</code></td>
-                    <td>end of special group</td>
-                </tr>
-                </tbody>
-            </table>
             <p>
-                Before <code>(</code> you must indicate the total value of the group.
+                A tuplet group MUST begin with a duration value to indicate the duration
+                of the tuplet group.
             </p>
             <p>
-                After <code>(</code> you must indicate the rhythmic value of the first note, even if it is equal to that
-                of the group.
+                All musical symbols MAY occur within a tuplet group. The members of the tuplet
+                group MUST be enclosed within parentheses <code>()</code>.
             </p>
             <p>
-                Before <code>)</code> you must indicate the number of notes of the group, preceded by <code>;</code>.
+                The duration value MUST be provided for the first note or rest after the
+                opening parenthesis <code>(</code>.
+            </p>
+            <p>
+                A semicolon <code>;</code> and a non-negative integer MUST immediately precede
+                the closing parenthesis of a tuplet group, and indicate the number of notes
+                within that group.
+            </p>
+            <p>
+                A special encoding shortcut is available for <a>triplets</a>.
             </p>
             <aside class="examples" title="Encoding Special Rhythmic Groupings">
                 <table class="simple" style="width: 100%">
@@ -1361,21 +1354,6 @@
                     </tbody>
                 </table>
             </aside>
-            <p>
-                The triplet is a special case; strictly speaking, it should be coded as follows:
-            </p>
-            <pre class="text">
-                8(6ABC;3) or 8({6ABC};3)
-            </pre>
-            <p>
-                Instead, the following shortcut is permitted:
-            </p>
-            <pre class="text">
-                (6ABC) or ({6ABC})
-            </pre>
-            <p>
-                The rhythmic value inside the parentheses is required.
-            </p>
         </section>
         <section>
             <h4>Other Symbols</h4>
@@ -1679,6 +1657,24 @@
                         </tbody>
                     </table>
                 </aside>
+            </section>
+            <section>
+                <h5>Triplets</h5>
+                <p>
+                    The triplet is a special case; strictly speaking, it should be coded as follows:
+                </p>
+                <pre class="text">
+                    8(6ABC;3) or 8({6ABC};3)
+                </pre>
+                <p>
+                    Instead, the following shortcut is permitted:
+                </p>
+                <pre class="text">
+                    (6ABC) or ({6ABC})
+                </pre>
+                <p>
+                    The rhythmic value inside the parentheses is required.
+                </p>
             </section>
         </section>
         <section>
