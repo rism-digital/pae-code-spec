@@ -1169,16 +1169,13 @@
             <p>
                 Beam groups MUST start with an opening brace <code>{</code>, and
                 MUST end with a closing brace, <code>}</code>. Nested beam groups
-                MUST NOT occur.
+                MUST NOT occur, except as part of a <a>grace note group</a>.
             </p>
             <p>
                 Notes with duration values of <code>0</code>, <code>1</code>, <code>2</code>,
                 <code>4</code>, and <code>9</code> MUST NOT occur within
                 a beam group. Notes with other duration values MAY occur within
                 a beam group.
-            </p>
-            <p>
-                Rests SHOULD NOT occur within a beam group.
             </p>
             <p>
                 Beam groups MUST NOT occur in Mensural encodings.
@@ -1207,6 +1204,19 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Example beam encoding</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "8{ABqq{''CD}r'AB}"
+                                }
+                            </script>
+                            <code>8{ABqq{''CD}r'AB}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Beaming with a Grace Note Group</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1620,11 +1630,36 @@
             <div class="issue" data-number="35"></div>
             <h4>Change of Clef, Key Signature, Time Signature</h4>
             <p>
-                Use <code>%</code> to change the clef, <code>$</code> to change the key, and <code>@</code> to change
-                the time signature. Follow this with the new indication (clef, key, or time), followed by a space.
+                Clefs, key signatures, and time signatures MAY be changed within an incipit.
             </p>
             <p>
-                The introductory characters are mandatory.
+                The percent character <code>%</code> MUST be used to indicate a clef change. A clef change MAY occur anywhere
+                within the music notation section. This character MUST be followed by a clef definition according
+                to the specifications given in the <a>Clefs</a> section.
+            </p>
+            <p>
+                The dollar character <code>$</code> MUST be used to indicate a key signature change. A key signature
+                change MAY appear anywhere in the music notation, but SHOULD appear immediately following a
+                bar line. This character MUST be followed by a key signature definition according to the
+                specifications given in the <a>Key Signatures</a> section.
+            </p>
+            <aside class="note">
+                <p>
+                    It is not necessary to cancel the previous key signature with naturals when defining
+                    a new key signature.
+                </p>
+            </aside>
+            <p>
+                The at sign character <code>@</code> MUST be used to indicate a time signature change. A time signature
+                change MAY appear anywhere in the music notation, but SHOULD appear immediately following a
+                bar line. This character MUST be followed by a time signature definition according to the
+                specifications given in the <a>Time Signatures</a> section.
+            </p>
+            <p>
+                For any change of clef, key signature, time signature, or combination thereof, the change indication
+                MUST be separated from the notation that follows by a single space character. In the case of multiple
+                changes at once (for example, a key and a time signature change) the individual change indications
+                MUST NOT be separated by a space.
             </p>
             <aside class="example" title="Encoding Clef, Key Signature, and Time Signature Changes">
                 <table class="simple" style="width: 100%">
@@ -1632,6 +1667,7 @@
                     <tr>
                         <th>Code</th>
                         <th>Notation</th>
+                        <th>Remarks</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1640,13 +1676,30 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//"
+                                    "data": "%C-1$bBEA@c '2A-//$xFC 8B-4-2-/@3/2 1C2-//"
                                 }
                             </script>
-                            <code>%C-1 $bBEA @c '2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
+                            <code>'2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
                         </td>
                         <td class="notation-result"></td>
+                        <td>Clef, key signature, and time signature changes</td>
                     </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "4/4",
+                                    "keysig": "n",
+                                    "data": "4CDEF/$xFC@2/4 CD/EF"
+                                }
+                            </script>
+                            <code>4CDEF/$xFC@2/4 CD/EF</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Clef, key signature, and time signature changes</td>
+                    </tr>
+
                     </tbody>
                 </table>
             </aside>
