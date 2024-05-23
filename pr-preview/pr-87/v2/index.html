@@ -1357,9 +1357,79 @@
         </section>
         <section>
             <h4>Other Symbols</h4>
-            <div class="issue" data-number="1"></div>
-            <div class="issue" data-number="3"></div>
-            <div class="issue" data-number="28"></div>
+            <section>
+                <div class="issue" data-number="1"></div>
+                <div class="issue" data-number="28"></div>
+                <div class="issue" data-number="88"></div>
+                <h5>Tied Notes</h5>
+                <p>
+                    Tied notes MUST be indicated with an underscore character <code>_</code>.
+                    Ties MUST occur between successive notes with the same pitch and octave.
+                    A tie MUST NOT occur between a note and a rest.
+                </p>
+                <p>
+                    The underscore character MUST occur on the first note of the tie.
+                <p>
+                <p>
+                    Tied notes MAY occur over bar lines.
+                </p>
+                <p>
+                    The underscore character MUST NOT be used to indicate slurs, phrase
+                    marks, or ligatures.
+                </p>
+                <aside class="example" title="Encoding Ties">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "FG+GA"
+                                    }
+                                </script>
+                                <code>FG_GA</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Tied notes within a bar</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "2''G+/G"
+                                    }
+                                </script>
+                                <code>2''G_/G</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Tied notes over a bar line</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "1''G+/G+/G"
+                                    }
+                                </script>
+                                <code>2''G_/G_/G</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Successive tied notes</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
             <section>
                 <h5>Grace Notes</h5>
                 <div class="issue" data-number="22"></div>
@@ -1424,6 +1494,7 @@
                 </p>
             </section>
             <section>
+                <div class="issue" data-number="3"></div>
                 <h5>Fermata</h5>
                 <p class="advisement">
                     TODO: Expand on fermata encoding
