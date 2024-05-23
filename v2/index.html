@@ -1160,32 +1160,36 @@
         </section>
         <section>
             <h4>Beaming</h4>
+            <div class="issue" data-number="24"></div>
             <div class="issue" data-number="45"></div>
-            <table class="simple">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><code>{</code></td>
-                    <td>beginning of beaming</td>
-                </tr>
-                <tr>
-                    <td><code>}</code></td>
-                    <td>end of beaming</td>
-                </tr>
-                </tbody>
-            </table>
-
+            <div class="issue" data-number="84"></div>
+            <p>
+                Beamed notes are encoded using braces <code>{}</code>.
+            </p>
+            <p>
+                Beam groups MUST start with an opening brace <code>{</code>, and
+                MUST end with a closing brace, <code>}</code>. Nested beam groups
+                MUST NOT occur.
+            </p>
+            <p>
+                Notes with duration values of <code>0</code>, <code>1</code>, <code>2</code>,
+                <code>4</code>, and <code>9</code> MUST NOT occur within
+                a beam group. Notes with other duration values MAY occur within
+                a beam group.
+            </p>
+            <p>
+                Rests SHOULD NOT occur within a beam group.
+            </p>
+            <p>
+                Beam groups MUST NOT occur in Mensural encodings.
+            </p>
             <aside class="example" title="Encoding Beams">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
                         <th>Code</th>
                         <th>Notation</th>
+                        <th>Remarks</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1202,6 +1206,7 @@
                             <code>{''6E'B8G}{GA}-''C{'3B8..G}</code>
                         </td>
                         <td class="notation-result"></td>
+                        <td>Example beam encoding</td>
                     </tr>
                     </tbody>
                 </table>
