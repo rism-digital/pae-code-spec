@@ -59,6 +59,20 @@
                     href: "https://www.cmme.org/misc/refsheet.pdf",
                     publisher: "Computerized Mensural Music Editing",
                     rawDate: "May 2004"
+                },
+                "MARC21": {
+                    authors: ["Network Development and MARC Standards Office"],
+                    title: "MARC 21 Format for Bibliographic Data",
+                    href: "https://www.loc.gov/marc/bibliographic/",
+                    publisher: "Library of Congress",
+                    rawDate: "December 2023"
+                },
+                "UNIMARC": {
+                  editors: ["Mazić, Gordana", "Badovinac, Branka"],
+                  title: "UNIMARC Bibliographic Format Manual",
+                  href: "https://repository.ifla.org/bitstream/123456789/2880/1/UNIMARC_B_ONLINE_V100_2023_PUBLISHED.pdf",
+                  publisher: "International Federation of Library Associations and Institutions",
+                  rawDate: "2023"
                 }
             }
         };
@@ -1697,81 +1711,140 @@
     </section>
 </section>
 <section>
-    <h2>Representations</h2>
-    <p>
-        There are several ways in which Plaine &amp; Easie code can be expressed. The choice of representation depends
-        on the environment in which you are using Plaine &amp; Easie code, and the support of your software tools.
-    </p>
     <div class="issue" data-number="48"></div>
-    <section class="informative">
-        <h3>MARC21 and UNIMARC</h3>
+    <h2>Representation Formats</h2>
+    <p>
+        The original expression of the Plaine &amp; Easie Code was intended for a physical
+        medium: An index card, or a printed book. In the intervening years, the
+        Plaine &amp; Easie Code has shifted to other types of representation for the purposes
+        of computerized storage and processing, in library catalogs and on the
+        World Wide Web.
+    </p>
+    <p>
+        This section provides the specification of these representations. It is expected that
+        these representations—with the possible exception of "single-line text"—are constructed
+        by automated tools and not written "by hand."
+    </p>
+    <section>
+        <h3>Character Encodings</h3>
         <p>
-            The most common use of Plaine &amp; Easie code is as part of a MARC (MAchine Readable Catalogue)
-            record or UNIMARC (UNIversal MARC). The <code>031</code> MARC field is used to record incipits for
-            bibliographic catalogues. For UNIMARC the <code>036</code> field is similarly used.
+            All characters used in the Plaine &amp; Easie Code MUST be within the [[ASCII]]
+            code range. Plaine &amp; Easie MAY be transmitted as part of another encoding standard,
+            such as UTF-8, as long as the characters used within the encoding itself do not
+            fall outside of the ASCII range.
         </p>
         <p>
-            In MARC and UNIMARC records, the Plaine &amp; Easie notation components are separated out into subfields.
-            The specifics of this encoding are given in the <a href="https://www.loc.gov/marc/bibliographic/bd031.html">MARC
-            documentation</a>, or in the
-            <a href="https://archive.ifla.org/VI/8/unimarc-concise-bibliographic-format-2008.pdf">UNIMARC documentation</a>.
+            Depending on the application, some ASCII characters MAY be encoded in another
+            way; for example, Plaine &amp; Easie Code could be embedded in HTML where some
+            characters are replaced by <a data-cite="html#named-character-references">Named
+            character references</a>.
         </p>
-        <table class="simple" style="width: 100%">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>MARC21</th>
-                    <th>UNIMARC</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Clef</td>
-                    <td><code>$g</code></td>
-                    <td><code>$m</code></td>
-                </tr>
-                <tr>
-                    <td>Key Signature</td>
-                    <td><code>$n</code></td>
-                    <td><code>$n</code></td>
-                </tr>
-                <tr>
-                    <td>Time Signature</td>
-                    <td><code>$o</code></td>
-                    <td><code>$o</code></td>
-                </tr>
-                <tr>
-                    <td>Musical Notation</td>
-                    <td><code>$p</code></td>
-                    <td><code>$p</code></td>
-                </tr>
-            </tbody>
-            <caption>MARC21 and UNIMARC subfields for Plaine &amp; Easie</caption>
-        </table>
+        <aside class="note">
+            <p>
+                Although alternate character encodings for ASCII are permitted, care should
+                be taken that these encodings are "unescaped" correctly before the incipit
+                is processed.
+            </p>
+        </aside>
     </section>
     <section>
-        <h3>Single-Line Text</h3>
+        <h3>MARC21 and UNIMARC</h3>
         <p>
-            Plaine & Easie code can be represented in a single, continuous line of text. This line
-            MUST start with a declaration of the clef, key signature, and time signature, and they
-            MUST be in that order. Each of these components are preceded by a delimiter character: <code>%</code>
-            for clef, <code>$</code> for key signature, and <code>@</code> for time signature. There
-            MUST NOT be a space between the components. There MUST be a space between these declarations
-            and the notation.
+            The Plaine &amp; Easie code is accepted as a format within a MARC (MAchine Readable Catalogue)
+            record or UNIMARC (UNIversal MARC). The specifics of each system are given in the [[MARC21]]
+            documentation or in the [[UNIMARC]] documentation.The <code>031</code> MARC21 field is used
+            to record incipits for bibliographic catalogues. For UNIMARC the <code>036</code> field is
+            similarly used. The subfields used by these formats to hold Plaine &amp; Easie Code is given
+            in [[[#marc21-unimarc-subfields]]].
         </p>
-        <aside class="example" title="Single-line Plaine &amp; Easie code">
-            <pre>
-                %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
-            </pre>
+        <p>
+            In both systems, the <code>$2</code> subfield indicates the coding system used for the
+            incipit. This code MUST be <code>pe2</code> for Version 2 of the Plaine &amp; Easie Code.
+        </p>
+        <aside class="note">
+            <p>
+                The acceptance of the code <code>pe2</code> for MARC21 and UNIMARC subfield <code>$2</code>
+                is dependent on the ratification of this code by the respective committees. This note
+                will be removed when this code has been formally accepted by these standards.
+            </p>
+            <p>
+                Until this value has been ratified, it is recommended that Version 2 of the
+                Plaine &amp; Easie Code is not represented in MARC21 or UNIMARC.
+            </p>
         </aside>
+        <figure id="marc21-unimarc-subfields">
+            <table class="complex data" style="width: 100%">
+                <colgroup class="header"></colgroup>
+                <colgroup span="2"></colgroup>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>MARC21</th>
+                        <th>UNIMARC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Clef</td>
+                        <td><code>$g</code></td>
+                        <td><code>$m</code></td>
+                    </tr>
+                    <tr>
+                        <td>Key Signature</td>
+                        <td><code>$n</code></td>
+                        <td><code>$n</code></td>
+                    </tr>
+                    <tr>
+                        <td>Time Signature</td>
+                        <td><code>$o</code></td>
+                        <td><code>$o</code></td>
+                    </tr>
+                    <tr>
+                        <td>Musical Notation</td>
+                        <td><code>$p</code></td>
+                        <td><code>$p</code></td>
+                    </tr>
+                    <tr>
+                        <td>Source</td>
+                        <td><code>$2</code></td>
+                        <td><code>$2</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        <figcaption>MARC21 and UNIMARC subfields for the Plaine &amp; Easie Code</caption>
+        </figure>
     </section>
     <section>
         <h3>Multi-Line Text with Field Delimiters</h3>
         <p>
-            This format puts each component on its own line, separated by a newline character <code>\n</code>, and
-            with the component field preceded by a <code>@</code> symbol and followed by a colon <code>:</code>.
-            There are five such fields: <code>@clef</code>, <code>@keysig</code>, <code>@timesig</code>,
-            <code>@key</code>, and <code>@data</code>.
+            The Plaine &amp; Easie Code MAY be represented in a multi-line text
+            format.
+        </p>
+        <p>
+            Each field MUST be separated by a newline character <code>\n</code>.
+        </p>
+        <p>
+            Each field MUST begin with a field identifier. This identifier consists of an at sign
+            character <code>@</code>, followed by a field name. The field identifier MUST end with
+            a colon character <code>:</code>.
+        <p>
+        <p>
+            The field name MUST be one of the following: <code>clef</code>, <code>keysig</code>, <code>timesig</code>,
+            <code>key</code>, <code>data</code>, or <code>version</code>.
+        </p>
+        <p>
+            There MUST be at least two fields in the encoding: <code>clef</code> and <code>data</code>.
+        </p>
+        <p>
+            The <code>version</code> field MAY be included. The value of the <code>version</code> field
+            MUST be <code>pe2</code> for incipits that conform to Version 2 of the specification. If a
+            <code>version</code> field is not specified, the incipit SHOULD be interpreted as conforming
+            to Version 1 of the specification.
+        </p>
+        <p>
+            The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
+            contain any characters that are not part of the value itself; for example, the value must not be
+            enclosed in quotation marks.
         </p>
         <aside class="example" title="Multi-line text with field delimiters">
             <pre>
@@ -1779,15 +1852,31 @@
                 @timesig:3/2
                 @keysig:bB
                 @data:=3/2--''A/2.F4G2A/AGG/1A/
+                @version:pe2
             </pre>
         </aside>
     </section>
     <section>
         <h3>JavaScript Object Notation (JSON)</h3>
         <p>
-            JavaScript Object Notation (JSON) is a key-value format that is easy to process  in web browsers. Some
-            tools may support Plaine &amp; Easie encoding using JSON. The same field names as the multi-line format are
-            used, but the preceding <code>@</code> is dropped. Fields are separated by a comma.
+            Plaine &amp; Easie Code MAY be represented as JavaScript Object Notation
+           ([[JSON]]). All JSON encodings of the Plaine &amp; Easie Code MUST be valid
+           JSON.
+        </p>
+        <p>
+            The keys in the JSON MUST be one of the following: <code>clef</code>,
+            <code>keysig</code>, <code>timesig</code>, <code>key</code>,
+            <code>data</code>, or <code>version</code>. Unlike the multi-line text
+            representation, they MUST NOT begin with an at sign character <code>@</code>.
+        </p>
+        <p>
+            There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
+        </p>
+        <p>
+            The <code>version</code> key MAY be included. The value of the <code>version</code> key
+            MUST be <code>pe2</code> for incipits that conform to Version 2 of the specification. If a
+            <code>version</code> key is not specified, the incipit SHOULD be interpreted as conforming
+            to Version 1 of the specification.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
             <pre>
@@ -1795,8 +1884,51 @@
                     "clef": "G-2",
                     "timesig": "3/2",
                     "keysig": "bB",
-                    "data": "=3/2--''A/2.F4G2A/AGG/1A/"
+                    "data": "=3/2--''A/2.F4G2A/AGG/1A/",
+                    "version": "pe2"
                 }
+            </pre>
+        </aside>
+    </section>
+    <section>
+        <h3>Single-Line Text</h3>
+        <p>
+            Plaine & Easie code MAY be represented in a single, continuous line of text.
+        </p>
+        <p>
+            This line MUST start with the string <code>;pe2</code> for incipits that
+            conform to Version 2 of the specification.
+        </p>
+        <p>
+            Following the version declaration, the line MUST contain with a declaration of the clef.
+            The format of the clef declaration follows the same format for an inline change of clef;
+            that is, the clef declaration MUST start with the percent character <code>%</code>.
+        </p>
+        <p>
+            The line of text SHOULD specify a key signature and a time signature. This also
+            follows the same format for an inline change of key and time signatures.
+        <p>
+            The clef, key signature, and time signature declarations MUST NOT themselves be
+            separated by a space character.
+        </p>
+        <p>
+            The clef, key signature and time signature MUST be separated from the rest of the music
+            notation by a single space character.
+        </p>
+        <p>
+            The rest of the line of text follows the format for the music notation section of the code.
+            Further changes to the clef, key signature, and time signature are permitted as normal.
+        </p>
+        <aside class="note">
+            <p>
+                The single-line text representation does not permit the use of a version identifier.
+                Extra care should be taken when trying to parse these representations that the version
+                of the Plaine &amp; Easie Code represented is known.
+            </p>
+        </aside>
+        <aside class="example" title="Single-line Plaine &amp; Easie code">
+            <pre>
+                %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
             </pre>
         </aside>
     </section>
