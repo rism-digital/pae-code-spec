@@ -1323,14 +1323,16 @@
                 opening parenthesis <code>(</code>.
             </p>
             <p>
-                A semicolon <code>;</code> and a non-negative integer MUST immediately precede
-                the closing parenthesis of a tuplet group, and indicate the number of notes
-                within that group.
+                A semicolon <code>;</code> and a non-negative integer MAY immediately precede
+                the closing parenthesis of a tuplet group. This number indicates the number of
+                beat divisions in the group; that is, the number of beats that occur within
+                the tuplet in the space of the given duration value. If a number is not
+                given, a value of <code>3</code> is the default.
             </p>
             <p>
                 A special encoding shortcut is available for <a>triplets</a>.
             </p>
-            <aside class="examples" title="Encoding Special Rhythmic Groupings">
+            <aside class="example" title="Encoding Special Rhythmic Groupings">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -1346,7 +1348,7 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4('6DEFGA;5)"
+                                    "data": "4('6DEFGA;5)/"
                                 }
                             </script>
                             <code>4('6DEFGA;5)</code>
@@ -1360,13 +1362,27 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "8({'3DEFGA};5)"
+                                    "data": "8({'3DEFGA};5)/"
                                 }
                             </script>
                             <code>8({'3DEFGA};5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 32nd notes, in the space of an eighth note, with beamed notes</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "c",
+                                    "data": "4('4D8E)4('4D8E)/"
+                                }
+                            </script>
+                            <code>4('4D8E)4('4D8E)</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Two triplet values of varying duration.</td>
                     </tr>
                     </tbody>
                 </table>
