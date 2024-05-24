@@ -50,7 +50,7 @@
                     authors: ["Young, Robert W"],
                     title: "Terminology for Logarithmic Frequency Units",
                     href: "https://doi.org/10.1121/1.1916017",
-                    publisher: "The Journal of the Acoustical Society of America, vol. 11, no. 1 (1939), 134–139.",
+                    publisher: "The Journal of the Acoustical Society of America, vol. 11, no. 1, 134–9.",
                     rawDate: "July 1939"
                 },
                 "MensuralReference": {
@@ -59,6 +59,20 @@
                     href: "https://www.cmme.org/misc/refsheet.pdf",
                     publisher: "Computerized Mensural Music Editing",
                     rawDate: "May 2004"
+                },
+                "BrookGould1964": {
+                    authors: ["Brook, Barry S.", "Gould, Murray"],
+                    title: "Notating Music with Ordinary Typewriter Characters: A Plaine and Easie Code System for Musicke",
+                    href: "https://www.jstor.org/stable/23504533",
+                    publisher: "Fontes Artis Musicae, vol. 11, no. 3, 142–59",
+                    rawDate: "1964"
+                },
+                "Brook1965": {
+                    authors: ["Brook, Barry S."],
+                    title: "The Simplified \"Plaine and Easie Code System\" for Notating Music: A Proposal for International Adoption",
+                    href: "https://www.jstor.org/stable/23504707",
+                    publisher: "Fontes Artis Musicae, vol 12, no. 2/3, 156–60",
+                    rawDate: "1965"
                 }
             }
         };
@@ -89,21 +103,53 @@
 </p>
 <section id="abstract">
     <p>
-        The Plaine &amp; Easie Code is a library standard that enables entering music incipits in modern or mensural
-        notation.
+        The Plaine &amp; Easie Code is a music notation encoding system designed
+        for the capture of melodic incipits: Short fragments of a musical work that
+        serve to uniquely identify that work.
+    </p>
+</section>
+<section id="introduction">
+    <h1>Introduction</h2>
+    <p>
+        The Plaine &amp; Easie Code was first defined in 1964-5 by Barry S. Brook and Murray Gould
+        [[BrookGould1964]][[Brook1965]]. Perhaps the most important design feature of this system
+        was that it could represent music notation with "ordinary" typewriter characters, in order
+        to be put on index cards to build a thematic index to accompany the bibliographic descriptions.
     </p>
     <p>
-        This version of the code is maintained by the International Association of Music Libraries, Archives and
-        Documentation Centres (IAML) and the Répertoire International des Sources Musicales (RISM) for use as an
-        exchange format in the library environment. Observations or queries may be addressed to Massimo
-        Gentili-Tedeschi or Balázs Mikusi. A tutorial is available
-        <a href="https://www.youtube.com/watch?v=-HplUb_L1QY">here</a>.
+        The specifics of the code system have changed over time, but, until the present specification,
+        have not been clearly versioned. Features have been added to the Plaine &amp; Easie Code, and
+        the expected publication medium has shifted from index cards to computer systems. These changes
+        have resulted in incipits that may have conformed to the system at the time, but which are now
+        at odds with accepted practices and methods.
     </p>
     <p>
-        Also available in <a href="https://www.iaml.info/sites/default/files/pdf/2019_07_plaine_and_easie_0.pdf">PDF format.</a>
+        The present specifications seeks to establish a clearly defined "Version 2"
+        of the Plaine &amp; Easie Code. This is an attempt to distinguish it from "Version 1" of the Code,
+        which is now fixed at its last revised date. Incipits encoded to the specifications
+        given in Version 1 are still valid, and will continue to be.
     </p>
     <p>
-        Adapted from the RISM guidelines.
+        Version 2 of the Plaine &amp; Easie Code is written in a specification language that attempts
+        to clearly communicate the normative requirements of the Code. This is a recognition that the
+        main "audience" for the code is no longer a human reading the code off an index card, but rather
+        computer systems that need clear definitions of the code so that they can accurately process the
+        code for search, retrieval, automated comparison, and notation display. The normative language
+        of the new version is designed to help build systems that conform to uniform methods of data
+        processing.
+    </p>
+    <p>
+        At the same time, however, it must be recognized that the core of this code must remain "Plaine"
+        and "Easie". Although now couched in normative language, the present specification does not
+        deviate far from the earlier specifications—indeed, some changes that are introduced in this
+        new version are drawn from the original papers by Brook and Gould. In this way, the present
+        specification is an attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave
+        the cowpaths"</a>; that is, to normalize and standardize existing practices.
+    </p>
+    <p>
+        The Plaine &amp; Easie Code is maintained by the International Association of Music Libraries,
+        Archives and Documentation Centres (IAML) and the Répertoire International des Sources Musicales
+        (RISM) for use as an exchange format in the library environment.
     </p>
 </section>
 <section id="terminology">
@@ -120,418 +166,425 @@
     <h2>The Plaine &amp; Easie Code</h2>
     <div class="issue" data-number="57"></div>
     <section>
-        <div class="issue" data-number="72"></div>
-        <h3>Clef</h3>
+        <h3>Staff Definitions</h3>
         <p>
-            Every encoding MUST include a clef.
+            The clef, key signature, and time signature of an incipit is defined separately from the
+            <a>Musical Notation</a> of the incipit. These properties affect the whole staff.
         </p>
-        <p>
-            The clef code MUST be three characters long. The first character specifies the clef shape and MUST
-            be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
-        </p>
-        <p>
-            The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
-            <code>+</code> to indicate mensural notation. (See: [[MensuralReference]])
-        </p>
-        <p>
-            The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
-            for the clef starting from the bottom.
-        </p>
-        <aside class="note">
+        <section>
+            <div class="issue" data-number="72"></div>
+            <h4>Clef</h4>
             <p>
-                A value for the clef field is required to ensure the visual rendering of the notation can accurately
-                place the pitch values on the correct line or space within a staff. Certain features in the musical
-                notation are dependent on the second indicator.
+                Every encoding MUST include a clef.
             </p>
-        </aside>
-        <aside class="example" title="Encoding Clefs">
-            <table class="simple" style="width: 100%;">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Notation</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "data": ""
-                            }
-                        </script>
-                        <code>G-2</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+2",
-                                "data": ""
-                            }
-                        </script>
-                        <code>C+2</code>
-                    </td>
-                    <td class="notation-result"><!-- image here --></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "F-4",
-                                "data": ""
-                            }
-                        </script>
-                        <code>F-4</code>
-                    </td>
-                    <td class="notation-result"><!-- image here --></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "g-2",
-                                "data": ""
-                            }
-                        </script>
-                        <code>g-2</code>
-                    </td>
-                    <td class="notation-result"><!-- image here --></td>
-                </tr>
-                </tbody>
-            </table>
-        </aside>
-    </section>
-    <section>
-        <h3>Key Signature</h3>
-        <div class="issue" data-number="35"></div>
-        <p>
-            An encoding MAY include a key signature.
-        </p>
-        <p>
-            The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
-            followed by a list of <a href="#note-names">note names</a> that indicate the altered notes.
-        </p>
-        <p>
-            The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
-            accidentals in this list SHOULD be supplied by the <a>transcriber</a>. Note names MUST NOT be repeated.
-        </p>
-        <p>
-            All notes given in the key signature MUST be interpreted as having their sounding pitch altered
-            accordingly. In cases where a note in a key signature is further altered by use of an <a>accidental</a>,
-            the <a>written pitch</a> indicated by the accidental will take precedence.
-        </p>
-        <p>
-            A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
-            signature. This character MUST NOT be followed by any note names.
-        </p>
-        <p>
-            A key signature MAY contain note names within square brackets, <code>[]</code>, to indicate that the
-            note names are not in the original source and have been supplied by the <a>transcriber</a>. Consecutively
-            supplied note names MUST be within a single set of brackets. A key signature MAY contain more than one
-            set of non-consecutive bracket groups.
-        </p>
-        <aside class="note">
             <p>
-                While the key signature is an optional field, the absence of a key signature in the
-                encoding can be ambiguous. It may be interpreted either as a completely natural key signature (i.e.,
-                C major) or it may indicate that a key signature was missing entirely from the original source.
-                The presence of the <code>n</code> character can be used to explicitly mark a key signature with no
-                sharps or flats. For sources where no key signature is needed, it is recommended to use
-                the <code>n</code> key signature to make this encoding explicit.
+                The clef code MUST be three characters long. The first character specifies the clef shape and MUST
+                be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
             </p>
-        </aside>
-        <aside class="example" title="Encoding Key Signatures">
-            <table class="simple" style="width:100%">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Notation</th>
-                    <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C-1",
-                                "keysig": "xFC",
-                                "data": ""
-                            }
-                        </script>
-                        <code>xFC</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>F and C sharp (key is D major or B minor).</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "keysig": "bBEA",
-                                "data": ""
-                            }
-                        </script>
-                        <code>bBEA</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>B, E, A flat (key is E-flat major or C minor).</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "keysig": "bB[EA]",
-                                "data": ""
-                            }
-                        </script>
-                        <code>bB[EA]</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>The E and A flats in the key signature have been supplied by the <a>transcriber</a>.</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "keysig": "n",
-                                "data": ""
-                            }
-                        </script>
-                        <code>n</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>The natural key signature with no accidentals.</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "keysig": "xF[C]G[D]",
-                                "data": ""
-                            }
-                        </script>
-                        <code>xF[C]G[D]</code>
-                    </td>
-                    <td class="notation-result"></td>
-                    <td>F, C, G, and D sharp. The C and D are marked as supplied by the <a>transcriber</a>.</td>
-                </tr>
-                </tbody>
-            </table>
-        </aside>
-    </section>
-    <section>
-        <div class="issue" data-number="64"></div>
-        <div class="issue" data-number="70"></div>
-        <div class="issue" data-number="71"></div>
-        <div class="issue" data-number="73"></div>
-        <h3>Time Signature</h3>
-        <p>
-            An encoding MAY include a time signature.
-        </p>
-        <p>
-            There are two main categories of time signature forms, <a>Common Western Music Notation</a>
-            (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
-            If a mensuration sign is specified, the <a>clef</a> MUST specify a <code>+</code> separator to
-            indicate the encoding is in mensural notation.
-        </p>
-        <p>
-            Encodings MUST NOT mix <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural
-            time signatures.
-        </p>
-        <p>
-            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
-            above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
-            be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. For "common" and
-            "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
-        </p>
-        <p>
-            <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
-            measures MAY be indicated by transcribing both. These MUST be separated by a single space character.
-        </p>
-        <p>
-            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
-            imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
-            "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
-            follow the <em>tempus</em> character to indicate diminution.
-        </p>
-        <p>
-            A mensuration sign MAY include a numerical component as a proportion or augmentation,
-            indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
-            These numbers MAY be combined and separated by a <code>/</code>.
-        </p>
-        <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
-            <table class="simple" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Notation</th>
-                    <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "timesig": "2/4",
-                                "data": ""
-                            }
-                        </script>
-                        <code>2/4</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "timesig": "12/16",
-                                "data": ""
-                            }
-                        </script>
-                        <code>12/16</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "timesig": "c",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>common time</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "timesig": "c/",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c/</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td><i>alla breve</i></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "o",
-                                "data": ""
-                            }
-                        </script>
-                        <code>o</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>Perfect <em>tempus</em>, minor prolation</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "o.",
-                                "data": ""
-                            }
-                        </script>
-                        <code>o.</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>Perfect <em>tempus</em>, major prolation</td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "c3",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c3</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>Perfect <em>tempus</em>, imperfect minor <em>modus</em></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "C+3",
-                                "timesig": "c2",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c2</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>Imerfect <em>tempus</em>, imperfect minor <em>modus</em></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G+2",
-                                "timesig": "c/",
-                                "data": ""
-                            }
-                        </script>
-                        <code>c/</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td>With <em>diminution</em></td>
-                </tr>
-                <tr class="notation-example">
-                    <td class="notation-code">
-                        <script type="application/json">
-                            {
-                                "clef": "G-2",
-                                "timesig": "3/4 4/4",
-                                "data": ""
-                            }
-                        </script>
-                        <code>3/4 4/4</code>
-                    </td>
-                    <td class="notation-result">
-                    </td>
-                    <td><i>Not currently supported by Verovio</i></td>
-                </tr>
-                </tbody>
-            </table>
-        </aside>
+            <p>
+                The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
+                <code>+</code> to indicate mensural notation. (See: [[MensuralReference]])
+            </p>
+            <p>
+                The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
+                for the clef starting from the bottom.
+            </p>
+            <aside class="note">
+                <p>
+                    A value for the clef field is required to ensure the visual rendering of the notation can accurately
+                    place the pitch values on the correct line or space within a staff. Certain features in the musical
+                    notation are dependent on the second indicator.
+                </p>
+            </aside>
+            <aside class="example" title="Encoding Clefs">
+                <table class="simple" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>G-2</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C+2",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>C+2</code>
+                        </td>
+                        <td class="notation-result"><!-- image here --></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "F-4",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>F-4</code>
+                        </td>
+                        <td class="notation-result"><!-- image here --></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "g-2",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>g-2</code>
+                        </td>
+                        <td class="notation-result"><!-- image here --></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Key Signature</h4>
+            <div class="issue" data-number="35"></div>
+            <p>
+                An encoding MAY include a key signature.
+            </p>
+            <p>
+                The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
+                followed by a list of <a href="#note-names">note names</a> that indicate the altered notes.
+            </p>
+            <p>
+                The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
+                accidentals in this list SHOULD be supplied by the <a>transcriber</a>. Note names MUST NOT be repeated.
+            </p>
+            <p>
+                All notes given in the key signature MUST be interpreted as having their sounding pitch altered
+                accordingly. In cases where a note in a key signature is further altered by use of an <a>accidental</a>,
+                the <a>written pitch</a> indicated by the accidental will take precedence.
+            </p>
+            <p>
+                A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
+                signature. This character MUST NOT be followed by any note names.
+            </p>
+            <p>
+                A key signature MAY contain note names within square brackets, <code>[]</code>, to indicate that the
+                note names are not in the original source and have been supplied by the <a>transcriber</a>. Consecutively
+                supplied note names MUST be within a single set of brackets. A key signature MAY contain more than one
+                set of non-consecutive bracket groups.
+            </p>
+            <aside class="note">
+                <p>
+                    While the key signature is an optional field, the absence of a key signature in the
+                    encoding can be ambiguous. It may be interpreted either as a completely natural key signature (i.e.,
+                    C major) or it may indicate that a key signature was missing entirely from the original source.
+                    The presence of the <code>n</code> character can be used to explicitly mark a key signature with no
+                    sharps or flats. For sources where no key signature is needed, it is recommended to use
+                    the <code>n</code> key signature to make this encoding explicit.
+                </p>
+            </aside>
+            <aside class="example" title="Encoding Key Signatures">
+                <table class="simple" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C-1",
+                                    "keysig": "xFC",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>xFC</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>F and C sharp (key is D major or B minor).</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "keysig": "bBEA",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>bBEA</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>B, E, A flat (key is E-flat major or C minor).</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "keysig": "bB[EA]",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>bB[EA]</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>The E and A flats in the key signature have been supplied by the <a>transcriber</a>.</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "keysig": "n",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>n</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>The natural key signature with no accidentals.</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "keysig": "xF[C]G[D]",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>xF[C]G[D]</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>F, C, G, and D sharp. The C and D are marked as supplied by the <a>transcriber</a>.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <div class="issue" data-number="64"></div>
+            <div class="issue" data-number="70"></div>
+            <div class="issue" data-number="71"></div>
+            <div class="issue" data-number="73"></div>
+            <h4>Time Signature</h4>
+            <p>
+                An encoding MAY include a time signature.
+            </p>
+            <p>
+                There are two main categories of time signature forms, <a>Common Western Music Notation</a>
+                (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
+                If a mensuration sign is specified, the <a>clef</a> MUST specify a <code>+</code> separator to
+                indicate the encoding is in mensural notation.
+            </p>
+            <p>
+                Encodings MUST NOT mix <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural
+                time signatures.
+            </p>
+            <p>
+                <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
+                above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
+                be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. For "common" and
+                "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
+            </p>
+            <p>
+                <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
+                measures MAY be indicated by transcribing both. These MUST be separated by a single space character.
+            </p>
+            <p>
+                For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
+                imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
+                "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
+                follow the <em>tempus</em> character to indicate diminution.
+            </p>
+            <p>
+                A mensuration sign MAY include a numerical component as a proportion or augmentation,
+                indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
+                These numbers MAY be combined and separated by a <code>/</code>.
+            </p>
+            <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "2/4",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>2/4</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "12/16",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>12/16</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "c",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>c</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>common time</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "c/",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>c/</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td><i>alla breve</i></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C+3",
+                                    "timesig": "o",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>o</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>Perfect <em>tempus</em>, minor prolation</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C+3",
+                                    "timesig": "o.",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>o.</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>Perfect <em>tempus</em>, major prolation</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C+3",
+                                    "timesig": "c3",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>c3</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>Perfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "C+3",
+                                    "timesig": "c2",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>c2</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>Imerfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G+2",
+                                    "timesig": "c/",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>c/</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td>With <em>diminution</em></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "3/4 4/4",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>3/4 4/4</code>
+                        </td>
+                        <td class="notation-result">
+                        </td>
+                        <td><i>Not currently supported by Verovio</i></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
     </section>
     <section>
         <h3>Musical Notation</h3>
