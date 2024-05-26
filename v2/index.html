@@ -1810,28 +1810,21 @@
         <section>
             <h4>Shortcuts</h4>
             <section>
-                <h5>Repeated figures</h5>
-                <table class="simple">
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><code>!</code></td>
-                        <td>beginning and end of passage</td>
-                    </tr>
-                    <tr>
-                        <td><code>f</code></td>
-                        <td>repetition indication of the notes that appear within !...!</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <h5>Repeat group</h5>
                 <p>
-                    The group will be repeated as many times as the <code>f</code> appears after the second
-                    <code>!</code>. Repetition is possible only within the same measure.
+                    If one or notes or rests are repeated several times, a repeat group
+                    MAY be used.
+                </p>
+                <p>
+                    A repeat group is only valid within a single measure. To repeat entire
+                    measures, use the <a>Measure repeat</a> shortcut.
+                <p>
+                <p>
+                    To use a repeat group, mark the beginning and the end of the group with
+                    an exclamation mark character <code>!</code>. The lower-case character
+                    <code>f</code> MUST immediately follow the ending <code>!</code>, and
+                    MUST occur the number of times the figure should be repeated. The
+                    <code>f</code> MUST be specified at least once.
                 </p>
                 <aside class="example" title="Encoding Repeated Figures">
                     <table class="simple" style="width: 100%">
@@ -1855,7 +1848,7 @@
                                 <code>!{'8ABAG}!ff</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>repeat twice</td>
+                            <td>Repeat twice</td>
                         </tr>
                         </tbody>
                     </table>
