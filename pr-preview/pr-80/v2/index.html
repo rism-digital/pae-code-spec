@@ -1721,7 +1721,20 @@
             <section>
                 <h5>Repeated measures</h5>
                 <p>
-                    The symbol <code>i</code> repeats the last measure. It must always be included within bar lines.
+                    If one or more whole measures are repeated, a measure
+                    repeat MAY be used.
+                </p>
+                <p>
+                    The measure to be repeated MUST end with a bar line. The lower-case
+                    character <code>i</code> MUST occur immediately after this bar line,
+                    and MUST be immediately followed by another bar line. There MUST NOT
+                    be any other characters between the two bar lines.
+                </p>
+                <p>
+                    Any type of bar line MAY be used to begin or end a measure repeat group.
+                </p>
+                <p>
+                    Measure repeats SHOULD NOT be used with Mensural notation.
                 </p>
                 <aside class="example" title="Encoding Repeated Measures">
                     <table class="simple" style="width: 100%">
@@ -1745,7 +1758,7 @@
                                 <code>'4ABAG/i/i/</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>repeat measure twice</td>
+                            <td>Repeat measure twice</td>
                         </tr>
                         </tbody>
                     </table>
