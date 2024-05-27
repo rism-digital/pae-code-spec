@@ -199,8 +199,9 @@
                 be one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
             </p>
             <p>
-                The second character MUST be one of the characters <code>-</code> to indicate modern notation, or
-                <code>+</code> to indicate mensural notation. (See: [[MensuralReference]])
+                The second character MUST be one of the characters <code>-</code> to indicate modern notation,
+                <code>+</code> to indicate mensural notation, or <code>:</code> to indicate neume notation. Each
+                of these notations impose different interpretations on the music notation in the incipit.
             </p>
             <p>
                 The third character MUST be a numeric value in the range 1-5, and indicates the reference staff line
@@ -213,12 +214,51 @@
                     notation are dependent on the second indicator.
                 </p>
             </aside>
+            <p>
+                The clef indications imply the octave in which each note on the staff will sound and
+                its visual placement on the staff. The following table gives the indicative octave and note
+                for the bottom and top lines of each staff.
+            </p>
+            <table class="data">
+                <colgroup class="header"></colgroup>
+                <colgroup span="2"></colgroup>
+                <thead>
+                    <tr>
+                        <th>Shape and Line</th>
+                        <th>Bottom Line Octave and Note</th>
+                        <th>Top Line Octave and Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>G-2</code></td>
+                        <td><code>'E</code> (E4)</td>
+                        <td><code>''F</code> (F5)</td>
+                    </tr>
+                    <tr>
+                        <td><code>F-4</code></td>
+                        <td><code>,,G</code> (G2)</td>
+                        <td><code>,A</code> (A3)</td>
+                    </tr>
+                    <tr>
+                        <td><code>g-2</code></td>
+                        <td><code>,E</code> (E3)</td>
+                        <td><code>'F</code> (F4)</td>
+                    </tr>
+                    <tr>
+                        <td><code>C-3</code></td>
+                        <td><code>,F</code> (F3)</td>
+                        <td><code>'G</note> (G4)</>
+                    </tr>
+                </tbody>
+            </table>
             <aside class="example" title="Encoding Clefs">
                 <table class="simple" style="width: 100%;">
                     <thead>
                     <tr>
                         <th>Code</th>
                         <th>Notation</th>
+                        <th>Remarks</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -232,8 +272,8 @@
                             </script>
                             <code>G-2</code>
                         </td>
-                        <td class="notation-result">
-                        </td>
+                        <td class="notation-result"></td>
+                        <td>G clef ("treble")</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -245,7 +285,8 @@
                             </script>
                             <code>C+2</code>
                         </td>
-                        <td class="notation-result"><!-- image here --></td>
+                        <td class="notation-result"></td>
+                        <td>C clef in Mensural</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -257,7 +298,8 @@
                             </script>
                             <code>F-4</code>
                         </td>
-                        <td class="notation-result"><!-- image here --></td>
+                        <td class="notation-result"></td>
+                        <td>F clef ("bass")</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -269,7 +311,21 @@
                             </script>
                             <code>g-2</code>
                         </td>
-                        <td class="notation-result"><!-- image here --></td>
+                        <td class="notation-result"></td>
+                        <td>Octave G clef</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G:2",
+                                    "data": ""
+                                }
+                            </script>
+                            <code>g-2</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Neume G clef</td>
                     </tr>
                     </tbody>
                 </table>
@@ -314,6 +370,10 @@
                     the <code>n</code> key signature to make this encoding explicit.
                 </p>
             </aside>
+            <p>
+                For neume notation, the key signature SHOULD be omitted. Any alterations to individual pitches SHOULD
+                be encoded as accidentals.
+            </p>
             <aside class="example" title="Encoding Key Signatures">
                 <table class="simple" style="width:100%">
                     <thead>
@@ -437,6 +497,9 @@
                 A mensuration sign MAY include a numerical component as a proportion or augmentation,
                 indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
                 These numbers MAY be combined and separated by a <code>/</code>.
+            </p>
+            <p>
+                For neume notation, the time signature SHOULD be omitted.
             </p>
             <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
                 <table class="simple" style="width: 100%">
@@ -806,6 +869,10 @@
                 <abbr title="Common Western Music Notation">CWMN</abbr> or Mensural notation. Mensural notation
                 MUST NOT use durations of <code>3</code>, <code>5</code>, or <code>7</code>.
             </p>
+            <p>
+                The duration value for neume notation MAY be specified, but MUST be ignored by interpreters.
+                All notes are given equal duration in neume notation.
+            </p>
             <figure id="note-duration-map">
                 <table class="data" style="width: 100%">
                     <colgroup class="header"></colgroup>
@@ -978,6 +1045,9 @@
             <p>
                 For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
                 alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
+            </p>
+            <p>
+                For neume notation, all durations SHOULD be omitted.
             </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
