@@ -1578,6 +1578,37 @@
                 <h5>Grace Notes</h5>
                 <div class="issue" data-number="22"></div>
                 <div class="issue" data-number="75"></div>
+                <p>
+                    There are two types of grace note: Acciaccatura and appogiatura.
+                </p>
+                <p>
+                    For a single acciaccatura the lower-case character <code>g</code>
+                    MUST be used. This character MUST be specified in the order given above;
+                    that is, it MUST precede the note name, and MUST also precede all other
+                    optional attributes of the note. Consecutive single acciaccatura
+                    SHOULD NOT occur.
+                </p>
+                <p>
+                    There are two methods used to encode appogiatura.
+                </p>
+                <p>
+                    For a single appogiatura, the lower-case character <code>q</code>
+                    MUST be used. This character MUST be specified in the order given above;
+                    that is, it MUST precede the note name, and MUST also precede all other
+                    optional attributes of the note. Consecutive single appogiatura
+                    MAY occur.
+                </p>
+                <p>
+                    For multiple consecutive appogiatura, the appogiatura group MAY be used.
+                    The lower-case characters <code>qq</code> MUST be given as the first
+                    characters in the first note of the group, and the lower-case character
+                    <code>r</code> MUST be the last character in the final note of the group.
+                    There MUST be more than one note in a appogiatura group.
+                </p>
+                <p>
+                    The <code>r</code> character MUST follow the closing beam character
+                    that is part of the appogiatura group.
+                </p>
                 <aside class="example" title="Encoding Grace Notes">
                     <table class="simple" style="width: 100%">
                         <thead>
@@ -1593,39 +1624,39 @@
                                 <script type="application/json">
                                     {
                                         "clef": "G-2",
-                                        "data": "'2A''gC{''8D'8B}''4C"
+                                        "data": "'4Ag''C{''8D'8B}"
                                     }
                                 </script>
-                                <code>g</code>
+                                <code>'4Ag''C{''8D'8B}</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>acciaccatura (without rhythmic value, precedes the note name)</td>
+                            <td>Acciaccatura (without rhythmic value)</td>
                         </tr>
                         <tr class="notation-example">
                             <td class="notation-code">
                                 <script type="application/json">
                                     {
                                         "clef": "G-2",
-                                        "data": "'2A'gB{'8A'8G}'4A"
+                                        "data": "'4Aq8'B{'8A'8G}"
                                     }
                                 </script>
-                                <code>q</code>
+                                <code>'4Aq8'B{'8A'8G}</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>appoggiatura (with rhythmic value, precedes the note name)</td>
+                            <td>Appoggiatura (with rhythmic value)</td>
                         </tr>
                         <tr class="notation-example">
                             <td class="notation-code">
                                 <script type="application/json">
                                     {
                                         "clef": "G-2",
-                                        "data": "'2A''qq{'8B''8C}r{''8D'8B}''4C"
+                                        "data": "'4Aqq''{'8B''8C}r{''8D'8B}"
                                     }
                                 </script>
-                                <code>qq..r</code>
+                                <code>'4Aqq''{'8B''8C}r{''8D'8B}</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>double appoggiatura, slide, or multiple appoggiatura (with rhythmic value)</td>
+                            <td>Double appoggiatura, slide, or multiple appoggiatura</td>
                         </tr>
                         </tbody>
                     </table>
