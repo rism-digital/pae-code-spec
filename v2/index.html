@@ -45,6 +45,15 @@
             license: null,
             shortName: "paec",
             maxTocLevel: 4,
+            logos: [
+                {
+                  src: "/static/img/pae-logo.svg",
+                  alt: "Plaine & Easie Code Logo",
+                  width: 200,
+                  // height: 42,
+                  id: "pae-logo",
+                },
+            ],
             localBiblio: {
                 "ScientificPitch": {
                     authors: ["Young, Robert W"],
@@ -60,20 +69,6 @@
                     publisher: "Computerized Mensural Music Editing",
                     rawDate: "May 2004"
                 },
-                "BrookGould1964": {
-                    authors: ["Brook, Barry S.", "Gould, Murray"],
-                    title: "Notating Music with Ordinary Typewriter Characters: A Plaine and Easie Code System for Musicke",
-                    href: "https://www.jstor.org/stable/23504533",
-                    publisher: "Fontes Artis Musicae, vol. 11, no. 3, 142–59",
-                    rawDate: "1964"
-                },
-                "Brook1965": {
-                    authors: ["Brook, Barry S."],
-                    title: "The Simplified \"Plaine and Easie Code System\" for Notating Music: A Proposal for International Adoption",
-                    href: "https://www.jstor.org/stable/23504707",
-                    publisher: "Fontes Artis Musicae, vol 12, no. 2/3, 156–60",
-                    rawDate: "1965"
-                },
                 "MARC21": {
                     authors: ["Network Development and MARC Standards Office"],
                     title: "MARC 21 Format for Bibliographic Data",
@@ -87,6 +82,20 @@
                   href: "https://repository.ifla.org/bitstream/123456789/2880/1/UNIMARC_B_ONLINE_V100_2023_PUBLISHED.pdf",
                   publisher: "International Federation of Library Associations and Institutions",
                   rawDate: "2023"
+                },
+                "BrookGould1964": {
+                    authors: ["Brook, Barry S.", "Gould, Murray"],
+                    title: "Notating Music with Ordinary Typewriter Characters: A Plaine and Easie Code System for Musicke",
+                    href: "https://www.jstor.org/stable/23504533",
+                    publisher: "Fontes Artis Musicae, vol. 11, no. 3, 142–59",
+                    rawDate: "1964"
+                },
+                "Brook1965": {
+                    authors: ["Brook, Barry S."],
+                    title: "The Simplified \"Plaine and Easie Code System\" for Notating Music: A Proposal for International Adoption",
+                    href: "https://www.jstor.org/stable/23504707",
+                    publisher: "Fontes Artis Musicae, vol 12, no. 2/3, 156–60",
+                    rawDate: "1965"
                 }
             }
         };
@@ -1810,28 +1819,20 @@
         <section>
             <h4>Shortcuts</h4>
             <section>
-                <h5>Repeated figures</h5>
-                <table class="simple">
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><code>!</code></td>
-                        <td>beginning and end of passage</td>
-                    </tr>
-                    <tr>
-                        <td><code>f</code></td>
-                        <td>repetition indication of the notes that appear within !...!</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <h5>Repeat group</h5>
                 <p>
-                    The group will be repeated as many times as the <code>f</code> appears after the second
-                    <code>!</code>. Repetition is possible only within the same measure.
+                    If one or notes or rests are repeated several times, a repeat group
+                    MAY be used.
+                </p>
+                <p>
+                    A repeat group is only valid within a single measure.
+                <p>
+                <p>
+                    To use a repeat group, mark the beginning and the end of the group with
+                    an exclamation mark character <code>!</code>. The lower-case character
+                    <code>f</code> MUST immediately follow the ending <code>!</code>, and
+                    MUST occur the number of times the figure should be repeated. The
+                    <code>f</code> MUST be specified at least once.
                 </p>
                 <aside class="example" title="Encoding Repeated Figures">
                     <table class="simple" style="width: 100%">
@@ -1855,7 +1856,7 @@
                                 <code>!{'8ABAG}!ff</code>
                             </td>
                             <td class="notation-result"></td>
-                            <td>repeat twice</td>
+                            <td>Repeat twice</td>
                         </tr>
                         </tbody>
                     </table>
