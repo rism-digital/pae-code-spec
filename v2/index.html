@@ -1450,6 +1450,96 @@
         <section>
             <h4>Bar Lines</h4>
             <div class="issue" data-number="44"></div>
+            <p>
+                Bar lines MUST be indicated using one of the code options given in [[[#barlines-spec]]].
+            </p>
+            <p>
+                Bar lines SHOULD be inserted at intervals that correspond to the current time signature.
+            </p>
+            <p>
+                Neume and Mensural notations SHOULD NOT use bar lines.
+            </p>
+            <figure id="barlines-spec">
+                <table class="data" style="width: 100%">
+                    <colgroup class="header"></colgroup>
+                    <colgroup span="3"></colgroup>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "/"
+                                    }
+                                </script>
+                                <code>/</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Single bar line</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "//"
+                                    }
+                                </script>
+                                <code>//</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "//:"
+                                    }
+                                </script>
+                                <code>//:</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the right</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "://"
+                                    }
+                                </script>
+                                <code>://</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the left</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "://:"
+                                    }
+                                </script>
+                                <code>://:</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the left and on the right</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <figcaption>Types of bar lines</figcaption>
+            </figure>
             <aside class="example" title="Encoding Bar Lines">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1465,10 +1555,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "/"
+                                    "data": "ABC/DEF"
                                 }
                             </script>
-                            <code>/</code>
+                            <code>ABC/DEF</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>bar line</td>
@@ -1478,7 +1568,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "//"
+                                    "data": "ABC/DEF//"
                                 }
                             </script>
                             <code>//</code>
@@ -1491,40 +1581,27 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "//:"
+                                    "data": "ABC//:DEF://"
                                 }
                             </script>
 
-                            <code>//:</code>
+                            <code>ABC//:DEF://</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the right</td>
+                        <td>Section repeat</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "://"
+                                    "data": "//:ABC://:DEF://"
                                 }
                             </script>
                             <code>://</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the left</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "://:"
-                                }
-                            </script>
-                            <code>://:</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the left and on the right</td>
+                        <td>Two repeated sections</td>
                     </tr>
                     </tbody>
                 </table>
