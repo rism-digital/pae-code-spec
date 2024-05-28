@@ -1092,10 +1092,6 @@
                 appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
                 the duration is extended by half again.
             </p>
-            <p>
-                For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
-                alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
-            </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1131,20 +1127,6 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G+2",
-                                    "timesig": "o",
-                                    "data": "9A1.A1A9A"
-                                }
-                            </script>
-                            <code>9A1.A1A9A</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Mensural dot of division</td>
                     </tr>
                     </tbody>
                 </table>
