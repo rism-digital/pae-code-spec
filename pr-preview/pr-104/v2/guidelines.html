@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Plaine & Easie Encoding Guidelines</title>
+    <script
+            src="https://www.w3.org/Tools/respec/respec-w3c"
+            class="remove"
+            defer
+    ></script>
+    <script
+            src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js"
+            defer
+    ></script>
+    <script class="remove">
+        // All config options at https://respec.org/docs/
+        var respecConfig = {
+            thisVersion: "https://rism.digital/plaine-and-easie/v2/",
+            latestVersion: "https://rism.digital/plaine-and-easie/v1/",
+            editors: [{
+                name: "Andrew Hankinson",
+                company: "RISM Digital Center",
+                url: "https://rism.digital",
+                orcid: "0000-0003-2663-0003"
+            }, {
+                name: "Balázs Mikusi",
+                company: "RISM Editorial Center",
+                url: "https://rism.info",
+                orcid: "0000-0001-9662-4675"
+            }, {
+                name: "Laurent Pugin",
+                company: "RISM Digital Center",
+                url: "https://rism.digital",
+                orcid: "0000-0002-9525-4331"
+            }, {
+                name: "Jennifer Ward",
+                company: "RISM Editorial Center",
+                url: "https://rism.info",
+                orcid: "0000-0001-5740-3140"
+            }],
+            github: "https://github.com/rism-digital/pae-code-spec",
+            edDraftURI: null,
+            historyURI: null,
+            license: null,
+            wg: "Plaine & Easie Specification Editors",
+            wgURI: "https://rism.digital/plaine-and-easie/",
+            shortName: "paec",
+            maxTocLevel: 3
+        };
+    </script>
+    <script type="application/javascript" src="../static/js/verovio-rendering.js"></script>
+    <style>
+        /* custom styles for inline code to make it stand out */
+        p code
+        {
+            color: #c63501 !important;
+            background: ghostwhite;
+            padding: 2px 4px;
+        }
+
+        svg .issue, svg .note, svg .example, svg .advisement, svg .amendment, svg .correction, svg .addition {
+            all: revert !important;
+        }
+    </style>
+</head>
+<body>
+<p class="copyright">
+    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+</p>
+<section id="abstract">
+    <p></p>
+</section>
+<section class="informative">
+    <h2>Introduction</h2>
+    <div class="issue" data-number="30"></div>
+    <p>
+        These cataloging guidelines are written as an accompaniment to the Plaine &amp; Easie Code (PAEC) specification.
+        In previous editions of the specifications, the formal description of the code, and the guidelines for its
+        interpretation, were given as a single document. Although convenient as a reference, it also posed significant
+        challenges for the interpretation of what was actually <em>required</em>, and what was <em>recommended</em>.
+        In the new edition of the PAEC, the specification document provides a formal description of a valid PAEC
+        encoding, while this document will provide recommendations on the application of the code to incipit capture.
+    </p>
+</section>
+<section>
+    <h2>Considerations for Incipit Capture</h2>
+    <blockquote>
+        <p>
+            The thematic index derives its superiority over non-thematic lists be cause it can not only arrange
+            a body of music in a systematic order, but it provides, at the same time, positive identification
+            in a minimum of space and symbols. It does so by the use of the "incipit," or musical citation
+            of the opening notes. For most music, an incipit of no more than a dozen pitches is required.
+            When rhythmic values accompany the pitches, the incipit's "uniqueness quotient" is astonishingly high.
+        </p>
+
+        <p>
+            A musical work, printed or manuscript, may be identified by composer, title, opus number, key,
+            instrumentation, movement headings, first line of text, date, publisher, dedicatee, plate number, etc.
+            No one of these, indeed no combination of these, can provide as certain an identification as an incipit.
+            For example, an anonymous 15th-century Latin motet may also appear as a French chanson entitled
+            "L'amant douloureux." A composer may write a dozen trio sonatas in D major, three of them with the
+            same tempo sequence. A concert aria found in a library in Vienna, in the key of F, may turn up in
+            Prague in the key of G, and with added horn parts. Two printings of a set of quartets may be given
+            different plate numbers by the same publisher. Two publications of the same opera, in different cities,
+            may bear different titles, and dedications to different patrons. Finally, a set of six symphonies
+            may be published in Amsterdam with one opus number, in Offenbach with another, and in London within
+            a series of Periodical Overtures without any at all, and under another composer's name.
+        </p>
+
+        <p>
+            By contrast, the presence of the incipit avoids confusion. Identification is certain. Even transposed
+            works can be readily identified in properly organized incipit files. In dealing with anonymi and with
+            works of disputed authorship, the incipit becomes indispensable-as a catalog without them will readily
+            demonstrate. In short, the collection, classification, transposition, and lexicographical ordering
+            of the incipits into thematic catalogs have enabled scholars to solve a myriad of otherwise insoluble
+            problems, and have provided musicians, librarians, students, biographers, and program annotators with
+            an invaluable reference tool.
+        </p>
+        <footer>
+            <cite>
+                Brook, Barry S. 1973. <em>A Tale of Thematic Catalogues</em>.
+                Notes, vol. 29, no. 3. pp. 407–15.
+            </cite>
+        </footer>
+    </blockquote>
+    <p>
+        The cataloging of musical incipits in RISM is primarily intended for the purposes of identification and
+        disambiguation, where all other bibliographic means of doing so are not sufficient to uniquely identify a
+        musical piece.
+    </p>
+    <p>
+        The most important component of incipit cataloging is the capture of identifiable musical material.
+        This will, in most cases, be the opening measures of a piece. It may, occasionally, be the entrance
+        of a melodic instrument when the opening of the piece starts with otherwise ambiguous accompaniment, such
+        as a ground bass. In rare instances, it may be the entrance of a theme that is many measures in.
+    </p>
+    <p>
+        In all cases, the encoder of the incipit must keep in mind the primary motivations of identification
+        and disambiguation when choosing the musical content to capture as the incipit. It does not serve the users
+        of the catalog to encode a unique part of a musical work when all other instances of the incipit in the
+        catalog identify the opening measures. The uniqueness of the cataloging simply means that the incipit will not
+        group with like, and it will thus be "lost" in the larger catalog.
+    </p>
+    <p>
+        The capture of melodic and rhythmic qualities is of primary importance. Considerations of visual
+        appearance, phrasing, polyphony, or other special indications are of secondary importance, or should be ignored
+        altogether, when capturing incipits. While it may seem important to capture for any single given source, it
+        can also pose significant challenges to positive identification or disambiguation when compared to all other
+        sources. Other means of capture, such as analytical notes fields, may be a more suitable mechanism for
+        accurately describing these features.
+    </p>
+</section>
+<section>
+    <h2>The Plaine &amp; Easie Code</h2>
+    <p>
+        From the beginning, the PAEC was purpose-built for the capture of identifying incipits. It could be written
+        by hand, or typed on a standard mechanical typewriter. Unlike other codes, the goal of the PAEC was to be
+        simple. Indeed, the first version of the PAEC, issued in 1964, was subsequently simplified in 1965, to "make
+        the code more usable on an international basis." (Brook, Fontes, 1965). The current PAEC specification is based
+        primarily on this simplified version.
+    </p>
+    <p>
+        In the intervening years since the introduction of the PAEC, a number of changes and additional features have
+        been introduced. In some cases these additions have significantly improved the coding scheme; in other cases
+        the additions have ultimately distracted from the central purpose of the PAEC when put into practice. The
+        reasons for these changes are not always known. They may have been in response to a specific need, or they may
+        have been added as a "nice-to-have" without an identified use case. Whatever the reason, they have been
+        available and widely adopted and standardized, making it difficult to introduce retrospective changes to the
+        coding system to address problems and clarify ambiguities. With no clear versioning scheme in place, the
+        previous version is now no longer updated, and is now known as "Version 1".
+    </p>
+    <p>
+        The new version, Version 2, contains several backwards-incompatible changes from Version 1. It is not the case
+        that incipits in Version 1 need to be "upgraded," nor is it a problem to have software or other standards
+        support PAEC Version 1. It is simply a way to differentiate the two versions. In most cases, unless the
+        version of the incipit is plainly stated as being Version 2, it should be assumed that it is supposed to conform
+        to Version 1 of the specification.
+    </p>
+    <section>
+        <h3>Version 2</h3>
+        <p>
+            The goals of the effort behind Version 2 were to clarify ambiguities in the previous specification, and
+            to make the PAEC more suitable for machine processing of incipits. Since the previous version was developed
+            before the World Wide Web, and even before there was software available to render the code into a graphical
+            representation, several parts of the specification existed that made it difficult to unambiguously
+            and reliably process the data into the notation it was intended to represent.
+        </p>
+        <p>
+            Version 2 of the specification is written to make the requirements of the encoding system clear, to help
+            software developers to build applications that can process the data in a uniform way. The requirements are
+            given using [RFC2119], which provide keywords, such as "MUST" and "MAY", to indicate required or optional
+            features, respectively. Most of the sections in the specification have also been expanded to include
+            an actual description of the code, as well as illustrative examples.
+        </p>
+    </section>
+    <section>
+        <h3>Maintenance</h3>
+        <p>
+            This version of the code is maintained by the International Association of Music Libraries, Archives and
+            Documentation Centres (IAML) and the Répertoire International des Sources Musicales (RISM) for use as an
+            exchange format in the library environment.
+        </p>
+    </section>
+</section>
+<section>
+    <h2>General Guidelines for Incipit Capture</h2>
+    <p>
+        Music incipits help identify works and facilitate the comparison of historical musical sources.
+    </p>
+    <p>
+        Which music incipits to enter depends on the kind of music. Best practice for instrumental music is to enter
+        incipits for the violin or the highest part. For vocal music, enter the highest voice plus the first violin or
+        the highest instrumental part.
+    </p>
+    <p>
+        The incipit should be neither too long nor too short, and make as much musical sense as possible. It should
+        contain at least 3 bars or 10 non-repeated notes.
+    </p>
+    <p>
+        If the music is written for a transposing instrument, notate the incipit at sounding pitch.
+    </p>
+</section>
+</body>
+</html>
