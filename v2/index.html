@@ -1845,9 +1845,37 @@
         </section>
         <section>
             <h4>Trill</h4>
-            <p class="advisement">
-                TODO: Expand on trill encoding
+            <p>
+                The lower-case character <code>t</code> is used to indicate
+                a trilled note. The <code>t</code> MUST immediately follow the
+                note name.
             </p>
+            <aside class="example">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2Gt'1C"
+                                }
+                            </script>
+                            <code>2Gt</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Fermata</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
         </section>
         <section>
             <h4>Fermata</h4>
@@ -1875,7 +1903,7 @@
                                     "data": "2G1(C)"
                                 }
                             </script>
-                            <code>4G1''pC</code>
+                            <code>2G1''pC</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Fermata</td>
