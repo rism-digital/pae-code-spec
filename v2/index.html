@@ -1612,108 +1612,111 @@
         </section>
         <section>
             <div class="issue" data-number="28"></div>
-                <h4>Tied Notes</h4>
-                <p>
-                    Tied notes MUST be indicated with an underscore character <code>_</code>.
-                    Ties MUST occur between successive notes with the same pitch and octave.
-                    A tie MUST NOT occur between a note and a rest.
-                </p>
-                <p>
-                    The underscore character MUST occur on the first note of the tie.
-                <p>
-                <p>
-                    Tied notes MAY occur over bar lines.
-                </p>
-                <p>
-                    The underscore character MUST NOT be used to indicate slurs, phrase
-                    marks, or ligatures.
-                </p>
-                <aside class="example" title="Encoding Ties">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "FG+GA"
-                                    }
-                                </script>
-                                <code>FG_GA</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Tied notes within a bar</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "2''G+/G"
-                                    }
-                                </script>
-                                <code>2''G_/G</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Tied notes over a bar line</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "1''G+/G+/G"
-                                    }
-                                </script>
-                                <code>2''G_/G_/G</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Successive tied notes</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
-            </section>
+            <h4>Tied Notes</h4>
+            <p>
+                Tied notes MUST be indicated with an underscore character <code>_</code>.
+                Ties MUST occur between successive notes with the same pitch and octave.
+                A tie MUST NOT occur between a note and a rest.
+            </p>
+            <p>
+                The underscore character MUST occur on the first note of the tie.
+            <p>
+            <p>
+                Tied notes MAY occur over bar lines.
+            </p>
+            <p>
+                The underscore character MUST NOT be used to indicate slurs, phrase
+                marks, or ligatures.
+            </p>
+            <aside class="example" title="Encoding Ties">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "FG+GA"
+                                }
+                            </script>
+                            <code>FG_GA</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tied notes within a bar</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2''G+/G"
+                                }
+                            </script>
+                            <code>2''G_/G</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tied notes over a bar line</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "1''G+/G+/G"
+                                }
+                            </script>
+                            <code>2''G_/G_/G</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Successive tied notes</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Grace Notes</h4>
+            <p>
+                There are two types of grace note: Acciaccatura and appogiatura.
+            </p>
+            <p>
+                For a single acciaccatura the lower-case character <code>g</code>
+                MUST be used. This character MUST be specified in the order given above;
+                that is, it MUST precede the note name, and MUST also precede all other
+                optional attributes of the note. Consecutive single acciaccatura
+                SHOULD NOT occur.
+            </p>
+            <p>
+                For a single appogiatura note, the lower-case character <code>q</code>
+                MUST be used. This character MUST be specified in the order given above;
+                that is, it MUST precede the note name, and MUST also precede all other
+                optional attributes of the note. Consecutive single appogiatura
+                SHOULD NOT occur.
+            </p>
             <section>
-                <h4>Grace Notes</h4>
+                <h5>Appogiatura Group</h5>
                 <p>
-                    There are two types of grace note: Acciaccatura and appogiatura.
+                    For multiple consecutive appogiatura notes, the appogiatura group SHOULD
+                    be used. The lower-case characters <code>qq</code> MUST be given as the first
+                    characters before the first note of the group, and the lower-case character
+                    <code>r</code> MUST be the last character in the final note of the group.
+                    There MUST be more than one note in a appogiatura group.
                 </p>
                 <p>
-                    For a single acciaccatura the lower-case character <code>g</code>
-                    MUST be used. This character MUST be specified in the order given above;
-                    that is, it MUST precede the note name, and MUST also precede all other
-                    optional attributes of the note. Consecutive single acciaccatura
-                    SHOULD NOT occur.
+                    The <code>r</code> character MUST follow the closing beam character
+                    that is part of the appogiatura group.
                 </p>
                 <p>
-                    For a single appogiatura note, the lower-case character <code>q</code>
-                    MUST be used. This character MUST be specified in the order given above;
-                    that is, it MUST precede the note name, and MUST also precede all other
-                    optional attributes of the note. Consecutive single appogiatura
-                    SHOULD NOT occur.
+                    An appogiatura group with beams MAY occur within a non-appogiatura
+                    beam.
                 </p>
-                <section>
-                    <h5>Appogiatura Group</h5>
-                    <p>
-                        For multiple consecutive appogiatura notes, the appogiatura group SHOULD
-                        be used. The lower-case characters <code>qq</code> MUST be given as the first
-                        characters before the first note of the group, and the lower-case character
-                        <code>r</code> MUST be the last character in the final note of the group.
-                        There MUST be more than one note in a appogiatura group.
-                    </p>
-                    <p>
-                        The <code>r</code> character MUST follow the closing beam character
-                        that is part of the appogiatura group.
-                    </p>
-                </section>
             </section>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
@@ -1763,6 +1766,19 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Appoggiatura group</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "{'8Aqq''{'8B''8C}r''8D}"
+                                }
+                            </script>
+                            <code>{'8Aqq''{'8B''8C}r''8D}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Beamed appoggiatura group within an outer beam</td>
                     </tr>
                     </tbody>
                 </table>
