@@ -134,49 +134,52 @@
 <section id="introduction">
     <h1>Introduction</h2>
     <p>
-        The Plaine &amp; Easie Code was first defined in 1964-5 by Barry S. Brook and Murray Gould
+        The Plaine &amp; Easie Code was first defined in 1964 by Barry S. Brook and Murray Gould
         [[BrookGould1964]][[Brook1965]]. Perhaps the most important design feature of this system
-        was that it could represent music notation with "ordinary" typewriter characters, in order
-        to be put on index cards to build a thematic index to accompany the bibliographic descriptions.
+        was that it could represent music notation with "ordinary" typewriter characters, to be
+        put on index cards to build a thematic index to accompany bibliographic source descriptions.
     </p>
     <p>
         The specifics of the code system have changed over time, but, until the present specification,
-        have not been clearly versioned. Features have been added to the Plaine &amp; Easie Code, and
-        the expected publication medium has shifted from index cards to computer systems. These changes
-        have resulted in incipits that may have conformed to the system at the time, but which are now
-        at odds with accepted practices and methods.
+        the changes have not been clearly versioned. Features have been added to the Plaine &amp; Easie
+        Code and the expected publication medium has shifted from index cards to computer systems. These
+        changes have resulted in incipits that may have conformed to the specifications at the time, but
+        which are now at odds with current practices and methods.
     </p>
     <p>
         The present specifications seeks to establish a clearly defined "Version 2"
         of the Plaine &amp; Easie Code. This is an attempt to distinguish it from "Version 1" of the Code,
-        which is now fixed at its last revised date. Incipits encoded to the specifications
+        which is now fixed at its last revision date. Incipits encoded to the specifications
         given in Version 1 are still valid, and will continue to be.
     </p>
     <p>
         Version 2 of the Plaine &amp; Easie Code is written in a specification language that attempts
         to clearly communicate the normative requirements of the Code. This is a recognition that the
-        main "audience" for the code is no longer a human reading the code off an index card, but rather
-        computer systems that need clear definitions of the code so that they can accurately process the
-        code for search, retrieval, automated comparison, and notation display. The normative language
-        of the new version is designed to help build systems that conform to uniform methods of data
-        processing.
+        a significant "audience" for the code is data processing systems, and by extension, the
+        programmers that create them. This audience needs clear definitions of the code so that it
+        can be accurately and uniformly processed for search, retrieval, automated comparison,
+        and notation display.
     </p>
     <p>
         At the same time, however, it must be recognized that the core of this code must remain "Plaine"
-        and "Easie". Although now couched in normative language, the present specification does not
-        deviate far from the earlier specifications—indeed, some changes that are introduced in this
-        new version are drawn from the original papers by Brook and Gould. In this way, the present
-        specification is an attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave
-        the cowpaths"</a>; that is, to normalize and standardize existing practices.
+        and "Easie" to facilitate easy capture of musical notation by catalogers. Although now couched
+        in normative language, the present specification does not deviate far from the earlier
+        specifications—indeed, some changes that are introduced in this new version are drawn from
+        the original papers by Brook and Gould. In this way, the present specification is an
+        attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>;
+        that is, to normalize and standardize existing practices.
     </p>
     <p>
-        The Plaine &amp; Easie Code is maintained by the International Association of Music Libraries,
-        Archives and Documentation Centres (IAML) and the Répertoire International des Sources Musicales
-        (RISM) for use as an exchange format in the library environment.
+        Catalogers who are familiar with Version 1 of the Plaine &amp; Easie Code may wish to consult
+        the <a href="/v2/changes.html">Change Log</a> to see what has changed in Version 2.
+    </p>
+    <p>
+        The Plaine &amp; Easie Code is maintained by the Digial and Editorial Centers of the
+        Répertoire International des Sources Musicales (RISM), and by the International Association of Music Libraries,
+        Archives and Documentation Centres (IAML) for use as an exchange format in the library environment.
     </p>
 </section>
 <section id="terminology">
-    <div class="issue" data-number="69"></div>
     <h2>Terminology</h2>
     <dl>
         <dt><dfn>Circle of fifths</dfn></dt>
@@ -342,7 +345,6 @@
         </section>
         <section>
             <h4>Key Signature</h4>
-            <div class="issue" data-number="35"></div>
             <p>
                 An encoding MAY include a key signature.
             </p>
@@ -357,14 +359,15 @@
             <p>
                 All notes given in the key signature MUST be interpreted as having their sounding pitch altered
                 accordingly. In cases where a note in a key signature is further altered by use of an <a>accidental</a>,
-                the <a>written pitch</a> indicated by the accidental will take precedence.
+                directly on the note, the <a>written pitch</a> and <a>sounding pitch</a> indicated by the accidental
+                will take precedence.
             </p>
             <p>
                 A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
-                signature. This character MUST NOT be followed by any note names.
+                signature, i.e., C Major or A minor. This character MUST NOT be followed by any note names.
             </p>
             <p>
-                A key signature MAY contain note names within square brackets, <code>[]</code>, to indicate that the
+                A key signature MAY contain note names within square brackets <code>[]</code> to indicate that the
                 note names are not in the original source and have been supplied by the <a>transcriber</a>. Consecutively
                 supplied note names MUST be within a single set of brackets. A key signature MAY contain more than one
                 set of non-consecutive bracket groups.
@@ -380,7 +383,7 @@
                 </p>
             </aside>
             <p>
-                For neume notation, the key signature SHOULD be omitted. Any alterations to individual pitches SHOULD
+                For neume notation, the key signature MUST be omitted. Any alterations to individual pitches MUST
                 be encoded as accidentals.
             </p>
             <aside class="example" title="Encoding Key Signatures">
@@ -472,6 +475,7 @@
             <div class="issue" data-number="70"></div>
             <div class="issue" data-number="71"></div>
             <div class="issue" data-number="73"></div>
+            <div class="issue" data-number="103"></div>
             <h4>Time Signature</h4>
             <p>
                 An encoding MAY include a time signature.
@@ -483,14 +487,18 @@
                 indicate the encoding is in mensural notation.
             </p>
             <p>
-                Encodings MUST NOT mix <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural
-                time signatures.
+                For neume notation, the time signature MUST be omitted.
+            </p>
+            <p>
+                <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural time signatures MUST NOT
+                be mixed on the same staff.
             </p>
             <p>
                 <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
                 above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
-                be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. For "common" and
-                "alla breve" key signatures, use <code>c</code> and <code>c/</code>, respectively.
+                be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. The <code>c</code>
+                ("common", or <code>4/4</code>) and <code>c/</code> ("alla breve", or <code>2/4</code>) characters
+                MAY be used.
             </p>
             <p>
                 <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
@@ -506,9 +514,6 @@
                 A mensuration sign MAY include a numerical component as a proportion or augmentation,
                 indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
                 These numbers MAY be combined and separated by a <code>/</code>.
-            </p>
-            <p>
-                For neume notation, the time signature SHOULD be omitted.
             </p>
             <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
                 <table class="simple" style="width: 100%">
@@ -678,47 +683,86 @@
     <section>
         <h3>Musical Notation</h3>
         <div class="issue" data-number="24"></div>
-        <div class="issue" data-number="43"></div>
-        <div class="issue" data-number="56"></div>
+        <div class="issue" data-number="97"></div>
         <section>
             <h4>Structure</h4>
             <p>
                 The Musical Notation section of an encoding is given as a single line of characters. These characters
-                represent the main body of the notation encoding. To represent complex notational figures, such as
-                notes, chords, beams, or tuplets, a group of characters can act as a single <a>logical unit</a>.
+                represent a staff of musical notation. To represent complex notational figures, such as
+                notes, chords, beams, or tuplets, groups of characters can act as a single <a>logical unit</a>.
             </p>
             <p>
-                A musical note is the single most complex logical unit within the <abbr>PAEC</abbr>. It consists of
-                one or more characters representing a note on a musical staff. Many characters representing a note
-                are optional, but where one or more character for a note occurs, they MUST occur in the following
-                order:
+                A musical note is the most complex logical unit. It consists of one or more characters representing
+                a note on a musical staff. Many characters representing a note are optional—the only required character
+                is the note name—but where one or more characters for a note occurs, they MUST occur in the following order:
             </p>
-            <figure>
-                <ol>
-                    <li>(optional) The grace note character, or the grace note group characters;</li>
-                    <li>(optional) The octave character(s);</li>
-                    <li>(optional) The duration character, followed by a duration dot character;</li>
-                    <li>(optional) The accidental character;</li>
-                    <li>(optional) The opening fermata character;</li>
-                    <li>(<strong>required</strong>) The note name character;</li>
-                    <li>(optional) The closing fermata character;</li>
-                    <li>(optional) The trilled note character;</li>
-                    <li>(optional) The chord indicator character;</li>
-                    <li>(optional) The grace note group end character.</li>
-                </ol>
-                <figcaption>Order of characters within a note</figcaption>
-            </figure>
+            <table class="data">
+                <colgroup class="header"></colgroup>
+                <colgroup span="2"></colgroup>
+                <thead>
+                    <tr>
+                        <th>Note Feature</th>
+                        <th>Characters</th>
+                        <th>Requirement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Grace Note</td>
+                        <td><code>[qg]</code></td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>Octave</td>
+                        <td><code>[,']</code></td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>Duration / Duration Dot</td>
+                        <td><code>[0-9][.]</code></td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>Accidental</td>
+                        <td><code>[xb]</code></td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>Fermata</td>
+                        <td><code>[p]</code></td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>Note Name</td>
+                        <td><code>[A-G]</code></td>
+                        <td><strong>Required</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Trill</td>
+                        <td><code>[t]</code></td>
+                        <td>Optional</td>
+                    </tr>
+                </tbody>
+                <caption>Order of characters representing a note</caption>
+            </table>
             <p>
                 Logical units MAY be nested to represent complex notational features; for example, a beam will
                 contain two or more notes. All logical units of the same kind MUST be closed before a new one is
                 started (i.e., no nested groups of the same kind).
             </p>
+            <aside class="note">
+                <p>
+                    There is one exception to this nested groups requirement: A group of beamed notes marked as grace notes can
+                    occur within an outer beaming group. This is explained further in the beaming section.
+                </p>
+            </aside>
             <p>
-                Many logical units use the same character(s) to represent the same feature. Notes and rests,
-                for example, both make use of the duration character(s).
+                Many logical units use the same character(s) to represent the same musical concept. Notes and rests,
+                for example, both make use of the same duration character(s).
             </p>
             <p>
-                Logical units MUST NOT be separated by a space character.
+                There MUST be no spaces within the Musical Notation section. The only time a space MAY occur is to separate
+                a change of Clef, Key Signature, or Time Signature.
             </p>
         </section>
         <section id="note-names">
@@ -866,8 +910,6 @@
         </section>
         <section>
             <div class="issue" data-number="39"></div>
-            <div class="issue" data-number="4"></div>
-            <div class="issue" data-number="27"></div>
             <h4>Durations</h4>
             <p>
                 Note durations MUST be represented by integer values in the range <code>0-9</code>. The corresponding
@@ -1054,9 +1096,6 @@
                 For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
                 alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
             </p>
-            <p>
-                For neume notation, all durations SHOULD be omitted.
-            </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1112,7 +1151,6 @@
             </aside>
         </section>
         <section>
-            <div class="issue" data-number="42"></div>
             <h4>Accidentals</h4>
             <p>
                 An accidental MAY be used to alter the written and sounding pitch of a note. Accidentals MUST
@@ -1225,8 +1263,6 @@
         </section>
         <section>
             <h4>Rests</h4>
-            <div class="issue" data-number="29"></div>
-            <div class="issue" data-number="41"></div>
             <p>
                 Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
                 MAY be preceded by a <a>duration</a> value giving the musical duration of the rest. If the duration
@@ -1352,8 +1388,6 @@
         <section>
             <h4>Beaming</h4>
             <div class="issue" data-number="24"></div>
-            <div class="issue" data-number="45"></div>
-            <div class="issue" data-number="84"></div>
             <p>
                 Beamed notes are encoded using braces <code>{}</code>.
             </p>
@@ -1497,7 +1531,6 @@
             </aside>
         </section>
         <section>
-            <div class="issue" data-number="86"></div>
             <h4>Tuplets</h4>
             <p>
                 A tuplet group MUST begin with a duration value to indicate the duration
@@ -1578,11 +1611,9 @@
             </aside>
         </section>
         <section>
+            <div class="issue" data-number="28"></div>
             <h4>Other Symbols</h4>
             <section>
-                <div class="issue" data-number="1"></div>
-                <div class="issue" data-number="28"></div>
-                <div class="issue" data-number="88"></div>
                 <h5>Tied Notes</h5>
                 <p>
                     Tied notes MUST be indicated with an underscore character <code>_</code>.
@@ -1654,8 +1685,6 @@
             </section>
             <section>
                 <h5>Grace Notes</h5>
-                <div class="issue" data-number="22"></div>
-                <div class="issue" data-number="75"></div>
                 <p>
                     There are two types of grace note: Acciaccatura and appogiatura.
                 </p>
@@ -1747,7 +1776,6 @@
                 </p>
             </section>
             <section>
-                <div class="issue" data-number="3"></div>
                 <h5>Fermata</h5>
                 <p>
                     The lower-case character <code>p</code> is used to indicate
@@ -1965,8 +1993,6 @@
             </section>
         </section>
         <section>
-            <div class="issue" data-number="26"></div>
-            <div class="issue" data-number="35"></div>
             <h4>Change of Clef, Key Signature, Time Signature</h4>
             <p>
                 Clefs, key signatures, and time signatures MAY be changed within an incipit.
@@ -2015,7 +2041,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "%C-1$bBEA@c '2A-//$xFC 8B-4-2-/@3/2 1C2-//"
+                                    "data": "'2A-//$xFC 8B-4-2-/@3/2 1C2-//"
                                 }
                             </script>
                             <code>'2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
@@ -2045,19 +2071,17 @@
     </section>
 </section>
 <section>
-    <div class="issue" data-number="48"></div>
     <h2>Representation Formats</h2>
     <p>
-        The original expression of the Plaine &amp; Easie Code was intended for a physical
-        medium: An index card, or a printed book. In the intervening years, the
-        Plaine &amp; Easie Code has shifted to other types of representation for the purposes
-        of computerized storage and processing, in library catalogs and on the
-        World Wide Web.
+        The original expression of the Plaine &amp; Easie Code was intended for physical
+        media such as an index card, or a printed book. In the intervening years, usage of the
+        Plaine &amp; Easie Code has shifted to use within a digital context, such as online
+        library catalogs and on the World Wide Web.
     </p>
     <p>
-        This section provides the specification of these representations. It is expected that
-        these representations—with the possible exception of "single-line text"—are constructed
-        by automated tools and not written "by hand."
+        This section provides the specification of the acceptable representations of the Plaine &amp;
+        Easie Code. It is expected that these representations—with the possible exception of
+        "single-line text"—are constructed and used by automated tools and not written "by hand."
     </p>
     <section>
         <h3>Character Encodings</h3>
@@ -2085,11 +2109,10 @@
         <h3>MARC21 and UNIMARC</h3>
         <p>
             The Plaine &amp; Easie code is accepted as a format within a MARC (MAchine Readable Catalogue)
-            record or UNIMARC (UNIversal MARC). The specifics of each system are given in the [[MARC21]]
-            documentation or in the [[UNIMARC]] documentation.The <code>031</code> MARC21 field is used
-            to record incipits for bibliographic catalogues. For UNIMARC the <code>036</code> field is
-            similarly used. The subfields used by these formats to hold Plaine &amp; Easie Code is given
-            in [[[#marc21-unimarc-subfields]]].
+            or UNIMARC (UNIversal MARC) record. The specifics of each system are given in the [[MARC21]]
+            documentation or in the [[UNIMARC]] documentation. The <code>031</code> MARC21 field is used
+            to record incipits, while UNIMARC uses the <code>036</code> field. The subfields used by these
+            formats for Plaine &amp; Easie Code is given in [[[#marc21-unimarc-subfields]]].
         </p>
         <p>
             In both systems, the <code>$2</code> subfield indicates the coding system used for the
@@ -2098,12 +2121,12 @@
         <aside class="note">
             <p>
                 The acceptance of the code <code>pe2</code> for MARC21 and UNIMARC subfield <code>$2</code>
-                is dependent on the ratification of this code by the respective committees. This note
-                will be removed when this code has been formally accepted by these standards.
+                is dependent on the ratification of this code by the respective committees. Until this value
+                has been ratified, it is recommended that Version 2 of the Plaine &amp; Easie Code is not
+                represented in MARC21 or UNIMARC.
             </p>
             <p>
-                Until this value has been ratified, it is recommended that Version 2 of the
-                Plaine &amp; Easie Code is not represented in MARC21 or UNIMARC.
+                This note will be removed when this code has been formally accepted by these standards.
             </p>
         </aside>
         <figure id="marc21-unimarc-subfields">
@@ -2151,8 +2174,7 @@
     <section>
         <h3>Multi-Line Text with Field Delimiters</h3>
         <p>
-            The Plaine &amp; Easie Code MAY be represented in a multi-line text
-            format.
+            The Plaine &amp; Easie Code MAY be represented in a multi-line text format.
         </p>
         <p>
             Each field MUST be separated by a newline character <code>\n</code>.
@@ -2167,6 +2189,11 @@
             <code>key</code>, <code>data</code>, or <code>version</code>.
         </p>
         <p>
+            The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
+            contain any characters that are not part of the value itself; for example, the value must not be
+            enclosed in quotation marks.
+        </p>
+        <p>
             There MUST be at least two fields in the encoding: <code>clef</code> and <code>data</code>.
         </p>
         <p>
@@ -2174,11 +2201,6 @@
             MUST be <code>pe2</code> for incipits that conform to Version 2 of the specification. If a
             <code>version</code> field is not specified, the incipit SHOULD be interpreted as conforming
             to Version 1 of the specification.
-        </p>
-        <p>
-            The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
-            contain any characters that are not part of the value itself; for example, the value must not be
-            enclosed in quotation marks.
         </p>
         <aside class="example" title="Multi-line text with field delimiters">
             <pre>
@@ -2262,7 +2284,7 @@
         </aside>
         <aside class="example" title="Single-line Plaine &amp; Easie code">
             <pre>
-                %G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
+                ;pe2%G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
             </pre>
         </aside>
     </section>
@@ -2271,9 +2293,8 @@
 <section class="appendix">
     <h2>Changes</h2>
     <p>
-        A list of the most substantive changes between Version 1 and Version 2
-        of the Plaine &amp; Easie Code can be found in the
-        <a href="/v2/changes.html">Change Log</a>.
+        A list of substantive changes between Version 1 and Version 2 of the Plaine &amp; Easie Code
+        can be found in the <a href="/v2/changes.html">Change Log</a>.
     </p>
 </section>
 <section id="references"></section>
