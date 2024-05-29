@@ -1092,10 +1092,6 @@
                 appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
                 the duration is extended by half again.
             </p>
-            <p>
-                For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
-                alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
-            </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1131,20 +1127,6 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G+2",
-                                    "timesig": "o",
-                                    "data": "9A1.A1A9A"
-                                }
-                            </script>
-                            <code>9A1.A1A9A</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Mensural dot of division</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1382,7 +1364,7 @@
             </p>
             <p>
                 The <code>v</code> MUST follow the closing <code>></code>. It MUST not be separated from
-                the chord by any character EXCEPT a <a>bar line</a>. It MAY be repeated as many times as
+                the chord by any character EXCEPT <a>bar line</a> characters. It MAY be repeated as many times as
                 necessary, and each repetition MAY change its duration.
             </p>
             <aside class="example" title="Encoding Chords">
@@ -1917,9 +1899,37 @@
         </section>
         <section>
             <h4>Trill</h4>
-            <p class="advisement">
-                TODO: Expand on trill encoding
+            <p>
+                The lower-case character <code>t</code> is used to indicate
+                a trilled note. The <code>t</code> MUST immediately follow the
+                note name.
             </p>
+            <aside class="example">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2Gt'1C"
+                                }
+                            </script>
+                            <code>2Gt</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Fermata</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
         </section>
         <section>
             <h4>Fermata</h4>
@@ -1947,7 +1957,7 @@
                                     "data": "2G1(C)"
                                 }
                             </script>
-                            <code>4G1''pC</code>
+                            <code>2G1''pC</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Fermata</td>
