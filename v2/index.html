@@ -1092,10 +1092,6 @@
                 appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
                 the duration is extended by half again.
             </p>
-            <p>
-                For Mensural notation the period character <code>.</code> MAY be used to indicate a dot of division to
-                alter the interpretation of ternary values. Multiple successive dots of division MUST NOT occur.
-            </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1131,20 +1127,6 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G+2",
-                                    "timesig": "o",
-                                    "data": "9A1.A1A9A"
-                                }
-                            </script>
-                            <code>9A1.A1A9A</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Mensural dot of division</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1450,6 +1432,96 @@
         <section>
             <h4>Bar Lines</h4>
             <div class="issue" data-number="44"></div>
+            <p>
+                Bar lines MUST be indicated using one of the code options given in [[[#barlines-spec]]].
+            </p>
+            <p>
+                Bar lines SHOULD be inserted at intervals that correspond to the current time signature.
+            </p>
+            <p>
+                Neume and Mensural notations SHOULD NOT use bar lines.
+            </p>
+            <figure id="barlines-spec">
+                <table class="data" style="width: 100%">
+                    <colgroup class="header"></colgroup>
+                    <colgroup span="3"></colgroup>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "/"
+                                    }
+                                </script>
+                                <code>/</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Single bar line</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "//"
+                                    }
+                                </script>
+                                <code>//</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "//:"
+                                    }
+                                </script>
+                                <code>//:</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the right</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "://"
+                                    }
+                                </script>
+                                <code>://</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the left</td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "data": "://:"
+                                    }
+                                </script>
+                                <code>://:</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>Double bar line with repeat sign on the left and on the right</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <figcaption>Types of bar lines</figcaption>
+            </figure>
             <aside class="example" title="Encoding Bar Lines">
                 <table class="simple" style="width: 100%">
                     <thead>
@@ -1465,10 +1537,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "/"
+                                    "data": "ABC/DEF"
                                 }
                             </script>
-                            <code>/</code>
+                            <code>ABC/DEF</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>bar line</td>
@@ -1478,7 +1550,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "//"
+                                    "data": "ABC/DEF//"
                                 }
                             </script>
                             <code>//</code>
@@ -1491,40 +1563,27 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "//:"
+                                    "data": "ABC//:DEF://"
                                 }
                             </script>
 
-                            <code>//:</code>
+                            <code>ABC//:DEF://</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the right</td>
+                        <td>Section repeat</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "://"
+                                    "data": "//:ABC://:DEF://"
                                 }
                             </script>
                             <code>://</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the left</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "data": "://:"
-                                }
-                            </script>
-                            <code>://:</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>double bar line with repeat sign on the left and on the right</td>
+                        <td>Two repeated sections</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1612,103 +1671,100 @@
         </section>
         <section>
             <div class="issue" data-number="28"></div>
-            <h4>Other Symbols</h4>
+            <h4>Tied Notes</h4>
+            <p>
+                Tied notes MUST be indicated with an underscore character <code>_</code>.
+                Ties MUST occur between successive notes with the same pitch and octave.
+                A tie MUST NOT occur between a note and a rest.
+            </p>
+            <p>
+                The underscore character MUST occur on the first note of the tie.
+            <p>
+            <p>
+                Tied notes MAY occur over bar lines.
+            </p>
+            <p>
+                The underscore character MUST NOT be used to indicate slurs, phrase
+                marks, or ligatures.
+            </p>
+            <aside class="example" title="Encoding Ties">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "FG+GA"
+                                }
+                            </script>
+                            <code>FG_GA</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tied notes within a bar</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2''G+/G"
+                                }
+                            </script>
+                            <code>2''G_/G</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tied notes over a bar line</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "1''G+/G+/G"
+                                }
+                            </script>
+                            <code>2''G_/G_/G</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Successive tied notes</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Grace Notes</h4>
+            <p>
+                There are two types of grace note: Acciaccatura and appogiatura.
+            </p>
+            <p>
+                For a single acciaccatura the lower-case character <code>g</code>
+                MUST be used. This character MUST be specified in the order given above;
+                that is, it MUST precede the note name, and MUST also precede all other
+                optional attributes of the note. Consecutive single acciaccatura
+                SHOULD NOT occur.
+            </p>
+            <p>
+                For a single appogiatura note, the lower-case character <code>q</code>
+                MUST be used. This character MUST be specified in the order given above;
+                that is, it MUST precede the note name, and MUST also precede all other
+                optional attributes of the note. Consecutive single appogiatura
+                SHOULD NOT occur.
+            </p>
             <section>
-                <h5>Tied Notes</h5>
+                <h5>Appogiatura Group</h5>
                 <p>
-                    Tied notes MUST be indicated with an underscore character <code>_</code>.
-                    Ties MUST occur between successive notes with the same pitch and octave.
-                    A tie MUST NOT occur between a note and a rest.
-                </p>
-                <p>
-                    The underscore character MUST occur on the first note of the tie.
-                <p>
-                <p>
-                    Tied notes MAY occur over bar lines.
-                </p>
-                <p>
-                    The underscore character MUST NOT be used to indicate slurs, phrase
-                    marks, or ligatures.
-                </p>
-                <aside class="example" title="Encoding Ties">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "FG+GA"
-                                    }
-                                </script>
-                                <code>FG_GA</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Tied notes within a bar</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "2''G+/G"
-                                    }
-                                </script>
-                                <code>2''G_/G</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Tied notes over a bar line</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "1''G+/G+/G"
-                                    }
-                                </script>
-                                <code>2''G_/G_/G</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Successive tied notes</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
-            </section>
-            <section>
-                <h5>Grace Notes</h5>
-                <p>
-                    There are two types of grace note: Acciaccatura and appogiatura.
-                </p>
-                <p>
-                    For a single acciaccatura the lower-case character <code>g</code>
-                    MUST be used. This character MUST be specified in the order given above;
-                    that is, it MUST precede the note name, and MUST also precede all other
-                    optional attributes of the note. Consecutive single acciaccatura
-                    SHOULD NOT occur.
-                </p>
-                <p>
-                    There are two methods used to encode appogiatura.
-                </p>
-                <p>
-                    For a single appogiatura, the lower-case character <code>q</code>
-                    MUST be used. This character MUST be specified in the order given above;
-                    that is, it MUST precede the note name, and MUST also precede all other
-                    optional attributes of the note. Consecutive single appogiatura
-                    SHOULD NOT occur.
-                </p>
-                <p>
-                    For multiple consecutive appogiatura, the appogiatura group SHOULD be used.
-                    The lower-case characters <code>qq</code> MUST be given as the first
-                    characters in the first note of the group, and the lower-case character
+                    For multiple consecutive appogiatura notes, the appogiatura group SHOULD
+                    be used. The lower-case characters <code>qq</code> MUST be given as the first
+                    characters before the first note of the group, and the lower-case character
                     <code>r</code> MUST be the last character in the final note of the group.
                     There MUST be more than one note in a appogiatura group.
                 </p>
@@ -1716,133 +1772,145 @@
                     The <code>r</code> character MUST follow the closing beam character
                     that is part of the appogiatura group.
                 </p>
-                <aside class="example" title="Encoding Grace Notes">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "'4Ag''C{''8D'8B}"
-                                    }
-                                </script>
-                                <code>'4Ag''C{''8D'8B}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Acciaccatura (without rhythmic value)</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "'4Aq8'B{'8A'8G}"
-                                    }
-                                </script>
-                                <code>'4Aq8'B{'8A'8G}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Appoggiatura (with rhythmic value)</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "'4Aqq''{'8B''8C}r{''8D'8B}"
-                                    }
-                                </script>
-                                <code>'4Aqq''{'8B''8C}r{''8D'8B}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Double appoggiatura, slide, or multiple appoggiatura</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
-            </section>
-            <section>
-                <h5>Trill</h5>
-                <p class="advisement">
-                    TODO: Expand on trill encoding
-                </p>
-            </section>
-            <section>
-                <h5>Fermata</h5>
                 <p>
-                    The lower-case character <code>p</code> is used to indicate
-                    a fermata on a note. The <code>p</code> MUST immediately precede the
-                    note name, and MUST follow any other attributes on the note that
-                    occur before the note name.
+                    An appogiatura group with beams MAY occur within a non-appogiatura
+                    beam.
                 </p>
-                <aside class="example">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "2G1(C)"
-                                    }
-                                </script>
-                                <code>4G1''pC</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Fermata</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
             </section>
-            <section>
-                <h5>Tremolo, Slash</h5>
-                <p>
-                    Notation abbreviations, such as tremolo, slash, etc., must be written out in full using the actual
-                    notation.
-                </p>
-                <aside class="example" title="Encoding Clef, Key Signature, and Time Signature Changes">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "{''8CCCC}"
-                                    }
-                                </script>
-                                <code>{''8CCCC}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Tremolo on C</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
-            </section>
+            <aside class="example" title="Encoding Grace Notes">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'4Ag''C{''8D'8B}"
+                                }
+                            </script>
+                            <code>'4Ag''C{''8D'8B}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Acciaccatura</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'4Aq8'B{'8A'8G}"
+                                }
+                            </script>
+                            <code>'4Aq8'B{'8A'8G}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Appoggiatura</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "'4Aqq''{'8B''8C}r{''8D'8B}"
+                                }
+                            </script>
+                            <code>'4Aqq''{'8B''8C}r{''8D'8B}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Appoggiatura group</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "{'8Aqq''{'8B''8C}r''8D}"
+                                }
+                            </script>
+                            <code>{'8Aqq''{'8B''8C}r''8D}</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Beamed appoggiatura group within an outer beam</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Trill</h4>
+            <p>
+                The lower-case character <code>t</code> is used to indicate
+                a trilled note. The <code>t</code> MUST immediately follow the
+                note name.
+            </p>
+            <aside class="example">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2Gt'1C"
+                                }
+                            </script>
+                            <code>2Gt</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Fermata</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
+        </section>
+        <section>
+            <h4>Fermata</h4>
+            <p>
+                The lower-case character <code>p</code> is used to indicate
+                a fermata on a note. The <code>p</code> MUST immediately precede the
+                note name, and MUST follow any other attributes on the note that
+                occur before the note name.
+            </p>
+            <aside class="example">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2G1(C)"
+                                }
+                            </script>
+                            <code>2G1''pC</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Fermata</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
         </section>
         <section>
             <h4>Shortcuts</h4>
