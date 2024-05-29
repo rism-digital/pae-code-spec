@@ -483,8 +483,6 @@
             <p>
                 There are two main categories of time signature forms, <a>Common Western Music Notation</a>
                 (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
-                If a mensuration sign is specified, the <a>clef</a> MUST specify a <code>+</code> separator to
-                indicate the encoding is in mensural notation.
             </p>
             <p>
                 For neume notation, the time signature MUST be omitted.
@@ -502,7 +500,8 @@
             </p>
             <p>
                 <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
-                measures MAY be indicated by transcribing both. These MUST be separated by a single space character.
+                measures MAY be indicated by transcribing both. These MUST be separated by a vertical bar
+                <code>|</code> character.
             </p>
             <p>
                 For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
@@ -665,11 +664,11 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "timesig": "3/4 4/4",
+                                    "timesig": "3/4|4/4",
                                     "data": ""
                                 }
                             </script>
-                            <code>3/4 4/4</code>
+                            <code>3/4|4/4</code>
                         </td>
                         <td class="notation-result">
                         </td>
