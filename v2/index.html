@@ -213,7 +213,7 @@
         </p>
         <p>
             The second character MUST be one of the characters <code>-</code> to indicate modern notation,
-            <code>+</code> to indicate mensural notation, or <code>:</code> to indicate neume notation. Each
+            <code>*</code> to indicate mensural notation, or <code>:</code> to indicate neume notation. Each
             of these notations impose different interpretations on the music notation in the incipit.
         </p>
         <p>
@@ -261,7 +261,7 @@
             <tr>
                 <td><code>C-3</code></td>
                 <td><code>,F</code> (F3)</td>
-                <td><code>'G</note> (G4)</>
+                <td><code>'G</code> (G4)</td>
             </tr>
             </tbody>
         </table>
@@ -296,7 +296,7 @@
                                 "data": ""
                             }
                         </script>
-                        <code>C+2</code>
+                        <code>C*2</code>
                     </td>
                     <td class="notation-result"></td>
                     <td>C clef in Mensural</td>
@@ -1580,9 +1580,9 @@
             <h4>Fermatas</h4>
             <p>
                 The lower-case character <code>p</code> is used to indicate
-                a fermata on a note. The <code>p</code> MUST immediately precede the
-                note name, and MUST follow any other attributes on the note that
-                occur before the note name.
+                a fermata on a note. The <code>p</code> MUST follow the note name.
+                If there is also a <a>Trill</a>, the <code>p</code> MUST follow
+                the trill character.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -1602,7 +1602,7 @@
                                     "data": "2G1(C)"
                                 }
                             </script>
-                            <code>2G1''pC</code>
+                            <code>2G1''Cp</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Fermata</td>
