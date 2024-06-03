@@ -2125,11 +2125,11 @@
             <h5>Duration Group</h5>
             <p>
                 Multiple duration values MAY be declared together. These values form a Duration Group, and MAY be
-                used to indicate repeating rhythmic patterns for the notes that follow.
+                used to indicate repeating rhythmic patterns for a sequence of notes.
             </p>
             <p>
-                The number and order of duration values MUST apply to an equivalent number of notes that follow.
-                If the number of notes that follow exceeds the number of duration values given in the Duration
+                The number and order of duration values MUST apply to an equivalent number in the sequence of notes.
+                If the number of notes in the sequence exceeds the number of duration values given in the Duration
                 Group, the duration values MUST repeat from the first.
             </p>
             <p>
@@ -2137,32 +2137,33 @@
                 MAY be given at any point in the note sequence, and will cancel the duration group.
             </p>
             <p>
-                Alterations to pitch, octave, beaming, and trills, and fermata MAY occur on successive repeats. A rest
-                MAY also occur within the notes that follow, with the appropriate duration value applied.
+                Alterations to pitch, octave, beaming, and trills, and fermata MAY occur on successive repeats of the
+                note sequence. A rest MAY occur within the note sequence, with the appropriate duration value applied.
             </p>
             <p>
-                A tie MAY be indicated in the notes that follow the Duration Group declaration.
+                A tie MAY be indicated to join two or more notes in the note sequence. The duration of each member note
+                in the tie MUST follow the duration order in the Duration Group.
             </p>
             <p>
                 A measure rest MAY occur within the notes that follow. The notes following the measure rest MUST
-                continue the application of the Duration Group sequence from the order of the sequence prior to
-                the measure rest.
+                continue the application of the durations in sequence.
             </p>
             <p>
-                Changes to Clef, Key Signature, and Time Signature MAY also occur within the repeating duration group.
-                The notes following the change MUST continue the application of the durations in sequence.
+                Changes to Clef, Key Signature, and Time Signature MAY occur within the note sequence. The notes
+                following the change MUST continue the application of the durations in sequence.
             </p>
             <p>
                 A chord MAY be used within the notes that follow a Duration Group. All notes in the chord MUST have
                 a single value from the Duration Group.
             </p>
             <p>
-                A tuplet MUST NOT be used as a duration group declaration. Use of a tuplet MUST cancel the Duration
-                Group sequence.
+                A tuplet MUST NOT be used in a duration group declaration. Use of a tuplet in the note sequence MUST
+                cancel the Duration Group sequence.
             </p>
             <p>
-                Acciacciatura, appogiatura, and appogiatura groups MUST NOT occur within a Duration Group. Use of these
-                ornaments MUST cancel the Duration Group.
+                Appogiatura and appogiatura groups MUST NOT occur within a Duration Group. Use of these ornaments
+                MUST cancel the Duration Group. Acciaccatura MAY occur with the notes of the group, but the
+                durations in the Duration Group MUST NOT apply to any note marked as acciaccatura.
             </p>
             <aside class="example" title="Encoding Rhythmic Sequences">
                 <table class="simple" style="width: 100%">
