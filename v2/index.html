@@ -2122,10 +2122,47 @@
             </aside>
         </section>
         <section>
-            <h5>Rhythmic sequence</h5>
+            <h5>Duration Group</h5>
             <p>
-                When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
-                before the note names.
+                Multiple duration values MAY be declared together. These values form a Duration Group, and MAY be
+                used to indicate repeating rhythmic patterns for the notes that follow.
+            </p>
+            <p>
+                The number and order of duration values MUST apply to an equivalent number of notes that follow.
+                If the number of notes that follow exceeds the number of duration values given in the Duration
+                Group, the duration values MUST repeat from the first.
+            </p>
+            <p>
+                A duration group MUST remain in effect until another duration value is declared. A new duration value
+                MAY be given at any point in the note sequence, and will cancel the duration group.
+            </p>
+            <p>
+                Alterations to pitch, octave, beaming, and trills, and fermata MAY occur on successive repeats. A rest
+                MAY also occur within the notes that follow, with the appropriate duration value applied.
+            </p>
+            <p>
+                A tie MAY be indicated in the notes that follow the Duration Group declaration.
+            </p>
+            <p>
+                A measure rest MAY occur within the notes that follow. The notes following the measure rest MUST
+                continue the application of the Duration Group sequence from the order of the sequence prior to
+                the measure rest.
+            </p>
+            <p>
+                Changes to Clef, Key Signature, and Time Signature MAY also occur within the repeating duration group.
+                The notes following the change MUST continue the application of the durations in sequence.
+            </p>
+            <p>
+                A chord MAY be used within the notes that follow a Duration Group. All notes in the chord MUST have
+                a single value from the Duration Group.
+            </p>
+            <p>
+                A tuplet MUST NOT be used as a duration group declaration. Use of a tuplet MUST cancel the Duration
+                Group sequence.
+            </p>
+            <p>
+                Acciacciatura, appogiatura, and appogiatura groups MUST NOT occur within a Duration Group. Use of these
+                ornaments MUST cancel the Duration Group.
             </p>
             <aside class="example" title="Encoding Rhythmic Sequences">
                 <table class="simple" style="width: 100%">
@@ -2149,10 +2186,21 @@
                             <code>'8.68{AB''C}{DEF}</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>
-                            instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
-                            The rhythmic sequence ends when a new rhythmic value appears.
+                        <td></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "F-4",
+                                    "timesig": "c",
+                                    "data": "4444,D,,ABF/GDGA/,D,,ABF/GDGA"
+                                }
+                            </script>
+                            <code>4444,D,,ABF/GDGA/,D,,ABF/GDGA</code>
                         </td>
+                        <td class="notation-result"></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
