@@ -127,7 +127,7 @@
     <p>
         The Plaine &amp; Easie Code is a music notation encoding system
         designed for the capture of melodic incipits: Short fragments of
-        music notation that help to identify the musical work.
+        music notation that help to identify a musical work.
     </p>
 </section>
 <section id="introduction">
@@ -146,7 +146,7 @@
         which are now at odds with current practices and methods.
     </p>
     <p>
-        The present specifications seeks to establish a clearly defined "Version 2"
+        The present specification seeks to establish a clearly defined "Version 2"
         of the Plaine &amp; Easie Code. This is an attempt to distinguish it from "Version 1" of the Code,
         which is now fixed at its last revision date. Incipits encoded to the specifications
         given in Version 1 are still valid, and will continue to be.
@@ -164,9 +164,10 @@
         and "Easie" to facilitate easy capture of musical notation by catalogers. Although now couched
         in normative language, the present specification does not deviate far from the earlier
         specifications—indeed, some changes that are introduced in this new version are drawn from
-        the original papers by Brook and Gould. In this way, the present specification is an
+        the original papers by Brook and Gould. In this way, this is an
         attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>;
-        that is, to normalize and standardize existing practices.
+        that is, to normalize and standardize existing practices, while addressing sources of common errors
+        and ambiguity.
     </p>
     <p>
         Catalogers who are familiar with Version 1 of the Plaine &amp; Easie Code may wish to consult
@@ -224,7 +225,8 @@
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
                 place the pitch values on the correct line or space within a staff. Certain features in the musical
-                notation are dependent on the second indicator.
+                notation, and the system of notation in which they are interpreted, are controlled by the value of
+                the second character.
             </p>
         </aside>
         <p>
@@ -331,14 +333,14 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "G:2",
+                                "clef": "C:3",
                                 "data": ""
                             }
                         </script>
-                        <code>g-2</code>
+                        <code>C:3</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>Neume G clef</td>
+                    <td>Neume C clef</td>
                 </tr>
                 </tbody>
             </table>
@@ -351,7 +353,7 @@
         </p>
         <p>
             The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
-            followed by a list of <a href="#note-names">Note Names</a> that indicate the altered notes.
+            followed by a list of <a href="#note-names">Note Names</a> to be altered accordingly.
         </p>
         <p>
             The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
@@ -360,7 +362,7 @@
         <p>
             All notes given in the key signature MUST be interpreted as having their sounding pitch altered
             accordingly. In cases where a note in a key signature is further altered by use of an
-            <a href="#accidental">accidental</a>, directly on the note, the <a>written pitch</a> and
+            <a href="#accidental">accidental</a> directly before the note, the <a>written pitch</a> and
             <a>sounding pitch</a> indicated by the accidental will take precedence.
         </p>
         <p>
@@ -371,20 +373,20 @@
         </p>
         <p>
             A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
-            signature, i.e., C Major or A minor. This character MUST NOT be followed by any note names.
+            signature, e.g., C Major or A minor. This character MUST NOT be followed by any note names.
         </p>
         <aside class="note">
             <p>
                 While the key signature is an optional field, the absence of a key signature in the
-                encoding can be ambiguous. It may be interpreted either as a completely natural key signature (i.e.,
+                encoding can be ambiguous. It may be interpreted either as a natural key signature (e.g.,
                 C major) or it may indicate that a key signature was missing entirely from the original source.
-                The presence of the <code>n</code> character can be used to explicitly mark a key signature with no
+                The <code>n</code> character can be used to explicitly mark a key signature with no
                 sharps or flats. For sources where no key signature is needed, it is recommended to use
                 the <code>n</code> key signature to make this encoding explicit.
             </p>
         </aside>
         <p>
-            For neume notation, the key signature MUST be omitted. Any alterations to individual pitches MUST
+            For neume notation, the key signature MUST NOT be specified. Any alterations to individual pitches MUST
             be encoded as accidentals.
         </p>
         <aside class="example" title="Encoding Key Signatures">
@@ -482,7 +484,7 @@
             (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
         </p>
         <p>
-            For neume notation, the time signature MUST be omitted.
+            For neume notation, the time signature MUST NOT be specified.
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural time signatures MUST NOT
@@ -492,7 +494,7 @@
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
             above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
             be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. The <code>c</code>
-            ("common", or <code>4/4</code>) and <code>c/</code> ("alla breve", or <code>2/4</code>) characters
+            ("common", or <code>4/4</code>) and <code>c/</code> ("alla breve", or <code>2/2</code>) characters
             MAY be used.
         </p>
         <p>
@@ -639,7 +641,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>Imerfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    <td>Imperfect <em>tempus</em>, imperfect minor <em>modus</em></td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -730,7 +732,7 @@
         </table>
         <p>
             Logical units MAY be nested to represent complex notational features; for example, a beam will
-            contain two or more notes, or tuplet may be composed of two or more chords. All logical units
+            contain two or more notes, or a tuplet may be composed of two or more chords. All logical units
             of the same kind MUST be closed before a new one is started (i.e., no nested groups of the same kind).
         </p>
         <aside class="note">
@@ -745,8 +747,8 @@
             for example, make use of the same duration character(s).
         </p>
         <p>
-            There MUST be no spaces within the Musical Notation section. The only time a space MAY occur is to separate
-            a change of Clef, Key Signature, or Time Signature.
+            There MUST be no spaces within the Musical Notation section, except to separate a change of
+            <a>Clef, Key Signature, or Time Signature</a>.
         </p>
     </section>
     <section id="notes-and-rests">
@@ -931,8 +933,8 @@
             <p>
                 For <abbr>CWMN</abbr> the period character <code>.</code> MAY be used to indicate a dot of augmentation,
                 extending the duration of the note by half again the indicated duration value. This character MUST be
-                appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
-                the duration is extended by half again.
+                directly appended to the duration value. Multiple dots MAY be used, with each successive dot indicating
+                that the duration is extended again, by half of the value of the previous dot.
             </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
@@ -962,10 +964,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'8..A // 8A+6A+3A"
+                                    "data": "'8..A//8A+6A+3A"
                                 }
                             </script>
-                            <code>8..A // 8A_6A_3A</code>
+                            <code>8..A//8A_6A_3A</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note and its equivalent in tied notes</td>
@@ -985,7 +987,7 @@
                 <code>G</code>, <code>A</code>, <code>B</code>.
             </p>
             <p>
-                All letters MUST be uppercase; lowercase letters MUST NOT be used.
+                All letters MUST be uppercase; lowercase letters MUST NOT be used to indicate a note name.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
