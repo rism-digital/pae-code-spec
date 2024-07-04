@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light"/>
     <title>Plaine &amp; Easie Code</title>
     <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
     <script src="https://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+    <script type="application/javascript" src="/static/js/verovio-rendering.js" defer></script>
 
     <script class="remove">
         // All config options at https://respec.org/docs/
@@ -127,7 +128,7 @@
     <p>
         The Plaine &amp; Easie Code is a music notation encoding system
         designed for the capture of melodic incipits: Short fragments of
-        music notation that help to identify the musical work.
+        music notation that help to identify a musical work.
     </p>
 </section>
 <section id="introduction">
@@ -146,27 +147,27 @@
         which are now at odds with current practices and methods.
     </p>
     <p>
-        The present specifications seeks to establish a clearly defined "Version 2"
+        The present specification seeks to establish a clearly defined "Version 2"
         of the Plaine &amp; Easie Code. This is an attempt to distinguish it from "Version 1" of the Code,
         which is now fixed at its last revision date. Incipits encoded to the specifications
         given in Version 1 are still valid, and will continue to be.
     </p>
     <p>
         Version 2 of the Plaine &amp; Easie Code is written in a specification language that attempts
-        to clearly communicate the normative requirements of the Code. This is a recognition that the
-        a significant "audience" for the code is data processing systems, and by extension, the
-        programmers that create them. This audience needs clear definitions of the code so that it
-        can be accurately and uniformly processed for search, retrieval, automated comparison,
-        and notation display.
+        to clearly communicate the normative requirements of the Code. This is a recognition that
+        a significant audience for the code is the programmers that create data processing systems.
+        This audience needs clear definitions of the code so that it can be accurately and uniformly
+        processed for search, retrieval, automated comparison, and notation display.
     </p>
     <p>
         At the same time, however, it must be recognized that the core of this code must remain "Plaine"
         and "Easie" to facilitate easy capture of musical notation by catalogers. Although now couched
         in normative language, the present specification does not deviate far from the earlier
-        specifications—indeed, some changes that are introduced in this new version are drawn from
-        the original papers by Brook and Gould. In this way, the present specification is an
-        attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>;
-        that is, to normalize and standardize existing practices.
+        specifications&mdash;indeed, some changes that are introduced in this new version are drawn from
+        the original papers by Brook and Gould. While some notable changes have been introduced to try and address
+        common errors or ambiguities, Version 2 is largely an attempt to
+        <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>; that is, to normalize and
+        standardize existing practices.
     </p>
     <p>
         Catalogers who are familiar with Version 1 of the Plaine &amp; Easie Code may wish to consult
@@ -177,6 +178,12 @@
         Répertoire International des Sources Musicales (RISM), and by the International Association of Music
         Libraries, Archives and Documentation Centres (IAML) for use as an exchange format in the library environment.
     </p>
+    <aside class="note">
+        <p>
+            The archaic spelling of "Plaine and Easie" is a reference to <em>A Plaine and Easie Introduction to
+            Practicall Musicke</em>, the 1597 music theory treatise by Thomas Morley.
+        </p>
+    </aside>
 </section>
 <section id="terminology">
     <div class="issue" data-number="98"></div>
@@ -193,14 +200,14 @@
         </dd>
     </dl>
 </section>
-<section>
+<section id="staff-definitions">
     <div class="issue" data-number="57"></div>
     <h2>Staff Definitions</h2>
     <p>
         The clef, key signature, and time signature of an incipit is defined separately from the
         <a href="#musical-notation">Musical Notation</a> of the incipit. These properties affect the whole staff.
     </p>
-    <section>
+    <section id="clef">
         <div class="issue" data-number="72"></div>
         <div class="issue" data-number="119"></div>
         <h3>Clef</h3>
@@ -223,8 +230,7 @@
         <aside class="note">
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
-                place the pitch values on the correct line or space within a staff. Certain features in the musical
-                notation are dependent on the second indicator.
+                place the pitch values on the correct line or space within a staff.
             </p>
         </aside>
         <p>
@@ -331,27 +337,27 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "G:2",
+                                "clef": "C:3",
                                 "data": ""
                             }
                         </script>
-                        <code>g-2</code>
+                        <code>C:3</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>Neume G clef</td>
+                    <td>Neume C clef</td>
                 </tr>
                 </tbody>
             </table>
         </aside>
     </section>
-    <section>
+    <section id="key-signature">
         <h3>Key Signature</h3>
         <p>
             An encoding MAY include a key signature.
         </p>
         <p>
             The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
-            followed by a list of <a href="#note-names">Note Names</a> that indicate the altered notes.
+            followed by a list of <a href="#note-names">Note Names</a> to be altered accordingly.
         </p>
         <p>
             The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
@@ -360,7 +366,7 @@
         <p>
             All notes given in the key signature MUST be interpreted as having their sounding pitch altered
             accordingly. In cases where a note in a key signature is further altered by use of an
-            <a href="#accidental">accidental</a>, directly on the note, the <a>written pitch</a> and
+            <a href="#accidentals">accidental</a>, directly before the note, the <a>written pitch</a> and
             <a>sounding pitch</a> indicated by the accidental will take precedence.
         </p>
         <p>
@@ -371,16 +377,15 @@
         </p>
         <p>
             A key signature containing a single <code>n</code> character MAY be supplied to indicate a natural key
-            signature, i.e., C Major or A minor. This character MUST NOT be followed by any note names.
+            signature, e.g., C Major or A minor. This character MUST NOT be followed by any note names.
         </p>
         <aside class="note">
             <p>
                 While the key signature is an optional field, the absence of a key signature in the
-                encoding can be ambiguous. It may be interpreted either as a completely natural key signature (i.e.,
+                encoding can be ambiguous, since it may be interpreted either as a natural key signature (e.g.,
                 C major) or it may indicate that a key signature was missing entirely from the original source.
-                The presence of the <code>n</code> character can be used to explicitly mark a key signature with no
-                sharps or flats. For sources where no key signature is needed, it is recommended to use
-                the <code>n</code> key signature to make this encoding explicit.
+                The <code>n</code> character can be used to explicitly mark a key signature with no
+                sharps or flats.
             </p>
         </aside>
         <p>
@@ -409,7 +414,7 @@
                         <code>xFC</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>F and C sharp (key is D major or B minor).</td>
+                    <td>F and C sharp (e.g., D major or B minor).</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -423,7 +428,7 @@
                         <code>bBEA</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>B, E, A flat (key is E-flat major or C minor).</td>
+                    <td>B, E, A flat (e.g., E flat major or C minor).</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -471,7 +476,7 @@
             </table>
         </aside>
     </section>
-    <section>
+    <section id="time-signature">
         <div class="issue" data-number="73"></div>
         <h3>Time Signature</h3>
         <p>
@@ -482,7 +487,7 @@
             (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
         </p>
         <p>
-            For neume notation, the time signature MUST be omitted.
+            For neume notation, the time signature MUST remain unspecified.
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural time signatures MUST NOT
@@ -492,7 +497,7 @@
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
             above another. These numbers MUST be separated by a <code>/</code> character. Any positive digit MAY
             be used, but <a>encoders</a> SHOULD use commonly accepted values where possible. The <code>c</code>
-            ("common", or <code>4/4</code>) and <code>c/</code> ("alla breve", or <code>2/4</code>) characters
+            ("common", or <code>4/4</code>) and <code>c/</code> ("alla breve", or <code>2/2</code>) characters
             MAY be used.
         </p>
         <p>
@@ -501,14 +506,14 @@
             <code>|</code> character.
         </p>
         <p>
-            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
-            imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
-            "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
-            follow the <em>tempus</em> character to indicate diminution.
+            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate imperfect and perfect
+            tempus, respectively. The <code>.</code> character indicates "major" prolation; omitting <code>.</code>
+            indicates "minor" prolation. A <code>/</code> character may follow the <em>tempus</em> character to
+            indicate diminution.
         </p>
         <p>
             A mensuration sign MAY include a numerical component as a proportion or augmentation,
-            indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
+            indicating <em>modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
             These numbers MAY be combined and separated by a <code>/</code>.
         </p>
         <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
@@ -624,7 +629,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>Perfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    <td>Perfect <em>tempus</em> with modus cum tempore</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -639,7 +644,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>Imerfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    <td>Imperfect <em>tempus</em> with modus cum tempore</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -654,7 +659,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>With <em>diminution</em></td>
+                    <td>Imperfect <em>tempus</em> with diminution</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -669,21 +674,24 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td><i>Not currently supported by Verovio</i></td>
+                    <td>
+                        Alternating 3/4 and 4/4 measures. <br />
+                        <i>Not currently supported by Verovio</i>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </aside>
     </section>
 </section>
-<section>
+<section id="musical-notation">
     <h2>Musical Notation</h2>
     <div class="issue" data-number="97"></div>
-    <section>
+    <section id="structure">
         <h3>Structure</h3>
         <p>
             The Musical Notation section of an encoding is given as a single line of characters representing
-            a <a>staff</a> of musical notation. <a>Notes and rests</a> are the most basic <a>logical unit</a>
+            a <a>staff</a> of musical notation. <a>Notes and rests</a> are the most basic <a>logical units</a>
             of notation representation, composed of one or more characters that specify different attributes
             of a note or rest. Complex notational figures, such as chords, beams, or tuplets, serve
             to <a>group</a> notes and rests. <a>Expression Marks</a> alter the performance of a note, a rest, or
@@ -691,7 +699,7 @@
             itself: bar lines, cross-measure rests, or a change of clef, key signature, or time signature.
         </p>
         <p>
-            Many characters representing a musical note are optional—the only required character is the
+            Many characters representing a musical note are optional&mdash;the only required character is the
             note name. Where one or more characters for a note occurs, they MUST occur in the following order:
         </p>
         <table class="data">
@@ -730,28 +738,28 @@
         </table>
         <p>
             Logical units MAY be nested to represent complex notational features; for example, a beam will
-            contain two or more notes, or tuplet may be composed of two or more chords. All logical units
+            contain two or more notes, or a tuplet may be composed of two or more chords. All logical units
             of the same kind MUST be closed before a new one is started (i.e., no nested groups of the same kind).
         </p>
         <aside class="note">
             <p>
                 There is one exception to this nested groups requirement: A group of notes marked as
-                an <a>appogiatura group</a> can occur within an outer group. This is explained further in
-                the <a>appogiatura group</a> section.
+                an <a>appoggiatura group</a> can occur within an outer group. This is explained further in
+                the <a>appoggiatura group</a> section.
             </p>
         </aside>
         <p>
-            Many logical units use the same character(s) to represent the same musical concept. Both notes and rests,
-            for example, make use of the same duration character(s).
+            Many logical units use the same characters to represent the same musical concept. Both notes and rests,
+            for example, make use of the same duration characters.
         </p>
         <p>
-            There MUST be no spaces within the Musical Notation section. The only time a space MAY occur is to separate
-            a change of Clef, Key Signature, or Time Signature.
+            There MUST be no spaces within the Musical Notation section, except for the required space separating a
+            change of <a>Clef, Key Signature, and Time Signature</a>.
         </p>
     </section>
-    <section>
+    <section id="notes-and-rests">
         <h3>Notes and Rests</h3>
-        <section>
+        <section id="durations">
             <h4>Durations</h4>
             <p>
                 Note durations MUST be represented by integer values in the range <code>0-9</code>. The corresponding
@@ -930,9 +938,9 @@
             </p>
             <p>
                 For <abbr>CWMN</abbr> the period character <code>.</code> MAY be used to indicate a dot of augmentation,
-                extending the duration of the note by half again the indicated duration value. This character MUST be
-                appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
-                the duration is extended by half again.
+                extending the duration of the note by half the indicated duration value. This character MUST be
+                directly appended to the duration value. Multiple dots MAY be used, with each successive dot indicating
+                that the duration is extended by half the value of the previous dot.
             </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
@@ -974,7 +982,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="note-names">
             <h4>Note Names</h4>
             <p>
                 A note name MUST be provided to indicate the pitch class of the note.
@@ -985,7 +993,7 @@
                 <code>G</code>, <code>A</code>, <code>B</code>.
             </p>
             <p>
-                All letters MUST be uppercase; lowercase letters MUST NOT be used.
+                All letters MUST be uppercase; lowercase letters MUST NOT be used to specify a note name.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -1014,7 +1022,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="octaves">
             <h4>Octaves</h4>
             <p>
                 Octaves in Plaine &amp; Easie are enumerated according to [[ScientificPitch]]. The boundary note
@@ -1032,7 +1040,7 @@
             </p>
             <p>
                 The octave indication for a given note MAY be omitted. If the octave is omitted, the last specified
-                octave indication is used for all following notes.
+                octave indication is used for all following notes until a new octave is indicated.
             </p>
             <p>
                 An <a>encoding</a> MAY omit all octave indications. If no octave is supplied on any note, all notes are
@@ -1059,7 +1067,7 @@
                             <code>'C''B</code>
                         </td>
                         <td class="notation-result ignore"></td>
-                        <td>octave C4-B5</td>
+                        <td>Octave C4 and above</td>
                     </tr>
                     <tr class="notation-example ignore">
                         <td class="notation-code">
@@ -1072,7 +1080,7 @@
                             <code>,,C,B</code>
                         </td>
                         <td class="notation-result ignore"></td>
-                        <td>octave C2-B3</td>
+                        <td>Octave indications below C4</td>
                     </tr>
                     <tr class="notation-example ignore">
                         <td class="notation-code">
@@ -1085,7 +1093,7 @@
                             <code>''C'GC,GC,,G</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Octaves using ' and ,</td>
+                        <td>Octaves using both <code>'</code> and <code>,</code></td>
                     </tr>
                     <tr class="notation-example ignore">
                         <td class="notation-code">
@@ -1098,7 +1106,7 @@
                             <code>AB''CDC'BA</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Using the last-specified octave indication.</td>
+                        <td>Octave indications omitted for some notes.</td>
                     </tr>
                     <tr class="notation-example ignore">
                         <td class="notation-code">
@@ -1117,7 +1125,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="accidentals">
             <h4>Accidentals</h4>
             <p>
                 An accidental MAY be used to alter the written and sounding pitch of a note. Accidentals MUST
@@ -1206,33 +1214,33 @@
                 <figcaption>Accidental values</figcaption>
             </figure>
             <p>
-                The sounding pitch of a note MAY be altered by both a key signature or an accidental. In the case of
+                The sounding pitch of a note MAY be altered by both a key signature and an accidental. In the case of
                 a note being altered by both, the alteration of the accidental MUST be interpreted as an alteration
-                of the pitch in the key signature.
+                of the pitch defined by the key signature.
             </p>
             <p>
-                A note altered by an accidental SHOULD NOT be altered subsequent times within the same bar. The
-                alteration to the sounding pitch of the note is continued on subsequent notes with the same name
-                until the next <a href="#bar-lines">Bar Line</a>.
+                A note SHOULD NOT be altered by the same accidental more than once within the same bar. The
+                alteration to the sounding pitch of the note is continued on subsequent notes with the same <a>Note
+                Name</a> until the next <a href="#bar-lines">Bar Line</a>. If the same accidental is given to several
+                notes with the same <a>Note Name</a> within the bar, it will have no further effect.
             </p>
             <p>
                 Accidentals MUST be interpreted by their written value, and MUST NOT be interpreted by their values
-                relative to each other.
+                relative to a preceding accidental.
             </p>
             <aside class="note">
                 <p>
-                    That is, a previously sharpened note that is subsequently modified with a flat accidental
-                    will sound one whole tone lower than it did when sharpened. Likewise, a note that has a
-                    double-flat accidental applied which is subsequently altered by a sharp will sound three
-                    semitones higher than the double-flat.
+                    Accidentals are interpreted according to their written value. They do not have a cumulative effect
+                    if combined; that is, specifying a flat accidental on a note that is sharpened does not lower the
+                    pitch by a semitone.
                 </p>
             </aside>
         </section>
-        <section>
+        <section id="single-rests">
             <h4>Single Rests</h4>
             <p>
                 Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
-                MAY be preceded by a <a href="#duration">duration</a> value giving the musical duration of the rest.
+                MAY be preceded by a <a href="#durations">duration</a> value giving the musical duration of the rest.
                 If the duration is omitted, the last specified duration is used. If no duration is supplied in the
                 <a>encoding</a> a default duration of <code>4</code> is assumed.
             </p>
@@ -1277,9 +1285,9 @@
             </aside>
         </section>
     </section>
-    <section>
+    <section id="groups">
         <h3>Groups</h3>
-        <section>
+        <section id="ties">
             <div class="issue" data-number="112"></div>
             <h4>Ties</h4>
             <p>
@@ -1350,14 +1358,14 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="ligatures">
             <div class="issue" data-number="28"></div>
             <h4>Ligatures</h4>
             <p>
                 Todo.
             </p>
         </section>
-        <section>
+        <section id="beams">
             <h4>Beams</h4>
             <p>
                 Beamed notes are encoded using braces <code>{}</code>.
@@ -1365,7 +1373,7 @@
             <p>
                 Beam groups MUST start with an opening brace <code>{</code>, and
                 MUST end with a closing brace, <code>}</code>. Nested beam groups
-                MUST NOT occur, except as part of an <a href="#appogiatura-group">Appogiatura Group</a>.
+                MUST NOT occur, except as part of an <a href="#grace-notes">appoggiatura Group</a>.
             </p>
             <p>
                 Notes with duration values of <code>0</code>, <code>1</code>, <code>2</code>,
@@ -1418,7 +1426,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="tuplets">
             <div class="issue" data-number="123"></div>
             <h4>Tuplets</h4>
             <p>
@@ -1434,7 +1442,7 @@
                 opening parenthesis <code>(</code>.
             </p>
             <p>
-                A semicolon <code>;</code> and a non-negative integer MAY immediately precede
+                A semicolon <code>;</code> and a positive integer MAY immediately precede
                 the closing parenthesis of a tuplet group. This number indicates the number of
                 beat divisions in the group; that is, the number of beats that occur within
                 the tuplet in the space of the given duration value. If a number is not
@@ -1506,7 +1514,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="chords">
             <h4>Chords</h4>
             <div class="issue" data-number="2"></div>
             <div class="issue" data-number="60"></div>
@@ -1542,7 +1550,7 @@
     </section>
     <section id="expression-marks">
         <h3>Expression Marks</h3>
-        <section>
+        <section id="trills">
             <h4>Trills</h4>
             <p>
                 The lower-case character <code>t</code> is used to indicate
@@ -1576,7 +1584,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="fermatas">
             <h4>Fermatas</h4>
             <p>
                 The lower-case character <code>p</code> is used to indicate
@@ -1611,25 +1619,25 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="grace-notes">
             <h4>Grace Notes</h4>
             <p>
-                There are two types of grace note: Acciaccatura and appogiatura.
+                There are two types of grace note: Acciaccatura and appoggiatura.
             </p>
             <p>
                 For a single acciaccatura the lower-case character <code>g</code>
                 MUST be used. This character MUST precede the note name, and MUST
                 also precede all other attributes of the note. Consecutive single
-                acciaccatura MUST NOT occur.
+                acciaccaturas MUST NOT occur.
             </p>
             <p>
-                For a single appogiatura note, the lower-case character <code>q</code>
+                For a single appoggiatura note, the lower-case character <code>q</code>
                 MUST be used. This character MUST precede the note name, and MUST
                 also precede all other optional attributes of the note.
             </p>
             <p>
-                Consecutive appogiatura notes MUST be encoded using an <a href="#appogiatura-groups">
-                Appogiatura Group</a>. Consecutive single appogiatura MUST NOT occur.
+                Consecutive appoggiatura notes MUST be encoded using an <a href="#grace-notes">
+                appoggiatura Group</a>. Consecutive single appoggiaturas MUST NOT occur.
             </p>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
@@ -1671,23 +1679,23 @@
                 </table>
             </aside>
             <section>
-                <h5>Appogiatura Groups</h5>
+                <h5>Appoggiatura Groups</h5>
                 <p>
-                    For multiple consecutive appogiatura notes, the appogiatura group SHOULD
+                    For multiple consecutive appoggiatura notes, the appoggiatura group SHOULD
                     be used. The lower-case characters <code>y</code> MUST be given as the first
                     characters before the first note of the group, and the lower-case character
-                    <code>r</code> MUST be the last character in the final note of the group.
-                    There MUST be more than one note in a appogiatura group.
+                    <code>r</code> MUST be the last character of the group. There MUST be more than
+                    one note in an appoggiatura group.
                 </p>
                 <p>
                     The <code>r</code> character MUST follow the closing beam character
-                    that is part of the appogiatura group.
+                    that is part of the appoggiatura group.
                 </p>
                 <p>
-                    An appogiatura group with beams MAY occur within a non-appogiatura
+                    An appoggiatura group with beams MAY occur within a non-appoggiatura
                     beam.
                 </p>
-                <aside class="example" title="Encoding Appogiatura Groups">
+                <aside class="example" title="Encoding appoggiatura Groups">
                     <table class="simple" style="width: 100%">
                         <thead>
                         <tr>
@@ -1729,9 +1737,9 @@
             </section>
         </section>
     </section>
-    <section>
+    <section id="measure-and-staff-symbols">
         <h3>Measure and Staff Symbols</h3>
-        <section>
+        <section id="bar-lines">
             <h4>Bar Lines</h4>
             <p>
                 Bar lines MUST be indicated using one of the code options given in [[[#barlines-spec]]].
@@ -1817,7 +1825,7 @@
                             <code>://:</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Double bar line with repeat sign on the left and on the right</td>
+                        <td>Double bar line with repeat signs on the left and on the right</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1838,10 +1846,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "ABC/DEF"
+                                    "data": "CDE/FGA"
                                 }
                             </script>
-                            <code>ABC/DEF</code>
+                            <code>CDE/FGA</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>bar line</td>
@@ -1851,10 +1859,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "ABC/DEF//"
+                                    "data": "CDE/FGA//"
                                 }
                             </script>
-                            <code>//</code>
+                            <code>CDE/FGA//</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>double bar line</td>
@@ -1864,11 +1872,11 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "ABC//:DEF://"
+                                    "data": "CDE//:FGA://"
                                 }
                             </script>
 
-                            <code>ABC//:DEF://</code>
+                            <code>CDE//:FGA://</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Section repeat</td>
@@ -1878,10 +1886,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "//:ABC://:DEF://"
+                                    "data": "//:CDE://:FGA://"
                                 }
                             </script>
-                            <code>://</code>
+                            <code>//:CDE://:FGA://</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Two repeated sections</td>
@@ -1890,11 +1898,11 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="measure-rests">
             <h4>Measure Rests</h4>
             <p>
                 Measure rests MUST be indicated by an equal sign character <code>=</code>. This character MUST be
-                followed by a non-negative integer indicating the number of measures for which this rest applies,
+                followed by a positive integer indicating the number of measures for which this rest applies,
                 unless the measure rest only applies to a single measure. In this case, the number MAY be omitted.
             </p>
             <p>
@@ -1949,7 +1957,7 @@
                 </table>
             </aside>
         </section>
-        <section>
+        <section id="changes-to-staff-definitions">
             <h4>Changes to Staff Definitions</h4>
             <p>
                 Clefs, key signatures, and time signatures MAY be changed within an incipit.
@@ -1990,7 +1998,6 @@
                     <tr>
                         <th>Code</th>
                         <th>Notation</th>
-                        <th>Remarks</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1999,40 +2006,24 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'2A-//$xFC 8B-4-2-/@3/2 1C2-//"
+                                    "data": "'2A-//%F-4$xFC ,8B-4-2-/@3/2 '1C2-//"
                                 }
                             </script>
-                            <code>'2A-//$xFC 8B-4-2-/@3/2 1C2-//</code>
+                            <code>'2A-//%F-4$xFC ,8B-4-2-/@3/2 '1C2-//</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Clef, key signature, and time signature changes</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "timesig": "4/4",
-                                    "keysig": "n",
-                                    "data": "4CDEF/$xFC@2/4 CD/EF"
-                                }
-                            </script>
-                            <code>4CDEF/$xFC@2/4 CD/EF</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Clef, key signature, and time signature changes</td>
                     </tr>
                     </tbody>
                 </table>
             </aside>
         </section>
     </section>
-    <section>
+    <section id="shortcuts">
         <h3>Shortcuts</h3>
-        <section>
+        <section id="repeat-group">
             <h4>Repeat group</h4>
             <p>
-                If one or notes or rests are repeated several times, a repeat group
+                If one or more notes or rests are repeated several times, a repeat group
                 MAY be used.
             </p>
             <p>
@@ -2083,13 +2074,14 @@
                 The measure to be repeated MUST end with a bar line. The lower-case
                 character <code>i</code> MUST occur immediately after this bar line,
                 and MUST be immediately followed by another bar line. There MUST NOT
-                be any other characters between the two bar lines.
+                be any other characters between these two bar lines.
             </p>
             <p>
                 Any type of bar line MAY be used to begin or end a measure repeat group.
             </p>
             <p>
-                Measure repeats SHOULD NOT be used with Mensural notation.
+                Measure repeats SHOULD NOT be used with Mensural notation due to the general absence of measures
+                in this system of notation.
             </p>
             <aside class="example" title="Encoding Repeated Measures">
                 <table class="simple" style="width: 100%">
@@ -2158,7 +2150,7 @@
         </section>
     </section>
 </section>
-<section>
+<section id="representation-formats">
     <h2>Representation Formats</h2>
     <p>
         The original expression of the Plaine &amp; Easie Code was intended for physical
@@ -2171,7 +2163,7 @@
         Easie Code. It is expected that these representations—with the possible exception of
         "single-line text"—are constructed and used by automated tools and not written "by hand."
     </p>
-    <section>
+    <section id="character-encodings">
         <h3>Character Encodings</h3>
         <p>
             All characters used in the Plaine &amp; Easie Code MUST be within the [[ASCII]]
@@ -2256,7 +2248,7 @@
                 </tr>
                 </tbody>
             </table>
-            <figcaption>MARC21 and UNIMARC subfields for the Plaine &amp; Easie Code</caption>
+            <figcaption>MARC21 and UNIMARC subfields for the Plaine &amp; Easie Code</figcaption>
         </figure>
     </section>
     <section>
@@ -2344,7 +2336,7 @@
             conform to Version 2 of the specification.
         </p>
         <p>
-            Following the version declaration, the line MUST contain with a declaration of the clef.
+            Following the version declaration, the line MUST continue with a declaration of the clef.
             The format of the clef declaration follows the same format for an inline change of clef;
             that is, the clef declaration MUST start with the percent character <code>%</code>.
         </p>
@@ -2386,7 +2378,5 @@
     </p>
 </section>
 <section id="references"></section>
-
-<script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
 </body>
 </html>
