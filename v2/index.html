@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light"/>
@@ -163,11 +163,11 @@
         At the same time, however, it must be recognized that the core of this code must remain "Plaine"
         and "Easie" to facilitate easy capture of musical notation by catalogers. Although now couched
         in normative language, the present specification does not deviate far from the earlier
-        specifications—indeed, some changes that are introduced in this new version are drawn from
-        the original papers by Brook and Gould. In this way, this is an
-        attempt to <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>;
-        that is, to normalize and standardize existing practices, while addressing sources of common errors
-        and ambiguity.
+        specifications&mdash;indeed, some changes that are introduced in this new version are drawn from
+        the original papers by Brook and Gould. While some notable changes have been introduced to try and address
+        common errors or ambiguities, Version 2 is largely an attempt to
+        <a href="https://en.wiktionary.org/wiki/pave_the_cowpath">"pave the cowpaths"</a>; that is, to normalize and
+        standardize existing practices.
     </p>
     <p>
         Catalogers who are familiar with Version 1 of the Plaine &amp; Easie Code may wish to consult
@@ -194,7 +194,7 @@
         </dd>
     </dl>
 </section>
-<section id="staff-definitions">
+<section>
     <div class="issue" data-number="57"></div>
     <h2>Staff Definitions</h2>
     <p>
@@ -224,9 +224,7 @@
         <aside class="note">
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
-                place the pitch values on the correct line or space within a staff. Certain features in the musical
-                notation, and the system of notation in which they are interpreted, are controlled by the value of
-                the second character.
+                place the pitch values on the correct line or space within a staff.
             </p>
         </aside>
         <p>
@@ -362,7 +360,7 @@
         <p>
             All notes given in the key signature MUST be interpreted as having their sounding pitch altered
             accordingly. In cases where a note in a key signature is further altered by use of an
-            <a href="#accidental">accidental</a> directly before the note, the <a>written pitch</a> and
+            <a href="#accidental">accidental</a>, directly before the note, the <a>written pitch</a> and
             <a>sounding pitch</a> indicated by the accidental will take precedence.
         </p>
         <p>
@@ -378,15 +376,14 @@
         <aside class="note">
             <p>
                 While the key signature is an optional field, the absence of a key signature in the
-                encoding can be ambiguous. It may be interpreted either as a natural key signature (e.g.,
+                encoding can be ambiguous, since it may be interpreted either as a natural key signature (e.g.,
                 C major) or it may indicate that a key signature was missing entirely from the original source.
                 The <code>n</code> character can be used to explicitly mark a key signature with no
-                sharps or flats. For sources where no key signature is needed, it is recommended to use
-                the <code>n</code> key signature to make this encoding explicit.
+                sharps or flats.
             </p>
         </aside>
         <p>
-            For neume notation, the key signature MUST NOT be specified. Any alterations to individual pitches MUST
+            For neume notation, the key signature MUST be omitted. Any alterations to individual pitches MUST
             be encoded as accidentals.
         </p>
         <aside class="example" title="Encoding Key Signatures">
@@ -411,7 +408,7 @@
                         <code>xFC</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>F and C sharp (key is D major or B minor).</td>
+                    <td>F and C sharp (e.g., D major or B minor).</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -425,7 +422,7 @@
                         <code>bBEA</code>
                     </td>
                     <td class="notation-result"></td>
-                    <td>B, E, A flat (key is E-flat major or C minor).</td>
+                    <td>B, E, A flat (e.g., E flat major or C minor).</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -484,7 +481,7 @@
             (<abbr title="Common Western Music Notation">CWMN</abbr>) and Mensural.
         </p>
         <p>
-            For neume notation, the time signature MUST NOT be specified.
+            For neume notation, the time signature MUST remain unspecified.
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> and Mensural time signatures MUST NOT
@@ -503,14 +500,14 @@
             <code>|</code> character.
         </p>
         <p>
-            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate <em>tempus
-            imperfectus</em> and <em>tempus perfectus</em>, respectively. The <code>.</code> character indicates
-            "major" prolation; omitting <code>.</code> indicates "minor" prolation. A <code>/</code> character may
-            follow the <em>tempus</em> character to indicate diminution.
+            For mensuration signs, the <code>c</code> and <code>o</code> characters indicate imperfect and perfect
+            tempus, respectively. The <code>.</code> character indicates "major" prolation; omitting <code>.</code>
+            indicates "minor" prolation. A <code>/</code> character may follow the <em>tempus</em> character to
+            indicate diminution.
         </p>
         <p>
             A mensuration sign MAY include a numerical component as a proportion or augmentation,
-            indicating <em>Modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
+            indicating <em>modus cum tempore</em>. These numerals MUST be either a <code>3</code> or <code>2</code>.
             These numbers MAY be combined and separated by a <code>/</code>.
         </p>
         <aside class="example" title="Encoding Time Signatures and Mensuration Signs">
@@ -626,7 +623,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>Perfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    <td>Perfect <em>tempus</em> with modus cum tempore</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -641,7 +638,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>Imperfect <em>tempus</em>, imperfect minor <em>modus</em></td>
+                    <td>Imperfect <em>tempus</em> with modus cum tempore</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -656,7 +653,7 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td>With <em>diminution</em></td>
+                    <td>Imperfect <em>tempus</em> with diminution</td>
                 </tr>
                 <tr class="notation-example">
                     <td class="notation-code">
@@ -671,29 +668,32 @@
                     </td>
                     <td class="notation-result">
                     </td>
-                    <td><i>Not currently supported by Verovio</i></td>
+                    <td>
+                        Alternating 3/4 and 4/4 measures. <br />
+                        <i>Not currently supported by Verovio</i>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </aside>
     </section>
 </section>
-<section id="musical-notation">
+<section>
     <h2>Musical Notation</h2>
     <div class="issue" data-number="97"></div>
-    <section id="structure">
+    <section>
         <h3>Structure</h3>
         <p>
             The Musical Notation section of an encoding is given as a single line of characters representing
             a <a>staff</a> of musical notation. <a>Notes and rests</a> are the most basic <a>logical unit</a>
             of notation representation, composed of one or more characters that specify different attributes
-            of a note or rest symbol. Complex notational figures, such as chords, beams, or tuplets, serve
-            to <a>group</a> notes and rests. <a>Ornaments</a> alter the performance of a note, a rest, or
+            of a note or rest. Complex notational figures, such as chords, beams, or tuplets, serve
+            to <a>group</a> notes and rests. <a>Expression Marks</a> alter the performance of a note, a rest, or
             groups thereof. Other <a>staff and measure symbols</a> can control the definition of the staff
             itself: bar lines, cross-measure rests, or a change of clef, key signature, or time signature.
         </p>
         <p>
-            Many characters representing a musical note are optional—the only required character is the
+            Many characters representing a musical note are optional&mdash;the only required character is the
             note name. Where one or more characters for a note occurs, they MUST occur in the following order:
         </p>
         <table class="data">
@@ -732,7 +732,7 @@
         </table>
         <p>
             Logical units MAY be nested to represent complex notational features; for example, a beam will
-            contain two or more notes, or a tuplet may be composed of two or more chords. All logical units
+            contain two or more notes, or tuplet may be composed of two or more chords. All logical units
             of the same kind MUST be closed before a new one is started (i.e., no nested groups of the same kind).
         </p>
         <aside class="note">
@@ -747,13 +747,13 @@
             for example, make use of the same duration character(s).
         </p>
         <p>
-            There MUST be no spaces within the Musical Notation section, except to separate a change of
-            <a>Clef, Key Signature, or Time Signature</a>.
+            There MUST be no spaces within the Musical Notation section. The only time a space MAY occur is to separate
+            a change of Clef, Key Signature, or Time Signature.
         </p>
     </section>
-    <section id="notes-and-rests">
+    <section>
         <h3>Notes and Rests</h3>
-        <section id="durations">
+        <section>
             <h4>Durations</h4>
             <p>
                 Note durations MUST be represented by integer values in the range <code>0-9</code>. The corresponding
@@ -933,8 +933,8 @@
             <p>
                 For <abbr>CWMN</abbr> the period character <code>.</code> MAY be used to indicate a dot of augmentation,
                 extending the duration of the note by half again the indicated duration value. This character MUST be
-                directly appended to the duration value. Multiple dots MAY be used, with each successive dot indicating
-                that the duration is extended again, by half of the value of the previous dot.
+                appended to the duration value. Multiple dots MAY be used, with each successive dot indicating that
+                the duration is extended by half again.
             </p>
             <aside class="example" title="Encoding rhythmic values">
                 <table class="simple" style="width: 100%">
@@ -964,10 +964,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'8..A//8A+6A+3A"
+                                    "data": "'8..A // 8A+6A+3A"
                                 }
                             </script>
-                            <code>8..A//8A_6A_3A</code>
+                            <code>8..A // 8A_6A_3A</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note and its equivalent in tied notes</td>
@@ -976,7 +976,7 @@
                 </table>
             </aside>
         </section>
-        <section id="note-names">
+        <section>
             <h4>Note Names</h4>
             <p>
                 A note name MUST be provided to indicate the pitch class of the note.
@@ -987,7 +987,7 @@
                 <code>G</code>, <code>A</code>, <code>B</code>.
             </p>
             <p>
-                All letters MUST be uppercase; lowercase letters MUST NOT be used to indicate a note name.
+                All letters MUST be uppercase; lowercase letters MUST NOT be used.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -1016,7 +1016,7 @@
                 </table>
             </aside>
         </section>
-        <section id="octaves">
+        <section>
             <h4>Octaves</h4>
             <p>
                 Octaves in Plaine &amp; Easie are enumerated according to [[ScientificPitch]]. The boundary note
@@ -1119,7 +1119,7 @@
                 </table>
             </aside>
         </section>
-        <section id="accidentals">
+        <section>
             <h4>Accidentals</h4>
             <p>
                 An accidental MAY be used to alter the written and sounding pitch of a note. Accidentals MUST
@@ -1230,7 +1230,7 @@
                 </p>
             </aside>
         </section>
-        <section id="single-rests">
+        <section>
             <h4>Single Rests</h4>
             <p>
                 Rests for single notes MUST be indicated by a hyphen/minus character <code>-</code>. This character
@@ -1279,7 +1279,7 @@
             </aside>
         </section>
     </section>
-    <section id="groups">
+    <section>
         <h3>Groups</h3>
         <section>
             <div class="issue" data-number="112"></div>
@@ -1408,10 +1408,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'8{ABqq{''6CD}r'8AB}"
+                                    "data": "'8{ABy{''6CD}r'8AB}"
                                 }
                             </script>
-                            <code>8{ABqq{''CD}r'AB}</code>
+                            <code>8{ABy{''CD}r'AB}</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Beaming with a Grace Note Group</td>
@@ -1542,8 +1542,8 @@
             </aside>
         </section>
     </section>
-    <section>
-        <h3>Ornaments</h3>
+    <section id="expression-marks">
+        <h3>Expression Marks</h3>
         <section>
             <h4>Trills</h4>
             <p>
@@ -1676,7 +1676,7 @@
                 <h5>Appogiatura Groups</h5>
                 <p>
                     For multiple consecutive appogiatura notes, the appogiatura group SHOULD
-                    be used. The lower-case characters <code>qq</code> MUST be given as the first
+                    be used. The lower-case characters <code>y</code> MUST be given as the first
                     characters before the first note of the group, and the lower-case character
                     <code>r</code> MUST be the last character in the final note of the group.
                     There MUST be more than one note in a appogiatura group.
@@ -1704,10 +1704,10 @@
                                 <script type="application/json">
                                     {
                                         "clef": "G-2",
-                                        "data": "'4Aqq''{'8B''8C}r{''8D'8B}"
+                                        "data": "'4Ay''{'8B''8C}r{''8D'8B}"
                                     }
                                 </script>
-                                <code>'4Aqq''{'8B''8C}r{''8D'8B}</code>
+                                <code>'4Ay''{'8B''8C}r{''8D'8B}</code>
                             </td>
                             <td class="notation-result"></td>
                             <td>Appoggiatura group</td>
@@ -1717,10 +1717,10 @@
                                 <script type="application/json">
                                     {
                                         "clef": "G-2",
-                                        "data": "{'8Aqq''{'8B''8C}r''8D}"
+                                        "data": "{'8Ay''{'8B''8C}r''8D}"
                                     }
                                 </script>
-                                <code>{'8Aqq''{'8B''8C}r''8D}</code>
+                                <code>{'8Ay''{'8B''8C}r''8D}</code>
                             </td>
                             <td class="notation-result"></td>
                             <td>Beamed appoggiatura group within an outer beam</td>
@@ -1731,7 +1731,7 @@
             </section>
         </section>
     </section>
-    <section id="measure-staff-symbols">
+    <section>
         <h3>Measure and Staff Symbols</h3>
         <section>
             <h4>Bar Lines</h4>
@@ -2029,7 +2029,7 @@
             </aside>
         </section>
     </section>
-    <section id="shortcuts">
+    <section>
         <h3>Shortcuts</h3>
         <section>
             <h4>Repeat group</h4>
@@ -2160,7 +2160,7 @@
         </section>
     </section>
 </section>
-<section id="representation-formats">
+<section>
     <h2>Representation Formats</h2>
     <p>
         The original expression of the Plaine &amp; Easie Code was intended for physical
@@ -2258,7 +2258,7 @@
                 </tr>
                 </tbody>
             </table>
-            <figcaption>MARC21 and UNIMARC subfields for the Plaine &amp; Easie Code</caption>
+            <figcaption>MARC21 and UNIMARC subfields for the Plaine &amp; Easie Code</figcaption>
         </figure>
     </section>
     <section>
