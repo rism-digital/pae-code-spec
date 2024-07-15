@@ -164,6 +164,46 @@
                     explanatory notes in a notes field.
                 </p>
             </section>
+            <section>
+                <h3>Alternating Time Signatures</h3>
+                <p>
+                    Previously, alternating time signatures were separated by a
+                    space character. This caused some ambiguities since the
+                    space character was used as a separator for clef, key, and
+                    time changes inline.
+                </p>
+                <p>
+                    In Version 2 this has been changed to a vertical bar,
+                    <code>|</code>.
+                </p>
+            </section>
+            <section>
+                <h3>Mensural Notation</h3>
+                <p>
+                    Previously, the <code>+</code> character was used in clefs
+                    to indicate the staff should be rendered in mensural notation.
+                    Due to the same problems in encoding that had us remove it for ties,
+                    the <code>+</code> character was replaced with a <code>*</code>
+                    character in the clef for indicating mensural notation.
+                </p>
+            </section>
+            <section>
+                <h3>Appogiatura Group Opening Character</h3>
+                <p>
+                    Previously the characters <code>qq</code> were used to start
+                    an appogiatura (a.k.a grace note) group. However, this was
+                    the only instance in the Plaine &amp; Easie Code where two
+                    characters were used to start a group. It also meant that
+                    parsing the code was a bit more difficult, since it created
+                    ambiguities between a single `q`, or a single appogiatura
+                    notes, or a group of notes.
+                </p>
+                <p>
+                    In Version 2 the start of an appogiatura group is now
+                    signalled by the lower-case letter <code>y</code>. It is
+                    still ended by the lower-case letter <code>r</code>.
+                </p>
+            </section>
         </section>
         <section>
             <h2>New Features</h2>
@@ -180,6 +220,35 @@
             <section>
                 <h3>Order of elements within a note</h3>
             </section>
+            <section>
+                <h3>Key and Mode</h3>
+                <p>
+                    The ability to explicitly state key and / or mode in Plaine &amp; Easie was not included
+                    in Version 2.
+                </p>
+                <p>
+                    The status of this ability was unclear. MARC21 (<code>$r</code>) and UNIMARC permit the encoding
+                    of key and mode, and indeed the MARC21 documentation states that the format of this field comes
+                    from the Plaine &amp; Easie Code. However, the latest updates to Version 1 of the Code did not
+                    actually specify this format.
+                </p>
+                <p>
+                    The ability to encode the key or mode of a piece was available in the initial versions of the
+                    Plaine &amp; Easie Code, but the format of this field was not strictly defined.
+                </p>
+                <p>
+                    It was decided to not formalize this field in Version 2 of the Code. The judgement of a major
+                    or a minor key is not strictly necessary for capturing the notation of an incipit, and instead is
+                    something that should be captured in an explanatory note or a dedicated cataloguing field. The
+                    application of this field, particularly in the capture of non-CWMN music, would also require
+                    expanding the format and validation of the values beyond a simple rubric.
+                </p>
+                <p>
+                    The effect of this change may be that the subfield remains available in MARC21 and UNIMARC, but the
+                    format is no longer defined in reference to the Plaine &amp; Easie Code.
+                </p>
+            </section>
+
         </section>
     </body>
 </html>
