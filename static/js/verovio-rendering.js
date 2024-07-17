@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
                 for (let column of row.children)
                 {
-
                     if (column && column.classList.contains("notation-code"))
                     {
                         let paeCode = column.querySelector("script").textContent;
@@ -44,6 +43,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     else if (column.classList.contains("notation-result"))
                     {
                         column.innerHTML = verovioSvg;
+                    }
+                    else if (column.classList.contains("rendered-notation"))
+                    {
+                        // This allows for both the code and the output to be shown in the same cell.
+                        let paeCode = column.querySelector("script").textContent;
+                        let loadSuccess = tk.loadData(JSON.stringify(JSON.parse(paeCode)));
+
+                        if (loadSuccess)
+                        {
+                            verovioSvg = tk.renderToSVG();
+                            column.innerHTML = verovioSvg;
+                        }
                     }
                 }
             }
