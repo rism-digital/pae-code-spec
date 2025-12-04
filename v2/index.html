@@ -1292,19 +1292,19 @@
             <div class="issue" data-number="112"></div>
             <h4>Ties</h4>
             <p>
-                Tied notes MUST be indicated with an underscore character <code>_</code>.
-                Ties MUST occur between successive notes with the same pitch and octave.
-                A tie MUST NOT occur between a note and a rest.
+                Tied notes are indicated with an underscore character <code>_</code>. Tied notes consist of
+                an initial note, a tie symbol, and an end note. The underscore represents both the tie symbol
+                and the end note.
             </p>
             <p>
-                The underscore character MUST occur on the first note of the tie.
-            <p>
-            <p>
-                Tied notes MAY occur over bar lines.
+                An undescore MAY be preceded by a <a href="#durations">duration</a> value, which serves to indicate
+                a different duration of the end note from the initial note. If no duration value is supplied, the
+                end note is considered to have the same duration as the initial note.
             </p>
             <p>
-                The underscore character MUST NOT be used to indicate slurs, phrase
-                marks, or ligatures.
+                Tied notes MAY occur over bar lines. When a tie occurs over a bar line, the underscore (with
+                an optionally specified <a href="#durations">duration</a> value) MUST be the first characters
+                in the new measure.
             </p>
             <aside class="example" title="Encoding Ties">
                 <table class="simple" style="width: 100%">
@@ -1324,7 +1324,7 @@
                                     "data": "FG+GA"
                                 }
                             </script>
-                            <code>FG_GA</code>
+                            <code>FG_A</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Tied notes within a bar</td>
@@ -1337,7 +1337,7 @@
                                     "data": "2''G+/G"
                                 }
                             </script>
-                            <code>2''G_/G</code>
+                            <code>2''G/_</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Tied notes over a bar line</td>
@@ -1347,13 +1347,14 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "1''G+/G+/G"
+                                    "tsig": "2/2",
+                                    "data": "2''G+/G+/4G"
                                 }
                             </script>
-                            <code>2''G_/G_/G</code>
+                            <code>2''G/_/4_</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Successive tied notes</td>
+                        <td>Successive tied notes over bar lines.</td>
                     </tr>
                     </tbody>
                 </table>
