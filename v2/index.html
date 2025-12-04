@@ -706,33 +706,50 @@
             <colgroup class="header"></colgroup>
             <colgroup span="2"></colgroup>
             <thead>
-            <tr>
-                <th>Note Feature</th>
-                <th>Characters</th>
-                <th>Requirement</th>
-            </tr>
+                <tr>
+                    <th>Note Feature</th>
+                    <th>Characters</th>
+                    <th>Requirement</th>
+                    <th>Remarks</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Octave</td>
-                <td><code>[,']</code></td>
-                <td>Optional</td>
-            </tr>
-            <tr>
-                <td>Duration / Duration Dot</td>
-                <td><code>[0-9][.]</code></td>
-                <td>Optional</td>
-            </tr>
-            <tr>
-                <td>Accidental</td>
-                <td><code>[xb]</code></td>
-                <td>Optional</td>
-            </tr>
-            <tr>
-                <td>Note Name</td>
-                <td><code>[A-G]</code></td>
-                <td><strong>Required</strong></td>
-            </tr>
+                <tr>
+                    <td>Grace / Appogiatura</td>
+                    <td><code>[gq]</code></td>
+                    <td>Optional</td>
+                    <td>When specified, MUST precede all other characters.</td>
+                </tr>
+                <tr>
+                    <td>Octave</td>
+                    <td><code>[,']</code></td>
+                    <td>Optional</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Duration / Duration Dot</td>
+                    <td><code>[0-9][.]</code></td>
+                    <td>Optional</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accidental</td>
+                    <td><code>[xbn]</code></td>
+                    <td>Optional</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Note Name</td>
+                    <td><code>[A-G]</code></td>
+                    <td><strong>Required</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Note Modifiers</td>
+                    <td><code>[tpu]</code></td>
+                    <td>Optional</td>
+                    <td>When specified, and when combined with other modifiers, MUST occur in the given order.</td>
+                </tr>
             </tbody>
             <caption>Order of characters representing a note</caption>
         </table>
