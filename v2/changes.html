@@ -184,13 +184,29 @@
                 </p>
             </section>
             <section>
+                <h3>Chords</h3>
+                <p>
+                    Previously, chords were encoded by individually marking
+                    each member of a chord with a <code>^</code>. This made parsing
+                    difficult as chords were determined only after the first note was
+                    encountered. As well, there were no rules forbidding changing
+                    durations on members of a chord, nor were there specifications for
+                    encoding tied chords.
+                </p>
+                <p>
+                    In Version 2, chords are encoded between <code>^</code> and
+                    <code>&gt;</code> characters. Changes to duration within a chord
+                    are forbidden, and the encoding of tied chords is specified.
+                </p>
+            </section>
+            <section>
                 <h3>Mensural Notation</h3>
                 <p>
                     Previously, the <code>+</code> character was used in clefs
                     to indicate the staff should be rendered in mensural notation.
                     Due to the same problems in encoding that had us remove it for ties,
                     the <code>+</code> character was replaced with a <code>*</code>
-                    character in the clef for indicating mensural notation.
+                    character in the clef to indicate mensural notation.
                 </p>
             </section>
             <section>
@@ -254,7 +270,9 @@
                     format is no longer defined in reference to the Plaine &amp; Easie Code.
                 </p>
             </section>
+            <section>
 
+            </section>
         </section>
     </body>
 </html>
