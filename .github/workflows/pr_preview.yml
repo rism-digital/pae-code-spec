@@ -12,12 +12,12 @@ concurrency: preview-${{ github.ref }}
 
 jobs:
   deploy-preview:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@f31d5aa7b364955ea86228b9dcd346dc3f29c408 # v1.4.7
+        uses: rossjrw/pr-preview-action@8ff09e486b4c23709012eedd3b42e9f0b95dd0c5 # v1.6.3
         with:
           source-dir: .
