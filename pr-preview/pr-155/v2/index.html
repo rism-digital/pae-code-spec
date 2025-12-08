@@ -935,6 +935,7 @@
             <p>
                 An <a>encoding</a> MAY omit all duration indications. If no duration is supplied on any note, all
                 notes are assumed to have a duration value of <code>4</code> (quarter note / crochet / semiminim).
+                For neume notation there is no implied duration on any notes.
             </p>
             <p>
                 For <abbr>CWMN</abbr> the period character <code>.</code> MAY be used to indicate a dot of augmentation,
@@ -2041,9 +2042,9 @@
             </p>
             <p>
                 The percent character <code>%</code> MUST be used to indicate a clef change. A clef change MAY occur
-                anywhere
-                within the music notation section. This character MUST be followed by a clef definition according
-                to the specifications given in the <a href="#clef">Clef</a> section.
+                anywhere within the music notation section. This character MUST be followed by a clef definition
+                according to the specifications given in the <a href="#clef">Clef</a> section. A clef change MUST NOT
+                be used to change the notation type (e.g., from CWMN to Mensural).
             </p>
             <p>
                 The dollar character <code>$</code> MUST be used to indicate a key signature change. A key signature
