@@ -1556,8 +1556,10 @@
                 A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
             </p>
             <p>
-                An underscore <code>_</code> is used to indicate a tied chord. Encoding a tied chord follows
-                the same method as encoding a tied single note. Single notes tied within a chord are not supported.
+                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a>notes</a>,
+                the underscore represents both the tie and the final chord. An underscore MAY be preceded
+                by a <a href="#durations">duration</a> value, which serves to indicate a different duration
+                of the end note from the initial note.
             </p>
             <aside class="example" title="Encoding Chords">
                 <table class="simple" style="width: 100%">
