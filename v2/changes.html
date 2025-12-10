@@ -141,7 +141,13 @@
                     space.
                 </p>
                 <p>
-                    Notably, the first version of the Plaine &amp; Easie Code
+                    In addition to changing to an underscore, ties are now encoded
+                    without specifying the end pitch name. This was introduced to
+                    eliminate occurrences of a tie where the start and end pitch names
+                    differ.
+                </p>
+                <p>
+                    The first version of the Plaine &amp; Easie Code
                     also used the underscore for tied notes. This was changed in
                     subsequent revisions, but is now reverted to its original
                     character.
@@ -178,13 +184,29 @@
                 </p>
             </section>
             <section>
+                <h3>Chords</h3>
+                <p>
+                    Previously, chords were encoded by individually marking
+                    each member of a chord with a <code>^</code>. This made parsing
+                    difficult as chords were determined only after the first note was
+                    encountered. As well, there were no rules forbidding changing
+                    durations on members of a chord, nor were there specifications for
+                    encoding tied chords.
+                </p>
+                <p>
+                    In Version 2, chords are encoded between <code>^</code> and
+                    <code>&gt;</code> characters. Changes to duration within a chord
+                    are forbidden, and the encoding of tied chords is specified.
+                </p>
+            </section>
+            <section>
                 <h3>Mensural Notation</h3>
                 <p>
                     Previously, the <code>+</code> character was used in clefs
                     to indicate the staff should be rendered in mensural notation.
                     Due to the same problems in encoding that had us remove it for ties,
                     the <code>+</code> character was replaced with a <code>*</code>
-                    character in the clef for indicating mensural notation.
+                    character in the clef to indicate mensural notation.
                 </p>
             </section>
             <section>
@@ -193,14 +215,14 @@
                     Previously the characters <code>qq</code> were used to start
                     an appogiatura (a.k.a grace note) group. However, this was
                     the only instance in the Plaine &amp; Easie Code where two
-                    characters were used to start a group. It also meant that
-                    parsing the code was a bit more difficult, since it created
-                    ambiguities between a single `q`, or a single appogiatura
-                    notes, or a group of notes.
+                    characters were used to start a group. It made
+                    parsing the code more difficult, since it created
+                    ambiguities between a single appoggiatura note, `q` and
+                    a group of notes.
                 </p>
                 <p>
-                    In Version 2 the start of an appogiatura group is now
-                    signalled by the lower-case letter <code>y</code>. It is
+                    In Version 2 the start of an appoggiatura group is now
+                    signaled by the lower-case letter <code>y</code>. It is
                     still ended by the lower-case letter <code>r</code>.
                 </p>
             </section>
@@ -248,7 +270,9 @@
                     format is no longer defined in reference to the Plaine &amp; Easie Code.
                 </p>
             </section>
+            <section>
 
+            </section>
         </section>
     </body>
 </html>
