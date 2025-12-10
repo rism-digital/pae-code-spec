@@ -1310,19 +1310,21 @@
             <div class="issue" data-number="112"></div>
             <h4>Ties</h4>
             <p>
-                Tied notes MUST be indicated with an underscore character <code>_</code>.
-                Ties MUST occur between successive notes with the same pitch and octave.
-                A tie MUST NOT occur between a note and a rest.
+                Tied notes are indicated with an underscore character <code>_</code>. Tied notes consist of
+                an initial note, a tie symbol, and an end note. The underscore represents both the tie symbol
+                and the end note.
             </p>
             <p>
-                The underscore character MUST occur on the first note of the tie.
-            <p>
-            <p>
-                Tied notes MAY occur over bar lines.
+                An underscore MAY be preceded by a <a href="#durations">duration</a> value, which serves to indicate
+                a different duration of the end note from the initial note. If no duration value is supplied, the
+                end note is considered to have the same duration as the initial note.
             </p>
             <p>
-                The underscore character MUST NOT be used to indicate slurs, phrase
-                marks, or ligatures.
+                An underscore MAY be preceded by the opening characters of a <a>beam</a> or <a>tuplet</a>.
+            </p>
+            <p>
+                Tied notes MAY occur over bar lines. The underscore MUST occur after the bar line, but MAY be preceded
+                in the new measure by a <a>duration</a> or the opening characters of a <a>beam</a> or <a>tuplet</a>.
             </p>
             <aside class="example" title="Encoding Ties">
                 <table class="simple" style="width: 100%">
@@ -1342,7 +1344,7 @@
                                     "data": "FG+GA"
                                 }
                             </script>
-                            <code>FG_GA</code>
+                            <code>FG_A</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Tied notes within a bar</td>
@@ -1355,7 +1357,7 @@
                                     "data": "2''G+/G"
                                 }
                             </script>
-                            <code>2''G_/G</code>
+                            <code>2''G/_</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Tied notes over a bar line</td>
@@ -1365,13 +1367,28 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "1''G+/G+/G"
+                                    "tsig": "2/2",
+                                    "data": "2''G+/G+/4G"
                                 }
                             </script>
-                            <code>2''G_/G_/G</code>
+                            <code>2''G/_/4_</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Successive tied notes</td>
+                        <td>Successive tied notes over bar lines.</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "tsig": "2/2",
+                                    "data": "2''G/8{_AB}/4_"
+                                }
+                            </script>
+                            <code>2''G/8{_AB}/4_</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Tied notes with beaming.</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1556,15 +1573,10 @@
                 A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
             </p>
             <p>
-                A <code>v</code> MAY be used to indicate a tied chord. A duration value MAY immediately
-                precede the <code>v</code>. If the duration is omitted, the last specified duration is
-                used. If no duration is supplied in the <a>encoding</a> a default duration of <code>4</code>
-                is assumed.
-            </p>
-            <p>
-                The <code>v</code> MUST follow the closing <code>></code>. It MUST not be separated from
-                the chord by any character EXCEPT <a>bar line</a> characters. It MAY be repeated as many times as
-                necessary, and each repetition MAY change its duration.
+                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a>notes</a>,
+                the underscore represents both the tie and the final chord. An underscore MAY be preceded
+                by a <a href="#durations">duration</a> value, which serves to indicate a different duration
+                of the end note from the initial note.
             </p>
             <aside class="example" title="Encoding Chords">
                 <table class="simple" style="width: 100%">
@@ -1602,19 +1614,31 @@
                         <td class="notation-result"></td>
                         <td>A chord with a fermata</td>
                     </tr>
-
                     <tr class="notation-example">
                         <td class="notation-code">
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "''2D^'A^xF"
+                                    "data": "''2D^'A^xF/''2D^'A^xF/''4D^'A^xF//"
                                 }
                             </script>
-                            <code>2^'AxF>/2v/4v//</code>
+                            <code>2^''D'AxF>/2_/4_//</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>A chord tied over three measures with varying durations</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2C^E^G8(6{C^E^GD^xF^AE^G^B})"
+                                }
+                            </script>
+                            <code>2^CEG>8(6{_^DxFA>^EGB>})</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord tied to both beamed and rhythmic groups</td>
                     </tr>
                     </tbody>
                 </table>
