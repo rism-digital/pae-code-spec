@@ -1398,8 +1398,69 @@
             <div class="issue" data-number="28"></div>
             <h4>Ligatures</h4>
             <p>
-                Todo.
+                Two notes joined in a ligature can be indicated with the lower-case character
+                <code>u</code>.
             </p>
+            <p>
+                Several consecutive notes MAY be joined in a single ligature by
+                adding the <code>u</code> between each note.
+            </p>
+            <p>
+                A ligature MUST NOT occur between a note and a rest, and MUST NOT occur between a note and a group
+                of notes. (i.e., a beam, tuplet, or chord.) Ligatures also MUST NOT occur within a beam, tuplet,
+                or chord.
+            </p>
+            <p>
+                When a ligature character is used, it MUST be the final modifier, occuring after the pitch name and
+                any other modifiers.
+            </p>
+            <aside class="note">
+                <p>
+                    While some notation renderers may attempt to reproduce the shape of the ligature in its original
+                    form, it is also common practice to indicate that two notes were in a ligature by including them
+                    within a horizontal bracket. Both forms are valid visualizations of ligatures,
+                    and the Plaine &amp; Easie Code does not dictate the use of one method or the other.
+                </p>
+            </aside>
+            <aside class="example" title="Encoding Ligatures">
+                <table class="simple" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Notation</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G:2",
+                                    "data": "CDuEF"
+                                }
+                            </script>
+                            <code>CDuEF</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Ligatures to indicate neume groups</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "4Cu8Du,A"
+                                }
+                            </script>
+                            <code>4Cu8Du,A</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A three-note ligature with varying note features.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </aside>
         </section>
         <section id="beams">
             <h4>Beams</h4>
