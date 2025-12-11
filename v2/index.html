@@ -2060,23 +2060,18 @@
         <section id="measure-rests">
             <h4>Measure Rests</h4>
             <p>
-                Measure rests MUST be indicated by an equal sign character <code>=</code>. This character MUST be
+                Measure rests are indicated by an equal sign character <code>=</code>. This character MUST be
                 followed by a positive integer indicating the number of measures for which this rest applies,
                 unless the measure rest only applies to a single measure. In this case, the number MAY be omitted.
             </p>
             <p>
-                Measure rests MUST be followed by a <a href="#bar-lines">bar line</a> character.
+                Measure rests MUST be followed by a <a href="#bar-lines">bar line</a> character. When a measure rest
+                is used, all other notation symbols MUST NOT appear in the same <a>measure</a>.
             </p>
             <p>
-                Measure rests MUST NOT be used with Mensural notation, due to the general absence of measures in
-                this system of notation.
+                Measure rests MUST NOT be used with Mensural or Neume notation.
             </p>
-            <p>
-                Measure rests MAY indicate the number of measures that are being skipped in the
-                <a>original source</a> before the musical content being captured by the incipit, regardless of whether
-                these measures in the original source contain musical content.
-            </p>
-            <aside class="example" title="Encoding Rests">
+            <aside class="example" title="Encoding Measure Rests">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -2111,6 +2106,19 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>35 measures rest</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "=5//=10/=/"
+                                }
+                            </script>
+                            <code>=5//=10/=/</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Multiple measure rests</td>
                     </tr>
                     </tbody>
                 </table>
