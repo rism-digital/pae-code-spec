@@ -1302,16 +1302,14 @@
             <p>
                 A note cannot be altered by the same accidental more than once within the same bar. The
                 alteration of a note continues on subsequent notes with the same <a>note name</a> until the
-                next <a href="#bar-lines">bar line</a>. If an accidental is given to subsequent notes
-                with the same note name in the same measure, it has no effect.
+                next <a href="#bar-lines">bar line</a>.
             </p>
             <aside class="note">
                 <p>
                     Accidentals follow the established convention in music notation writing that alterations
                     to a note within a measure do not require the accidental to be restated. This is also reflected
                     in the encoding, where notes are not required to restate the accidental for subsequent notes in
-                    a measure with the same note name. <a>Renderers</a> can choose to draw the repeated
-                    accidentals, or they can choose to render only the first.
+                    a measure with the same note name.
                 </p>
             </aside>
         </section>
@@ -1787,7 +1785,7 @@
             <p>
                 The lower-case character <code>t</code> is used to indicate
                 a trilled note. The <code>t</code> MUST immediately follow the
-                note name.
+                <a href="#note-names">note name</a>.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -1820,7 +1818,7 @@
             <h4>Fermatas</h4>
             <p>
                 The lower-case character <code>p</code> is used to indicate
-                a fermata on a note. The <code>p</code> MUST follow the note name.
+                a fermata on a note. The <code>p</code> MUST follow the <a href="#note-names">note name</a>.
                 If there is also a <a>trill</a>, the <code>p</code> MUST follow
                 the trill character.
             </p>
@@ -1862,7 +1860,7 @@
             </p>
             <p>
                 The lower-case character <code>g</code> is used for a single acciaccatura.
-                This character MUST precede the note name, and MUST
+                This character MUST precede the <a href="#note-names">note name</a>, and MUST
                 also precede all other attributes of the note. Consecutive single
                 acciaccaturas MUST NOT occur.
             </p>
@@ -2421,7 +2419,9 @@
         </p>
         <p>
             In both systems, the <code>$2</code> subfield indicates the coding system used for the
-            incipit. This code MUST be <code>pe2</code> for Version 2 of the Plaine &amp; Easie Code.
+            incipit. This code MUST be <code>pe2</code> for Version 2 of the Plaine and Easie Code. If <code>$2</code>
+            is omitted, or if the value of <code>$2</code> is <code>pe</code>, then the values in the field
+            MUST be interpreted as conforming to Version 1 of the Plaine and Easie Code.
         </p>
         <aside class="note">
             <p>
@@ -2490,22 +2490,23 @@
             a colon character <code>:</code>.
         <p>
         <p>
-            The field name MUST be one of the following: <code>clef</code>, <code>keysig</code>, <code>timesig</code>,
-            <code>key</code>, <code>data</code>, or <code>version</code>.
+            The allowable field identifiers are: <code>@clef</code>,
+            <code>@keysig</code>, <code>@timesig</code>, <code>@key</code>,
+            <code>@data</code>, and <code>@version</code>.
         </p>
         <p>
             The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
             contain any characters that are not part of the value itself; for example, the value must not be
-            enclosed in quotation marks.
+            enclosed in quotation marks. The
         </p>
         <p>
             There MUST be at least two fields in the encoding: <code>clef</code> and <code>data</code>.
         </p>
         <p>
-            The <code>version</code> field MAY be included. The value of the <code>version</code> field
-            MUST be <code>pe2</code> for incipits that conform to Version 2 of the specification. If a
-            <code>version</code> field is not specified, the incipit SHOULD be interpreted as conforming
-            to Version 1 of the specification.
+            The value of the <code>@version</code> identifier MUST be <code>pe2</code> for incipits that conform
+            to Version 2 of the specification. If a <code>@version</code> identifier is not specified, or if any other
+            value other than <code>pe2</code> is found in the <code>@version</code> field, the incipit
+            MUST be interpreted as conforming to Version 1 of the specification.
         </p>
         <aside class="example" title="Multi-line text with field delimiters">
             <pre>
@@ -2520,24 +2521,24 @@
     <section>
         <h3>JavaScript Object Notation (JSON)</h3>
         <p>
-            Plaine &amp; Easie Code MAY be represented as JavaScript Object Notation
-            ([[JSON]]). All JSON encodings of the Plaine &amp; Easie Code MUST be valid
+            Plaine and Easie Code can be represented as JavaScript Object Notation
+            ([[JSON]]). All JSON encodings of the Plaine and Easie Code MUST be valid
             JSON.
         </p>
         <p>
-            The keys in the JSON MUST be one of the following: <code>clef</code>,
+            The allowable keys in the JSON are: <code>clef</code>,
             <code>keysig</code>, <code>timesig</code>, <code>key</code>,
-            <code>data</code>, or <code>version</code>. Unlike the multi-line text
+            <code>data</code>, and <code>version</code>. Unlike the multi-line text
             representation, they MUST NOT begin with an at sign character <code>@</code>.
         </p>
         <p>
             There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
         </p>
         <p>
-            The <code>version</code> key MAY be included. The value of the <code>version</code> key
-            MUST be <code>pe2</code> for incipits that conform to Version 2 of the specification. If a
-            <code>version</code> key is not specified, the incipit SHOULD be interpreted as conforming
-            to Version 1 of the specification.
+            The value of the <code>version</code> key MUST be <code>pe2</code> for incipits that conform
+            to Version 2 of the specification. If a <code>version</code> key is not specified, or if any other
+            value other than <code>pe2</code> is found in the <code>version</code> field, the incipit
+            MUST be interpreted as conforming to Version 1 of the specification.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
             <pre>
@@ -2569,15 +2570,12 @@
             The line of text SHOULD specify a key signature and a time signature. This also
             follows the same format for an inline change of key and time signatures.
         <p>
-            The clef, key signature, and time signature declarations MUST NOT themselves be
-            separated by a space character.
-        </p>
-        <p>
             The clef, key signature and time signature MUST be separated from the rest of the music
-            notation by a single space character.
+            notation by a single space character. The clef, key signature, and time signature declarations
+            MUST NOT themselves be separated by a space character.
         </p>
         <p>
-            The rest of the line of text follows the format for the music notation section of the code.
+            The rest of the line of text follows the format for the music notation.
             Further changes to the clef, key signature, and time signature are permitted as normal.
         </p>
         <aside class="example" title="Single-line Plaine and Easie code">
