@@ -1,4 +1,4 @@
-## Plaine & Easie Specification Editorial Process
+## Plaine and Easie Specification Editorial Process
 
 The editorial process is designed to capture the process and discussion behind changes to the specification, promote
 transparency, and preserve an audit trail for the historical development of the specification in response to feedback.
@@ -60,8 +60,8 @@ up to the Pull Request author to clear the conflict and to ensure it can be safe
 
 ## Editorial Guidelines
 
-Prior to Version 2, the Plaine & Easie Code specification was written primarily for an audience of encoders;
-that is, people who were responsible for creating Plaine & Easie encodings when cataloguing sources in RISM. As such,
+Prior to Version 2, the Plaine and Easie Code specification was written primarily for an audience of encoders;
+that is, people who were responsible for creating Plaine and Easie encodings when cataloguing sources in RISM. As such,
 it was a combination of specification and encoding guidelines, and had a number of under-specified, vague, or conflicting
 rules. In Version 2, these two purposes were separated into dedicated documents, and the specifications are now written 
 to provide a comprehensive set of the rules of the encoding scheme, while the guidelines build on the specification to 
@@ -72,9 +72,9 @@ encoding scheme. Since this is the most widely adopted form of the specification
 to the scheme have knock-on effects for others.
 
 The Version 2 specification strives to provide unambiguous language for people who want an authoritative reference for 
-what is, and what is not, allowed in Plaine & Easie. In addition to assisting encoders by knowing what they can include, 
+what is, and what is not, allowed in Plaine and Easie. In addition to assisting encoders by knowing what they can include, 
 it is also meant to serve as a reference for software developers and data scientists, to know what data they can expect 
-when building tools that use Plaine & Easie code, and to understand what constitutes "valid" or "invalid" data.
+when building tools that use Plaine and Easie code, and to understand what constitutes "valid" or "invalid" data.
 
 When writing the specifications, it is important to keep in mind the concepts of "normative" and "non-normative". These
 terms refer to the style and content of the sections of the specification. In a normative section, the content should be
@@ -123,12 +123,14 @@ bread folded over; In our scheme, this is an invalid form of sandwich because it
 This is not to say that in the greater world this is invalid, but in our specific universe that we have constructed, it 
 is not a valid form of sandwich.
 
-To bring this back to Plaine & Easie, it is clear that we are not specifying how *all* music notation works, but we are
+To bring this back to Plaine and Easie, it is clear that we are not specifying how *all* music notation works, but we are
 only concerned with describing how it works within a limited context. So if we say that a clef MUST specify line numbers
-from 1-5, we are not saying that other forms of clefs on 6-line staves do not exist; we are simply saying that Plaine &
+from 1-5, we are not saying that other forms of clefs on 6-line staves do not exist; we are simply saying that Plaine and
 Easie does not support it.
 
 ### Style
+
+The correct forumlation of the code's name is `Plaine and Easie`. 
 
 Spelling follows the US form of words (flavor, neighbor, digitize). Serial commas are used in lists. Titles of sections use headline case (Key Signature, not Key signature). Dates, if necessary,
 are given in YYYY-MM-DD form. Measurements are given in metric.
@@ -159,7 +161,7 @@ You can always find a link to the preview in the Pull Request itself.
 
 ### Rendering Examples with Verovio
 
-At present, previewing Plaine & Easie code with Verovio within the specifications is possible. Rendering is only available
+At present, previewing Plaine and Easie code with Verovio within the specifications is possible. Rendering is only available
 within a table of examples. For example:
 
 ```html
@@ -194,7 +196,7 @@ The important elements about this markup are:
  - The `notation-example` class on the `<tr>` element. This signals that the row contains some markup that should be
 passed to Verovio.
  - The `notation-code` class on the `<td>` element. Within the `<td>` you should embed a script tag with a JSON-formatted
-Plaine & Easie document. This will be the format used by Verovio to render the example. It will not be shown to users.
+Plaine and Easie document. This will be the format used by Verovio to render the example. It will not be shown to users.
  - The `<code>` tags within the `notation-code` element are what will be shown to the users. This means you can restrict
 the example being shown to just the elements you are trying to illustrate, while omitting any additional code needed to
 render, but unnecessary for the example.
