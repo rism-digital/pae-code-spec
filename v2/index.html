@@ -197,8 +197,8 @@
     <div class="issue" data-number="117"></div>
     <h2>Terminology</h2>
     <p>
-        This section sets out the terminology and definitions of some concepts in this document, and provide
-        a common reference definition for these terms.
+        This section defines terms used throughout this document and provides a common
+        reference for their interpretation.
     </p>
     <dl>
         <dt><dfn>Circle of Fifths</dfn></dt>
@@ -213,45 +213,43 @@
         </dd>
         <dt><dfn>Encoding</dfn></dt>
         <dd>
-            Musical notation recorded using the Plaine and Easie Code.
+            A sequence of Plaine and Easie Code characters used to record musical notation.
         </dd>
         <dt><dfn>Logical Unit</dfn></dt>
         <dd>
-            A logical unit of notation data consists of one or more characters that represent individual musical
-            notation event, i.e., a note or rest.
+            A unit of notation data consisting of one or more characters that represent a
+            single notational element, such as a note, rest, chord, or grouped figure.
         </dd>
         <dt><dfn>Measure</dfn></dt>
         <dd>
             A unit of musical time defined by a set number of beats, as indicated by the time signature, and
             separated from other measures by bar lines.
         </dd>
-        <dt><dfn>Mensural Music Notation</dfn></dt>
+        <dt><dfn data-local-lt="Mensural">Mensural Music Notation</dfn></dt>
         <dd>
-            A system of written musical notation, distinguished by its use of proportion-based durations and
-            no measures.
+            A system of written musical notation distinguished by proportion-based durations
+            and the absence of measures.
         </dd>
         <dt><dfn>Neume Notation</dfn></dt>
         <dd>
-            A system of written musical notation, widely used in Western countries representing
-            the musical notation for a sung liturgical text, e.g., "plainchant". This notation uses
-            neumes: Shapes which convey pitch information, have no features for capturing
-            note durations, and which may or may not be combined as ligatures.
+            A system of written musical notation used primarily for chant and other sung
+            liturgical repertories.
         </dd>
         <dt><dfn>Renderer</dfn></dt>
         <dd>
-            A software application that transforms the encoded Plaine and Easie Code into
-            music notation. Rendering applications may also "render" the notation in sound through, e.g.,
-            MIDI.
+            A software application that renders Plaine and Easie Code as music notation.
+            A renderer may also produce sound output, for example through MIDI.
         </dd>
         <dt><dfn>Sounding Pitch</dfn></dt>
         <dd>
-            The pitch of the instrument when it is performed, independent of how the
-            notation looks for that instrument on a musical staff.
+            The pitch that is heard when the music is performed, independent of how that
+            pitch is written on the staff.
         </dd>
         <dt><dfn>Staff</dfn></dt>
         <dd>
-            Five parallel lines that serve to indicate the pitch of a note relative to
-            other notes. A clef is typically used on a staff to indicate a reference pitch.
+            A set of five parallel lines used to indicate the relative pitch of notes. A clef
+            establishes a reference pitch on the staff, from which the pitch positions of the
+            other lines and spaces are derived.
         </dd>
         <dt><dfn>Transcriber</dfn></dt>
         <dd>
@@ -259,8 +257,8 @@
         </dd>
         <dt><dfn>Written Pitch</dfn></dt>
         <dd>
-            The representation of the notation as it is written on a musical staff, and not as
-            it sounds when the instrument is performed.
+            The pitch represented by a note as it is written on the staff, independent of how
+            it sounds when performed.
         </dd>
     </dl>
 </section>
@@ -286,7 +284,7 @@
         </p>
         <p>
             The second character uses the characters <code>-</code> to indicate modern notation,
-            <code>*</code> to indicate <a>mensural music notation</a>, or <code>:</code> to indicate
+            <code>*</code> to indicate <a data-lt="Mensural Music Notation">mensural music notation</a>, or <code>:</code> to indicate
             <a>neume notation</a>. Each of these notation types impose different interpretations on the staff and
             music notation of the incipit.
         </p>
@@ -537,8 +535,8 @@
         </p>
         <p>
             There are two main categories of time signature forms, <a>Common Western Music Notation</a>
-            (<abbr title="Common Western Music Notation">CWMN</abbr>) and mensuration signs used in <a>Mensural</a>
-            notation.
+            (<abbr title="Common Western Music Notation">CWMN</abbr>) and mensuration signs used in
+            <a data-lt="Mensural Music Notation">Mensural notation</a>.
         </p>
         <p>
             For neume notation, the time signature MUST NOT be encoded.
@@ -550,7 +548,7 @@
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures that indicate alternating
-            <a>measures</a> are indicated by transcribing both, separated by a vertical bar
+            <a data-lt="Measure">measures</a> are indicated by transcribing both, separated by a vertical bar
             <code>|</code> character.
         </p>
         <p>
@@ -742,8 +740,8 @@
             a <a>staff</a> of musical notation. <a href="#notes-and-rests">Notes and rests</a>, and chords,
             are the most basic <a>logical units</a> of notation representation, composed of one or more
             characters that specify different attributes of a note or rest. Complex notational figures,
-            such as beams, or tuplets, serve to group these logical units. <a href="#expression-marks">Expression marks</a>
-            alter the performance of a note, a rest, or groups thereof. Other staff and <a>measure</a> symbols
+            such as <a href="#beams">beams</a>, or <a href="#tuplets">tuplets</a>, serve to group these logical units. <a href="#expression-marks">Expression marks</a>
+            alter the performance of a note, a rest, or groups thereof. Other <a href="#measure-and-staff-symbols">staff and measure</a> symbols
             can control the definition of the staff itself: bar lines, multi-measure rests, or a change of clef,
             key signature, or time signature.
         </p>
@@ -821,10 +819,10 @@
             time signature, from the music notation that follows the change.
         </p>
         <p>
-            To aid in writing succinct incipits, <a>duration</a> and <a>octave</a> values do not need to be
+            To aid in writing succinct incipits, <a href="#durations">duration</a> and <a href="#octaves">octave</a> values do not need to be
             stated on every note. Where they are absent, the previously stated value is used. Where no values
             are stated in the encoding, a default value is usually inferred. See the sections on
-            <a>duration</a> and <a>octave</a> for more details.
+            <a href="#durations">duration</a> and <a href="#octaves">octave</a> for more details.
         </p>
     </section>
     <section id="notes-and-rests">
@@ -1000,7 +998,8 @@
             </p>
             <p>
                 Duration values MUST be interpreted differently if the encoding is in
-                <abbr title="Common Western Music Notation">CWMN</abbr> or Mensural notation. Mensural notation
+                <a data-lt="Common Western Music Notation"><abbr title="Common Western Music Notation">CWMN</abbr></a> or
+                <a data-lt="Mensural Music Notation">Mensural notation</a>. Mensural notation
                 MUST NOT use durations of <code>3</code>, <code>5</code>, or <code>7</code>.
             </p>
             <p>
@@ -1295,13 +1294,14 @@
                 </p>
             </aside>
             <p>
-                Where a note in a <a>key signature</a> is altered by use of an
+                Where a note in a <a href="#key-signature">key signature</a> is altered by use of an
                 accidental directly before the note, the <a>written pitch</a> and
                 <a>sounding pitch</a> of the note is that indicated by the accidental.
             </p>
             <p>
                 A note cannot be altered by the same accidental more than once within the same bar. The
-                alteration of a note continues on subsequent notes with the same <a>note name</a> and <a>octave</a>
+                alteration of a note continues on subsequent notes with the same <a href="#note-names">note name</a>
+                and <a href="#octaves">octave</a>
                 until the next <a href="#bar-lines">bar line</a>.
             </p>
             <aside class="note">
@@ -1377,11 +1377,11 @@
                 end note is considered to have the same duration as the initial note.
             </p>
             <p>
-                An underscore MAY be preceded by the opening characters of a <a>beam</a> or <a>tuplet</a>.
+                An underscore MAY be preceded by the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
             </p>
             <p>
                 Tied notes MAY occur over bar lines. The underscore MUST occur after the bar line, but MAY be preceded
-                in the new measure by a <a>duration</a> or the opening characters of a <a>beam</a> or <a>tuplet</a>.
+                in the new measure by a <a href="#durations">duration</a> or the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
             </p>
             <aside class="example" title="Encoding Ties">
                 <table class="simple" style="width: 100%">
@@ -1685,7 +1685,7 @@
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a id="#note-names">note names</a>
+               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
                 (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
                Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
                Duration values for the individual notes within a chord MUST NOT be supplied.
@@ -1814,7 +1814,7 @@
             <p>
                 The lower-case character <code>p</code> is used to indicate
                 a fermata on a note. The <code>p</code> MUST follow the <a href="#note-names">note name</a>.
-                If there is also a <a>trill</a>, the <code>p</code> MUST follow
+                If there is also a <a href="#trills">trill</a>, the <code>p</code> MUST follow
                 the trill character.
             </p>
             <aside class="example">
@@ -2130,8 +2130,8 @@
             <h4>Measure Rests</h4>
             <p>
                 Measure rests are indicated with an equal sign character <code>=</code>. This character MUST be
-                followed by a positive integer indicating the number of <a>measures</a> for which this rest applies,
-                unless the measure rest only applies to a single <a>measure</a>. In this case, the number MAY be
+                followed by a positive integer indicating the number of <a data-lt="Measure">measures</a> for which this rest applies,
+                unless the measure rest only applies to a single <a data-lt="Measure">measure</a>. In this case, the number MAY be
                 omitted.
             </p>
             <p>
