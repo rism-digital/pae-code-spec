@@ -155,16 +155,16 @@
         addressed specific needs, they have also produced a corpus of incipits that reflects
         different transcriptional methodologies. The previous specification leaves room for
         divergent, and sometimes conflicting, practices, some of which may run counter to the
-        intended interpretation of the Code. This has revealed clear opportunities for improvements
-        around clarity, intention, and a well-defined scope of notation features
-        that made a new revision necessary. This ensures that the Code can continue to serve its
+        intended interpretation of the Code. This has revealed clear opportunities for improvement
+        in clarity, intent, and the definition of the notation features within its scope,
+        making a new revision necessary. This ensures that the Code can continue to serve its
         original purpose as a succinct yet unambiguous method for recording music notation.
     </p>
     <p>
         This document establishes a clearly defined Version 2 of the Plaine and Easie Code.
         It is designated as Version 2 to distinguish it from Version 1, which is fixed at
         its final revision and will no longer be updated. Incipits encoded according to the
-        Version 1 specification remain valid, however new projects should prefer Version 2 of
+        Version 1 specification remain valid. However, new projects should prefer Version 2 of
         the specification.
     </p>
     <p>
@@ -425,12 +425,11 @@
             The character <code>x</code> indicates sharp keys and <code>b</code> flat keys. These characters MUST be
             followed by a list of <a href="#note-names">note names</a>. The
             <code>n</code> character MAY be supplied to indicate a natural key signature, e.g., C Major or A minor.
-            This character MUST NOT be followed by <a>note names</a>.
+            This character MUST NOT be followed by a note name.
         </p>
         <p>
-            The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering. Missing
-            accidentals in the original source SHOULD be supplied by the <a>transcriber</a>. Note names MUST NOT be
-            repeated.
+            The list of note names in a key signature SHOULD follow the <a>circle of fifths</a> ordering.
+            Note names MUST NOT be repeated.
         </p>
         <p>
             A key signature MAY contain note names within square brackets <code>[]</code> to indicate that the
@@ -546,8 +545,7 @@
         </p>
         <p>
             <abbr title="Common Western Music Notation">CWMN</abbr> time signatures are expressed as one number
-            above another. These numbers are separated by a <code>/</code> character. Any positive digit MAY
-            be used, but <a>transcribers</a> SHOULD use commonly accepted values where possible. The <code>c</code>
+            above another. These numbers are separated by a <code>/</code> character. The <code>c</code>
             ("common") and <code>c/</code> ("alla breve") characters MAY be used.
         </p>
         <p>
@@ -813,8 +811,8 @@
         <aside class="note">
             <p>
                 There is one exception to this nested groups requirement: A group of notes marked as
-                an <a href="#appogiatura-groups">appoggiatura group</a> can occur within an outer group. This is
-                explained further in the <a href="#appogiatura-groups">appoggiatura group</a> section.
+                an <a href="#appoggiatura-groups">appoggiatura group</a> can occur within an outer group. This is
+                explained further in the <a href="#appoggiatura-groups">appoggiatura group</a> section.
             </p>
         </aside>
         <p>
@@ -1058,7 +1056,7 @@
         <section id="note-names">
             <h4>Note Names</h4>
             <p>
-                Note names are one of the following characters:
+                The note names are the following characters:
                 <code>C</code>, <code>D</code>, <code>E</code>, <code>F</code>,
                 <code>G</code>, <code>A</code>, <code>B</code>.
             </p>
@@ -1066,7 +1064,7 @@
                 A note name MUST be provided to indicate the pitch class of the note.
             </p>
             <p>
-                All letters MUST be uppercase; lowercase letters MUST NOT be used to specify a note name.
+                Note names MUST use uppercase letters.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -1531,7 +1529,7 @@
             <p>
                 Beam groups start with an opening brace <code>{</code>, and end with a closing brace, <code>}</code>.
                 Nested beam groups MUST NOT occur, except as part of an
-                <a href="#appogiatura-groups">appoggiatura group</a>.
+                <a href="#appoggiatura-groups">appoggiatura group</a>.
             </p>
             <p>
                 Notes with duration values of <code>0</code>, <code>1</code>, <code>2</code>,
@@ -1692,7 +1690,7 @@
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a>note names</a>
+               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a id="#note-names">note names</a>
                 (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
                Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
                Duration values for the individual notes within a chord MUST NOT be supplied.
@@ -1873,7 +1871,7 @@
             </p>
             <p>
                 Consecutive single appoggiaturas MUST NOT occur. Consecutive appoggiatura notes
-                MUST be encoded using an <a href="#appogiatura-groups">appoggiatura group</a>.
+                MUST be encoded using an <a href="#appoggiatura-groups">appoggiatura group</a>.
             </p>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
@@ -1914,7 +1912,7 @@
                     </tbody>
                 </table>
             </aside>
-            <section id="appogiatura-groups">
+            <section id="appoggiatura-groups">
                 <h5>Appoggiatura Groups</h5>
                 <p>
                     For multiple consecutive appoggiatura notes, the appoggiatura group MUST
@@ -1923,7 +1921,7 @@
                     more than one note in an appoggiatura group.
                 </p>
                 <p>
-                    Beams MAY occur within an appogiatura group. In this case the <code>r</code> character MUST follow
+                    Beams MAY occur within an appoggiatura group. In this case the <code>r</code> character MUST follow
                     the closing beam character.
                 </p>
                 <p>
@@ -2346,7 +2344,7 @@
             <h5>Rhythmic sequence</h5>
             <p>
                 When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
-                before the note names.
+                before the <a href="#note-names">note names</a>.
             </p>
             <aside class="example" title="Encoding Rhythmic Sequences">
                 <table class="simple" style="width: 100%">
@@ -2413,11 +2411,11 @@
     <section>
         <h3>MARC21 and UNIMARC</h3>
         <p>
-            The Plaine and Easie Code is accepted as a format within a MARC (MAchine Readable Catalogue)
-            or UNIMARC (UNIversal MARC) record. The specifics of each system are given in the [[MARC21]]
+            The Plaine and Easie Code is accepted as a format within a MARC (Machine Readable Catalog)
+            or UNIMARC (Universal MARC) record. The specifics of each system are given in the [[MARC21]]
             documentation or in the [[UNIMARC]] documentation. The <code>031</code> MARC21 field is used
             to record incipits, while UNIMARC uses the <code>036</code> field. The subfields used by these
-            formats for Plaine and Easie Code is given in [[[#marc21-unimarc-subfields]]].
+            formats for Plaine and Easie Code are given in [[[#marc21-unimarc-subfields]]].
         </p>
         <p>
             In both systems, the <code>$2</code> subfield indicates the coding system used for the
@@ -2429,8 +2427,7 @@
             <p>
                 The acceptance of the code <code>pe2</code> for MARC21 and UNIMARC subfield <code>$2</code>
                 is dependent on the ratification of this code by the respective committees. Until this value
-                has been ratified, it is recommended that Version 2 of the Plaine and Easie Code is not
-                represented in MARC21 or UNIMARC.
+                has been ratified, it is recommended that systems continue supporting Version 1 of the code.
             </p>
             <p>
                 This note will be removed when this code has been formally accepted by these standards.
@@ -2569,8 +2566,10 @@
             that is, the clef declaration starts with the percent character <code>%</code>.
         </p>
         <p>
-            The line of text SHOULD specify a key signature and a time signature. This also
-            follows the same format for an inline change of key and time signatures.
+            The line of text for specifying a key signature and a time signature follows the same
+            format for an inline change of key and time signatures. See the
+            <a href="#changes-to-staff-definitions">Changes to Staff Definitions</a>
+            section for details.
         </p>
         <p>
             The clef, key signature and time signature MUST be separated from the rest of the music
