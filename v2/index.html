@@ -1453,7 +1453,8 @@
             <h4>Ligatures</h4>
             <p>
                 Two notes joined in a ligature can be indicated with the lower-case character
-                <code>u</code>.
+                <code>u</code>. Ligatures are only used when encoding <a data-lt="Mensural Notation">Mensural</a> and <a data-lt="Neume Notation">Neume</a>
+                notation and MUST NOT be used when encoding <a data-lt="Common Western Music Notation">CWMN</a>.
             </p>
             <p>
                 Several consecutive notes MAY be joined in a single ligature by adding the <code>u</code>
@@ -1504,7 +1505,7 @@
                         <td class="notation-code">
                             <script type="application/json">
                                 {
-                                    "clef": "G-2",
+                                    "clef": "G+2",
                                     "data": "4Cu8Du,A"
                                 }
                             </script>
