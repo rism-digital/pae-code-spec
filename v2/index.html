@@ -212,31 +212,31 @@
             A system of written music notation largely formalized in Europe in the 17th century and widely
             practiced today.
         </dd>
-        <dt><dfn>Encoding</dfn></dt>
+        <dt><dfn data-local-lt="encoding|encodings">Encoding</dfn></dt>
         <dd>
             A sequence of Plaine and Easie Code characters used to record musical notation.
         </dd>
-        <dt><dfn>Logical Unit</dfn></dt>
+        <dt><dfn data-local-lt="logical unit|logical units">Logical Unit</dfn></dt>
         <dd>
             A unit of notation data consisting of one or more characters that represent a
             single notational element, such as a note, rest, chord, or grouped figure.
         </dd>
-        <dt><dfn>Measure</dfn></dt>
+        <dt><dfn data-local-lt="measure|measures">Measure</dfn></dt>
         <dd>
             A unit of musical time defined by a set number of beats, as indicated by the time signature, and
             separated from other measures by bar lines.
         </dd>
-        <dt><dfn data-local-lt="Mensural">Mensural Music Notation</dfn></dt>
+        <dt><dfn data-local-lt="Mensural|Mensural notation">Mensural Music Notation</dfn></dt>
         <dd>
             A system of written musical notation distinguished by proportion-based durations
             and the absence of measures.
         </dd>
-        <dt><dfn>Neume Notation</dfn></dt>
+        <dt><dfn data-local-lt="Neume|Neume notation">Neume Notation</dfn></dt>
         <dd>
             A system of written musical notation used primarily for chant and other sung
             liturgical repertories.
         </dd>
-        <dt><dfn>Renderer</dfn></dt>
+        <dt><dfn data-local-lt="renderer|renderers">Renderer</dfn></dt>
         <dd>
             A software application that renders Plaine and Easie Code as music notation.
             A renderer may also produce sound output, for example through MIDI.
@@ -1457,7 +1457,7 @@
             </p>
             <p>
                 Several consecutive notes MAY be joined in a single ligature by adding the <code>u</code>
-                between each note. The ligature ends with the <a>logical unit</a> that has no following
+                between each note. The ligature ends with the <a data-lt="Logical Unit">logical unit</a> that has no following
                 <code>u</code> character.
             </p>
             <p>
@@ -1471,7 +1471,7 @@
             </p>
             <aside class="note">
                 <p>
-                    While some notation <a>renderers</a> may attempt to reproduce the shape of the ligature
+                    While some notation <a data-lt="Renderer">renderers</a> may attempt to reproduce the shape of the ligature
                     in its original form, it is also common practice to indicate that two notes were in a
                     ligature by including them within a horizontal bracket. Both forms are valid visualizations
                     of ligatures, and the Plaine and Easie Code does not dictate the use of one method or the other.
@@ -1604,7 +1604,7 @@
             </p>
             <p>
                 A duration value MAY be given immediately preceding the opening parenthesis <code>(</code>.
-                This value indicates the <a>rendered</a> duration value for all notes within the tuplet, but has
+                This value indicates the rendered duration value for all notes within the tuplet, but has
                 no actual effect on the note duration. If no duration value is given, then the last stated duration
                 value is used. If no duration value is stated in the <a>encoding</a>, a default duration value of
                 <code>4</code> is assumed.
@@ -1683,7 +1683,7 @@
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
+               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
                 (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
                Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
                Duration values for the individual notes within a chord MUST NOT be supplied.
@@ -1696,13 +1696,13 @@
                 A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
             </p>
             <p>
-                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a>notes</a>,
+                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a href="#ties">notes</a>,
                 the underscore represents both the tie and the final chord. An underscore MAY be preceded
                 by a <a href="#durations">duration</a> value, which serves to indicate a different duration
                 of the end note from the initial note.
             </p>
             <p>
-                Mensural and neume notation <a>encodings</a> MUST NOT contain chords.
+                Mensural and neume notation <a data-lt="Encoding">encodings</a> MUST NOT contain chords.
             </p>
             <aside class="example" title="Encoding Chords">
                 <table class="simple" style="width: 100%">
