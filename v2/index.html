@@ -277,10 +277,10 @@
         <div class="issue" data-number="72"></div>
         <h3>Clef</h3>
         <p>
-            Every encoding MUST include a clef.
+            An encoding MUST include a clef.
         </p>
         <p>
-            The clef code MUST be three characters long. The first character specifies the clef shape and is
+            The clef code is three characters long. The first character specifies the clef shape and is
             one of the values <code>G</code>, <code>g</code> (octave G), <code>C</code>, or <code>F</code>.
         </p>
         <p>
@@ -293,15 +293,21 @@
             The third character is a numeric value in the range 1-5, and indicates the reference staff line
             for the clef starting from the bottom line.
         </p>
+        <p>
+            A clef MAY be enclosed in square brackets <code>[]</code> to indicate that it has been supplied by the
+            <a>transcriber</a>.
+        </p>
         <aside class="note">
             <p>
                 A value for the clef field is required to ensure the visual rendering of the notation can accurately
                 place the pitch values on the correct line or space on a staff.
             </p>
+            <p>
+                The choice of clef can change or restrict what notation features are available to the transcriber
+            </p>
         </aside>
         <p>
-            The clef indications control the visual placement of written notes on the staff. The following
-            table gives the indicative octave and note for the bottom and top lines of each staff.
+            The following table gives the indicative octave and note for the bottom and top lines of each staff.
         </p>
         <table class="data">
             <colgroup class="header"></colgroup>
@@ -410,6 +416,19 @@
                     </td>
                     <td class="notation-result"></td>
                     <td>Neume C clef</td>
+                </tr>
+                <tr class="notation-example">
+                    <td class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "[G-2]",
+                                "data": ""
+                            }
+                        </script>
+                        <code>[G-2]</code>
+                    </td>
+                    <td class="notation-result"></td>
+                    <td>G clef, marked as supplied by the transcriber.</td>
                 </tr>
                 </tbody>
             </table>
