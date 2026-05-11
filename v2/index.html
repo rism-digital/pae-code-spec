@@ -123,6 +123,19 @@
         .notation-result svg {
             background: white;
         }
+
+        #notation-type-feature-matrix-table tbody td:not(:first-child) {
+            background: rgb(238, 238, 238);
+            text-align: center;
+        }
+
+        #notation-type-feature-matrix-table tbody td:not(:first-child):not(:empty) {
+            background: rgb(233, 251, 233);
+        }
+
+        #notation-type-feature-matrix-table tbody td.feature-conditional {
+            background: rgb(252, 250, 238);
+        }
     </style>
 </head>
 <body>
@@ -2644,7 +2657,7 @@
                 <td>Key signature</td>
                 <td>x</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-key-neume">1</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-key-neume">1</a></sup></td>
             </tr>
             <tr>
                 <td>Time signature or mensuration sign</td>
@@ -2662,7 +2675,7 @@
                 <td>Inline key signature change</td>
                 <td>x</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-key-neume">1</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-key-neume">1</a></sup></td>
             </tr>
             <tr>
                 <td>Inline time signature change</td>
@@ -2685,7 +2698,7 @@
             <tr>
                 <td>Note duration values</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
                 <td></td>
             </tr>
             <tr>
@@ -2703,8 +2716,8 @@
             <tr>
                 <td>Single rests</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
-                <td>[x]<sup><a href="#feature-rests-neume">3</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rests-neume">3</a></sup></td>
             </tr>
             <tr>
                 <td>Ties</td>
@@ -2721,14 +2734,14 @@
             <tr>
                 <td>Beams</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
-                <td>[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
             </tr>
             <tr>
                 <td>Tuplets</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
-                <td>[x]<sup><a href="#feature-neume-rhythm">5</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-neume-rhythm">5</a></sup></td>
             </tr>
             <tr>
                 <td>Chords</td>
@@ -2763,37 +2776,37 @@
             <tr>
                 <td>Appoggiatura groups</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
-                <td>[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
             </tr>
             <tr>
                 <td>Bar lines</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
-                <td>[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
             </tr>
             <tr>
                 <td>Measure rests</td>
-                <td>[x]<sup><a href="#feature-measure-rest-boundary">8</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-rest-boundary">8</a></sup></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Repeat groups</td>
-                <td>[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
-                <td>[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
-                <td>[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
             </tr>
             <tr>
                 <td>Measure repeats</td>
                 <td>x</td>
-                <td>[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
-                <td>[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
             </tr>
             <tr>
                 <td>Rhythmic sequences</td>
-                <td>[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
-                <td>[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
                 <td></td>
             </tr>
             </tbody>
