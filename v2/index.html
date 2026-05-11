@@ -2147,12 +2147,14 @@
             <h4>Measure Rests</h4>
             <p>
                 Measure rests are indicated with an equal sign character <code>=</code>. This character MUST be
-                followed by a positive integer indicating the number of <a data-lt="Measure">measures</a> for which this rest applies,
-                unless the measure rest only applies to a single <a data-lt="Measure">measure</a>. In this case, the number MAY be
-                omitted.
+                followed by a positive integer indicating the number of <a data-lt="Measure">measures</a> for which
+                this rest applies, unless the measure rest only applies to a single <a data-lt="Measure">measure</a>.
+                In this case, the number MAY be omitted.
             </p>
             <p>
-                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character.
+                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character, unless
+                the measure rest is the first <a>logical unit</a> in the <a>encoding</a>. In this case, the preceding
+                bar line is not necessary.
             </p>
             <p>
                 Measure rests MUST NOT be used with Mensural and Neume notations, due to the general absence of
