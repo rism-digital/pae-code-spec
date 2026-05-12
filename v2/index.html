@@ -43,7 +43,7 @@
             github: "https://github.com/rism-digital/pae-code-spec",
             edDraftURI: null,
             historyURI: null,
-            license: null,
+            license: "CC-BY",
             shortName: "paec",
             maxTocLevel: 4,
             logos: [
@@ -107,7 +107,6 @@
             }
         };
     </script>
-    <script type="application/javascript" src="/static/js/verovio-rendering.js"></script>
     <style>
         /* custom styles for inline code to make it stand out */
         p code {
@@ -147,7 +146,7 @@
         add "a few additional seconds" to the process of cataloging a musical source. These few extra
         seconds added little burden to the itinerant cataloger, but opened up a world of possibilities
         in aggregate as they served to uniquely identify, distinguish, and collate musical sources in ways
-        that traditional bibliographic catalogs could not. The Repertoire International des Sources Musicale
+        that traditional bibliographic catalogs could not. The Répertoire International des Sources Musicales
         (RISM) has been creating these incipits since the acceptance of the Code in the late 1970s, and today
         we have a corpus of over 2 million incipit encodings.
     </p>
@@ -212,31 +211,31 @@
             A system of written music notation largely formalized in Europe in the 17th century and widely
             practiced today.
         </dd>
-        <dt><dfn>Encoding</dfn></dt>
+        <dt><dfn data-local-lt="encoding|encodings">Encoding</dfn></dt>
         <dd>
             A sequence of Plaine and Easie Code characters used to record musical notation.
         </dd>
-        <dt><dfn>Logical Unit</dfn></dt>
+        <dt><dfn data-local-lt="logical unit|logical units">Logical Unit</dfn></dt>
         <dd>
             A unit of notation data consisting of one or more characters that represent a
             single notational element, such as a note, rest, chord, or grouped figure.
         </dd>
-        <dt><dfn>Measure</dfn></dt>
+        <dt><dfn data-local-lt="measure|measures">Measure</dfn></dt>
         <dd>
             A unit of musical time defined by a set number of beats, as indicated by the time signature, and
             separated from other measures by bar lines.
         </dd>
-        <dt><dfn data-local-lt="Mensural">Mensural Music Notation</dfn></dt>
+        <dt><dfn data-local-lt="Mensural|Mensural notation">Mensural Music Notation</dfn></dt>
         <dd>
             A system of written musical notation distinguished by proportion-based durations
             and the absence of measures.
         </dd>
-        <dt><dfn>Neume Notation</dfn></dt>
+        <dt><dfn data-local-lt="Neume|Neume notation">Neume Notation</dfn></dt>
         <dd>
             A system of written musical notation used primarily for chant and other sung
             liturgical repertories.
         </dd>
-        <dt><dfn>Renderer</dfn></dt>
+        <dt><dfn data-local-lt="renderer|renderers">Renderer</dfn></dt>
         <dd>
             A software application that renders Plaine and Easie Code as music notation.
             A renderer may also produce sound output, for example through MIDI.
@@ -267,7 +266,7 @@
     <div class="issue" data-number="57"></div>
     <h2>Staff Definitions</h2>
     <p>
-        The Plaine and Easie Code is always rendered on a five line <a>staff</a>.
+        The Plaine and Easie Code is always rendered on a five-line <a>staff</a>.
     </p>
     <p>
         The clef, key signature, and time signature properties of an incipit are defined separately from the
@@ -285,9 +284,9 @@
         </p>
         <p>
             The second character uses the characters <code>-</code> to indicate modern notation,
-            <code>*</code> to indicate <a data-lt="Mensural Music Notation">mensural music notation</a>, or
-            <code>:</code> to indicate <a data-lt="Neume Notation">neume notation</a>. Each of these notation
-            types impose different interpretations on the staff and music notation of the incipit.
+            <code>*</code> to indicate <a data-lt="Mensural Music Notation">mensural music notation</a>, or <code>:</code> to indicate
+            <a>neume notation</a>. Each of these notation types imposes different interpretations on the staff and
+            music notation of the incipit.
         </p>
         <p>
             The third character is a numeric value in the range 1-5, and indicates the reference staff line
@@ -369,7 +368,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C+2",
+                                "clef": "C*2",
                                 "data": ""
                             }
                         </script>
@@ -656,7 +655,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C+3",
+                                "clef": "C*3",
                                 "timesig": "o",
                                 "data": ""
                             }
@@ -671,7 +670,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C+3",
+                                "clef": "C*3",
                                 "timesig": "o.",
                                 "data": ""
                             }
@@ -686,7 +685,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C+3",
+                                "clef": "C*3",
                                 "timesig": "c3",
                                 "data": ""
                             }
@@ -701,7 +700,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "C+3",
+                                "clef": "C*3",
                                 "timesig": "c2",
                                 "data": ""
                             }
@@ -716,7 +715,7 @@
                     <td class="notation-code">
                         <script type="application/json">
                             {
-                                "clef": "G+2",
+                                "clef": "G*2",
                                 "timesig": "c/",
                                 "data": ""
                             }
@@ -783,20 +782,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Grace / Appogiatura</td>
+                    <td>Grace / Appoggiatura</td>
                     <td><code>[gq]</code></td>
                     <td>Optional</td>
                     <td>When specified, MUST precede all other characters.</td>
                 </tr>
                 <tr>
                     <td>Octave</td>
-                    <td><code>[,']</code></td>
+                    <td><code>[,']{0,4}</code></td>
                     <td>Optional</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Duration / Duration Dot</td>
-                    <td><code>[0-9][.]</code></td>
+                    <td><code>[0-9][.]{0,4}</code></td>
                     <td>Optional</td>
                     <td></td>
                 </tr>
@@ -1047,7 +1046,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'4.A"
+                                    "data": "4.A"
                                 }
                             </script>
                             <code>4.A</code>
@@ -1060,10 +1059,10 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'8..A // 8A+6A+3A"
+                                    "data": "8..A//8A_6A_3A"
                                 }
                             </script>
-                            <code>8..A // 8A_6A_3A</code>
+                            <code>8..A//8A_6A_3A</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Double-dotted eighth note and its equivalent in tied notes</td>
@@ -1190,7 +1189,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'AB''CDC'BA"
+                                    "data": "AB''CDC'BA"
                                 }
                             </script>
                             <code>AB''CDC'BA</code>
@@ -1316,7 +1315,7 @@
             <p>
                 Where a note in a <a href="#key-signature">key signature</a> is altered by use of an
                 accidental directly before the note, the <a>written pitch</a> and
-                <a>sounding pitch</a> of the note is that indicated by the accidental.
+                <a>sounding pitch</a> of the note are those indicated by the accidental.
             </p>
             <p>
                 A note cannot be altered by the same accidental more than once within the same measure.
@@ -1415,7 +1414,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "FG+GA"
+                                    "data": "FG_A"
                                 }
                             </script>
                             <code>FG_A</code>
@@ -1428,7 +1427,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2''G+/G"
+                                    "data": "2''G/_"
                                 }
                             </script>
                             <code>2''G/_</code>
@@ -1442,7 +1441,7 @@
                                 {
                                     "clef": "G-2",
                                     "tsig": "2/2",
-                                    "data": "2''G+/G+/4G"
+                                    "data": "2''G/_/4_"
                                 }
                             </script>
                             <code>2''G/_/4_</code>
@@ -1477,7 +1476,7 @@
             </p>
             <p>
                 Several consecutive notes MAY be joined in a single ligature by adding the <code>u</code>
-                between each note. The ligature ends with the <a>logical unit</a> that has no following
+                between each note. The ligature ends with the <a data-lt="Logical Unit">logical unit</a> that has no following
                 <code>u</code> character.
             </p>
             <p>
@@ -1490,7 +1489,7 @@
             </p>
             <aside class="note">
                 <p>
-                    While some notation <a>renderers</a> may attempt to reproduce the shape of the ligature
+                    While some notation <a data-lt="Renderer">renderers</a> may attempt to reproduce the shape of the ligature
                     in its original form, it is also common practice to indicate that two notes were in a
                     ligature by including them within a horizontal bracket. Both forms are valid visualizations
                     of ligatures, and the Plaine and Easie Code does not dictate the use of one method or the other.
@@ -1594,7 +1593,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'8{ABy{''6CD}r'8AB}"
+                                    "data": "8{ABy{''CD}r'AB}"
                                 }
                             </script>
                             <code>8{ABy{''CD}r'AB}</code>
@@ -1633,7 +1632,7 @@
             </p>
             <p>
                 A duration value MAY be given immediately preceding the opening parenthesis <code>(</code>.
-                This value indicates the <a>rendered</a> duration value for all notes within the tuplet, but has
+                This value indicates the rendered duration value for all notes within the tuplet, but has
                 no actual effect on the note duration. If no duration value is given, then the last stated duration
                 value is used. If no duration value is stated in the <a>encoding</a>, a default duration value of
                 <code>4</code> is assumed.
@@ -1665,7 +1664,7 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4(6'DEFGA;5)/"
+                                    "data": "4(6'DEFGA;5)"
                                 }
                             </script>
                             <code>4(6'DEFGA;5)</code>
@@ -1679,7 +1678,7 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "8({'3DEFGA};5)/"
+                                    "data": "8({'3DEFGA};5)"
                                 }
                             </script>
                             <code>8({'3DEFGA};5)</code>
@@ -1693,7 +1692,7 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4('4D8E)4('4D8E)/"
+                                    "data": "4('4D8E)4('4D8E)"
                                 }
                             </script>
                             <code>4('4D8E)4('4D8E)</code>
@@ -1708,30 +1707,30 @@
         <section id="chords">
             <h4>Chords</h4>
             <p>
-                Notes in a chords are enclosed in the characters <code>^</code> and <code>></code>. All
+                Notes in a chord are enclosed in the characters <code>^</code> and <code>></code>. All
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a>duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
+               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
                 (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
                Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
                Duration values for the individual notes within a chord MUST NOT be supplied.
             </p>
             <p>
                 If the chord duration is omitted, the last specified duration is used. If no duration is
-                supplied in the <a>encoding</a> a default duration of <code>4</code> is assumed.
+                supplied in the <a>encoding</a>, a default duration of <code>4</code> is assumed.
             </p>
             <p>
                 A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
             </p>
             <p>
-                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a>notes</a>,
+                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a href="#ties">notes</a>,
                 the underscore represents both the tie and the final chord. An underscore MAY be preceded
                 by a <a href="#durations">duration</a> value, which serves to indicate a different duration
                 of the end note from the initial note.
             </p>
             <p>
-                Mensural and neume notation <a>encodings</a> MUST NOT contain chords.
+                Mensural and neume notation <a data-lt="Encoding">encodings</a> MUST NOT contain chords.
             </p>
             <aside class="example" title="Encoding Chords">
                 <table class="simple" style="width: 100%">
@@ -1748,7 +1747,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "''2D^'A^xF"
+                                    "data": "2^'AxF>/2^AxF>/"
                                 }
                             </script>
                             <code>2^'AxF>/2^AxF>/</code>
@@ -1761,7 +1760,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "''2D^'A^xF"
+                                    "data": "2p^AxF>"
                                 }
                             </script>
                             <code>2p^AxF></code>
@@ -1774,7 +1773,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "''2D^'A^xF/''2D^'A^xF/''4D^'A^xF//"
+                                    "data": "2^''D'AxF>/2_/4_//"
                                 }
                             </script>
                             <code>2^''D'AxF>/2_/4_//</code>
@@ -1787,7 +1786,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2C^E^G8(6{C^E^GD^xF^AE^G^B})"
+                                    "data": "2^CEG>8(6{_^DxFA>^EGB>})"
                                 }
                             </script>
                             <code>2^CEG>8(6{_^DxFA>^EGB>})</code>
@@ -1824,13 +1823,13 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2Gt'1C"
+                                    "data": "2Gt"
                                 }
                             </script>
                             <code>2Gt</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Fermata</td>
+                        <td>Trill</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1859,7 +1858,7 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2G1(C)"
+                                    "data": "2G1''Cp"
                                 }
                             </script>
                             <code>2G1''Cp</code>
@@ -2157,12 +2156,14 @@
             <h4>Measure Rests</h4>
             <p>
                 Measure rests are indicated with an equal sign character <code>=</code>. This character MUST be
-                followed by a positive integer indicating the number of <a data-lt="Measure">measures</a> for which this rest applies,
-                unless the measure rest only applies to a single <a data-lt="Measure">measure</a>. In this case, the number MAY be
-                omitted.
+                followed by a positive integer indicating the number of <a data-lt="Measure">measures</a> for which
+                this rest applies, unless the measure rest only applies to a single <a data-lt="Measure">measure</a>.
+                In this case, the number MAY be omitted.
             </p>
             <p>
-                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character.
+                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character, unless
+                the measure rest is the first <a>logical unit</a> in the <a>encoding</a>. In this case, the preceding
+                bar line is not necessary.
             </p>
             <p>
                 Measure rests MUST NOT be used with Mensural and Neume notations, due to the general absence of
@@ -2289,7 +2290,7 @@
             </p>
             <p>
                 A repeat group is only valid within a single measure.
-            <p>
+            </p>
             <p>
                 To use a repeat group, mark the beginning and the end of the group with
                 an exclamation mark character <code>!</code>. The lower-case character
