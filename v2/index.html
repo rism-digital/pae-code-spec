@@ -1408,11 +1408,20 @@
                 end note is considered to have the same duration as the initial note.
             </p>
             <p>
-                An underscore MAY be preceded by the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+                An underscore MAY be preceded by the opening characters of a <a href="#beams">beam</a> or
+                <a href="#tuplets">tuplet</a>.
             </p>
             <p>
                 Tied notes MAY occur over bar lines. The underscore MUST occur after the bar line, but MAY be preceded
-                in the new measure by a <a href="#durations">duration</a> or the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+                in the new measure by a <a href="#durations">duration</a> or the opening characters of a
+                <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+            </p>
+            <p>
+                <a href="#chords">Chords</a> MAY be tied. For tied chords, the underscore <code>_</code>
+                represents both the tie and the final chord. The final chord has the same pitches as the preceding
+                chord. An underscore MAY be preceded by a duration value, which indicates a different duration
+                for the final chord. If no duration value is supplied, the final chord has the same
+                duration as the preceding chord.
             </p>
             <aside class="example" title="Encoding Ties">
                 <table class="simple" style="width: 100%">
@@ -1722,23 +1731,27 @@
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
-                (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
-               Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
-               Duration values for the individual notes within a chord MUST NOT be supplied.
+               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more
+               <a href="#note-names">note names</a> (with optional octave and accidental indications) MUST
+               immediately follow the <code>^</code>. Notes within the chord SHOULD be ordered from the lowest to the
+               highest on the staff line. Duration values for the individual notes within a chord MUST NOT be supplied.
+               Note modifiers, such as trills or fermatas, MUST NOT be specified for individual notes within a
+               chord.
             </p>
             <p>
                 If the chord duration is omitted, the last specified duration is used. If no duration is
                 supplied in the <a>encoding</a>, a default duration of <code>4</code> is assumed.
             </p>
             <p>
-                A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
+                A chord MAY be followed by the modifier characters <code>t</code> and <code>p</code>
+                to indicate that the chord as a whole has a trill or fermata. These modifiers MUST
+                immediately follow the closing chord character <code>></code>. When both modifiers
+                are present, <code>t</code> MUST precede <code>p</code>, following the same modifier
+                order used for notes.
             </p>
             <p>
-                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a href="#ties">notes</a>,
-                the underscore represents both the tie and the final chord. An underscore MAY be preceded
-                by a <a href="#durations">duration</a> value, which serves to indicate a different duration
-                of the end note from the initial note.
+                Chords MAY be tied using the underscore character <code>_</code>. See the
+                <a href="#ties">Ties</a> section for tied chord syntax and interpretation.
             </p>
             <p>
                 Mensural and neume notation <a data-lt="Encoding">encodings</a> MUST NOT contain chords.
@@ -1771,13 +1784,39 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2p^AxF>"
+                                    "data": "2^AxF>p"
                                 }
                             </script>
-                            <code>2p^AxF></code>
+                            <code>2^AxF>p</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>A chord with a fermata</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2^AxF>t"
+                                }
+                            </script>
+                            <code>2^AxF>t</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2^AxF>tp"
+                                }
+                            </script>
+                            <code>2^AxF>tp</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill and a fermata</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
