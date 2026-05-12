@@ -2285,6 +2285,12 @@
             follows the same rules as the notation it replaces, including the conventions for implied
             duration and octave values.
         </p>
+        <p>
+            As a general principle for all shortcuts, each repetition MUST preserve the musical values represented by
+            the original repeated figure. Implied duration and octave values within a repeated figure MUST be
+            resolved from the context at the start of the repeat group for each repetition, not from the end of
+            the previous repetition.
+        </p>
         <section id="repeat-group">
             <h4>Repeat group</h4>
             <p>
@@ -2300,12 +2306,6 @@
                 immediately follow the closing <code>!</code>. The number of <code>f</code> characters
                 indicates the number of times the figure is repeated. At least one <code>f</code> character
                 MUST be supplied.
-            </p>
-            <p>
-                When a repeat group is expanded, each repetition MUST preserve the musical values represented by
-                the original repeated figure. Implied duration and octave values within the repeated figure MUST be
-                resolved from the context at the start of the repeat group for each repetition, not from the end of
-                the previous repetition.
             </p>
             <p>
                 The repeated figure and all of its repetitions MUST occur within the same measure. However,
