@@ -839,9 +839,10 @@
         </p>
         <p id="implied-duration-octave">
             To aid in writing succinct incipits, <a href="#durations">duration</a> and <a href="#octaves">octave</a>
-            values do not need to be stated on every note. Where they are absent, the previously stated value is implied.
-            Where no values are stated in the encoding, a default value is usually inferred. See the sections on
-            <a href="#durations">duration</a> and <a href="#octaves">octave</a> for more details.
+            values do not need to be stated on every note. Where a duration or octave value is omitted, the most
+            recently stated value of the same type is used. If no value of that type has been stated anywhere in the
+            encoding, the default value for that type is used. See the sections on <a href="#durations">duration</a>
+            and <a href="#octaves">octave</a> for the default values.
         </p>
     </section>
     <section id="notes-and-rests">
