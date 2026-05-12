@@ -469,11 +469,11 @@
         </p>
         <p>
             A key signature, including the <code>x</code>, <code>b</code>, and <code>n</code> characters MAY be
-            entirely enclosed in square brackets, meaning the cataloger has supplied the full key signature.
+            entirely enclosed in square brackets, meaning the transcriber has supplied the full key signature.
         </p>
         <p>
-            For neume notation, only the value of <code>bB</code> is permitted in the key signature. Any further
-            alterations are encoded as accidentals on the individual notes.
+            For neume notation, only the value of <code>bB</code> (also including indications that it is supplied) is
+            permitted. Any further alterations are encoded as accidentals on the individual notes.
         </p>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
@@ -1387,6 +1387,20 @@
                         <td class="notation-result"></td>
                         <td>Half-note rest</td>
                     </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "4.-"
+                                }
+                            </script>
+                            <code>4.-</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Dotted quarter rest</td>
+                    </tr>
+
                     </tbody>
                 </table>
             </aside>
@@ -1407,11 +1421,20 @@
                 end note is considered to have the same duration as the initial note.
             </p>
             <p>
-                An underscore MAY be preceded by the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+                An underscore MAY be preceded by the opening characters of a <a href="#beams">beam</a> or
+                <a href="#tuplets">tuplet</a>.
             </p>
             <p>
                 Tied notes MAY occur over bar lines. The underscore MUST occur after the bar line, but MAY be preceded
-                in the new measure by a <a href="#durations">duration</a> or the opening characters of a <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+                in the new measure by a <a href="#durations">duration</a> or the opening characters of a
+                <a href="#beams">beam</a> or <a href="#tuplets">tuplet</a>.
+            </p>
+            <p>
+                <a href="#chords">Chords</a> MAY be tied. For tied chords, the underscore <code>_</code>
+                represents both the tie and the final chord. The final chord has the same pitches as the preceding
+                chord. An underscore MAY be preceded by a duration value, which indicates a different duration
+                for the final chord. If no duration value is supplied, the final chord has the same
+                duration as the preceding chord.
             </p>
             <aside class="example" title="Encoding Ties">
                 <table class="simple" style="width: 100%">
@@ -1721,23 +1744,27 @@
                 notes in a chord are assigned the same duration value.
             </p>
             <p>
-               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more <a href="#note-names">note names</a>
-                (with optional octave and accidental indications) MUST immediately follow the <code>^</code>.
-               Notes within the chord SHOULD be ordered from the lowest to the highest on the staff line.
-               Duration values for the individual notes within a chord MUST NOT be supplied.
+               A <a href="#durations">duration</a> value MAY precede the <code>^</code>. Two or more
+               <a href="#note-names">note names</a> (with optional octave and accidental indications) MUST
+               immediately follow the <code>^</code>. Notes within the chord SHOULD be ordered from the lowest to the
+               highest on the staff line. Duration values for the individual notes within a chord MUST NOT be supplied.
+               Note modifiers, such as trills or fermatas, MUST NOT be specified for individual notes within a
+               chord.
             </p>
             <p>
                 If the chord duration is omitted, the last specified duration is used. If no duration is
                 supplied in the <a>encoding</a>, a default duration of <code>4</code> is assumed.
             </p>
             <p>
-                A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
+                A chord MAY be followed by the modifier characters <code>t</code> and <code>p</code>
+                to indicate that the chord as a whole has a trill or fermata. These modifiers MUST
+                immediately follow the closing chord character <code>></code>. When both modifiers
+                are present, <code>t</code> MUST precede <code>p</code>, following the same modifier
+                order used for notes.
             </p>
             <p>
-                An underscore, <code>_</code>, is used to indicate a tied chord. Like with <a href="#ties">notes</a>,
-                the underscore represents both the tie and the final chord. An underscore MAY be preceded
-                by a <a href="#durations">duration</a> value, which serves to indicate a different duration
-                of the end note from the initial note.
+                Chords MAY be tied using the underscore character <code>_</code>. See the
+                <a href="#ties">Ties</a> section for tied chord syntax and interpretation.
             </p>
             <p>
                 Mensural and neume notation <a data-lt="Encoding">encodings</a> MUST NOT contain chords.
@@ -1770,13 +1797,39 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "2p^AxF>"
+                                    "data": "2^AxF>p"
                                 }
                             </script>
-                            <code>2p^AxF></code>
+                            <code>2^AxF>p</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>A chord with a fermata</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2^AxF>t"
+                                }
+                            </script>
+                            <code>2^AxF>t</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2^AxF>tp"
+                                }
+                            </script>
+                            <code>2^AxF>tp</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill and a fermata</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
@@ -2532,9 +2585,11 @@
             a colon character <code>:</code>.
         </p>
         <p>
-            The allowable field identifiers are: <code>@clef</code>,
+            The field identifiers defined by this specification are: <code>@clef</code>,
             <code>@keysig</code>, <code>@timesig</code>, <code>@key</code>,
-            <code>@data</code>, and <code>@version</code>.
+            <code>@data</code>, and <code>@version</code>. The multi-line text representation MAY contain field
+            identifiers other than those listed above, but they MUST be ignored for the purposes of interpreting
+            the Plaine and Easie Code.
         </p>
         <p>
             The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
@@ -2568,10 +2623,12 @@
             JSON.
         </p>
         <p>
-            The allowable keys in the JSON are: <code>clef</code>,
+            The keys in the JSON defined by this specification are: <code>clef</code>,
             <code>keysig</code>, <code>timesig</code>, <code>key</code>,
-            <code>data</code>, and <code>version</code>. Unlike the multi-line text
-            representation, they MUST NOT begin with an at sign character <code>@</code>.
+            <code>data</code>, and <code>version</code>. Unlike the multi-line text representation, they MUST NOT
+            begin with an at sign character <code>@</code>. The JSON representation MAY contain keys
+            other than those listed above, but they MUST be ignored for the purposes of interpreting the
+            Plaine and Easie Code.
         </p>
         <p>
             There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
