@@ -1741,7 +1741,11 @@
                 supplied in the <a>encoding</a>, a default duration of <code>4</code> is assumed.
             </p>
             <p>
-                A <code>p</code> character MAY follow the duration to indicate the chord has a fermata.
+                A chord MAY include the note modifiers <code>t</code> and <code>p</code> to indicate
+                that the chord has a trill or fermata. These modifiers MUST follow the chord duration
+                and MUST precede the opening chord character <code>^</code>. When both modifiers are
+                present, <code>t</code> MUST precede <code>p</code>, following the same modifier order for
+                notes.
             </p>
             <p>
                 Chords MAY be tied using the underscore character <code>_</code>. See the
@@ -1785,6 +1789,32 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>A chord with a fermata</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2t^AxF>"
+                                }
+                            </script>
+                            <code>2t^AxF></code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "2tp^AxF>"
+                                }
+                            </script>
+                            <code>2tp^AxF></code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>A chord with a trill and a fermata</td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
