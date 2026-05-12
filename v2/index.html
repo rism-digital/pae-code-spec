@@ -2354,23 +2354,24 @@
             </aside>
         </section>
         <section>
-            <h5>Repeated measures</h5>
+            <h5 id="measure-repeat">Measure repeat</h5>
             <p>
-                If one or more whole measures are repeated, a measure
-                repeat can be used.
+                A measure repeat encodes the repetition of a complete preceding measure. A measure repeat
+                represents one repetition of the most recent complete measure that is not itself a measure
+                repeat.
             </p>
             <p>
-                The measure to be repeated MUST end with a bar line. The lower-case
-                character <code>i</code> MUST occur immediately after this bar line,
-                and MUST be immediately followed by another bar line. There MUST NOT
-                be any other characters between these two bar lines.
+                The measure to be repeated MUST end with a bar line. The lower-case character <code>i</code>
+                MUST occur immediately after this bar line and MUST be immediately followed by another bar
+                line. There MUST NOT be any other characters between <code>i</code>
+                and the surrounding bar lines.
             </p>
             <p>
-                Any type of bar line MAY be used to begin or end a measure repeat group.
+                Any type of <a href="#bar-lines">bar line</a> MAY be used to begin or end a measure repeat.
             </p>
             <p>
-                Measure repeats SHOULD NOT be used with Mensural or Neume notation due to the
-                general absence of measures in this system of notation.
+                Measure repeats SHOULD NOT be used with Mensural or Neume notation due to the general
+                absence of measures in these notation types.
             </p>
             <aside class="example" title="Encoding Repeated Measures">
                 <table class="simple" style="width: 100%">
