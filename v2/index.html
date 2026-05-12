@@ -837,11 +837,12 @@
             <a href="#changes-to-staff-definitions">change of a staff definition</a>, i.e., clef, key signature, or
             time signature, from the music notation that follows the change.
         </p>
-        <p>
-            To aid in writing succinct incipits, <a href="#durations">duration</a> and <a href="#octaves">octave</a> values do not need to be
-            stated on every note. Where they are absent, the previously stated value is used. Where no values
-            are stated in the encoding, a default value is usually inferred. See the sections on
-            <a href="#durations">duration</a> and <a href="#octaves">octave</a> for more details.
+        <p id="implied-duration-octave">
+            To aid in writing succinct incipits, <a href="#durations">duration</a> and <a href="#octaves">octave</a>
+            values do not need to be stated on every note. Where a duration or octave value is omitted, the most
+            recently stated value of the same type is used. If no value of that type has been stated anywhere in the
+            encoding, the default value for that type is used. See the sections on <a href="#durations">duration</a>
+            and <a href="#octaves">octave</a> for the default values.
         </p>
     </section>
     <section id="notes-and-rests">
@@ -1544,6 +1545,12 @@
                 Beam groups start with an opening brace <code>{</code>, and end with a closing brace, <code>}</code>.
                 Nested beam groups MUST NOT occur, except as part of an
                 <a href="#appoggiatura-groups">appoggiatura group</a>.
+            </p>
+            <p>
+                A beam group MAY be immediately preceded by an octave indication, a duration value,
+                or both. When present, these values apply to all notes or rests in the beam group until a new value is
+                provided, following the <a href="#implied-duration-octave">convention</a> for implied octave and
+                duration values.
             </p>
             <p>
                 Notes with duration values of <code>0</code>, <code>1</code>, <code>2</code>,
