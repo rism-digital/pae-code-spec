@@ -2572,9 +2572,11 @@
             a colon character <code>:</code>.
         </p>
         <p>
-            The allowable field identifiers are: <code>@clef</code>,
+            The field identifiers defined by this specification are: <code>@clef</code>,
             <code>@keysig</code>, <code>@timesig</code>, <code>@key</code>,
-            <code>@data</code>, and <code>@version</code>.
+            <code>@data</code>, and <code>@version</code>. The multi-line text representation MAY contain field
+            identifiers other than those listed above, but they MUST be ignored for the purposes of interpreting
+            the Plaine and Easie Code.
         </p>
         <p>
             The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
@@ -2608,10 +2610,12 @@
             JSON.
         </p>
         <p>
-            The allowable keys in the JSON are: <code>clef</code>,
+            The keys in the JSON defined by this specification are: <code>clef</code>,
             <code>keysig</code>, <code>timesig</code>, <code>key</code>,
-            <code>data</code>, and <code>version</code>. Unlike the multi-line text
-            representation, they MUST NOT begin with an at sign character <code>@</code>.
+            <code>data</code>, and <code>version</code>. Unlike the multi-line text representation, they MUST NOT
+            begin with an at sign character <code>@</code>. The JSON representation MAY contain keys
+            other than those listed above, but they MUST be ignored for the purposes of interpreting the
+            Plaine and Easie Code.
         </p>
         <p>
             There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
