@@ -2282,18 +2282,28 @@
         <section id="repeat-group">
             <h4>Repeat group</h4>
             <p>
-                If one or more notes or rests are repeated several times, a repeat group
-                can be used.
+                A repeat group encodes a figure that is repeated within a single measure.
             </p>
             <p>
-                A repeat group is only valid within a single measure.
+                A repeat group MUST NOT contain a bar line, measure rest, measure repeat, staff definition
+                change, or another repeat group.
             </p>
             <p>
-                To use a repeat group, mark the beginning and the end of the group with
-                an exclamation mark character <code>!</code>. The lower-case character
-                <code>f</code> MUST immediately follow the ending <code>!</code>, and
-                MUST occur the number of times the figure should be repeated. The
-                <code>f</code> MUST be specified at least once.
+                To encode a repeat group, mark the beginning and end of the repeated figure with an
+                exclamation mark character <code>!</code>. The lower-case character <code>f</code> MUST
+                immediately follow the closing <code>!</code>. The number of <code>f</code> characters
+                indicates the number of times the figure is repeated. At least one <code>f</code> character
+                MUST be supplied.
+            </p>
+            <p>
+                When a repeat group is expanded, each repetition MUST preserve the musical values represented by
+                the original repeated figure. Implied duration and octave values within the repeated figure MUST be
+                resolved from the context at the start of the repeat group for each repetition, not from the end of
+                the previous repetition.
+            </p>
+            <p>
+                The repeated figure and all of its repetitions MUST occur within the same measure. However,
+                a repeat group MAY be combined with a <a href="#measure-repeat">measure repeat</a>.
             </p>
             <aside class="example" title="Encoding Repeated Figures">
                 <table class="simple" style="width: 100%">
@@ -2318,6 +2328,20 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Repeat twice</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "timesig": "3/2",
+                                    "data": "!8{AB}!f/i/i"
+                                }
+                            </script>
+                            <code>!8{AB}!f/i/i</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Repeat the figure, then repeat the measure.</td>
                     </tr>
                     </tbody>
                 </table>
