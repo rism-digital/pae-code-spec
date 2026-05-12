@@ -122,6 +122,19 @@
         .notation-result svg {
             background: white;
         }
+
+        #notation-type-feature-matrix-table tbody td:not(:first-child) {
+            background: rgb(238, 238, 238);
+            text-align: center;
+        }
+
+        #notation-type-feature-matrix-table tbody td:not(:first-child):not(:empty) {
+            background: rgb(233, 251, 233);
+        }
+
+        #notation-type-feature-matrix-table tbody td.feature-conditional:not(:empty) {
+            background: rgb(252, 250, 238);
+        }
     </style>
 </head>
 <body>
@@ -2582,9 +2595,11 @@
             a colon character <code>:</code>.
         </p>
         <p>
-            The allowable field identifiers are: <code>@clef</code>,
+            The field identifiers defined by this specification are: <code>@clef</code>,
             <code>@keysig</code>, <code>@timesig</code>, <code>@key</code>,
-            <code>@data</code>, and <code>@version</code>.
+            <code>@data</code>, and <code>@version</code>. The multi-line text representation MAY contain field
+            identifiers other than those listed above, but they MUST be ignored for the purposes of interpreting
+            the Plaine and Easie Code.
         </p>
         <p>
             The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
@@ -2618,10 +2633,12 @@
             JSON.
         </p>
         <p>
-            The allowable keys in the JSON are: <code>clef</code>,
+            The keys in the JSON defined by this specification are: <code>clef</code>,
             <code>keysig</code>, <code>timesig</code>, <code>key</code>,
-            <code>data</code>, and <code>version</code>. Unlike the multi-line text
-            representation, they MUST NOT begin with an at sign character <code>@</code>.
+            <code>data</code>, and <code>version</code>. Unlike the multi-line text representation, they MUST NOT
+            begin with an at sign character <code>@</code>. The JSON representation MAY contain keys
+            other than those listed above, but they MUST be ignored for the purposes of interpreting the
+            Plaine and Easie Code.
         </p>
         <p>
             There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
@@ -2681,6 +2698,244 @@
     </section>
 </section>
 <section id="conformance"></section>
+<section id="notation-type-feature-matrix" class="appendix">
+    <h2>Notation Type Feature Matrix</h2>
+    <p>
+        This appendix summarizes notation-feature availability by notation type. It is an editorial aid and does
+        not replace the normative rules in the main body of this specification.
+    </p>
+    <p>
+        In the table, <code>x</code> means that the feature is supported, <code>[x]</code> means that the feature
+        is supported only with a restriction, discouraged use, or unresolved specification detail, and a blank
+        cell means that the feature is not supported or is prohibited by the current specification.
+    </p>
+    <figure id="notation-type-feature-matrix-table">
+        <table class="data" style="width: 100%">
+            <colgroup class="header"></colgroup>
+            <colgroup span="3"></colgroup>
+            <thead>
+            <tr>
+                <th>Feature</th>
+                <th><abbr title="Common Western Music Notation">CWMN</abbr></th>
+                <th>Mensural</th>
+                <th>Neume</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Clef</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Key signature</td>
+                <td>x</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-key-neume">1</a></sup></td>
+            </tr>
+            <tr>
+                <td>Time signature or mensuration sign</td>
+                <td>x</td>
+                <td>x</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Inline clef change</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Inline key signature change</td>
+                <td>x</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-key-neume">1</a></sup></td>
+            </tr>
+            <tr>
+                <td>Inline time signature change</td>
+                <td>x</td>
+                <td>x</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Note names</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Octave indications</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Note duration values</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Duration dots</td>
+                <td>x</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Accidentals</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Single rests</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rests-neume">3</a></sup></td>
+            </tr>
+            <tr>
+                <td>Ties</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Ligatures</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Beams</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-discouraged">4</a></sup></td>
+            </tr>
+            <tr>
+                <td>Tuplets</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-duration-mensural">2</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-neume-rhythm">5</a></sup></td>
+            </tr>
+            <tr>
+                <td>Chords</td>
+                <td>x</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Trills</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Fermatas</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Acciaccaturas</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Appoggiaturas</td>
+                <td>x</td>
+                <td>x</td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>Appoggiatura groups</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
+            </tr>
+            <tr>
+                <td>Bar lines</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
+            </tr>
+            <tr>
+                <td>Measure rests</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-rest-boundary">8</a></sup></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Repeat groups</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+            </tr>
+            <tr>
+                <td>Measure repeats</td>
+                <td>x</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
+            </tr>
+            <tr>
+                <td>Rhythmic sequences</td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        <figcaption>Notation feature availability by notation type</figcaption>
+    </figure>
+    <ol>
+        <li id="feature-key-neume">
+            Neume notation permits only <code>bB</code> as a key signature; other alterations are encoded as
+            accidentals on individual notes.
+        </li>
+        <li id="feature-duration-mensural">
+            Mensural notation uses duration values, but values <code>3</code>, <code>5</code>, and <code>7</code>
+            are prohibited.
+        </li>
+        <li id="feature-rests-neume">
+            The rest syntax is not explicitly prohibited for Neume notation, but Neume notes have no duration
+            values and no implied duration, so rest duration semantics need clarification.
+        </li>
+        <li id="feature-beams-discouraged">
+            Beam groups are syntactically available, but the specification discourages their use in Mensural or
+            Neume encodings.
+        </li>
+        <li id="feature-neume-rhythm">
+            Tuplets require duration values, while Neume notes must not be given duration values and have no
+            implied duration.
+        </li>
+        <li id="feature-beams-in-grace-groups">
+            Appoggiatura groups are available, but beamed appoggiatura groups inherit the Mensural and Neume
+            beam discouragement.
+        </li>
+        <li id="feature-barlines-discouraged">
+            Bar lines are syntactically available, but the specification discourages their use in Neume and
+            Mensural notations.
+        </li>
+        <li id="feature-measure-rest-boundary">
+            Measure rests are available for <abbr title="Common Western Music Notation">CWMN</abbr>, but the
+            examples show beginning-of-line measure rests while the prose says measure rests must be preceded
+            and followed by bar lines.
+        </li>
+        <li id="feature-repeat-groups">
+            Repeat groups are available, but their permitted contents and measure-boundary requirements are
+            under-specified.
+        </li>
+        <li id="feature-measure-repeats-discouraged">
+            Measure repeats are syntactically available, but the specification discourages their use with Mensural
+            or Neume notation due to the general absence of measures.
+        </li>
+        <li id="feature-rhythmic-sequences">
+            Rhythmic sequences are available, but their scope, mapping, and termination behavior are
+            under-specified.
+        </li>
+    </ol>
+</section>
 <section class="appendix">
     <h2>Changes</h2>
     <p>
