@@ -1071,6 +1071,57 @@
                     </tbody>
                 </table>
             </aside>
+            <section>
+                <h5>Rhythmic sequence</h5>
+                <p>
+                    A rhythmic sequence encodes a repeated sequence of duration values once, before
+                    the note names to which those values apply.
+                </p>
+                <p>
+                    A rhythmic sequence consists of two or more duration values followed by a sequence of note
+                    names or beam groups. The duration values are applied in order to the following notes. If
+                    there are more notes than duration values, the duration sequence is reused from the beginning.
+                </p>
+                <p>
+                    A rhythmic sequence ends when a new duration value is supplied in the notation. It also
+                    ends at a bar line, measure rest, measure repeat, staff definition change, tuplet boundary,
+                    chord, rest, or repeat group.
+                </p>
+                <p>
+                    Rhythmic sequence shortcuts MUST NOT be used with Neume notation, because notes in Neume
+                    notation do not have duration values.
+                </p>
+                <aside class="example" title="Encoding Rhythmic Sequences">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'8.68{AB''C}{DEF}"
+                                    }
+                                </script>
+                                <code>'8.68{AB''C}{DEF}</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>
+                                instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
+                                The rhythmic sequence ends when a new rhythmic value appears.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
         </section>
         <section id="note-names">
             <h4>Note Names</h4>
@@ -2396,43 +2447,6 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Repeat measure twice</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </aside>
-        </section>
-        <section>
-            <h5>Rhythmic sequence</h5>
-            <p>
-                When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
-                before the <a href="#note-names">note names</a>.
-            </p>
-            <aside class="example" title="Encoding Rhythmic Sequences">
-                <table class="simple" style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Notation</th>
-                        <th>Remarks</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "timesig": "3/2",
-                                    "data": "'8.68{AB''C}{DEF}"
-                                }
-                            </script>
-                            <code>'8.68{AB''C}{DEF}</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>
-                            instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
-                            The rhythmic sequence ends when a new rhythmic value appears.
-                        </td>
                     </tr>
                     </tbody>
                 </table>
