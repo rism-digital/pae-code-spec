@@ -1048,7 +1048,7 @@
                 that the duration is extended by half the value of the previous dot. The number of dots MUST NOT exceed
                 four.
             </p>
-            <aside class="example" title="Encoding rhythmic values">
+            <aside class="example" title="Encoding duration values">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -1101,25 +1101,34 @@
                 </table>
             </aside>
             <section>
-                <h5>Rhythmic sequence</h5>
+                <h5>Duration pattern</h5>
                 <p>
-                    A rhythmic sequence encodes a repeated sequence of duration values once, before
-                    the note names to which those values apply.
+                    A duration pattern encodes a repeated sequence of duration values once, before
+                    the logical units to which those values apply.
                 </p>
                 <p>
-                    A rhythmic sequence consists of two or more duration values followed by a sequence of note
-                    names or beam groups. The duration values are applied in order to the following notes. If
-                    there are more notes than duration values, the duration sequence is reused from the beginning.
+                    A duration pattern consists of two or more duration values followed by a sequence of notes,
+                    rests, or chords. The duration values are assigned to those logical units in order. Each note,
+                    rest, or chord uses one duration value from the pattern. If the sequence contains more logical
+                    units than duration values, the duration pattern applies cyclically from its first duration value
+                    and continues until the duration pattern is ended.
                 </p>
                 <p>
-                    A rhythmic sequence ends when a new duration value is supplied in the notation. It also
-                    ends at a bar line, staff definition change, tuplet boundary, or repeat group.
+                    A duration pattern ends when a new duration value or duration pattern is supplied. It also
+                    ends at a <a href="#changes-to-staff-definitions">staff definition change</a>,
+                    <a href="#tuplets">tuplet boundary</a>, or <a href="#repeat-group">repeat group</a>.
                 </p>
                 <p>
-                    Rhythmic sequence shortcuts MUST NOT be used with Neume notation, since notes in Neume
+                    Duration patterns MUST NOT be used with tuplets, since they provide their own internal durations.
+                </p>
+                <p>
+                    <a href="#ties">Tied notes</a> use two duration values in the duration pattern.
+                </p>
+                <p>
+                    Duration pattern shortcuts MUST NOT be used with Neume notation, since notes in Neume
                     notation do not have duration values.
                 </p>
-                <aside class="example" title="Encoding Rhythmic Sequences">
+                <aside class="example" title="Encoding Duration Patterns">
                     <table class="simple" style="width: 100%">
                         <thead>
                         <tr>
@@ -1746,7 +1755,7 @@
                     </pre>
                 </aside>
             </aside>
-            <aside class="example" title="Encoding Special Rhythmic Groupings">
+            <aside class="example" title="Encoding Tuplets">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -1920,7 +1929,7 @@
                             <code>2^CEG>8(6{_^DxFA>^EGB>})</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>A chord tied to both beamed and rhythmic groups</td>
+                        <td>A chord tied to both beams and tuplets</td>
                     </tr>
                     </tbody>
                 </table>
@@ -2937,9 +2946,9 @@
                 <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
             </tr>
             <tr>
-                <td>Rhythmic sequences</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td>Duration patterns</td>
+                <td>x</td>
+                <td>x</td>
                 <td></td>
             </tr>
             </tbody>
@@ -2987,10 +2996,6 @@
         <li id="feature-measure-repeats-discouraged">
             Measure repeats are syntactically available, but the specification discourages their use with Mensural
             or Neume notation due to the general absence of measures.
-        </li>
-        <li id="feature-rhythmic-sequences">
-            Rhythmic sequences are available, but their scope, mapping, and termination behavior are
-            under-specified.
         </li>
     </ol>
 </section>
