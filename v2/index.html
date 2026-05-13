@@ -2493,9 +2493,7 @@
 <section id="representation-formats">
     <h2>Representation Formats</h2>
     <p>
-        This section provides the specification of the acceptable representations of the Plaine and
-        Easie Code. It is expected that these representations—with the possible exception of
-        "single-line text"—are constructed and used by automated tools and not written "by hand."
+        This section specifies structured representations for the Plaine and Easie Code.
     </p>
     <section id="character-encodings">
         <h3>Character Encodings</h3>
@@ -2586,7 +2584,7 @@
             <figcaption>MARC21 and UNIMARC subfields for the Plaine and Easie Code</figcaption>
         </figure>
     </section>
-    <section>
+    <section id="multi-line-text-representation">
         <h3>Multi-Line Text with Field Delimiters</h3>
         <p>
             The Plaine and Easie Code can be represented in a multi-line text format.
@@ -2601,10 +2599,9 @@
         </p>
         <p>
             The field identifiers defined by this specification are: <code>@clef</code>,
-            <code>@keysig</code>, <code>@timesig</code>, <code>@key</code>,
-            <code>@data</code>, <code>@end</code>, and <code>@version</code>. The multi-line text representation
-            MAY contain field identifiers other than those listed above, but they MUST be ignored for the purposes
-            of interpreting the Plaine and Easie Code.
+            <code>@keysig</code>, <code>@timesig</code>, <code>@data</code>, <code>@end</code>,
+            and <code>@version</code>. The multi-line text representation MAY contain field identifiers other than
+            those listed above, but they MUST be ignored for the purposes of interpreting the Plaine and Easie Code.
         </p>
         <p>
             The field value MUST immediately follow the colon in the field identifier. The field value MUST NOT
@@ -2612,15 +2609,15 @@
             enclosed in quotation marks.
         </p>
         <p>
-            There MUST be at least two fields in the encoding: <code>clef</code> and <code>data</code>. All other fields
-            MAY be present.
+            Two fields MUST be present in the encoding: <code>@clef</code> and <code>@data</code>. All other
+            fields MAY be present.
         </p>
         <p>
             The <code>@end</code> field MAY be provided. If provided, it MUST be the final field in the list of fields.
             Any fields following an <code>@end</code> field MUST be considered part of another encoding. A
             value for the <code>@end</code> field MAY be provided. If no value is provided, the <code>@end</code> field
             MUST NOT end with a colon. The value of the <code>@end</code> field MUST NOT contain a newline character,
-            but MAY contain any other alpha-numeric ASCII string.
+            but MAY contain any ASCII Graphic Character, as defined in [[RFC20]].
         </p>
         <p>
             The value of the <code>@version</code> identifier MUST be <code>pe2</code> for incipits that conform
@@ -2642,29 +2639,36 @@
     <section>
         <h3>JavaScript Object Notation (JSON)</h3>
         <p>
-            Plaine and Easie Code can be represented as JavaScript Object Notation
-            ([[JSON]]). All JSON encodings of the Plaine and Easie Code MUST be valid
-            JSON.
+            Plaine and Easie Code can be represented as JavaScript Object Notation ([[JSON]]). All JSON encodings of
+            the Plaine and Easie Code MUST be valid JSON.
         </p>
         <p>
-            The keys in the JSON defined by this specification are: <code>clef</code>,
-            <code>keysig</code>, <code>timesig</code>, <code>key</code>,
-            <code>data</code>, <code>label</code>, and <code>version</code>. Unlike the multi-line text representation,
-            JSON keys MUST NOT begin with an at sign character <code>@</code>. The JSON representation MAY contain keys
-            other than those listed above, but they MUST be ignored for the purposes of interpreting the
-            Plaine and Easie Code.
+            The keys in the JSON defined by this specification are: <code>clef</code>, <code>keysig</code>,
+            <code>timesig</code>, <code>data</code>, <code>label</code>, and <code>version</code>.
+            Unlike the multi-line text representation, JSON keys MUST NOT begin with an at sign character
+            <code>@</code>. The JSON representation MAY contain keys other than those listed above, but they MUST be
+            ignored for the purposes of interpreting the Plaine and Easie Code.
         </p>
         <p>
-            There MUST be at least two keys in the encoding: <code>clef</code> and <code>data</code>.
+            Two keys MUST be present in the encoding: <code>clef</code> and <code>data</code>.
         </p>
         <p>
             The <code>label</code> key MAY be provided. The value of the <code>label</code> key MUST NOT contain a
-            newline character, but MAY contain any other alpha-numeric ASCII string.
+            newline character, but MAY contain any ASCII Graphic Character, as defined in [[RFC20]].
         </p>
+        <aside class="note">
+            <p>
+                In the JSON representation there is no need to use an <code>@end</code> field, like there is to
+                separate multiple incipits that use the <a href="#multi-line-text-representation">multi-line
+                text representation</a>. However, since the <code>@end</code> field can also carry a label for
+                the incipit, the <code>label</code> key in the JSON representation provides the equivalent place
+                for this information.
+            </p>
+        </aside>
         <p>
             The value of the <code>version</code> key MUST be <code>pe2</code> for incipits that conform
             to Version 2 of the specification. If a <code>version</code> key is not specified, or if any other
-            value other than <code>pe2</code> is found in the <code>version</code> field, the incipit
+            value other than <code>pe2</code> is found in the <code>version</code> key, the incipit
             MUST be interpreted as conforming to Version 1 of the specification.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
@@ -2674,7 +2678,7 @@
                     "timesig": "3/2",
                     "keysig": "bB",
                     "data": "=3/2--''A/2.F4G2A/AGG/1A/",
-                    "version": "pe2"
+                    "version": "pe2",
                     "label": "A label for this incipit"
                 }
             </pre>
@@ -2695,20 +2699,24 @@
             that is, the clef declaration starts with the percent character <code>%</code>.
         </p>
         <p>
-            The line of text for specifying a key signature and a time signature follows the same
-            format for an inline change of key and time signatures. See the
-            <a href="#changes-to-staff-definitions">Changes to Staff Definitions</a>
+            Key signature and time signature declarations follow the same syntax as inline changes of key and time
+            signature. See the <a href="#changes-to-staff-definitions">Changes to Staff Definitions</a>
             section for details.
         </p>
         <p>
-            The clef, key signature and time signature MUST be separated from the rest of the music
-            notation by a single space character. The clef, key signature, and time signature declarations
-            MUST NOT themselves be separated by a space character.
+            The clef declaration, and any key signature or time signature declarations, MUST be separated
+            from the music notation by a single space character. The clef, key signature, and time signature
+            declarations MUST NOT themselves be separated by a space character.
         </p>
         <p>
             The rest of the line of text follows the format for the music notation.
             Further changes to the clef, key signature, and time signature are permitted as normal.
         </p>
+        <aside class="note">
+            <p>
+                There is no provision for a label in the single-line text representation.
+            </p>
+        </aside>
         <aside class="example" title="Single-line Plaine and Easie Code">
             <pre>
                 ;pe2%G-2@3/2$bB =3/2--''A/2.F4G2A/AGG/1A/
