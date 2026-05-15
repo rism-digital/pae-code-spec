@@ -472,8 +472,8 @@
             entirely enclosed in square brackets, meaning the transcriber has supplied the full key signature.
         </p>
         <p>
-            For neume notation, only the value of <code>bB</code> (also including indications that it is supplied) is
-            permitted. Any further alterations are encoded as accidentals on the individual notes.
+            For neume notation, only the value of <code>bB</code> (including indications whether it is supplied by the
+            transcriber) is permitted.
         </p>
         <aside class="example" title="Encoding Key Signatures">
             <table class="simple" style="width:100%">
@@ -834,15 +834,16 @@
             <caption>Order of characters representing a note</caption>
         </table>
         <p>
-            Logical units MAY be nested to represent complex notational features; for example, a beam will
-            contain two or more notes, or a tuplet may be composed of two or more chords. All logical units
-            of the same kind MUST be closed before a new one is started (i.e., no nested groups of the same kind).
+            Logical units of different types MAY be nested to represent complex notational features; for example,
+            a beam will contain two or more notes, or a tuplet may be composed of two or more chords. All logical units
+            of the same type MUST be closed before a new one is opened (i.e., no nested groups of the same kind).
         </p>
         <aside class="note">
             <p>
-                There is one exception to this nested groups requirement: A group of notes marked as
-                an <a href="#appoggiatura-groups">appoggiatura group</a> can occur within an outer group. This is
-                explained further in the <a href="#appoggiatura-groups">appoggiatura group</a> section.
+                There is one exception to this nested groups requirement: A beamed group of notes marked as
+                an <a href="#appoggiatura-groups">appoggiatura group</a> can occur within an outer beam group. This is
+                explained further in the <a href="#appoggiatura-groups">appoggiatura group</a> and <a href="#beams">
+                beams</a> sections.
             </p>
         </aside>
         <p>
@@ -2014,18 +2015,27 @@
             <section id="appoggiatura-groups">
                 <h5>Appoggiatura Groups</h5>
                 <p>
-                    For multiple consecutive appoggiatura notes, the appoggiatura group MUST
-                    be used. The lower-case character <code>y</code> indicates the start of an appoggiatura group,
-                    and the lower-case character <code>r</code> indicates the end of the group. There MUST be
-                    more than one note in an appoggiatura group.
+                    Appoggiatura groups MUST be used for multiple consecutive appoggiatura notes. The lower-case
+                    character <code>y</code> indicates the start of an appoggiatura group, and the lower-case
+                    character <code>r</code> indicates the end of the group. There MUST be more than one note in an
+                    appoggiatura group.
                 </p>
                 <p>
-                    Beams MAY occur within an appoggiatura group. In this case the <code>r</code> character MUST follow
-                    the closing beam character.
+                    Beams MAY occur within an appoggiatura group. For beamed appoggiatura groups, the <code>y</code>
+                    character MUST precede the opening beam <code>{</code> character; however, duration and octave
+                    values for the beam group MAY be provided between the appoggiatura start character <code>y</code>
+                    and the opening beam character <code>{</code>. The <code>r</code> character MUST immediately
+                    follow the closing beam <code>}</code> character.
                 </p>
                 <p>
                     An appoggiatura group with beams MAY occur within an outer beam group.
                 </p>
+                <aside>
+                    <p>
+                        Consult the <a href="#beams">beams</a> section for additional details on beaming and nested
+                        appoggiatura groups.
+                    </p>
+                </aside>
                 <aside class="example" title="Encoding appoggiatura Groups">
                     <table class="simple" style="width: 100%">
                         <thead>
