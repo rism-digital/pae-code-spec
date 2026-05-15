@@ -474,8 +474,9 @@
             set of non-consecutive bracket groups.
         </p>
         <p>
-            A key signature, including the <code>x</code>, <code>b</code>, and <code>n</code> characters MAY be
-            entirely enclosed in square brackets, meaning the transcriber has supplied the full key signature.
+            If the whole key signature is supplied by the transcriber, the entire key signature, including the
+            <code>x</code>, <code>b</code> or <code>n</code> characters, MUST be enclosed in a single pair of square
+            brackets.
         </p>
         <p>
             For neume notation, only the value of <code>bB</code> (including indications whether it is supplied by the
@@ -817,7 +818,7 @@
             <tbody>
                 <tr>
                     <td>Grace / Appoggiatura</td>
-                    <td><code>[gq]</code></td>
+                    <td><code>[g|q]</code></td>
                     <td>Optional</td>
                     <td>When specified, MUST precede all other characters.</td>
                 </tr>
@@ -2021,24 +2022,34 @@
             <p>
                 There are two types of grace note: Acciaccatura and appoggiatura.
             </p>
-            <p class="note">
-                The acciaccatura, commonly notated with a slash through the stem, typically occurs off the beat,
-                while the appoggiatura typically occurs on the beat.
+            <p>
+                The character <code>g</code> is used for a single acciaccatura. This character MUST precede
+                any <a href="#octaves">octave</a> or <a href="#accidentals">accidental</a> indications, and
+                the <a href="#note-names">note name</a>. Acciaccaturas MUST NOT specify a
+                <a href="#durations">duration</a> or any <a href="#expression-marks">expression marks</a>.
             </p>
             <p>
-                The lower-case character <code>g</code> is used for a single acciaccatura.
-                This character MUST precede the <a href="#note-names">note name</a>, and MUST
-                also precede all other attributes of the note. Consecutive single
-                acciaccaturas MUST NOT occur.
+                The <a href="#implied-duration-octave">implied duration</a> MUST NOT apply to acciaccaturas, but the
+                <a href="#implied-duration-octave">implied octave</a> MUST apply. Acciaccaturas
+                are not considered to be part of a <a href="#duration-patterns">duration pattern</a>.
             </p>
             <p>
-                For a single appoggiatura note, the lower-case character <code>q</code>
-                MUST be used. This character MUST precede the note name, and MUST
-                also precede all other attributes of the note.
+                Consecutive single acciaccaturas MUST NOT occur.
             </p>
             <p>
-                Consecutive single appoggiaturas MUST NOT occur. Consecutive appoggiatura notes
-                MUST be encoded using an <a href="#appoggiatura-groups">appoggiatura group</a>.
+                The character <code>q</code> is used for a single appoggiatura. This character
+                MUST precede all other attributes of the note and the note name. Appoggiaturas
+                MAY specify a <a href="#durations">duration</a>, <a href="#octaves">octave</a> or
+                <a href="#accidentals">accidental</a>. <a href="#expression-marks">Expression marks</a> MAY be
+                applied to appoggiaturas.
+            </p>
+            <p>
+                Implied octave, implied duration, and duration patterns MUST apply to appoggiaturas.
+            </p>
+            <p>
+                Consecutive appoggiatura notes MUST be encoded using an
+                <a href="#appoggiatura-groups">appoggiatura group</a>. Consecutive single appoggiaturas MUST NOT
+                occur.
             </p>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
