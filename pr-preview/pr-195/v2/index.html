@@ -469,8 +469,9 @@
             set of non-consecutive bracket groups.
         </p>
         <p>
-            A key signature, including the <code>x</code>, <code>b</code>, and <code>n</code> characters MAY be
-            entirely enclosed in square brackets, meaning the transcriber has supplied the full key signature.
+            If the whole key signature is supplied by the transcriber, the entire key signature, including the
+            <code>x</code>, <code>b</code> or <code>n</code> characters, MUST be enclosed in a single pair of square
+            brackets.
         </p>
         <p>
             For neume notation, only the value of <code>bB</code> (including indications whether it is supplied by the
@@ -1661,45 +1662,45 @@
                 Tuplets are enclosed within parentheses <code>()</code>.
             </p>
             <p>
-                A duration value MAY immediately precede the opening parenthesis <code>(</code>.
-                This value indicates the total duration occupied by the tuplet. If this
-                value is omitted, the total duration of the tuplet is not specified by the
-                encoding and MAY be inferred according to the current
-                <a href="#implied-duration-octave">implied duration</a>.
+                A duration value MAY immediately follow the opening parenthesis <code>(</code>.
+                This value indicates the total musical duration occupied by the tuplet. A semicolon <code>;</code>
+                MUST immediately follow this duration value to separate it from any other duration value
+                given in the tuplet.
+            </p>
+            <aside class="note">
+                <p>
+                    For tuplets, there is a distinction between the musical duration of the tuplet, and the
+                    written durations of individual notes within a tuplet. The former provides an optional way
+                    of specifying the duration of the tuplet with respect to the prevailing time signature, while the
+                    latter provides a way of specifying the visual form of the note.
+                </p>
+            </aside>
+            <p>
+                A tuplet number MAY be provided before the closing parenthesis <code>)</code>. A semicolon
+                <code>;</code> separates the notes of the tuplet from the tuplet number.
             </p>
             <p>
-                The first encoded note, rest, chord, or beam group within a tuplet MUST include
-                an explicit duration value. This value indicates the written duration of that logical
-                unit. Subsequent notes, rests, chords, or beam groups within the tuplet follow the
-                normal rules for implied or stated duration values.
+                The tuplet number MAY be written as a single digit, or as a ratio of two positive integers separated by
+                a colon character <code>:</code>.
             </p>
             <p>
-                A semicolon character <code>;</code> followed by a positive integer MAY be supplied
-                immediately before the closing parenthesis <code>)</code>. This integer indicates
-                the tuplet number displayed in brackets above the tuplet when rendered. If no tuplet
-                number is supplied, the value <code>3</code> is assumed.
-            </p>
-            <p>
-                The tuplet number MAY be written as a ratio of two positive integers separated by
-                a colon character <code>:</code>, such as <code>5:4</code>. The ratio is not a duration
-                value and MUST NOT be combined with a separate total-duration value inside the tuplet
-                marking.
+                If no tuplet number is provided, a value of <code>3</code> is implied.
             </p>
             <p>
                 Tuplets MUST NOT be used in Neume Notation.
             </p>
             <aside class="note">
                 <p>
-                    In <code>4(6ABC;3)</code>, the value <code>4</code> before the opening
+                    In <code>(4;6ABC;3)</code>, the value <code>4;</code> after the opening
                     parenthesis indicates the total duration occupied by the tuplet group. The
-                    value <code>6</code> after the opening parenthesis indicates that the encoded
-                    notes are written as sixteenth notes. The value <code>3</code> after the
-                    semicolon is the displayed tuplet number.
+                    value <code>6</code> after the total duration indicates that the encoded
+                    notes are written as sixteenth notes. The value <code>;3</code> after the
+                    semicolon is the tuplet number displayed in a bracket above the tuplet.
                 </p>
                 <p>
                     Since the default displayed tuplet number is <code>3</code>, the encodings
-                    <code>8(6ABC;3)</code> and <code>8(6ABC)</code> are equivalent. Likewise,
-                    <code>8({6ABC};3)</code> and <code>8({6ABC})</code> are equivalent.
+                    <code>(8;6ABC;3)</code> and <code>(8;6ABC)</code> are equivalent. Likewise,
+                    <code>({8ABC};3)</code> and <code>({8ABC})</code> are equivalent.
                 </p>
                 <p>
                     Applications that render notation are free to choose how tuplet labels are
@@ -1713,13 +1714,13 @@
                     Below is an annotated view of the tuplet structure and the equivalent rendering.
                 </p>
                 <pre>
-                    4('4D8E;3)
+                    (4;'4D8E;3)
                     | |  | | |
                     | |  | | +-- displayed tuplet number
                     | |  | +---- E is written as an eighth note
                     | |  +------ D is written as a quarter note with an explicit duration
-                    | +--------- tuplet group begins
-                    +----------- total duration occupied by the tuplet group
+                    | +--------- total duration occupied by the tuplet group
+                    +----------- tuplet group begins
                 </pre>
                 <div class="notation-example">
                     <div class="notation-code">
@@ -1727,7 +1728,7 @@
                             {
                                 "clef": "G-2",
                                 "timesig": "c",
-                                "data": "4('4D8E;3)/"
+                                "data": "(4;'4D8E;3)/"
                             }
                         </script>
                     </div>
@@ -1750,10 +1751,10 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4(6'DEFGA;5)"
+                                    "data": "(4;6'DEFGA;5)"
                                 }
                             </script>
-                            <code>4(6'DEFGA;5)</code>
+                            <code>(4;6'DEFGA;5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 16th notes, in the space of a quarter note</td>
@@ -1764,10 +1765,10 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "8({'3DEFGA};5)"
+                                    "data": "(8;{'3DEFGA};5)"
                                 }
                             </script>
-                            <code>8({'3DEFGA};5)</code>
+                            <code>(8;{'3DEFGA};5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 32nd notes, in the space of an eighth note, with beamed notes</td>
@@ -1778,10 +1779,10 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4('4D8E)4('4D8E)"
+                                    "data": "(4;'4D8E)(4;'4D8E)"
                                 }
                             </script>
-                            <code>4('4D8E)4('4D8E)</code>
+                            <code>(4;'4D8E)(4;'4D8E)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Two triplet values of varying duration.</td>
