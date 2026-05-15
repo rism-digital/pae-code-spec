@@ -2713,6 +2713,195 @@
     </section>
 </section>
 <section id="conformance"></section>
+<section id="code-character-overview" class="appendix">
+    <h2>Code Character Overview</h2>
+    <p>
+        This appendix summarizes the characters used in the musical notation portion of the Plaine and Easie
+        Code. It is an editorial overview and does not replace the normative rules in the main body of this
+        specification. Some characters have different meanings in different contexts.
+    </p>
+    <p>
+        This table covers musical notation syntax only. It does not include JSON keys, multi-line field
+        identifiers, MARC subfields, or other representation-format syntax.
+    </p>
+    <figure id="code-character-overview-table">
+        <table class="data" style="width: 100%">
+            <colgroup class="header"></colgroup>
+            <colgroup span="3"></colgroup>
+            <thead>
+            <tr>
+                <th>Meaning</th>
+                <th>Character(s)</th>
+                <th>Context</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Note names</td>
+                <td><code>A</code>-<code>G</code></td>
+                <td><a href="#note-names">Note names</a>; <a href="#key-signature">key signatures</a></td>
+                <td>Note names use uppercase letters.</td>
+            </tr>
+            <tr>
+                <td>Clef shapes</td>
+                <td><code>G</code>, <code>g</code>, <code>C</code>, <code>F</code></td>
+                <td><a href="#clef">Clef</a></td>
+                <td><code>g</code> indicates the octave G clef.</td>
+            </tr>
+            <tr>
+                <td>Notation type in clef definitions</td>
+                <td><code>-</code>, <code>*</code>, <code>:</code></td>
+                <td><a href="#clef">Clef</a></td>
+                <td>Modern notation, Mensural notation, and Neume notation, respectively.</td>
+            </tr>
+            <tr>
+                <td>Clef staff line</td>
+                <td><code>1</code>-<code>5</code></td>
+                <td><a href="#clef">Clef</a></td>
+                <td>Staff lines are counted from the bottom line.</td>
+            </tr>
+            <tr>
+                <td>Supplied material</td>
+                <td><code>[</code>, <code>]</code></td>
+                <td><a href="#clef">Clef</a>; <a href="#key-signature">key signatures</a></td>
+                <td>Used for supplied clefs and supplied key-signature material.</td>
+            </tr>
+            <tr>
+                <td>Sharps, flats, and naturals</td>
+                <td><code>x</code>, <code>b</code>, <code>n</code></td>
+                <td><a href="#key-signature">Key signatures</a>; <a href="#accidentals">accidentals</a></td>
+                <td><code>xx</code> and <code>bb</code> indicate double accidentals on notes.</td>
+            </tr>
+            <tr>
+                <td>Numeric values</td>
+                <td><code>0</code>-<code>9</code></td>
+                <td>
+                    <a href="#durations">Durations</a>; <a href="#time-signature">time signatures</a>;
+                    <a href="#measure-rests">measure rests</a>; <a href="#tuplets">tuplets</a>;
+                    <a href="#repeat-group">repeat groups</a>
+                </td>
+                <td>The allowed range and interpretation depend on context.</td>
+            </tr>
+            <tr>
+                <td>Duration dot or mensural prolation marker</td>
+                <td><code>.</code></td>
+                <td><a href="#durations">Durations</a>; <a href="#time-signature">time signatures</a></td>
+                <td>In CWMN durations, dots indicate augmentation. In mensuration signs, a dot indicates major prolation.</td>
+            </tr>
+            <tr>
+                <td>Octave indications</td>
+                <td><code>'</code>, <code>,</code></td>
+                <td><a href="#octaves">Octaves</a></td>
+                <td>Apostrophes indicate higher octaves; commas indicate lower octaves.</td>
+            </tr>
+            <tr>
+                <td>Single rest</td>
+                <td><code>-</code></td>
+                <td><a href="#single-rests">Rests</a></td>
+                <td>This character also appears in clef definitions, where it has a different meaning.</td>
+            </tr>
+            <tr>
+                <td>Tie</td>
+                <td><code>_</code></td>
+                <td><a href="#ties">Ties</a></td>
+                <td>Used for tied notes and tied chords.</td>
+            </tr>
+            <tr>
+                <td>Ligature</td>
+                <td><code>u</code></td>
+                <td><a href="#ligatures">Ligatures</a></td>
+                <td>Used in Mensural and Neume notation.</td>
+            </tr>
+            <tr>
+                <td>Beam group delimiters</td>
+                <td><code>{</code>, <code>}</code></td>
+                <td><a href="#beams">Beams</a></td>
+                <td>Enclose notes or rests in a beam group.</td>
+            </tr>
+            <tr>
+                <td>Tuplet delimiters</td>
+                <td><code>(</code>, <code>)</code></td>
+                <td><a href="#tuplets">Tuplets</a></td>
+                <td>Enclose the tuplet group.</td>
+            </tr>
+            <tr>
+                <td>Tuplet delimiter</td>
+                <td><code>;</code></td>
+                <td><a href="#tuplets">Tuplets</a></td>
+                <td>Separates total duration and tuplet number values from tuplet contents.</td>
+            </tr>
+            <tr>
+                <td>Tuplet ratio separator or repeat-sign component</td>
+                <td><code>:</code></td>
+                <td><a href="#tuplets">Tuplets</a>; <a href="#bar-lines">bar lines</a></td>
+                <td>Also appears in clef definitions as the Neume notation marker.</td>
+            </tr>
+            <tr>
+                <td>Chord delimiters</td>
+                <td><code>^</code>, <code>&gt;</code></td>
+                <td><a href="#chords">Chords</a></td>
+                <td>Mark the beginning and end of a chord.</td>
+            </tr>
+            <tr>
+                <td>Trill and fermata modifiers</td>
+                <td><code>t</code>, <code>p</code></td>
+                <td><a href="#expression-marks">Expression marks</a>; <a href="#chords">chords</a></td>
+                <td>When both are present, <code>t</code> precedes <code>p</code>.</td>
+            </tr>
+            <tr>
+                <td>Acciaccatura and single appoggiatura markers</td>
+                <td><code>g</code>, <code>q</code></td>
+                <td><a href="#grace-notes">Grace notes</a></td>
+                <td>These markers precede the note they modify.</td>
+            </tr>
+            <tr>
+                <td>Appoggiatura group delimiters</td>
+                <td><code>y</code>, <code>r</code></td>
+                <td><a href="#appoggiatura-groups">Appoggiatura groups</a></td>
+                <td>Mark the beginning and end of an appoggiatura group.</td>
+            </tr>
+            <tr>
+                <td>Bar lines</td>
+                <td><code>/</code>, <code>//</code>, <code>//:</code>, <code>://</code>, <code>://:</code></td>
+                <td><a href="#bar-lines">Bar lines</a></td>
+                <td>Represent single, double, and repeat bar lines.</td>
+            </tr>
+            <tr>
+                <td>Measure rest</td>
+                <td><code>=</code></td>
+                <td><a href="#measure-rests">Measure rests</a></td>
+                <td>May be followed by a positive integer for multi-measure rests.</td>
+            </tr>
+            <tr>
+                <td>Inline staff-definition changes</td>
+                <td><code>%</code>, <code>$</code>, <code>@</code></td>
+                <td><a href="#changes-to-staff-definitions">Changes to staff definitions</a></td>
+                <td>Indicate clef, key signature, and time signature changes, respectively.</td>
+            </tr>
+            <tr>
+                <td>Staff-definition change separator</td>
+                <td>space</td>
+                <td><a href="#changes-to-staff-definitions">Changes to staff definitions</a></td>
+                <td>Required after any inline staff-definition change or group of changes.</td>
+            </tr>
+            <tr>
+                <td>Repeat group delimiters and repeat count</td>
+                <td><code>!</code>, <code>f</code></td>
+                <td><a href="#repeat-group">Repeat group</a></td>
+                <td><code>!</code> marks the repeated figure; repeated <code>f</code> characters indicate repetitions.</td>
+            </tr>
+            <tr>
+                <td>Measure repeat</td>
+                <td><code>i</code></td>
+                <td><a href="#shortcuts">Shortcuts</a></td>
+                <td>Occurs between bar lines after the measure being repeated.</td>
+            </tr>
+            </tbody>
+        </table>
+        <figcaption>Overview of characters used in Plaine and Easie Code musical notation</figcaption>
+    </figure>
+</section>
 <section id="notation-type-feature-matrix" class="appendix">
     <h2>Notation Type Feature Matrix</h2>
     <p>
