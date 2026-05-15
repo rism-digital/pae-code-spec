@@ -1114,18 +1114,18 @@
                     and continues until the duration pattern is ended.
                 </p>
                 <p>
-                    A duration pattern ends when a new duration value or duration pattern is supplied. It also
-                    ends at a <a href="#changes-to-staff-definitions">staff definition change</a>,
-                    <a href="#tuplets">tuplet boundary</a>, or <a href="#repeat-group">repeat group</a>.
+                    A duration pattern ends when a new duration value or duration pattern is supplied.
                 </p>
                 <p>
-                    Duration patterns MUST NOT be used with tuplets, since they provide their own internal durations.
+                    When applied to tuplets, duration patterns affect the written duration of the notes, and not
+                    the musical duration of the tuplet. See the section on <a href="#tuplets">tuplets</a> for
+                    more information.
                 </p>
                 <p>
                     <a href="#ties">Tied notes</a> use two duration values in the duration pattern.
                 </p>
                 <p>
-                    Duration pattern shortcuts MUST NOT be used with Neume notation, since notes in Neume
+                    Duration patterns MUST NOT be used with Neume notation, since notes in Neume
                     notation do not have duration values.
                 </p>
                 <aside class="example" title="Encoding Duration Patterns">
@@ -1152,6 +1152,22 @@
                             <td class="notation-result"></td>
                             <td>
                                 Instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
+                            </td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'8.68(AB''C)(DEF)"
+                                    }
+                                </script>
+                                <code>'8.68(AB''C)(DEF)</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>
+                                Duration patterns applied to tuplets.
                             </td>
                         </tr>
                         </tbody>
