@@ -2620,10 +2620,12 @@
             but MAY contain any ASCII Graphic Character, as defined in [[RFC20]].
         </p>
         <p>
-            The value of the <code>@version</code> identifier MUST be <code>pe2</code> for incipits that conform
-            to Version 2 of the specification. If a <code>@version</code> identifier is not specified, or if any other
-            value other than <code>pe2</code> is found in the <code>@version</code> field, the incipit
-            MUST be interpreted as conforming to Version 1 of the Plaine and Easie Code.
+            The <code>@version</code> identifier MUST be present for encodings that conform to version 2 of the
+            specification, and the value of the <code>@version</code> identifier MUST be <code>pe2</code>. If
+            a <code>@version</code> identifier is not specified, or if any other value other than
+            <code>pe2</code> is found in the <code>@version</code> field, the incipit MUST be interpreted as
+            conforming to Version 1 of the Plaine and Easie Code. A value of <code>pe</code> MAY be used to identify
+            those encodings.
         </p>
         <aside class="example" title="Multi-line text with field delimiters">
             <pre>
@@ -2666,10 +2668,12 @@
             </p>
         </aside>
         <p>
-            The value of the <code>version</code> key MUST be <code>pe2</code> for incipits that conform
-            to Version 2 of the specification. If a <code>version</code> key is not specified, or if any other
-            value other than <code>pe2</code> is found in the <code>version</code> key, the incipit
-            MUST be interpreted as conforming to Version 1 of the specification.
+            The <code>version</code> key MUST be present for encodings that conform to version 2 of the
+            specification, and the value of the <code>version</code> key MUST be <code>pe2</code>. If
+            a <code>version</code> key is not specified, or if any other value other than
+            <code>pe2</code> is found in the <code>version</code> field, the incipit MUST be interpreted as
+            conforming to Version 1 of the Plaine and Easie Code. A value of <code>pe</code> MAY be used to identify
+            those encodings.
         </p>
         <aside class="example" title="JavaScript Object Notation (JSON)">
             <pre>
@@ -2691,7 +2695,8 @@
         </p>
         <p>
             This line MUST start with the string <code>;pe2</code> for incipits that
-            conform to Version 2 of the specification.
+            conform to Version 2 of the specification. Encodings that conform to an older version of the
+            specification MUST NOT contain a version identifier.
         </p>
         <p>
             Following the version declaration, the line MUST continue with a declaration of the clef.
