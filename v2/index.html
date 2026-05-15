@@ -2745,15 +2745,15 @@
             </tr>
             <tr>
                 <td>Clef shapes</td>
-                <td><code>G</code>, <code>g</code>, <code>C</code>, <code>F</code></td>
+                <td><code>G</code> <code>g</code> <code>C</code> <code>F</code></td>
                 <td><a href="#clef">Clef</a></td>
                 <td><code>g</code> indicates the octave G clef.</td>
             </tr>
             <tr>
                 <td>Notation type in clef definitions</td>
-                <td><code>-</code>, <code>*</code>, <code>:</code></td>
+                <td><code>-</code> <code>*</code> <code>:</code></td>
                 <td><a href="#clef">Clef</a></td>
-                <td>Modern notation, Mensural notation, and Neume notation, respectively.</td>
+                <td>CWM notation, Mensural notation, and Neume notation, respectively.</td>
             </tr>
             <tr>
                 <td>Clef staff line</td>
@@ -2763,15 +2763,15 @@
             </tr>
             <tr>
                 <td>Supplied material</td>
-                <td><code>[</code>, <code>]</code></td>
-                <td><a href="#clef">Clef</a>; <a href="#key-signature">key signatures</a></td>
+                <td><code>[</code> <code>]</code></td>
+                <td><a href="#clef">Clef</a>; <a href="#key-signature">Key Signatures</a></td>
                 <td>Used for supplied clefs and supplied key-signature material.</td>
             </tr>
             <tr>
                 <td>Sharps, flats, and naturals</td>
-                <td><code>x</code>, <code>b</code>, <code>n</code></td>
+                <td><code>x</code> <code>b</code> <code>n</code></td>
                 <td><a href="#key-signature">Key signatures</a>; <a href="#accidentals">accidentals</a></td>
-                <td><code>xx</code> and <code>bb</code> indicate double accidentals on notes.</td>
+                <td><code>xx</code> and <code>bb</code> indicate double sharps and double flats, respectively.</td>
             </tr>
             <tr>
                 <td>Numeric values</td>
@@ -2791,19 +2791,19 @@
             </tr>
             <tr>
                 <td>Octave indications</td>
-                <td><code>'</code>, <code>,</code></td>
+                <td><code>'</code> <code>,</code></td>
                 <td><a href="#octaves">Octaves</a></td>
                 <td>Apostrophes indicate higher octaves; commas indicate lower octaves.</td>
             </tr>
             <tr>
                 <td>Single rest</td>
-                <td><code>-</code></td>
+                <td><code>-</code> (dash)</td>
                 <td><a href="#single-rests">Rests</a></td>
                 <td>This character also appears in clef definitions, where it has a different meaning.</td>
             </tr>
             <tr>
                 <td>Tie</td>
-                <td><code>_</code></td>
+                <td><code>_</code> (underscore)</td>
                 <td><a href="#ties">Ties</a></td>
                 <td>Used for tied notes and tied chords.</td>
             </tr>
@@ -2814,19 +2814,19 @@
                 <td>Used in Mensural and Neume notation.</td>
             </tr>
             <tr>
-                <td>Beam group delimiters</td>
-                <td><code>{</code>, <code>}</code></td>
+                <td>Beam group</td>
+                <td><code>{</code> <code>}</code></td>
                 <td><a href="#beams">Beams</a></td>
                 <td>Enclose notes or rests in a beam group.</td>
             </tr>
             <tr>
-                <td>Tuplet delimiters</td>
-                <td><code>(</code>, <code>)</code></td>
+                <td>Tuplet group</td>
+                <td><code>(</code> <code>)</code></td>
                 <td><a href="#tuplets">Tuplets</a></td>
                 <td>Enclose the tuplet group.</td>
             </tr>
             <tr>
-                <td>Tuplet delimiter</td>
+                <td>Tuplet modifiers</td>
                 <td><code>;</code></td>
                 <td><a href="#tuplets">Tuplets</a></td>
                 <td>Separates total duration and tuplet number values from tuplet contents.</td>
@@ -2839,25 +2839,25 @@
             </tr>
             <tr>
                 <td>Chord delimiters</td>
-                <td><code>^</code>, <code>&gt;</code></td>
+                <td><code>^</code> <code>&gt;</code></td>
                 <td><a href="#chords">Chords</a></td>
                 <td>Mark the beginning and end of a chord.</td>
             </tr>
             <tr>
                 <td>Trill and fermata modifiers</td>
-                <td><code>t</code>, <code>p</code></td>
+                <td><code>t</code> <code>p</code></td>
                 <td><a href="#expression-marks">Expression marks</a>; <a href="#chords">chords</a></td>
                 <td>When both are present, <code>t</code> precedes <code>p</code>.</td>
             </tr>
             <tr>
                 <td>Acciaccatura and single appoggiatura markers</td>
-                <td><code>g</code>, <code>q</code></td>
+                <td><code>g</code> <code>q</code></td>
                 <td><a href="#grace-notes">Grace notes</a></td>
                 <td>These markers precede the note they modify.</td>
             </tr>
             <tr>
                 <td>Appoggiatura group delimiters</td>
-                <td><code>y</code>, <code>r</code></td>
+                <td><code>y</code> <code>r</code></td>
                 <td><a href="#appoggiatura-groups">Appoggiatura groups</a></td>
                 <td>Mark the beginning and end of an appoggiatura group.</td>
             </tr>
@@ -2875,7 +2875,7 @@
             </tr>
             <tr>
                 <td>Inline staff-definition changes</td>
-                <td><code>%</code>, <code>$</code>, <code>@</code></td>
+                <td><code>%</code> <code>$</code> <code>@</code></td>
                 <td><a href="#changes-to-staff-definitions">Changes to staff definitions</a></td>
                 <td>Indicate clef, key signature, and time signature changes, respectively.</td>
             </tr>
@@ -2887,7 +2887,7 @@
             </tr>
             <tr>
                 <td>Repeat group delimiters and repeat count</td>
-                <td><code>!</code>, <code>f</code></td>
+                <td><code>!</code> <code>f</code></td>
                 <td><a href="#repeat-group">Repeat group</a></td>
                 <td><code>!</code> marks the repeated figure; repeated <code>f</code> characters indicate repetitions.</td>
             </tr>
