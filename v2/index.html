@@ -254,9 +254,14 @@
             A software application that renders Plaine and Easie Code as music notation.
             A renderer may also produce sound output, for example through MIDI.
         </dd>
+        <dt><dfn>Sounding Duration</dfn></dt>
+        <dd>
+            The duration that is heard when the music is performed, which may be different from the
+            written duration value of the note.
+        </dd>
         <dt><dfn>Sounding Pitch</dfn></dt>
         <dd>
-            The pitch that is heard when the music is performed, independent of how that
+            The pitch that is heard when the music is performed, which may be different from the
             pitch is written on the staff.
         </dd>
         <dt><dfn>Staff</dfn></dt>
@@ -269,10 +274,15 @@
         <dd>
             The person or people who transcribe a musical source into Plaine and Easie Code.
         </dd>
+        <dt><dfn>Written Duration</dfn></dt>
+        <dd>
+            The duration of a note, according to its graphical appearance, which may differ from the
+            duration of the note when it is performed.
+        </dd>
         <dt><dfn>Written Pitch</dfn></dt>
         <dd>
-            The pitch represented by a note as it is written on the staff, independent of how
-            it sounds when performed.
+            The pitch represented by a note as it is written on the staff, which may differ from its pitch
+            when performed.
         </dd>
     </dl>
 </section>
@@ -1663,18 +1673,10 @@
             </p>
             <p>
                 A <a href="#durations">duration value</a> MAY immediately follow the opening parenthesis <code>(</code>.
-                This value indicates the total musical duration occupied by the tuplet. A semicolon <code>;</code>
+                This value indicates the total <a>sounding duration</a> occupied by the tuplet. A semicolon <code>;</code>
                 MUST immediately follow this duration value to separate it from any other duration value
                 given in the tuplet.
             </p>
-            <aside class="note">
-                <p>
-                    For tuplets, there is a distinction between the musical duration of the tuplet, and the
-                    written durations of individual notes within a tuplet. The former provides an optional way
-                    of specifying the duration of the tuplet with respect to the prevailing time signature, while the
-                    latter provides a way of specifying the visual form of the note.
-                </p>
-            </aside>
             <p>
                 A tuplet number MAY be provided before the closing parenthesis <code>)</code>. A semicolon
                 <code>;</code> separates the notes of the tuplet from the tuplet number.
@@ -1689,38 +1691,34 @@
             <p>
                 Tuplets MUST NOT be used in Neume Notation.
             </p>
-            <aside class="note">
+            <aside class="note" title="Tuplet encoding explained">
                 <p>
-                    In <code>(4;6ABC;3)</code>, the value <code>4;</code> after the opening
-                    parenthesis indicates the total duration occupied by the tuplet group. The
-                    value <code>6</code> after the total duration indicates that the encoded
-                    notes are written as sixteenth notes. The value <code>;3</code> after the
-                    semicolon is the tuplet number displayed in a bracket above the tuplet.
+                    In <code>(8;6ABC;3)</code>, the value <code>8;</code> after the opening
+                    parenthesis indicates the <a>sounding duration</a> occupied by the tuplet group. The
+                    value <code>6</code> after the total duration indicates the <a>written duration</a>
+                    as sixteenth notes. The value <code>;3</code> after the semicolon is the tuplet number
+                    displayed in a bracket above the tuplet.
                 </p>
                 <p>
                     Since the default displayed tuplet number is <code>3</code>, the encodings
                     <code>(8;6ABC;3)</code> and <code>(8;6ABC)</code> are equivalent. Likewise,
-                    <code>({8ABC};3)</code> and <code>({8ABC})</code> are equivalent.
+                    <code>({6ABC};3)</code> and <code>({6ABC})</code> are equivalent.
                 </p>
                 <p>
                     Applications that render notation are free to choose how tuplet labels are
                     displayed. They may choose to display the label only if explicitly provided,
-                    may choose to always display a label, or may choose to never show any tuplet labels.
-                    (The latter choice, however, may prove confusing for users.)
+                    may choose to always display a label using the implied default, or may choose
+                    to never show any tuplet labels.
                 </p>
-            </aside>
-            <aside class="example" title="Illustrated Tuplet">
                 <p>
                     Below is an annotated view of the tuplet structure and the equivalent rendering.
                 </p>
                 <pre>
-                    (4;'4D8E;3)
-                    | |  | | |
-                    | |  | | +-- displayed tuplet number
-                    | |  | +---- E is written as an eighth note
-                    | |  +------ D is written as a quarter note with an explicit duration
-                    | +--------- total duration occupied by the tuplet group
-                    +----------- tuplet group begins
+                    (8;6ABC;3)
+                     | |    |
+                     | |    +-- displayed tuplet number (optional)
+                     | +------- A B C as sixteenth notes
+                     +--------- sounding duration of the tuplet group (optional)
                 </pre>
                 <div class="notation-example">
                     <div class="notation-code">
