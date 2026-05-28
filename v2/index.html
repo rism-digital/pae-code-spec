@@ -2420,13 +2420,14 @@
                 In this case, the number MAY be omitted.
             </p>
             <p>
-                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character, unless
+                Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a>, unless
                 the measure rest is the first <a>logical unit</a> in the <a>encoding</a>. In this case, the preceding
                 bar line is not necessary.
             </p>
             <p>
                 A <a href="#fermatas">fermata</a> for a measure rest MAY be supplied. If provided, the <code>p</code>
-                MUST be the final character in the measure rest before the final bar line character.
+                MUST immediately follow the <code>=</code>, or, if given, MUST immediately follow the number of
+                measures for which the rest applies.
             </p>
             <p>
                 Measure rests MUST NOT be used with Mensural and Neume notations, due to the general absence of
