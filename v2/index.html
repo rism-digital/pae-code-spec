@@ -1075,7 +1075,7 @@
                 that the duration is extended by half the value of the previous dot. The number of dots MUST NOT exceed
                 four.
             </p>
-            <aside class="example" title="Encoding rhythmic values">
+            <aside class="example" title="Encoding duration values">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -1130,6 +1130,80 @@
                     </tbody>
                 </table>
             </aside>
+            <section>
+                <h5>Duration pattern</h5>
+                <p>
+                    A duration pattern encodes a repeated sequence of duration values once, before
+                    the logical units to which those values apply.
+                </p>
+                <p>
+                    A duration pattern consists of two or more duration values followed by a sequence of notes,
+                    rests, or chords. The duration values are assigned to those logical units in order. Each note,
+                    rest, or chord uses one duration value from the pattern. If the sequence contains more logical
+                    units than duration values, the duration pattern applies cyclically from its first duration value
+                    and continues until the duration pattern is ended.
+                </p>
+                <p>
+                    A duration pattern ends when a new duration value or duration pattern is supplied.
+                </p>
+                <p>
+                    When applied to tuplets, duration patterns affect the written duration of the notes, and not
+                    the <a>sounding duration</a> of the tuplet. See the section on <a href="#tuplets">tuplets</a> for
+                    more information.
+                </p>
+                <p>
+                    <a href="#ties">Tied notes</a> use two duration values in the duration pattern.
+                </p>
+                <p>
+                    Duration patterns MUST NOT be used with Neume notation, since notes in Neume
+                    notation do not have duration values.
+                </p>
+                <aside class="example" title="Encoding Duration Patterns">
+                    <table class="simple" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Notation</th>
+                            <th>Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'8.68{AB''C}{DEF}"
+                                    }
+                                </script>
+                                <code>'8.68{AB''C}{DEF}</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>
+                                Instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
+                            </td>
+                        </tr>
+                        <tr class="notation-example">
+                            <td class="notation-code">
+                                <script type="application/json">
+                                    {
+                                        "clef": "G-2",
+                                        "timesig": "3/2",
+                                        "data": "'8.68(AB''C)(DEF)"
+                                    }
+                                </script>
+                                <code>'8.68(AB''C)(DEF)</code>
+                            </td>
+                            <td class="notation-result"></td>
+                            <td>
+                                Duration patterns applied to tuplets.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </section>
         </section>
         <section id="note-names">
             <h4>Note Names</h4>
@@ -1749,7 +1823,7 @@
                     </pre>
                 </aside>
             </aside>
-            <aside class="example" title="Encoding Special Rhythmic Groupings">
+            <aside class="example" title="Encoding Tuplets">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -1932,7 +2006,7 @@
                             <code>2^CEG>8(6{_^DxFA>^EGB>})</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>A chord tied to both beamed and rhythmic groups</td>
+                        <td>A chord tied to both beams and tuplets</td>
                     </tr>
                     </tbody>
                 </table>
@@ -2460,21 +2534,36 @@
     </section>
     <section id="shortcuts">
         <h3>Shortcuts</h3>
+        <p>
+            Shortcuts provide compact ways to encode repeated musical material. A shortcut represents
+            notation that could also be written out in full. Unless otherwise stated, shortcut syntax
+            follows the same rules as the notation it replaces, including the conventions for implied
+            duration and octave values.
+        </p>
+        <p>
+            As a general principle for all shortcuts, each repetition MUST preserve the musical values represented by
+            the original repeated figure. Implied duration and octave values within a repeated figure MUST be
+            resolved from the context at the start of the repeat group for each repetition, not from the end of
+            the previous repetition.
+        </p>
         <section id="repeat-group">
             <h4>Repeat group</h4>
             <p>
-                If one or more notes or rests are repeated several times, a repeat group
-                can be used.
+                A repeat group encodes a figure that is repeated within a single measure.
             </p>
             <p>
-                A repeat group is only valid within a single measure.
+                A repeat group MUST NOT contain a bar line, measure rest, measure repeat, staff definition
+                change, or another repeat group.
             </p>
             <p>
-                To use a repeat group, mark the beginning and the end of the group with
-                an exclamation mark character <code>!</code>. The lower-case character
-                <code>f</code> MUST immediately follow the ending <code>!</code>, and
-                MUST occur the number of times the figure should be repeated. The
-                <code>f</code> MUST be specified at least once.
+                To encode a repeat group, mark the beginning and end of the repeated figure with an
+                exclamation mark character <code>!</code>. At least one lower-case character <code>f</code>
+                MUST immediately follow the closing <code>!</code>. The number of <code>f</code> characters
+                indicates the number of times the figure is repeated.
+            </p>
+            <p>
+                The repeated figure and all of its repetitions MUST occur within the same measure. However,
+                a repeat group MAY be combined with a <a href="#measure-repeat">measure repeat</a>.
             </p>
             <aside class="example" title="Encoding Repeated Figures">
                 <table class="simple" style="width: 100%">
@@ -2501,39 +2590,6 @@
                         <td class="notation-result"></td>
                         <td>Repeat twice</td>
                     </tr>
-                    </tbody>
-                </table>
-            </aside>
-        </section>
-        <section>
-            <h5>Repeated measures</h5>
-            <p>
-                If one or more whole measures are repeated, a measure
-                repeat can be used.
-            </p>
-            <p>
-                The measure to be repeated MUST end with a bar line. The lower-case
-                character <code>i</code> MUST occur immediately after this bar line,
-                and MUST be immediately followed by another bar line. There MUST NOT
-                be any other characters between these two bar lines.
-            </p>
-            <p>
-                Any type of bar line MAY be used to begin or end a measure repeat group.
-            </p>
-            <p>
-                Measure repeats SHOULD NOT be used with Mensural or Neume notation due to the
-                general absence of measures in this system of notation.
-            </p>
-            <aside class="example" title="Encoding Repeated Measures">
-                <table class="simple" style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Notation</th>
-                        <th>Remarks</th>
-                    </tr>
-                    </thead>
-                    <tbody>
                     <tr class="notation-example">
                         <td class="notation-code">
                             <script type="application/json">
@@ -2544,22 +2600,35 @@
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>'4ABAG/i/i/</code>
+                            <code>!8{AB}!f/i/i</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Repeat measure twice</td>
+                        <td>Repeat the figure, then repeat the measure.</td>
                     </tr>
                     </tbody>
                 </table>
             </aside>
         </section>
         <section>
-            <h5>Rhythmic sequence</h5>
+            <h5 id="measure-repeat">Measure repeat</h5>
             <p>
-                When the same rhythmic sequence is repeated, the sequence of rhythmic values can be stated once
-                before the <a href="#note-names">note names</a>.
+                A measure repeat encodes the repetition of a complete preceding measure. A measure repeat
+                represents one repetition of the most recent complete measure.
             </p>
-            <aside class="example" title="Encoding Rhythmic Sequences">
+            <p>
+                The measure to be repeated MUST end with a bar line. The lower-case character <code>i</code>
+                MUST occur immediately after this bar line and MUST be immediately followed by another bar
+                line. There MUST NOT be any other characters between <code>i</code> and the surrounding bar lines.
+            </p>
+            <p>
+                Any type of <a href="#bar-lines">bar line</a> can be used to begin or end a measure repeat. However,
+                the bar line itself is not part of the measure repeat.
+            </p>
+            <p>
+                Measure repeats SHOULD NOT be used with Mensural or Neume notation due to the general
+                absence of measures in these notation types.
+            </p>
+            <aside class="example" title="Encoding Repeated Measures">
                 <table class="simple" style="width: 100%">
                     <thead>
                     <tr>
@@ -2579,13 +2648,10 @@
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>'8.68{AB''C}{DEF}</code>
+                            <code>'4ABAG/i/i/</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>
-                            instead of <code>{'8.A6B''8C}{8.D6E8F}</code> the code can be <code>'8.68{AB''C}{DEF}</code>.
-                            The rhythmic sequence ends when a new rhythmic value appears.
-                        </td>
+                        <td>Repeat measure twice</td>
                     </tr>
                     </tbody>
                 </table>
@@ -3203,9 +3269,9 @@
                 <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
             </tr>
             <tr>
-                <td>Rhythmic sequences</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-rhythmic-sequences">11</a></sup></td>
+                <td>Duration patterns</td>
+                <td>x</td>
+                <td>x</td>
                 <td></td>
             </tr>
             </tbody>
@@ -3253,10 +3319,6 @@
         <li id="feature-measure-repeats-discouraged">
             Measure repeats are syntactically available, but the specification discourages their use with Mensural
             or Neume notation due to the general absence of measures.
-        </li>
-        <li id="feature-rhythmic-sequences">
-            Rhythmic sequences are available, but their scope, mapping, and termination behavior are
-            under-specified.
         </li>
     </ol>
 </section>
