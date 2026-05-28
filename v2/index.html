@@ -1477,10 +1477,13 @@
         <section id="single-rests">
             <h4>Rests</h4>
             <p>
-                Rests for single notes are indicated by a hyphen/minus character <code>-</code>. This character
+                Single rests are indicated by a hyphen/minus character <code>-</code>. This character
                 MAY be preceded by a <a href="#durations">duration</a> value giving the musical duration of the rest.
                 If the duration is omitted, the last specified duration is used. If no duration is supplied in the
                 <a>encoding</a> a default duration of <code>4</code> is assumed.
+            </p>
+            <p>
+                A <a>fermata</a> MAY be added to a rest. When provided, it MUST immediately follow the <code>-</code>.
             </p>
             <aside class="example" title="Encoding Rests">
                 <table class="simple" style="width: 100%">
@@ -2053,10 +2056,18 @@
         <section id="fermatas">
             <h4>Fermatas</h4>
             <p>
-                The lower-case character <code>p</code> is used to indicate
-                a fermata on a note. The <code>p</code> MUST follow the <a href="#note-names">note name</a>.
-                If there is also a <a href="#trills">trill</a>, the <code>p</code> MUST follow
-                the trill character.
+                The lower-case character <code>p</code> is used to indicate a fermata.
+            </p>
+            <p>
+                For notes, the <code>p</code> MUST immediately follow the note name; however, If there is also
+                a <a href="#trills">trill</a>, the <code>p</code> MUST follow the trill character.
+            </p>
+            <p>
+                For rests, see the <a href="#single-rests">single rests</a> section for how fermatas are encoded.
+                For multi-measure rests, see the <a href="#measure-rests">measure rests</a> section for details.
+            </p>
+            <p>
+                For chords, see the <a href="#chords">chords</a> section for how fermatas are encoded.
             </p>
             <aside class="example">
                 <table class="simple" style="width: 100%">
@@ -2412,6 +2423,10 @@
                 Measure rests MUST be preceded and followed by a <a href="#bar-lines">bar line</a> character, unless
                 the measure rest is the first <a>logical unit</a> in the <a>encoding</a>. In this case, the preceding
                 bar line is not necessary.
+            </p>
+            <p>
+                A <a href="#fermatas">fermata</a> for a measure rest MAY be supplied. If provided, the <code>p</code>
+                MUST be the final character in the measure rest before the final bar line character.
             </p>
             <p>
                 Measure rests MUST NOT be used with Mensural and Neume notations, due to the general absence of
