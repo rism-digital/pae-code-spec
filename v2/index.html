@@ -119,7 +119,8 @@
             all: revert !important;
         }
 
-        .notation-result svg {
+        .notation-result svg,
+        .rendered-notation svg {
             background: white;
         }
 
@@ -251,9 +252,14 @@
             A software application that renders Plaine and Easie Code as music notation.
             A renderer may also produce sound output, for example through MIDI.
         </dd>
+        <dt><dfn>Sounding Duration</dfn></dt>
+        <dd>
+            The duration that is heard when the music is performed, which may be different from the
+            written duration value of the note.
+        </dd>
         <dt><dfn>Sounding Pitch</dfn></dt>
         <dd>
-            The pitch that is heard when the music is performed, independent of how that
+            The pitch that is heard when the music is performed, which may be different from the
             pitch is written on the staff.
         </dd>
         <dt><dfn>Staff</dfn></dt>
@@ -266,10 +272,15 @@
         <dd>
             The person or people who transcribe a musical source into Plaine and Easie Code.
         </dd>
+        <dt><dfn>Written Duration</dfn></dt>
+        <dd>
+            The duration of a note, according to its graphical appearance, which may differ from the
+            duration of the note when it is performed.
+        </dd>
         <dt><dfn>Written Pitch</dfn></dt>
         <dd>
-            The pitch represented by a note as it is written on the staff, independent of how
-            it sounds when performed.
+            The pitch represented by a note as it is written on the staff, which may differ from its pitch
+            when performed.
         </dd>
     </dl>
 </section>
@@ -1478,9 +1489,9 @@
             <h4>Rests</h4>
             <p>
                 Rests for single notes are indicated by a hyphen/minus character <code>-</code>. This character
-                MAY be preceded by a <a href="#durations">duration</a> value giving the musical duration of the rest.
-                If the duration is omitted, the last specified duration is used. If no duration is supplied in the
-                <a>encoding</a> a default duration of <code>4</code> is assumed.
+                MAY be preceded by a <a href="#durations">duration</a> value. If the duration is omitted, the last
+                specified duration is used. If no duration is supplied in the <a>encoding</a> a default duration
+                of <code>4</code> is assumed.
             </p>
             <aside class="example" title="Encoding Rests">
                 <table class="simple" style="width: 100%">
@@ -1781,47 +1792,71 @@
             </aside>
         </section>
         <section id="tuplets">
-            <div class="issue" data-number="123"></div>
             <h4>Tuplets</h4>
             <p>
-                Tuplet groups are enclosed within parentheses <code>()</code>.
+                Tuplets are enclosed within parentheses <code>()</code>.
             </p>
             <p>
-                A tuplet group MUST begin with a duration value as the first character
-                after the opening parenthesis <code>(</code> to indicate the total duration
-                of the tuplet group.
+                A <a href="#durations">duration value</a> MAY immediately follow the opening parenthesis <code>(</code>.
+                This value indicates the total <a>sounding duration</a> occupied by the tuplet. A semicolon <code>;</code>
+                MUST immediately follow this duration value to separate it from any other duration value
+                given in the tuplet.
             </p>
-            <aside class="note">
+            <p>
+                A tuplet number MAY be provided before the closing parenthesis <code>)</code>. A semicolon
+                <code>;</code> separates the notes of the tuplet from the tuplet number.
+            </p>
+            <p>
+                The tuplet number MAY be provided. If provided, it MUST be either a positive integer,
+                or a ratio written as two positive integers separated by a colon character <code>:</code>.
+            </p>
+            <p>
+                If no tuplet number is provided, a value of <code>3</code> is implied.
+            </p>
+            <p>
+                Tuplets MUST NOT be used in Neume Notation.
+            </p>
+            <aside class="note" title="Tuplet encoding explained">
                 <p>
-                    For example, if a tuplet has three eighth notes within the space of two,
-                    then the duration would be <code>4</code> to indicate the tuplet has a duration of
-                    one beat, assuming a quarter note is one beat in the time signature.
+                    In <code>(8;6ABC;3)</code>, the value <code>8;</code> after the opening
+                    parenthesis indicates the <a>sounding duration</a> occupied by the tuplet group. The
+                    value <code>6</code> after the total duration indicates the <a>written duration</a>
+                    as sixteenth notes. The value <code>;3</code> after the semicolon is the tuplet number
+                    displayed in a bracket above the tuplet.
                 </p>
-            </aside>
-            <p>
-                A semicolon character <code>;</code> and a positive integer MAY be the final character
-                before the closing parenthesis, <code>)</code>, of a tuplet group. This number indicates the number of
-                beat divisions in the group; that is, the number of beats that occur within
-                the tuplet in the space of the given duration value. If a number is not
-                given, a value of <code>3</code> is assumed.
-            </p>
-            <p>
-                A duration value MAY be given immediately preceding the opening parenthesis <code>(</code>.
-                This value indicates the rendered duration value for all notes within the tuplet, but has
-                no actual effect on the note duration. If no duration value is given, then the last stated duration
-                value is used. If no duration value is stated in the <a>encoding</a>, a default duration value of
-                <code>4</code> is assumed.
-            </p>
-            <aside class="note">
-                Since the default number of beats in the tuplet is <code>3</code>, these two
-                encodings of a triplet are considered to be equivalent:
-
-                <aside class="example">
-                    <pre class="code">
-                        8(6ABC;3) or 8({6ABC};3)
-                        8(6ABC) or 8({6ABC})
-                    </pre>
-                </aside>
+                <p>
+                    Since the default displayed tuplet number is <code>3</code>, the encodings
+                    <code>(8;6ABC;3)</code> and <code>(8;6ABC)</code> are equivalent. Likewise,
+                    <code>({6ABC};3)</code> and <code>({6ABC})</code> are equivalent.
+                </p>
+                <p>
+                    Applications that render notation are free to choose how tuplet labels are
+                    displayed. They may choose to display the label only if explicitly provided,
+                    may choose to always display a label using the implied default, or may choose
+                    to never show any tuplet labels.
+                </p>
+                <p>
+                    Below is an annotated view of the tuplet structure and the equivalent rendering.
+                </p>
+                <pre>
+                    (8;6ABC;3)
+                     | |    |
+                     | |    +-- displayed tuplet number (optional)
+                     | +------- A B C as sixteenth notes
+                     +--------- sounding duration of the tuplet (optional)
+                </pre>
+                <div class="notation-example">
+                    <div class="notation-code">
+                        <script type="application/json">
+                            {
+                                "clef": "G-2",
+                                "timesig": "c",
+                                "data": "(4;'4D8E;3)/"
+                            }
+                        </script>
+                    </div>
+                    <div class="rendered-notation" style="text-align: center"></div>
+                </div>
             </aside>
             <aside class="example" title="Encoding Tuplets">
                 <table class="simple" style="width: 100%">
@@ -1843,7 +1878,7 @@
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>4(6'DEFGA;5)</code>
+                            <code>(4;6'DEFGA;5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 16th notes, in the space of a quarter note</td>
@@ -1858,7 +1893,7 @@
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>8({'3DEFGA};5)</code>
+                            <code>(8;{'3DEFGA};5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 32nd notes, in the space of an eighth note, with beamed notes</td>
@@ -1873,7 +1908,7 @@
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>4('4D8E)4('4D8E)</code>
+                            <code>(4;'4D8E)(4;'4D8E)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Two triplet values of varying duration.</td>
