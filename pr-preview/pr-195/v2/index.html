@@ -1804,11 +1804,9 @@
             </p>
             <p>
                 A tuplet number MAY be provided before the closing parenthesis <code>)</code>. A semicolon
-                <code>;</code> separates the notes of the tuplet from the tuplet number.
-            </p>
-            <p>
-                The tuplet number MAY be provided. If provided, it MUST be either a positive integer,
-                or a ratio written as two positive integers separated by a colon character <code>:</code>.
+                <code>;</code> separates the notes of the tuplet from the tuplet number. If provided, the tuplet
+                number MUST be either a positive integer, or a ratio written as two positive integers separated by a
+                colon character <code>:</code>.
             </p>
             <p>
                 If no tuplet number is provided, a value of <code>3</code> is implied.
@@ -1874,11 +1872,11 @@
                                 {
                                     "clef": "G-2",
                                     "timesig": "c",
-                                    "data": "4(6'DEFGA;5)",
+                                    "data": "4('6DEFGA;5)",
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>(4;6'DEFGA;5)</code>
+                            <code>(4;'6DEFGA;5)</code>
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 16th notes, in the space of a quarter note</td>
@@ -1897,21 +1895,6 @@
                         </td>
                         <td class="notation-result"></td>
                         <td>Quintuplet, 5 32nd notes, in the space of an eighth note, with beamed notes</td>
-                    </tr>
-                    <tr class="notation-example">
-                        <td class="notation-code">
-                            <script type="application/json">
-                                {
-                                    "clef": "G-2",
-                                    "timesig": "c",
-                                    "data": "4('4D8E)4('4D8E)",
-                                    "version": "pe2"
-                                }
-                            </script>
-                            <code>(4;'4D8E)(4;'4D8E)</code>
-                        </td>
-                        <td class="notation-result"></td>
-                        <td>Two triplet values of varying duration.</td>
                     </tr>
                     </tbody>
                 </table>
