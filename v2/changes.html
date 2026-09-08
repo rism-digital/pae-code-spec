@@ -210,20 +210,37 @@
                 </p>
             </section>
             <section>
-                <h3>Appogiatura Group Opening Character</h3>
+                <h3>Appoggiatura, Acciaccatura, and Grace Notes</h3>
                 <p>
-                    Previously the characters <code>qq</code> were used to start
-                    an appogiatura (a.k.a grace note) group. However, this was
-                    the only instance in the Plaine &amp; Easie Code where two
-                    characters were used to start a group. It made
-                    parsing the code more difficult, since it created
-                    ambiguities between a single appoggiatura note, `q` and
-                    a group of notes.
+                    In the previous version of the Plaine and Easie Code, accurate encoding of appoggiaturas, and
+                    acciaccaturas depended on the encoder's ability to accurately tell these apart. Unfortunately,
+                    a long history of musical practice, individual composers' interpretations, and even scribal
+                    practices means that accurately determining whether any given note was one or the other led to
+                    misapplications of the encoding rules.
                 </p>
                 <p>
-                    In Version 2 the start of an appoggiatura group is now
-                    signaled by the lower-case letter <code>y</code>. It is
-                    still ended by the lower-case letter <code>r</code>.
+                    Given that the primary purpose of the Plaine and Easie Code, it was felt that capturing the
+                    visual appearance of the ornament in the source was more important than assigning a given ornament
+                    a specific type. The encoding of ornaments was accordingly re-worked to avoid the need to
+                    determine the type of ornament, and instead focus on the visual elements of the ornament in the
+                    source.
+                </p>
+                <p>
+                    This does not prevent the code from recording visual features traditionally associated with
+                    acciaccaturas and appoggiaturas. What has changed is that an encoder no longer has to determine an
+                    ornament's performance type before encoding it.
+                </p>
+                <p>
+                    These ornament notes are now described primarily with the generic term "grace note." Grace notes
+                    are now encoded in two main ways: Single grace notes have a <code>g</code> modifier, while multiple
+                    grace notes are encoded in a grace note group, <code>q ... r</code>. The optional
+                    <code>s</code> immediately follows <code>g</code> or <code>q</code>: it indicates a slashed
+                    stem for a single or unbeamed group, or a slash through each beamed portion of a group.
+                </p>
+                <p>
+                    This is different from the previous version of the Plaine and Easie Code, where the <code>g</code>
+                    was reserved exclusively for an acciaccatura, the <code>q</code> for single-note appoggiaturas,
+                    and the <code>qq ... r</code> group was for multiple appoggiaturas.
                 </p>
             </section>
         </section>
