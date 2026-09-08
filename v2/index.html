@@ -790,10 +790,11 @@
             a <a>staff</a> of musical notation. <a href="#notes-and-rests">Notes and rests</a>, and chords,
             are the most basic <a>logical units</a> of notation representation, composed of one or more
             characters that specify different attributes of a note or rest. Complex notational figures,
-            such as <a href="#beams">beams</a>, or <a href="#tuplets">tuplets</a>, serve to group these logical units. <a href="#expression-marks">Expression marks</a>
-            alter the performance of a note, a rest, or groups thereof. Other <a href="#measure-and-staff-symbols">staff and measure</a> symbols
-            can control the definition of the staff itself: bar lines, multi-measure rests, or a change of clef,
-            key signature, or time signature.
+            such as <a href="#beams">beams</a>, or <a href="#tuplets">tuplets</a>, serve to group these logical units.
+            <a href="#expression-marks">Expression marks</a> alter the performance of a note, a rest, or groups
+            thereof. Other <a href="#measure-and-staff-symbols">staff and measure</a> symbols can control the
+            definition of the staff itself: bar lines, multi-measure rests, or a change of clef, key signature, or
+            time signature.
         </p>
         <p>
             Many characters representing properties of a musical note are optional&mdash;the only required
@@ -813,8 +814,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Grace / Appoggiatura</td>
-                    <td><code>[g|q]</code></td>
+                    <td>Grace Notes</td>
+                    <td><code>g[s]? | q[s]? ... r</code></td>
                     <td>Optional</td>
                     <td>When specified, MUST precede all other characters.</td>
                 </tr>
@@ -826,7 +827,7 @@
                 </tr>
                 <tr>
                     <td>Duration / Duration Dot</td>
-                    <td><code>[0-9](.{0,4})</code></td>
+                    <td><code>[0-9](.{0,4})?</code></td>
                     <td>Optional</td>
                 </tr>
                 <tr>
@@ -858,8 +859,8 @@
         <aside class="note">
             <p>
                 There is one exception to this nested groups requirement: A beamed group of notes marked as
-                an <a href="#appoggiatura-groups">appoggiatura group</a> can occur within an outer beam group. This is
-                explained further in the <a href="#appoggiatura-groups">appoggiatura group</a> and <a href="#beams">
+                an <a href="#grace-note-groups">grace note group</a> can occur within an outer beam group. This is
+                explained further in the <a href="#grace-note-groups">grace note group</a> and <a href="#beams">
                 beams</a> sections.
             </p>
         </aside>
@@ -1719,8 +1720,8 @@
             </p>
             <p>
                 Beam groups start with an opening brace <code>{</code>, and end with a closing brace, <code>}</code>.
-                Nested beam groups MUST NOT occur, except as part of an
-                <a href="#appoggiatura-groups">appoggiatura group</a>.
+                Nested beam groups MUST NOT occur, except as part of a <a href="#grace-note-groups">grace note
+                group</a>.
             </p>
             <p>
                 A beam group MAY be immediately preceded by an octave indication, a duration value,
@@ -1767,14 +1768,14 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "8{ABy{''CD}r'AB}",
+                                    "data": "8{ABq{''CD}r'AB}",
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>8{ABy{''CD}r'AB}</code>
+                            <code>8{ABq{''CD}r'AB}</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Beaming with a Grace Note Group</td>
+                        <td>Beaming with a grace-note group</td>
                     </tr>
                     </tbody>
                 </table>
@@ -2089,36 +2090,55 @@
         <section id="grace-notes">
             <h4>Grace Notes</h4>
             <p>
-                There are two types of grace note: Acciaccatura and appoggiatura.
+                Grace notes ornament a following non-grace note or chord. The character <code>g</code> introduces a
+                single grace note and MUST precede all of its other attributes. A single grace note MUST be followed
+                by a <a href="#note-names">note</a>.
             </p>
             <p>
-                The character <code>g</code> is used for a single acciaccatura. This character MUST precede
-                any <a href="#octaves">octave</a> or <a href="#accidentals">accidental</a> indications, and
-                the <a href="#note-names">note name</a>. Acciaccaturas MUST NOT specify a
-                <a href="#durations">duration</a> or any <a href="#expression-marks">expression marks</a>.
+                The optional character <code>s</code> immediately following <code>g</code> indicates a slashed stem.
             </p>
             <p>
-                The <a href="#implied-duration-octave">implied duration</a> MUST NOT apply to acciaccaturas, but the
-                <a href="#implied-duration-octave">implied octave</a> MUST apply. Acciaccaturas
-                are not considered to be part of a <a href="#duration-patterns">duration pattern</a>.
+                Octave indications and <a href="#accidentals">accidentals</a> MAY be supplied for a grace note.
+                Grace note octaves follow the <a href="#implied-duration-octave">normal rules of implied octaves</a>.
+                A <a href="#durations">duration</a> MAY be supplied; otherwise, the grace note duration is
+                <code>8</code>. <a href="#expression-marks">Trills and fermatas</a> MUST NOT be applied to
+                grace notes.
             </p>
             <p>
-                Consecutive single acciaccaturas MUST NOT occur.
+                Consecutive single grace notes MUST NOT occur. Use a grace note group for two or more consecutive
+                grace notes.
             </p>
             <p>
-                The character <code>q</code> is used for a single appoggiatura. This character
-                MUST precede all other attributes of the note and the note name. Appoggiaturas
-                MAY specify a <a href="#durations">duration</a>, <a href="#octaves">octave</a> or
-                <a href="#accidentals">accidental</a>. <a href="#expression-marks">Expression marks</a> MAY be
-                applied to appoggiaturas.
+                Grace notes MUST NOT appear in Neume or Mensural Notation.
+            </p>
+            <h5 id="grace-note-groups">Grace Note Groups</h5>
+            <p>
+                A grace note group begins with <code>q</code> and ends with <code>r</code>. A group MUST contain at
+                least two notes. Grace note groups MUST be followed by a <a href="#note-names">note</a>.
             </p>
             <p>
-                Implied octave, implied duration, and duration patterns MUST apply to appoggiaturas.
+                The optional character <code>s</code> indicates slashed stems within the group, and MUST immediately
+                follow the <code>q</code>.
+            </p>
+            <aside class="note">
+                <p>
+                    A slashed stem affects all notes within the group. If the group contains individual notes, then
+                    each note would have a slashed stem. If the group contains beamed notes, then a slashed beam
+                    would be used.
+                </p>
+            </aside>
+            <p>
+                Grace-note groups MAY include <a href="#beams">beams</a> and <a href="#tuplets">tuplets</a>.
             </p>
             <p>
-                Consecutive appoggiatura notes MUST be encoded using an
-                <a href="#appoggiatura-groups">appoggiatura group</a>. Consecutive single appoggiaturas MUST NOT
-                occur.
+                Trills and fermatas MUST NOT be applied to group members.
+            </p>
+            <p>
+                Octave indications and accidentals MAY be used within a grace note group. Grace note octaves follow
+                the <a href="#implied-duration-octave">normal rules of implied octaves</a>. Duration values are local
+                to the group: they do not inherit duration values or duration patterns outside it. A group
+                member without an explicit duration uses the most recent duration in that group, or <code>8</code> if
+                none has been supplied.
             </p>
             <aside class="example" title="Encoding Grace Notes">
                 <table class="simple" style="width: 100%">
@@ -2135,98 +2155,86 @@
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'4Ag''C{''8D'8B}",
+                                    "data": "gB''C",
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>'4Ag''C{''8D'8B}</code>
+                            <code>gBC</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Acciaccatura</td>
+                        <td>Single grace note <code>B</code> ornamenting <code>C</code></td>
                     </tr>
                     <tr class="notation-example">
                         <td class="notation-code">
                             <script type="application/json">
                                 {
                                     "clef": "G-2",
-                                    "data": "'4Aq8'B{'8A'8G}",
+                                    "data": "gs'BA",
                                     "version": "pe2"
                                 }
                             </script>
-                            <code>'4Aq8'B{'8A'8G}</code>
+                            <code>gs'BA</code>
                         </td>
                         <td class="notation-result"></td>
-                        <td>Appoggiatura</td>
+                        <td>Single grace note with a slashed stem</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "q''DCrD",
+                                    "version": "pe2"
+                                }
+                            </script>
+                            <code>q''DCrD</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Two-note grace group ornamenting <code>D</code></td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "qs{''DC}r''D",
+                                    "version": "pe2"
+                                }
+                            </script>
+                            <code>qs{''DC}r''D</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Slashed beamed grace-note group</td>
+                    </tr>
+                    <tr class="notation-example">
+                        <td class="notation-code">
+                            <script type="application/json">
+                                {
+                                    "clef": "G-2",
+                                    "data": "q({6''C'BA})r''8C",
+                                    "version": "pe2"
+                                }
+                            </script>
+                            <code>q({6''C'BA})r''8C</code>
+                        </td>
+                        <td class="notation-result"></td>
+                        <td>Grace-note group containing a tuplet</td>
                     </tr>
                     </tbody>
                 </table>
             </aside>
-            <section id="appoggiatura-groups">
-                <h5>Appoggiatura Groups</h5>
+            <aside class="note">
                 <p>
-                    Appoggiatura groups MUST be used for multiple consecutive appoggiatura notes. The lower-case
-                    character <code>y</code> indicates the start of an appoggiatura group, and the lower-case
-                    character <code>r</code> indicates the end of the group. There MUST be more than one note in an
-                    appoggiatura group.
+                    Grace notes indicate one or more ornament notes and are written using smaller note forms.
+                    They are typically divided into two primary types: Acciaccatura, and appoggiatura.
+                    Their visual appearance, and their exact duration interpretation, is subject to debates around
+                    performer practice, historical precedent, and scribal customs, among other things.
+                    This makes it difficult to always unambiguously capture which type of ornament is meant,
+                    particularly for encoders who may not be familiar with the different interpretations. For this
+                    reason the visual appearance of an ornamental grace note is captured, leaving the determination
+                    of whether a note is an acciaccatura or appoggiatura for later study.
                 </p>
-                <p>
-                    Beams MAY occur within an appoggiatura group. For beamed appoggiatura groups, the <code>y</code>
-                    character MUST precede the opening beam <code>{</code> character; however, duration and octave
-                    values for the beam group MAY be provided between the appoggiatura start character <code>y</code>
-                    and the opening beam character <code>{</code>. The <code>r</code> character MUST immediately
-                    follow the closing beam <code>}</code> character.
-                </p>
-                <p>
-                    An appoggiatura group with beams MAY occur within an outer beam group.
-                </p>
-                <aside>
-                    <p>
-                        Consult the <a href="#beams">beams</a> section for additional details on beaming and nested
-                        appoggiatura groups.
-                    </p>
-                </aside>
-                <aside class="example" title="Encoding appoggiatura Groups">
-                    <table class="simple" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Notation</th>
-                            <th>Remarks</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "'4Ay''{'8B''8C}r{''8D'8B}",
-                                        "version": "pe2"
-                                    }
-                                </script>
-                                <code>'4Ay''{'8B''8C}r{''8D'8B}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Appoggiatura group</td>
-                        </tr>
-                        <tr class="notation-example">
-                            <td class="notation-code">
-                                <script type="application/json">
-                                    {
-                                        "clef": "G-2",
-                                        "data": "{'8Ay''{'8B''8C}r''8D}",
-                                        "version": "pe2"
-                                    }
-                                </script>
-                                <code>{'8Ay''{'8B''8C}r''8D}</code>
-                            </td>
-                            <td class="notation-result"></td>
-                            <td>Beamed appoggiatura group within an outer beam</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </aside>
-            </section>
+            </aside>
         </section>
     </section>
     <section id="measure-and-staff-symbols">
@@ -3036,16 +3044,22 @@
                 <td>When both are present, <code>t</code> precedes <code>p</code>.</td>
             </tr>
             <tr>
-                <td>Acciaccatura and single appoggiatura markers</td>
-                <td><code>g</code> <code>q</code></td>
+                <td>Single grace-note marker</td>
+                <td><code>g</code></td>
                 <td><a href="#grace-notes">Grace notes</a></td>
-                <td>These markers precede the note they modify.</td>
+                <td>Introduces a single grace note and precedes all of its attributes.</td>
             </tr>
             <tr>
-                <td>Appoggiatura group delimiters</td>
-                <td><code>y</code> <code>r</code></td>
-                <td><a href="#appoggiatura-groups">Appoggiatura groups</a></td>
-                <td>Mark the beginning and end of an appoggiatura group.</td>
+                <td>Grace-note group delimiters</td>
+                <td><code>q</code> <code>r</code></td>
+                <td><a href="#grace-note-groups">Grace note groups</a></td>
+                <td>Mark the beginning and end of a grace-note group.</td>
+            </tr>
+            <tr>
+                <td>Slashed grace-note modifier</td>
+                <td><code>s</code></td>
+                <td><a href="#grace-notes">Grace notes</a></td>
+                <td>Immediately follows <code>g</code> or <code>q</code> and indicates slashed stems; beamed group members use a slashed beam.</td>
             </tr>
             <tr>
                 <td>Bar lines</td>
@@ -3227,46 +3241,40 @@
                 <td>x</td>
             </tr>
             <tr>
-                <td>Acciaccaturas</td>
+                <td>Single grace notes</td>
                 <td>x</td>
-                <td>x</td>
-                <td>x</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <td>Appoggiaturas</td>
+                <td>Grace-note groups</td>
                 <td>x</td>
-                <td>x</td>
-                <td>x</td>
-            </tr>
-            <tr>
-                <td>Appoggiatura groups</td>
-                <td>x</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-beams-in-grace-groups">6</a></sup></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td>Bar lines</td>
                 <td>x</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">7</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">6</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-barlines-discouraged">6</a></sup></td>
             </tr>
             <tr>
                 <td>Measure rests</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-measure-rest-boundary">8</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-rest-boundary">7</a></sup></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Repeat groups</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">8</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">8</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-repeat-groups">8</a></sup></td>
             </tr>
             <tr>
                 <td>Measure repeats</td>
                 <td>x</td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
-                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">10</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">9</a></sup></td>
+                <td class="feature-conditional">[x]<sup><a href="#feature-measure-repeats-discouraged">9</a></sup></td>
             </tr>
             <tr>
                 <td>Duration patterns</td>
@@ -3298,10 +3306,6 @@
         <li id="feature-neume-rhythm">
             Tuplets require duration values, while Neume notes must not be given duration values and have no
             implied duration.
-        </li>
-        <li id="feature-beams-in-grace-groups">
-            Appoggiatura groups are available, but beamed appoggiatura groups inherit the Mensural and Neume
-            beam discouragement.
         </li>
         <li id="feature-barlines-discouraged">
             Bar lines are syntactically available, but the specification discourages their use in Neume and
